@@ -1,0 +1,23 @@
+This package was written for Debian by Alexandre Detiste <alexandre.detiste@gmail.com>
+
+Project page: https://github.com/a-detiste/cruft-ng
+
+Copyright and License:
+
+Cruft-ng Copyright (c) 2014 Alexandre Detiste
+
+This program is free software; you may redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2, or (at your option)
+any later version.
+
+This is distributed in the hope that it will be useful, but without
+any warranty; without even the implied warranty of merchantability or
+fitness for a particular purpose. See the GNU General Public License
+for more details.
+
+A copy of the GNU General Public License is available as
+/usr/share/common-licenses/GPL in the Debian GNU/Linux distribution or
+on the World Wide Web at http://www.gnu.org/copyleft/gpl.html.  You can
+also obtain it by writing to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
