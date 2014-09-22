@@ -2,10 +2,10 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <cstdlib>
+#include <algorithm>
 #include <stdio.h>
 #include <sys/stat.h>
-#include <cstdlib>
-
 #include "mlocate_db.h"
 //       original filename is 'db.h'
 // TODO: should be packaged in /usr/include by 'mlocate' package
@@ -16,48 +16,15 @@
 //#include <dpkg/dpkg.h>
 //#include <dpkg/dpkg-db.h>
 //#include <dpkg/pkg-array.h>
-
 using namespace std;
 
-struct Cruft{
-	std::string path;
-	std::string owner;
-	bool fs;
-	bool db;
-	bool explain;
-	Cruft (std::string path)
-	{
-		this->path    = path;
-		this->fs      = true;
-		this->db      = false;
-		this->explain = false;
-	}
-	Cruft (std::string path, std::string owner)
-	{
-		this->path    = path;
-		this->owner   = owner;
-		this->fs      = false;
-		this->db      = true;
-		this->explain = false;
-	}
-	Cruft (std::string path, std::string owner, bool fs, bool db, bool explain)
-	{
-		this->path    = path;
-		this->owner   = owner;
-		this->fs      = fs;
-		this->db      = db;
-		this->explain = explain;
-	}
-};
-
-int main(int argc, char *argv[])
+int read_mlocate(vector<string>& fs)
 {
-	system("updatedb");
-
-	std::string line;
-	std::ifstream mlocate("/var/lib/mlocate/mlocate.db");
+	string line;
+	ifstream mlocate("/var/lib/mlocate/mlocate.db");
 	if (not mlocate) {
-		std::cout << "can not open mlocate database\nare you root ?\n";
+		cout << "can not open mlocate database" << endl << "are you root ?" << endl;
+		// you can alos "setgid mlocate" the cruft-ng binary
 		return 1;
  	}
 
@@ -68,7 +35,7 @@ int main(int argc, char *argv[])
 	/*
 	for (int i=0;i<sizeof(db_header);i++) {
 		int n=header[i];
-		std::cout << i << ':' <<
+		cout << i << ':' <<
 			header[i] <<
 			'(' <<
 			n <<
@@ -77,225 +44,280 @@ int main(int argc, char *argv[])
 	std::cout << '\n';
 	*/
 
-	std::cout << "MLOCATE LOCATION\n";
+	cout << "MLOCATE LOCATION\n";
 	getline(mlocate,line, '\0');
-	std::cout << line << "\n\n";
+	cout << line << "\n\n";
 
-	std::cout << "MLOCATE PARAMETERS\n";
+	cout << "MLOCATE PARAMETERS\n";
 	int param_start = mlocate.tellg();
 	while (getline(mlocate,line,'\0'))
 	{
 		if (line.empty()) break;
-		std::cout << line << '=';
+		cout << line << '=';
 		while (getline(mlocate,line,'\0'))
 		{
 			if (line.empty()) break;
-			std::cout << line << ' ';
+			cout << line << ' ';
 		}
-		std::cout << endl;
+		cout << endl;
 	}
 	// TODO "prunepaths="
 	//  whitelist /tmp , /media
 	//  ignore    paths that doesn't even exist
 	//  warn      on other (e.g.: /var/spool)
-	std::cout << "theorical length=" << header[10]*256 + header[11] << '\n'; // BAD !! UNSIGNED CHAR
-	std::cout << "actual length=" << int(mlocate.tellg()) - param_start - 1 << "\n\n";
+	cout << "theorical length=" << header[10]*256 + header[11] << '\n'; // BAD !! UNSIGNED CHAR
+	cout << "actual length=" << int(mlocate.tellg()) - param_start - 1 << "\n\n";
 
-
-	std::cout << "MLOCATE DATA\n";
+	cout << "MLOCATE DATA\n";
 	char * dir = new char [sizeof(db_directory)];
-	std::string dirname;
-	std::string filename;
-	std::vector<Cruft> cruft;
-	cruft.reserve(200000);
+	string dirname;
+	string filename;
+	//fs.reserve(200000);
 	while ( mlocate.good() ) {
 		mlocate.read (dir,sizeof(db_directory));
 		getline(mlocate,dirname,'\0');
 		if (mlocate.eof()) break;
 		char filetype; // =sizeof(db_entry)
-		while ((filetype = mlocate.get()) != DBE_END) {;
+		while ((filetype = mlocate.get()) != DBE_END) {
 			getline(mlocate,filename,'\0');
 			if (dirname.length() >= 5  and dirname.substr(0, 5) == "/home") continue;
 			if (dirname.length() >= 5  and dirname.substr(0, 5) == "/root") continue;
 		        if (dirname.length() >= 10 and dirname.substr(0,10) == "/usr/local") continue;
 			//std::cout << dirname << '/' << filename << endl;
-			cruft.push_back(Cruft(dirname + '/' + filename));
+			fs.push_back(dirname + '/' + filename);
 		}
 	}
 	mlocate.close();
-	int size;
-	size=cruft.size();
-	std::cout << size << " files in cruft database\n\n";
+	sort(fs.begin(), fs.end());
+	cout << fs.size() << " relevant files in MLOCATE database\n\n";
 
+	return 0;
+}
 
-	std::cout << "DPKG DATA\n";
+int read_dpkg_header(vector<string>& packages)
+{
 	// TODO: read DPKG database directly instead of using dpkg-query
+	cout << "DPKG DATA\n";
 	FILE* fp;
-	if ((fp = popen("dpkg-query --show --showformat '${binary:Package}\n'", "r")) == NULL) {
-	    return 1;
-	}
+	if ((fp = popen("dpkg-query --show --showformat '${binary:Package}\n'", "r")) == NULL) return 1;
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
-	std::vector<std::string> packages;
-	std::string package;
+	string package;
 	while (fgets(buf, sizeof(buf),fp))
 	{
-	      if (!(buf[0]=='u' and buf[1]=='n')) {
 		package=buf;
-		package=package.substr(0,package.size() - 1);
+		package=package.substr(0,package.size() - 1); // remove '/n'
 		//cout << package << endl;
 		packages.push_back(package);
-	      }
 	}
 	pclose(fp);
-	int n_packages=packages.size();
-	cout << n_packages << " packages installed"  << endl << endl;
+	cout << packages.size() << " packages installed"  << endl << endl;
+	return 0;
+}
 
-
+int read_dpkg_items(vector<string>& dpkg)
+{
 	cout << "READING FILES IN DPKG DATABASE" << endl;
 	// TODO: read DPKG database instead of using dpkg-query
         string command="dpkg-query --listfiles $(dpkg-query --show --showformat '${binary:Package} ')|sort -u";
-	if ((fp = popen(command.c_str(), "r")) == NULL) {
-	    return 1;
-	}
-	int progress=0;
+	const int SIZEBUF = 200;
+	char buf[SIZEBUF];
+	FILE* fp;
+	if ((fp = popen(command.c_str(), "r")) == NULL) return 1;
 	while (fgets(buf, sizeof(buf),fp))
 	{
-		progress++;
-		if (progress % 1000 == 0) cout << progress << ' ' << std::flush;
-		filename=buf;
+		string filename=buf;
 		if (filename.substr(0,1)!="/") continue;
 		filename=filename.substr(0,filename.size() - 1);
-		//cout << packages[i] << ':' << filename << endl;
-
-		// match against MLOCATE
-		size=cruft.size(); // will be dynamicaly extended
-		bool found=false;
-		for (int j=1;j<size;j++) {
-		      if (cruft[j].path==filename) {
-			  cruft[j].db   =true;
-			  found         =true;
-			  break;
-		      }
-		}
 		// TODO: ignore ${prunepaths} here also
-		if (!found) cruft.push_back(Cruft(filename,"-"));
+		dpkg.push_back(filename);
 	}
         pclose(fp);
-	std::cout << "done"  << endl << std::flush;
+	cout << "done"  << endl;
+	sort(dpkg.begin(), dpkg.end()); // remove duplicates ???
+	cout << dpkg.size() << " files in DPKG database" << endl;
+	return 0;
+}
 
-	// remove matched records (=most records)
-	size=cruft.size();
-	std::cout << size << " files in cruft database" << endl << std::flush;
-	std::vector<Cruft> cruft2;
-	while (!cruft.empty()) {
-	    if ( !cruft.back().fs or !cruft.back().db)
-	    {
-		cruft2.push_back(Cruft(cruft.back().path,
-				       cruft.back().owner,
-				       cruft.back().fs,
-				       cruft.back().db,
-				       cruft.back().explain));
-	    }
-	    cruft.pop_back();
+int read_globs(/* const */ vector<string>& packages, vector<string>& globs)
+{
+	cout << "READING GLOBS IN /usr/lib/cruft/filters-unex/" << endl;
+	vector<string>::iterator it=packages.begin();
+	while (it !=packages.end()) {
+		string package=*it;
+		unsigned int arch=package.find(":");
+		if (arch != string::npos ) package=package.substr(0,arch);
+		// BUG: if libc6:i386 & libc6:amd64 are installed,
+		// the globs are read twice
+
+		struct stat stat_buffer;
+		string glob_filename ="/usr/lib/cruft/filters-unex/" + package;
+		if ( stat(glob_filename.c_str(), &stat_buffer)==0 )
+		{
+			ifstream glob_file(glob_filename.c_str());
+			while (glob_file.good())
+			{
+				string glob_line;
+				getline(glob_file,glob_line);
+				if (glob_file.eof()) break;
+				if (glob_line.substr(0,1) == "/") globs.push_back(glob_line);
+			}
+			glob_file.close();
+		}
+		it++;
 	}
-	size=cruft2.size();
-	std::cout << size << " files in cruft2 database" << endl << std::flush;
+	sort(globs.begin(), globs.end());
+	cout << globs.size() << " globs in database" << endl << endl;
+	// !!! TODO: remove duplicates
+	return 0;
+}
 
+void updatedb()
+{
+	//TODO: compare mtime /var/cache/apt/pkgcache.bin
+	//      et mtime      /var/lib/mlocate/mlocate.db
+	//      et date systeme
+	system("updatedb");
+}
+
+int main(int argc, char *argv[])
+{
+	std::vector<string> packages;
+	read_dpkg_header(packages);
+
+	std::vector<string> globs;
+	read_globs(packages,globs);
+
+	updatedb();
+
+	std::vector<string> fs;
+	read_mlocate(fs);
+
+	std::vector<string> dpkg;
+	read_dpkg_items(dpkg);
+
+	// match two main data sources
+	vector<string> cruft;
+	vector<string> missing;
+	vector<string>::iterator left=fs.begin();
+	vector<string>::iterator right=dpkg.begin();
+	while (left != fs.end() && right != dpkg.end() )
+	{
+		//cout << "[" << *left << "=" << *right << "]" << endl;
+		if (*left==*right) {
+			left++;
+			right++;
+		} else if (*left < *right) {
+			cruft.push_back(*left);
+			left++;
+		} else {
+			missing.push_back(*right);
+			right++;
+		}
+	}
+	//fs.clear();
+	//dpkg.clear();
+
+	cout << endl << missing.size() << " files in missing database" << endl;
+	cout << cruft.size() << " files in cruft database" << endl << endl << flush;
 
 	// TODO: this should use DPKG database too
-	for (int i=0;i<n_packages;i++) {
-	      for (int j=0;j<size;j++) {
-		  if (   cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".clilibs"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".conffiles"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".config"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".list"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".md5sums"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".postinst"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".postrm"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".preinst"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".prerm"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".shlibs"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".symbols"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".templates"
-		      or cruft2[j].path=="/var/lib/dpkg/info/" + packages[i] + ".triggers") {
-			      cruft2[j].explain=true;
-			      cruft2[j].owner  =packages[i];
-		  }
-	      }
+	vector<string> cruft2;
+	left=cruft.begin();
+	right=packages.begin();
+	while (left != cruft.end() && right != packages.end() ) {
+		// TODO: replace with substring or something else
+		if (*left < "/var/lib/dpkg/info") {
+			cruft2.push_back(*left);
+			left++;
+		} else if (*left > "/var/lib/dpkg/info/zzzzz" ) {
+			cruft2.push_back(*left);
+			left++;
+		} else {
+			right=packages.begin();
+			bool found=false;
+			while(right != packages.end() ) {
+			    if ( *left=="/var/lib/dpkg/info/" + *right + ".clilibs"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".conffiles"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".config"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".list"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".md5sums"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".postinst"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".postrm"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".preinst"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".prerm"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".shlibs"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".symbols"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".templates"
+			      or *left=="/var/lib/dpkg/info/" + *right + ".triggers")
+				{ found=true; break; }
+				right++;
+			}
+			if (!found) cruft2.push_back(*left);
+			left++;
+		}
 	}
-
+	//cruft.clear();
+	std::cout << cruft2.size() << " files in cruft2 database" << endl << endl << std::flush;
 
 	// match the globs against reduced database
-	std::string filter_glob;
-	std::string filter_file;
-	struct stat stat_buffer;
-	for (int i=0;i<n_packages;i++) {
-		filter_file="/usr/lib/cruft/filters-unex/" + packages[i];
-		if ( stat(filter_file.c_str(), &stat_buffer)==0 )
-		{
-			//cout << "filter for " << packages[i] << endl;
-			std::ifstream filter_unex(filter_file.c_str());
-			while (filter_unex.good())
-			{
-			      getline(filter_unex,filter_glob);
-			      if (filter_unex.eof()) break;
-			      if (filter_glob.substr(0,1) == "/") {
-				    bool match=false;
-				    for (int j=0;j<size;j++) {
-					if ( cruft2[j].path==filter_glob ) {
-					        cruft2[j].explain=true;
-					        cruft2[j].owner  =packages[i];
-						match            =true;
-						break;
-					} else if (filter_glob.find("**")==filter_glob.size()-2 ) {
-						unsigned int length=filter_glob.size()-2;
-						if (cruft2[j].path.size() >= length
-					        and cruft2[j].path.substr(0,length)==filter_glob.substr(0,length)) {
-						      cruft2[j].explain=true;
-						      cruft2[j].owner  =packages[i] + "**";
-						      match            =true;
-						      // no break here !, because ** matches many files
-						}
-					} else if (filter_glob.find("*")==filter_glob.size()-1 ) {
-						unsigned int length=filter_glob.size()-1;
-						if (  cruft2[j].path.size() >= length
-						  and cruft2[j].path.find("/",length)==string::npos
-						  and cruft2[j].path.substr(0,length)==filter_glob.substr(0,length)) {
-						      cruft2[j].explain=true;
-						      cruft2[j].owner  =packages[i] + "*";
-						      match            =true;
-						}
-					} else {
-						// TODO: this only implement 1-1 match and path/starstar
-						// no '?' or '*' or 'path/starstar/path'
-						// use GLOB or LS ???
-					}
-
-				    }
-				    //if (!match) cout << 'no match [' << filter_glob << ']' << endl;
-			      }
+	vector<string> cruft3;
+	left=cruft2.begin();
+	while (left != cruft2.end()) {
+		right=globs.begin();
+		bool match=false;
+		while (right != globs.end()) {
+			if (*left==*right) {
+				match=true;
+				//cout << "1/1 MATCH: " << *left << endl;
+				break;
+			} else if ( (*right).find("**")==(*right).size()-2 ) {
+				unsigned int length=(*right).size()-2;
+				if (    (*left).size() >= length
+				    and (*left).substr(0,length)==(*right).substr(0,length)) {
+					match=true;
+					//cout << "** MATCH: " << *left << " = " << *right << endl;
+					break;
+				}
+			} else if ( (*right).find("*")==(*right).size()-1 ) {
+				unsigned int length=(*right).size()-1;
+				if (  (*left).size() >= length
+				  and (*left).find("/",length)==string::npos
+				  and (*left).substr(0,length)==(*right).substr(0,length)) {
+					match=true;
+					//cout << "* MATCH: " << *left << " = " << *right << endl;
+					break;
+				}
+			} else {
+				// TODO: this only implement 1-1 match, path/star and path/starstar
+				// no '?' or '*' or 'path/starstar/path'
+				// use GLOB or LS ???
 			}
+			right++;
 		}
+		if (!match) cruft3.push_back(*left);
+		left++;
 	}
+
+	//cruft2.clear();
+	cout << cruft3.size() << " files in cruft3 database" << endl << endl << flush;
 
 	// run needed scripts in /usr/lib/cruft/explain/ with popen()
+	cout << "cruft report: lundi 22 septembre 2014, 17:42:27 (UTC+0200)" << endl << endl;
 
-	std::cout << "REPORT\n";
-	size=cruft2.size();
-	for (int i=0;i<size;i++) {
-		if (   !cruft2[i].fs
-		    or (!cruft2[i].db and !cruft2[i].explain)) {
-			cout << cruft2[i].fs
-			     << cruft2[i].db
-			     << cruft2[i].explain
-			     << ' '
-			     << cruft2[i].owner
-			     << ' '
-			     << cruft2[i].path
-			     << endl;
-		}
+	cout << "---- missing: dpkg ----" << endl;
+	for (int i=0;i<missing.size();i++) {
+		cout << "        " << missing[i] << endl;
 	}
 
+	//TODO: split by filesystem
+	cout << "---- unexplained: / ----" << endl;
+	for (int i=0;i<cruft3.size();i++) {
+		cout << "        " << cruft3[i] << endl;
+	}
+
+	// NOT IMPLEMENTED
+	cout << "---- broken symlinks: / ----" << endl;
+	cout << endl << "end." << endl;
 	return 0;
 }
