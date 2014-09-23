@@ -146,11 +146,11 @@ int read_globs(/* const */ vector<string>& packages, vector<string>& globs)
 	vector<string>::iterator it=packages.begin();
 
 	string retain;
-	while (it !=packages.end()) {
+	for (;it !=packages.end();it++) {
 		string package=*it;
 		int arch=package.find(":");
 		if (arch != string::npos ) package=package.substr(0,arch);
-		if (package==retain) {it++ ; continue; };
+		if (package==retain) continue;
 		retain=package;
 
 		struct stat stat_buffer;
@@ -167,7 +167,6 @@ int read_globs(/* const */ vector<string>& packages, vector<string>& globs)
 			}
 			glob_file.close();
 		}
-		it++;
 	}
 	sort(globs.begin(), globs.end());
 	cout << globs.size() << " globs in database" << endl << endl;
