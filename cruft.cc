@@ -119,6 +119,7 @@ int read_dpkg_items(vector<string>& dpkg)
 {
 	cout << "READING FILES IN DPKG DATABASE" << endl;
 	// TODO: read DPKG database instead of using dpkg-query
+	// cat /var/lib/dpkg/info/ *.list |sort -u
         string command="dpkg-query --listfiles $(dpkg-query --show --showformat '${binary:Package} ')|sort -u";
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
@@ -143,12 +144,14 @@ int read_globs(/* const */ vector<string>& packages, vector<string>& globs)
 {
 	cout << "READING GLOBS IN /usr/lib/cruft/filters-unex/" << endl;
 	vector<string>::iterator it=packages.begin();
+
+	string retain;
 	while (it !=packages.end()) {
 		string package=*it;
-		unsigned int arch=package.find(":");
+		int arch=package.find(":");
 		if (arch != string::npos ) package=package.substr(0,arch);
-		// BUG: if libc6:i386 & libc6:amd64 are installed,
-		// the globs are read twice
+		if (package==retain) {it++ ; continue; };
+		retain=package;
 
 		struct stat stat_buffer;
 		string glob_filename ="/usr/lib/cruft/filters-unex/" + package;
