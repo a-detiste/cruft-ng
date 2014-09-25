@@ -1,6 +1,6 @@
 #include "mlocate.h"
 
-int read_mlocate(vector<string>& fs)
+int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 {
 	bool debug=false;
 	
@@ -32,10 +32,12 @@ int read_mlocate(vector<string>& fs)
 	while (getline(mlocate,line,'\0'))
 	{
 		if (line.empty()) break;
+		string key=line;
 		if (debug) cout << line << '=';
 		while (getline(mlocate,line,'\0'))
 		{
 			if (line.empty()) break;
+			if (key=="prunefs") prunefs.push_back(line);
 			if (debug) cout << line << ' ';
 		}
 		if (debug) cout << endl;
@@ -72,7 +74,7 @@ int read_mlocate(vector<string>& fs)
 	}
 	mlocate.close();
 	sort(fs.begin(), fs.end());
-	if (debug) cout << fs.size() << " relevant files in MLOCATE database\n\n";
-
+	if (debug) cout << prunefs.size() << " relevant records in PRUNEFS database" << endl;
+	if (debug) cout << fs.size() << " relevant files in MLOCATE database"  << endl << endl;
 	return 0;
 }

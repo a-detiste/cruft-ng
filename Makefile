@@ -1,4 +1,4 @@
-all: cruft
+all: cruft tests
 
 tests: test_mlocate
 

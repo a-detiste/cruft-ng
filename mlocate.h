@@ -7,4 +7,4 @@
 
 using namespace std;
 
-extern int read_mlocate(vector<string>& fs);
+extern int read_mlocate(vector<string>& fs, vector<string>& prunefs);

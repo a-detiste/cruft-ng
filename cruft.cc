@@ -165,6 +165,39 @@ int execute_filters(vector<string>& packages, vector<string>& filters)
 	return 0;
 }
 
+int read_mounts(vector<string>& prunefs, vector<string>& mounts)
+{
+	// this doesn't include "/", as it allways exists
+	ifstream mtab("/proc/mounts");
+	string mount,type;
+	while ( not mtab.eof() )
+	{
+	      getline(mtab,mount,' '); // discard device
+	      getline(mtab,mount,' ');
+	      getline(mtab,type,' ');
+	      vector<string>::iterator it=prunefs.begin();
+	      bool match=false;
+		   if (mount=="/") match=true;
+	      else if (mount.substr(0,5)=="/sys/") match=true;
+	      else if (mount.substr(0,5)=="/dev/") match=true;
+	      else for (;it !=prunefs.end();it++) {
+		      string uppercase;
+		      uppercase=type;
+		      transform(uppercase.begin(), uppercase.end(), uppercase.begin(), upper);
+		      if (uppercase==*it) {
+			  match=true;
+			  break;
+		      }
+	      }
+	      if (!match) {
+		     //cout << mount << " => " << type << endl;
+		     mounts.push_back(mount);
+	      }
+	      getline(mtab,mount); // discard options
+	}
+	return 0;
+}
+
 void updatedb()
 {
 	//TODO: compare mtime /var/cache/apt/pkgcache.bin
@@ -225,8 +258,9 @@ int main(int argc, char *argv[])
 
 	updatedb();
 
-	std::vector<string> fs;
-	read_mlocate(fs);
+	std::vector<string> fs,prunefs,mounts;
+	read_mlocate(fs,prunefs);
+	read_mounts(prunefs,mounts);
 
 	std::vector<string> dpkg;
 	read_dpkg_items(dpkg);

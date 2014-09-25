@@ -3,8 +3,8 @@
 int main(int argc, char *argv[])
 {
 	cout << '/' << endl;
-	std::vector<string> fs;
-	read_mlocate(fs);
+	std::vector<string> fs,prunefs;
+	read_mlocate(fs,prunefs);
 	for (int i=0;i<fs.size();i++) {
 		cout << fs[i] << endl;
 	}
