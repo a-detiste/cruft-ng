@@ -7,7 +7,10 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <fnmatch.h>
-#include "mlocate_db.h"
+#include "mlocate.h"
+
+extern int shellexp(char* filename, char* pattern );
+
 //       original filename is 'db.h'
 // TODO: should be packaged in /usr/include by 'mlocate' package
 //       like 'make' provides '/usr/include/gnumake.h'
@@ -18,82 +21,6 @@
 //#include <dpkg/dpkg-db.h>
 //#include <dpkg/pkg-array.h>
 using namespace std;
-
-int read_mlocate(vector<string>& fs)
-{
-	string line;
-	ifstream mlocate("/var/lib/mlocate/mlocate.db");
-	if (not mlocate) {
-		cout << "can not open mlocate database" << endl << "are you root ?" << endl;
-		// you can alos "setgid mlocate" the cruft-ng binary
-		return 1;
- 	}
-
-	//std::cout << "MLOCATE HEADER\n";
-	char * header = new char [sizeof(db_header)];
-	mlocate.read (header,sizeof(db_header));
-	// TODO: assert this
-	/*
-	for (int i=0;i<sizeof(db_header);i++) {
-		int n=header[i];
-		cout << i << ':' <<
-			header[i] <<
-			'(' <<
-			n <<
-		        ")\n";
-	}
-	std::cout << '\n';
-	*/
-
-	cout << "MLOCATE LOCATION\n";
-	getline(mlocate,line, '\0');
-	cout << line << "\n\n";
-
-	cout << "MLOCATE PARAMETERS\n";
-	int param_start = mlocate.tellg();
-	while (getline(mlocate,line,'\0'))
-	{
-		if (line.empty()) break;
-		cout << line << '=';
-		while (getline(mlocate,line,'\0'))
-		{
-			if (line.empty()) break;
-			cout << line << ' ';
-		}
-		cout << endl;
-	}
-	// TODO "prunepaths="
-	//  whitelist /tmp , /media
-	//  ignore    paths that doesn't even exist
-	//  warn      on other (e.g.: /var/spool)
-	cout << "theorical length=" << header[10]*256 + header[11] << '\n'; // BAD !! UNSIGNED CHAR
-	cout << "actual length=" << int(mlocate.tellg()) - param_start - 1 << "\n\n";
-
-	cout << "MLOCATE DATA\n";
-	char * dir = new char [sizeof(db_directory)];
-	string dirname;
-	string filename;
-	//fs.reserve(200000);
-	while ( mlocate.good() ) {
-		mlocate.read (dir,sizeof(db_directory));
-		getline(mlocate,dirname,'\0');
-		if (mlocate.eof()) break;
-		char filetype; // =sizeof(db_entry)
-		while ((filetype = mlocate.get()) != DBE_END) {
-			getline(mlocate,filename,'\0');
-			if (dirname.length() >= 5  and dirname.substr(0, 5) == "/home") continue;
-			if (dirname.length() >= 5  and dirname.substr(0, 5) == "/root") continue;
-		        if (dirname.length() >= 10 and dirname.substr(0,10) == "/usr/local") continue;
-			//std::cout << dirname << '/' << filename << endl;
-			fs.push_back(dirname + '/' + filename);
-		}
-	}
-	mlocate.close();
-	sort(fs.begin(), fs.end());
-	cout << fs.size() << " relevant files in MLOCATE database\n\n";
-
-	return 0;
-}
 
 int read_dpkg_header(vector<string>& packages)
 {
@@ -204,7 +131,13 @@ bool myglob(string file, string glob )
 		return true;
 	} else {
 		// fallback to shellexp.c
-		return false;
+		char param1[128];
+		strcpy(param1,file.c_str());
+		char param2[128];
+		strcpy(param2,glob.c_str());
+		bool result=shellexp(param1,param2);
+		//cout << result << ' ' << file << " # " << glob << endl;
+		return result;
 	}
 }
 

@@ -1,3 +1,5 @@
 # output binary
 cruft
 cruft.log
+*.o
+test_mlocate
