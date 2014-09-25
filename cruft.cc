@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <stdio.h>
 #include <sys/stat.h>
+#include <fnmatch.h>
 #include "mlocate_db.h"
 //       original filename is 'db.h'
 // TODO: should be packaged in /usr/include by 'mlocate' package
@@ -182,6 +183,31 @@ void updatedb()
 	system("updatedb");
 }
 
+bool myglob(string file, string glob )
+{
+	if (file==glob) return true;
+	int filesize=file.size();
+	int globsize=glob.size();
+		if ( glob.find("**")==globsize-2 
+		  and filesize >= globsize-2
+		  and file.substr(0,globsize-2)==glob.substr(0,globsize-2)) {
+		//cout << "match ** " << file << " # " << glob << endl;
+		return true;
+	}  else if ( glob.find("*")==globsize-1 
+		  and filesize >= globsize-1
+		  and file.find("/",globsize-1)==string::npos
+		  and file.substr(0,globsize-1)==glob.substr(0,globsize-1)) {
+		//cout << "match * " << file << " # " << glob << endl;
+		return true;
+	} else if ( fnmatch(glob.c_str(),file.c_str(),FNM_PATHNAME)==0 ) {
+		//cout << "fnmatch " << file << " # " << glob << endl;	  
+		return true;
+	} else {
+		// fallback to shellexp.c
+		return false;
+	}
+}
+
 int main(int argc, char *argv[])
 {
 	std::vector<string> packages;
@@ -269,32 +295,8 @@ int main(int argc, char *argv[])
 		right=globs.begin();
 		bool match=false;
 		while (right != globs.end()) {
-			if (*left==*right) {
-				match=true;
-				//cout << "1/1 MATCH: " << *left << endl;
-				break;
-			} else if ( (*right).find("**")==(*right).size()-2 ) {
-				unsigned int length=(*right).size()-2;
-				if (    (*left).size() >= length
-				    and (*left).substr(0,length)==(*right).substr(0,length)) {
-					match=true;
-					//cout << "** MATCH: " << *left << " = " << *right << endl;
-					break;
-				}
-			} else if ( (*right).find("*")==(*right).size()-1 ) {
-				unsigned int length=(*right).size()-1;
-				if (  (*left).size() >= length
-				  and (*left).find("/",length)==string::npos
-				  and (*left).substr(0,length)==(*right).substr(0,length)) {
-					match=true;
-					//cout << "* MATCH: " << *left << " = " << *right << endl;
-					break;
-				}
-			} else {
-				// TODO: this only implement 1-1 match, path/star and path/starstar
-				// no '?' or '*' or 'path/starstar/path'
-				// use GLOB or LS ???
-			}
+			match=myglob(*left,*right);
+			if (match) break;
 			right++;
 		}
 		if (!match) cruft3.push_back(*left);
