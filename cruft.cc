@@ -8,7 +8,11 @@
 #include <sys/stat.h>
 #include <fnmatch.h>
 #include <string.h>
+#include <dirent.h>
+#include <errno.h>
 #include "mlocate.h"
+
+bool debug=false;
 
 extern int shellexp(char* filename, char* pattern );
 
@@ -26,7 +30,7 @@ using namespace std;
 int read_dpkg_header(vector<string>& packages)
 {
 	// TODO: read DPKG database directly instead of using dpkg-query
-	cout << "DPKG DATA\n";
+	if (debug) cout << "DPKG DATA\n";
 	FILE* fp;
 	if ((fp = popen("dpkg-query --show --showformat '${binary:Package}\n'", "r")) == NULL) return 1;
 	const int SIZEBUF = 200;
@@ -40,13 +44,13 @@ int read_dpkg_header(vector<string>& packages)
 		packages.push_back(package);
 	}
 	pclose(fp);
-	cout << packages.size() << " packages installed"  << endl << endl;
+	if (debug) cout << packages.size() << " packages installed"  << endl << endl;
 	return 0;
 }
 
 int read_dpkg_items(vector<string>& dpkg)
 {
-	cout << "READING FILES IN DPKG DATABASE" << endl;
+	if (debug) cout << "READING FILES IN DPKG DATABASE" << endl;
 	// TODO: read DPKG database instead of using dpkg-query
 	// cat /var/lib/dpkg/info/ *.list |sort -u
         string command="dpkg-query --listfiles $(dpkg-query --show --showformat '${binary:Package} ')|sort -u";
@@ -63,15 +67,15 @@ int read_dpkg_items(vector<string>& dpkg)
 		dpkg.push_back(filename);
 	}
         pclose(fp);
-	cout << "done"  << endl;
+	if (debug) cout << "done"  << endl;
 	sort(dpkg.begin(), dpkg.end()); // remove duplicates ???
-	cout << dpkg.size() << " files in DPKG database" << endl;
+	if (debug) cout << dpkg.size() << " files in DPKG database" << endl;
 	return 0;
 }
 
 int read_globs(/* const */ vector<string>& packages, vector<string>& globs)
 {
-	cout << "READING GLOBS IN /usr/lib/cruft/filters-unex/" << endl;
+	if (debug) cout << "READING GLOBS IN /usr/lib/cruft/filters-unex/" << endl;
 	vector<string>::iterator it=packages.begin();
 
 	string retain;
@@ -98,8 +102,66 @@ int read_globs(/* const */ vector<string>& packages, vector<string>& globs)
 		}
 	}
 	sort(globs.begin(), globs.end());
-	cout << globs.size() << " globs in database" << endl << endl;
+	if (debug) cout << globs.size() << " globs in database" << endl << endl;
 	// !!! TODO: remove duplicates
+	return 0;
+}
+
+int upper(int c)
+{
+      // http://www.dreamincode.net/forums/topic/15095-convert-string-to-uppercase-in-c/
+      return std::toupper((unsigned char)c);
+}
+
+
+int execute_filters(vector<string>& packages, vector<string>& filters)
+{
+	if (debug) cout << "EXECUTING FILTERS IN /usr/lib/cruft/explain/" << endl;
+
+	DIR *dp;
+	struct dirent *dirp;
+	if((dp = opendir("/usr/lib/cruft/explain/")) == NULL) {
+	      cout << "Error(" << errno << ") opening /usr/lib/cruft/explain/" << endl;
+	      return errno;
+	}
+
+	while ((dirp = readdir(dp)) != NULL) {
+		string package=string(dirp->d_name);
+		if (package==".") continue;
+		if (package=="..") continue;
+		if (package=="dpkg") continue; /* this is done in read_dpkg_items() */
+		bool match=false;
+		string uppercase=package;
+		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), upper);
+		if (package==uppercase)
+			match=true;
+		else {
+			vector<string>::iterator it=packages.begin();
+			for (;it !=packages.end();it++) {
+			      if (package==*it) {
+				    match=true;
+				    break;
+			      }
+			}
+		}
+		if (debug) cout << match << ' ' << package << endl;
+		if (!match) continue;
+		FILE* fp;
+		if ((fp = popen(("/usr/lib/cruft/explain/" + package).c_str(), "r")) == NULL) return 1;
+		const int SIZEBUF = 200;
+		char buf[SIZEBUF];
+		string filter;
+		while (fgets(buf, sizeof(buf),fp))
+		{
+			filter=buf;
+			filter=filter.substr(0,filter.size() - 1); // remove '/n'
+			if (debug) cout << "# " << filter << endl;
+			filters.push_back(filter);
+		}
+		pclose(fp);
+	}
+	closedir(dp);
+	sort(filters.begin(), filters.end());
 	return 0;
 }
 
@@ -144,8 +206,19 @@ bool myglob(string file, string glob )
 
 int main(int argc, char *argv[])
 {
+	const int SIZEBUF = 200;
+	char buf[SIZEBUF];
+	FILE* fp;
+	if ((fp = popen("date", "r")) == NULL) return 1;
+	fgets(buf, sizeof(buf),fp);
+	fclose(fp);
+	cout << "cruft report: " << buf << endl << flush;
+
 	std::vector<string> packages;
 	read_dpkg_header(packages);
+
+	std::vector<string> explain;
+	execute_filters(packages,explain);
 
 	std::vector<string> globs;
 	read_globs(packages,globs);
@@ -180,8 +253,8 @@ int main(int argc, char *argv[])
 	//fs.clear();
 	//dpkg.clear();
 
-	cout << endl << missing.size() << " files in missing database" << endl;
-	cout << cruft.size() << " files in cruft database" << endl << endl << flush;
+	if (debug) cout << endl << missing.size() << " files in missing database" << endl;
+	if (debug) cout << cruft.size() << " files in cruft database" << endl << endl << flush;
 
 	// TODO: this should use DPKG database too
 	vector<string> cruft2;
@@ -220,7 +293,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	//cruft.clear();
-	std::cout << cruft2.size() << " files in cruft2 database" << endl << endl << std::flush;
+	if (debug) std::cout << cruft2.size() << " files in cruft2 database" << endl << endl << std::flush;
 
 	// match the globs against reduced database
 	vector<string> cruft3;
@@ -238,10 +311,25 @@ int main(int argc, char *argv[])
 	}
 
 	//cruft2.clear();
-	cout << cruft3.size() << " files in cruft3 database" << endl << endl << flush;
+	if (debug) cout << cruft3.size() << " files in cruft3 database" << endl << endl << flush;
 
-	// run needed scripts in /usr/lib/cruft/explain/ with popen()
-	cout << "cruft report: lundi 22 septembre 2014, 17:42:27 (UTC+0200)" << endl << endl;
+	// match the dynamic "explain" filters
+	vector<string> cruft4;
+	left=cruft3.begin();
+	while (left != cruft3.end()) {
+		right=explain.begin();
+		bool match=false;
+		while (right != explain.end()) {
+			match=(*left==*right);
+			if (match) break;
+			right++;
+		}
+		if (!match) cruft4.push_back(*left);
+		left++;
+	}
+
+	//cruft3.clear();
+	if (debug) cout << cruft4.size() << " files in cruft4 database" << endl << flush;
 
 	cout << "---- missing: dpkg ----" << endl;
 	for (int i=0;i<missing.size();i++) {
@@ -250,8 +338,8 @@ int main(int argc, char *argv[])
 
 	//TODO: split by filesystem
 	cout << "---- unexplained: / ----" << endl;
-	for (int i=0;i<cruft3.size();i++) {
-		cout << "        " << cruft3[i] << endl;
+	for (int i=0;i<cruft4.size();i++) {
+		cout << "        " << cruft4[i] << endl;
 	}
 
 	// NOT IMPLEMENTED
