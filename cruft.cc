@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include <fnmatch.h>
+#include <string.h>
 #include "mlocate.h"
 
 extern int shellexp(char* filename, char* pattern );

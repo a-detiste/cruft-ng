@@ -2,6 +2,7 @@
 
 int main(int argc, char *argv[])
 {
+	cout << '/' << endl;
 	std::vector<string> fs;
 	read_mlocate(fs);
 	for (int i=0;i<fs.size();i++) {

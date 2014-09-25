@@ -25,7 +25,6 @@ int read_mlocate(vector<string>& fs)
 
 	if (debug) cout << "MLOCATE ROOT:" << endl;
 	getline(mlocate,line, '\0');
-	fs.push_back(line);
 	if (debug) cout << line << endl << endl;
 
 	if (debug) cout << "MLOCATE PARAMETERS:" << endl;
