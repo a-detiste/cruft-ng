@@ -1,24 +1,30 @@
+CPP:=clang++
+
 all: cruft tests
 
 tests: test_mlocate
 
-gcc:
-	g++ cruft.cc -Wall -ldpkg -o cruft
-
 cruft.o: cruft.cc
-	clang++ cruft.cc -O2 -Wall -c -o cruft.o
+	$(CPP) cruft.cc -O2 -Wall -c -o cruft.o
 
 mlocate.o: mlocate.cc
-	clang++ mlocate.cc -O2 -Wall -c -o mlocate.o
+	$(CPP) mlocate.cc -O2 -Wall -c -o mlocate.o
 
 shellexp.o: shellexp.c
-	clang++ shellexp.c -O2 -Wall -c -o shellexp.o
+	$(CPP) shellexp.c -O2 -Wall -c -o shellexp.o
 
 cruft: cruft.o mlocate.o shellexp.o
-	clang++ cruft.o mlocate.o shellexp.o -Wall -o cruft
+	$(CPP) cruft.o mlocate.o shellexp.o -Wall -o cruft
 
 test_mlocate: mlocate.o test_mlocate.cc
-	clang++ mlocate.o test_mlocate.cc -Wall -o test_mlocate
+	$(CPP) mlocate.o test_mlocate.cc -Wall -o test_mlocate
+
+#todo: install in $(DESTDIR)
+install: all
+	chgrp mlocate cruft
+	chmod g+s cruft
+	chgrp mlocate test_mlocate
+	chmod g+s test_mlocate
 
 clean:
 	rm -f cruft test_mlocate

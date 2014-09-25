@@ -2,16 +2,15 @@ Source: cruft-ng
 Section: admin
 Priority: optional
 Maintainer: Alexandre Detiste <alexandre.detiste@gmail.com>
-#Uploaders: Anthony Towns <ajt@debian.org>
-Build-Depends: gcc, libdpkg-dev, mlocate
+Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.5
 Homepage: https://github.com/a-detiste/cruft-ng/
 Vcs-Git: https://github.com/a-detiste/cruft-ng.git
 Vcs-Browser: https://github.com/a-detiste/cruft-ng
 
 Package: cruft-ng
-#Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, mlocate
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, mlocate, cruft
 #Suggests: mailx
 Description: program that finds any cruft built up on your system
  cruft is a program to look over your system for anything that shouldn't

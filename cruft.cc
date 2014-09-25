@@ -10,6 +10,7 @@
 #include <string.h>
 #include <dirent.h>
 #include <errno.h>
+#include <unistd.h>
 #include "mlocate.h"
 
 bool debug=false;
@@ -203,7 +204,7 @@ void updatedb()
 	//TODO: compare mtime /var/cache/apt/pkgcache.bin
 	//      et mtime      /var/lib/mlocate/mlocate.db
 	//      et date systeme
-	system("updatedb");
+        if (!getuid()) system("updatedb");
 }
 
 bool myglob(string file, string glob )
@@ -280,7 +281,7 @@ int main(int argc, char *argv[])
 			cruft.push_back(*left);
 			left++;
 		} else {
-			missing.push_back(*right);
+			if (*right != "/.") missing.push_back(*right);
 			right++;
 		}
 	}
