@@ -151,7 +151,7 @@ int execute_filters(vector<string>& packages, vector<string>& filters)
 		if (debug) cout << match << ' ' << package << endl;
 		if (!match) continue;
 		FILE* fp;
-		if ((fp = popen(("/usr/lib/cruft/explain/" + package).c_str(), "r")) == NULL) return 1;
+		if ((fp = popen(("/usr/lib/cruft/explain/" + package + " 3>&1").c_str(), "r")) == NULL) return 1;
 		const int SIZEBUF = 200;
 		char buf[SIZEBUF];
 		string filter;
