@@ -1,5 +1,6 @@
 # output binary
 cruft
+cruftlib
 cruft.log
 cruft.log.old
 *.o

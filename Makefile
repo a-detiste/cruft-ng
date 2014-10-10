@@ -1,8 +1,8 @@
 CPP:=clang++
 
-all: cruft tests
+all: cruft
 
-tests: test_mlocate
+tests: test_mlocate cruftlib
 
 cruft.o: cruft.cc mlocate.h dpkg.h
 	$(CPP) cruft.cc -O2 -Wall -c -o cruft.o
@@ -36,5 +36,5 @@ install: all
 	chmod g+s test_mlocate
 
 clean:
-	rm -f cruft test_mlocate
+	rm -f cruft cruftlib test_mlocate
 	rm -f *.o

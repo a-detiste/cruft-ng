@@ -1,12 +1,9 @@
 #!/usr/bin/make -f
 #DH_VERBOSE = 1
-#include /usr/share/dpkg/default.mk
 
-# main packaging script based on dh7 syntax
 %:
 	dh $@ 
 
 override_dh_auto_install:
 	dh_auto_install
-	mkdir -p debian/cruft-ng/usr/bin/
-	install -m 0644 -o root -g mlocate cruft debian/cruft-ng/usr/bin/cruft-ng
+	install -D -m 0644 -o root -g mlocate cruft debian/cruft-ng/usr/bin/cruft-ng
