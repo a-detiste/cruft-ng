@@ -32,8 +32,8 @@ test_mlocate: mlocate.o test_mlocate.cc
 install: all
 	chgrp mlocate cruft
 	chmod g+s cruft
-	chgrp mlocate test_mlocate
-	chmod g+s test_mlocate
+	#chgrp mlocate test_mlocate
+	#chmod g+s test_mlocate
 
 clean:
 	rm -f cruft cruftlib test_mlocate
