@@ -3,12 +3,12 @@
 int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 {
 	bool debug=false;
-	
+
 	string line;
 	ifstream mlocate("/var/lib/mlocate/mlocate.db");
 	if (not mlocate) {
 		cout << "can not open mlocate database" << endl << "are you root ?" << endl;
-		// you can alos "setgid mlocate" the cruft-ng binary
+		// you can also "setgid mlocate" the cruft-ng binary
 		return 1;
  	}
 
@@ -64,7 +64,7 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 			/* go into /home & /usr/local direct subfolders,
 			 * but not deeper */
 			if (dirname.length() >= 6  and dirname.substr(0, 6) == "/home/") continue;
-		        if (dirname.length() >= 11 and dirname.substr(0,11) == "/usr/local/") continue;
+		        //if (dirname.length() >= 11 and dirname.substr(0,11) == "/usr/local/") continue;
 			string fullpath=dirname + '/' + filename;
 			/* don't even go into /root */
 			if (fullpath.length() >= 6  and fullpath.substr(0, 6) == "/root/") continue;
