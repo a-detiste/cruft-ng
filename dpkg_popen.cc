@@ -1,6 +1,8 @@
 #include <iostream>
+#include <fstream>
 #include <algorithm>
 #include <stdio.h>
+#include <sys/stat.h>
 #include "dpkg.h"
 
 #define debug false
@@ -26,9 +28,33 @@ int read_dpkg_header(vector<string>& packages)
 	return 0;
 }
 
+struct Diversion{
+	string oldfile;
+	string newfile;
+	string package;
+	Diversion(string oldfile,string newfile,string package)
+	{
+		this->oldfile=oldfile;
+		this->newfile=newfile;
+		this->package=package;
+	}
+};
+
+
 int read_dpkg_items(vector<string>& dpkg)
 {
 	if (debug) cout << "READING FILES IN DPKG DATABASE" << endl;
+	vector<Diversion> diversions;
+	ifstream diversion("/var/lib/dpkg/diversions");
+	while(!diversion.eof())
+	{
+		string oldfile,newfile,package;
+		getline(diversion,oldfile);
+		getline(diversion,newfile);
+		getline(diversion,package);
+		diversions.push_back(Diversion(oldfile,newfile,package));
+	}
+
 	// TODO: read DPKG database instead of using dpkg-query
 	// cat /var/lib/dpkg/info/ *.list |sort -u
         string command="dpkg-query --listfiles $(dpkg-query --show --showformat '${binary:Package} ')|sort -u";
@@ -42,6 +68,13 @@ int read_dpkg_items(vector<string>& dpkg)
 		if (filename.substr(0,1)!="/") continue;
 		filename=filename.substr(0,filename.size() - 1);
 		// TODO: ignore ${prunepaths} here also
+		vector<Diversion>::iterator it=diversions.begin();
+		struct stat stat_buffer;
+		for(;it !=diversions.end();it++) {
+			if (filename==(*it).oldfile
+		            && stat(filename.c_str(),&stat_buffer)!= 0) filename=(*it).newfile;
+		}
+
 		dpkg.push_back(filename);
 	}
         pclose(fp);
