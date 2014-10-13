@@ -230,7 +230,10 @@ int main(int argc, char *argv[])
 			cruft.push_back(*left);
 			left++;
 		} else {
-			if (*right != "/.") missing.push_back(*right);
+			// file may exist on tmpfs
+			// e.g.: /var/cache/apt/archives/partial
+			struct stat stat_buffer;
+	                if ( stat((*right).c_str(), &stat_buffer)!=0 && *right != "/.") missing.push_back(*right);
 			right++;
 		}
 	}
