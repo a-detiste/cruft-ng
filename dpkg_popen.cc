@@ -40,20 +40,26 @@ struct Diversion{
 	}
 };
 
+int read_diversions(vector<Diversion>& diversions)
+{
+	ifstream txt("/var/lib/dpkg/diversions");
+	while(!txt.eof())
+	{
+		string oldfile,newfile,package;
+		getline(txt,oldfile);
+		getline(txt,newfile);
+		getline(txt,package);
+		diversions.push_back(Diversion(oldfile,newfile,package));
+	}
+	txt.close();
+	return 0;
+}
 
 int read_dpkg_items(vector<string>& dpkg)
 {
 	if (debug) cout << "READING FILES IN DPKG DATABASE" << endl;
 	vector<Diversion> diversions;
-	ifstream diversion("/var/lib/dpkg/diversions");
-	while(!diversion.eof())
-	{
-		string oldfile,newfile,package;
-		getline(diversion,oldfile);
-		getline(diversion,newfile);
-		getline(diversion,package);
-		diversions.push_back(Diversion(oldfile,newfile,package));
-	}
+	read_diversions(diversions);
 
 	// TODO: read DPKG database instead of using dpkg-query
 	// cat /var/lib/dpkg/info/ *.list |sort -u
