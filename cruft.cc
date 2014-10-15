@@ -236,6 +236,8 @@ int main(int argc, char *argv[])
 	                if ( stat((*right).c_str(), &stat_buffer)!=0 && *right != "/.") missing.push_back(*right);
 			right++;
 		}
+		if (right == dpkg.end()) while(left  !=fs.end()  ) {cruft.push_back(*left);    left++; };
+		if (left  == fs.end()  ) while(right !=dpkg.end()) {missing.push_back(*right); right++;};
 	}
 	//fs.clear();
 	//dpkg.clear();
