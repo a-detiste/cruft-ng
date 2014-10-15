@@ -7,6 +7,9 @@ tests: test_mlocate cruftlib
 cruft.o: cruft.cc mlocate.h dpkg.h
 	$(CPP) cruft.cc -O2 -Wall -c -o cruft.o
 
+explain.o: explain.cc explain.h
+	$(CPP) explain.cc -O2 -Wall -c -o explain.o
+
 mlocate.o: mlocate.cc mlocate.h
 	$(CPP) mlocate.cc -O2 -Wall -c -o mlocate.o
 
@@ -19,10 +22,10 @@ dpkg_popen.o: dpkg_popen.cc dpkg.h
 shellexp.o: shellexp.c
 	$(CPP) shellexp.c -O2 -Wall -c -o shellexp.o
 
-cruft: cruft.o mlocate.o dpkg_popen.o shellexp.o
-	$(CPP) cruft.o mlocate.o dpkg_popen.o shellexp.o -Wall -o cruft
+cruft: cruft.o explain.o mlocate.o dpkg_popen.o shellexp.o
+	$(CPP) cruft.o explain.o mlocate.o dpkg_popen.o shellexp.o -Wall -o cruft
 
-cruftlib: cruft.o mlocate.o dpkg_lib.o shellexp.o
+cruftlib: cruft.o explain.o mlocate.o dpkg_lib.o shellexp.o
 	$(CPP) cruft.o mlocate.o dpkg_lib.o shellexp.o -Wall -o cruftlib
 
 test_mlocate: mlocate.o test_mlocate.cc
