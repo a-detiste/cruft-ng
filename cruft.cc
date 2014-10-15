@@ -14,7 +14,7 @@
 #include "mlocate.h"
 #include "dpkg.h"
 
-bool debug=false;
+#define debug false
 
 extern int shellexp(char* filename, char* pattern );
 
@@ -64,7 +64,7 @@ int upper(int c)
 }
 
 
-int execute_filters(vector<string>& packages, vector<string>& filters)
+int read_explain(vector<string>& packages, vector<string>& explain)
 {
 	if (debug) cout << "EXECUTING FILTERS IN /usr/lib/cruft/explain/" << endl;
 
@@ -106,12 +106,12 @@ int execute_filters(vector<string>& packages, vector<string>& filters)
 			filter=buf;
 			filter=filter.substr(0,filter.size() - 1); // remove '/n'
 			if (debug) cout << "# " << filter << endl;
-			filters.push_back(filter);
+			explain.push_back(filter);
 		}
 		pclose(fp);
 	}
 	closedir(dp);
-	sort(filters.begin(), filters.end());
+	sort(explain.begin(), explain.end());
 	return 0;
 }
 
@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
 	read_dpkg_header(packages);
 
 	std::vector<string> explain;
-	execute_filters(packages,explain);
+	read_explain(packages,explain);
 
 	std::vector<string> globs;
 	read_globs(packages,globs);
