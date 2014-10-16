@@ -198,8 +198,7 @@ int main(int argc, char *argv[])
 	vector<string> cruft2;
 	left=cruft.begin();
 	right=packages.begin();
-	while (left != cruft.end() && right != packages.end() ) {
-		// TODO: replace with substring or something else
+	while (left != cruft.end()) {
 		if ((*left).substr(0,19) !=  "/var/lib/dpkg/info/") {
 			cruft2.push_back(*left);
 			left++;

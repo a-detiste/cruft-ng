@@ -77,6 +77,8 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 			string fullpath=dirname + '/' + filename;
 			/* don't even go into /root */
 			if (fullpath.length() >= 6  and fullpath.substr(0, 6) == "/root/") continue;
+			/* spurious entry in mlocate db */
+			if (fullpath.substr(0,28)=="/var/lib/mlocate/mlocate.db.") continue;
 			//std::cout << dirname << '/' << filename << endl;
 			fs.push_back(fullpath);
 		}
