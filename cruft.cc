@@ -200,10 +200,7 @@ int main(int argc, char *argv[])
 	right=packages.begin();
 	while (left != cruft.end() && right != packages.end() ) {
 		// TODO: replace with substring or something else
-		if (*left < "/var/lib/dpkg/info") {
-			cruft2.push_back(*left);
-			left++;
-		} else if (*left > "/var/lib/dpkg/info/zzzzz" ) {
+		if ((*left).substr(0,19) !=  "/var/lib/dpkg/info/") {
 			cruft2.push_back(*left);
 			left++;
 		} else {
