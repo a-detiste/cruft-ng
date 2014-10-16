@@ -2,7 +2,7 @@ CPP:=clang++
 
 all: cruft
 
-tests: test_mlocate cruftlib
+tests: test_mlocate test_explain cruftlib
 
 cruft.o: cruft.cc mlocate.h dpkg.h
 	$(CPP) cruft.cc -O2 -Wall -c -o cruft.o
@@ -26,10 +26,13 @@ cruft: cruft.o explain.o mlocate.o dpkg_popen.o shellexp.o
 	$(CPP) cruft.o explain.o mlocate.o dpkg_popen.o shellexp.o -Wall -o cruft
 
 cruftlib: cruft.o explain.o mlocate.o dpkg_lib.o shellexp.o
-	$(CPP) cruft.o mlocate.o dpkg_lib.o shellexp.o -Wall -o cruftlib
+	$(CPP) cruft.o explain.o mlocate.o dpkg_lib.o   shellexp.o -Wall -o cruftlib
 
 test_mlocate: mlocate.o test_mlocate.cc
 	$(CPP) mlocate.o test_mlocate.cc -Wall -o test_mlocate
+
+test_explain: explain.o test_explain.cc dpkg_popen.o
+	$(CPP) explain.o test_explain.cc dpkg_popen.o -Wall -o test_explain
 
 #todo: install in $(DESTDIR)
 install: all

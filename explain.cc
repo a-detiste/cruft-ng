@@ -29,10 +29,13 @@ int read_explain(vector<string>& packages, vector<string>& explain)
 		if (package==".") continue;
 		if (package=="..") continue;
 		if (package=="dpkg") continue; /* this is done in read_dpkg_items() */
+		if (package=="USERS") continue; /* replaced by USERS_cruft-ng */
 		bool match=false;
 		string uppercase=package;
 		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), upper);
 		if (package==uppercase)
+			match=true;
+		if (package=="USERS_cruft-ng")
 			match=true;
 		else {
 			vector<string>::iterator it=packages.begin();

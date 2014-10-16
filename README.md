@@ -3,8 +3,7 @@ cruf-ng, a rewrite of Debian 'cruft' engine
 
 Cruft is built as a main shell scripts that spawn
 hundreds of helper processes (other shell scripts, 
-perl programs, C programs), that makes it feels
-like a fork bomb.
+perl programs, C programs).
 
 This project attemps to keep all the main functionality in one proces;
 while output remains 100% identical to cruft's one.
