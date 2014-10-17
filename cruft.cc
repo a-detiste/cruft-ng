@@ -21,7 +21,7 @@ extern int shellexp(char* filename, char* pattern );
 
 using namespace std;
 
-int read_globs(/* const */ vector<string>& packages, vector<string>& globs)
+int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 {
 	if (debug) cout << "READING GLOBS IN /usr/lib/cruft/filters-unex/" << endl;
 	vector<string>::iterator it=packages.begin();
@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 	read_explain(packages,explain);
 
 	std::vector<string> globs;
-	read_globs(packages,globs);
+	read_filters(packages,globs);
 
 	updatedb();
 
