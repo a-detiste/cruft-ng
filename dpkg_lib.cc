@@ -4,6 +4,10 @@
 #include <dpkg/pkg-array.h>
 #include "dpkg.h"
 
+/*
+http://dpkg.alioth.debian.org/doc/
+*/
+
 int read_dpkg_header(vector<string>& packages)
 {
 	return -1;
