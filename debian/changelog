@@ -1,5 +1,5 @@
-cruft-ng (0.0.1) UNRELEASED; urgency=medium
+cruft-ng (0.1) UNRELEASED; urgency=medium
 
-  * Initial release. (Closes: #XXXXXX)
+  * Initial release. (Closes: #770445)
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 30 Sep 2014 14:05:29 +0200
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 23 Nov 2014 14:05:29 +0200
