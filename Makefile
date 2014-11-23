@@ -1,30 +1,33 @@
+CXXFLAGS ?= -O2
+CXXFLAGS += -Wall
+
 all: cruft-ng
 tests: test_mlocate test_explain test_filters cruftlib
 
 cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h
-	$(CXX) cruft.cc -O2 -Wall -c -o cruft.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -c cruft.cc
 
 %.o: %.cc %.h
-	$(CXX) $< -O2 -Wall -c -o $@
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -c $<
 
 dpkg_lib.o: dpkg_lib.cc dpkg.h
-	$(CXX) dpkg_lib.cc -O2 -Wall -c -o dpkg_lib.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -c dpkg_lib.cc
 
 dpkg_popen.o: dpkg_popen.cc dpkg.h
-	$(CXX) dpkg_popen.cc -O2 -Wall -c -o dpkg_popen.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -c dpkg_popen.cc
 
 shellexp.o: shellexp.c
-	$(CXX) shellexp.c -O2 -Wall -c -o shellexp.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -c shellexp.c
 
 cruft-ng: cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o
-	$(CXX) cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o -Wall -o cruft-ng
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o -o cruft-ng
 
 cruftlib: cruft.o explain.o filters.o mlocate.o dpkg_lib.o shellexp.o
-	$(CXX) cruft.o explain.o filters.o mlocate.o dpkg_lib.o   shellexp.o -Wall -o cruftlib
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) cruft.o explain.o filters.o mlocate.o dpkg_lib.o   shellexp.o -o cruftlib
 
+# TODO: dpkg_popen.o is not needed to build test_mlocate
 test_%: %.o test_%.cc
-	# TODO: dpkg_popen.o is not needed to build test_mlocate
-	$(CXX) $< $@.cc dpkg_popen.o -Wall -o $@
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< $@.cc dpkg_popen.o -o $@
 
 install: all
 	install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
