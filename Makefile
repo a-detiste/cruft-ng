@@ -4,17 +4,11 @@ all: cruft
 
 tests: test_mlocate test_explain test_filters cruftlib
 
-cruft.o: cruft.cc mlocate.h dpkg.h
+cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h
 	$(CPP) cruft.cc -O2 -Wall -c -o cruft.o
 
-explain.o: explain.cc explain.h
-	$(CPP) explain.cc -O2 -Wall -c -o explain.o
-
-filters.o: filters.cc filters.h
-	$(CPP) filters.cc -O2 -Wall -c -o filters.o
-
-mlocate.o: mlocate.cc mlocate.h
-	$(CPP) mlocate.cc -O2 -Wall -c -o mlocate.o
+%.o: %.cc %.h
+	$(CPP) $< -O2 -Wall -c -o $@
 
 dpkg_lib.o: dpkg_lib.cc dpkg.h
 	$(CPP) dpkg_lib.cc -O2 -Wall -c -o dpkg_lib.o
@@ -31,14 +25,9 @@ cruft: cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o
 cruftlib: cruft.o explain.o filters.o mlocate.o dpkg_lib.o shellexp.o
 	$(CPP) cruft.o explain.o filters.o mlocate.o dpkg_lib.o   shellexp.o -Wall -o cruftlib
 
-test_mlocate: mlocate.o test_mlocate.cc
-	$(CPP) mlocate.o test_mlocate.cc -Wall -o test_mlocate
-
-test_explain: explain.o test_explain.cc dpkg_popen.o
-	$(CPP) explain.o test_explain.cc dpkg_popen.o -Wall -o test_explain
-
-test_filters: filters.o test_filters.cc dpkg_popen.o
-	$(CPP) filters.o test_filters.cc dpkg_popen.o -Wall -o test_filters
+test_%: %.o test_%.cc
+	# TODO: dpkg_popen.o is not needed to build test_mlocate
+	$(CPP) $< $@.cc dpkg_popen.o -Wall -o $@
 
 install: all
 	install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
