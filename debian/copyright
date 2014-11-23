@@ -1,9 +1,21 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: cruft
+Upstream-Name: cruft-ng
 Source: https://github.com/a-detiste/cruft-ng/
 
 Files: *
 Copyright: 2014 Alexandre <alexandre.detiste@gmail.com>
+License: GPL-2+
+
+Files: mlocate_db.h
+Copyright: 2005 Miloslav Trmac <mitr@redhat.com>
+License: GPL-2+
+
+Files: shellexp.c
+Copyright: 1998-2000 Anthony Towns <ajt@debian.org>
+           2005-2011 Marcin Owsiany <porridge@debian.org>
+           2014 Alexandre <alexandre.detiste@gmail.com>
+License: GPL-2+
+
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
