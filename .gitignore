@@ -1,5 +1,4 @@
-# output binary
-cruft
+cruft-ng
 cruftlib
 cruft.log
 cruft.log.old
@@ -7,3 +6,7 @@ cruft.log.old
 test_mlocate
 test_filters
 test_explain
+debian/cruft-ng.debhelper.log
+debian/cruft-ng.substvars
+debian/cruft-ng/
+debian/files
