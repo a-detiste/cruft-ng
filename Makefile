@@ -26,7 +26,7 @@ shellexp.o: shellexp.c
 	$(CPP) shellexp.c -O2 -Wall -c -o shellexp.o
 
 cruft: cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o
-	$(CPP) cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o -Wall -o cruft
+	$(CPP) cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o -Wall -o cruft-ng
 
 cruftlib: cruft.o explain.o filters.o mlocate.o dpkg_lib.o shellexp.o
 	$(CPP) cruft.o explain.o filters.o mlocate.o dpkg_lib.o   shellexp.o -Wall -o cruftlib
@@ -40,13 +40,10 @@ test_explain: explain.o test_explain.cc dpkg_popen.o
 test_filters: filters.o test_filters.cc dpkg_popen.o
 	$(CPP) filters.o test_filters.cc dpkg_popen.o -Wall -o test_filters
 
-#todo: install in $(DESTDIR)
 install: all
-	chgrp mlocate cruft
-	chmod g+s cruft
-	#chgrp mlocate test_mlocate
-	#chmod g+s test_mlocate
-
+	install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
+	install -D -m 0644            cruft-ng.8 $(DESTDIR)/usr/share/man/man8/cruft-ng.8
+	
 clean:
-	rm -f cruft cruftlib test_mlocate
+	rm -f cruft-ng cruftlib test_mlocate test_filters test_explain
 	rm -f *.o
