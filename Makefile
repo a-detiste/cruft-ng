@@ -43,7 +43,8 @@ test_filters: filters.o test_filters.cc dpkg_popen.o
 install: all
 	install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
 	install -D -m 0644            cruft-ng.8 $(DESTDIR)/usr/share/man/man8/cruft-ng.8
-	
+	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft-ng/README.md
+
 clean:
 	rm -f cruft-ng cruftlib test_mlocate test_filters test_explain
 	rm -f *.o
