@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 	cout << '/' << endl;
 	vector<string> fs,prunefs;
 	read_mlocate(fs,prunefs);
-	for (int i=0;i<fs.size();i++) {
+	for (unsigned int i=0;i<fs.size();i++) {
 		cout << fs[i] << endl;
 	}
 }

@@ -72,8 +72,8 @@ void updatedb()
 bool myglob(string file, string glob )
 {
 	if (file==glob) return true;
-	int filesize=file.size();
-	int globsize=glob.size();
+	unsigned int filesize=file.size();
+	unsigned int globsize=glob.size();
 		if ( glob.find("**")==globsize-2 
 		  and filesize >= globsize-2
 		  and file.substr(0,globsize-2)==glob.substr(0,globsize-2)) {
@@ -230,13 +230,13 @@ int main(int argc, char *argv[])
 	if (debug) cout << cruft4.size() << " files in cruft4 database" << endl << flush;
 
 	cout << "---- missing: dpkg ----" << endl;
-	for (int i=0;i<missing.size();i++) {
+	for (unsigned int i=0;i<missing.size();i++) {
 		cout << "        " << missing[i] << endl;
 	}
 
 	//TODO: split by filesystem
 	cout << "---- unexplained: / ----" << endl;
-	for (int i=0;i<cruft4.size();i++) {
+	for (unsigned int i=0;i<cruft4.size();i++) {
 		cout << "        " << cruft4[i] << endl;
 	}
 
