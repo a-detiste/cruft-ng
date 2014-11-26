@@ -74,19 +74,19 @@ bool myglob(string file, string glob )
 	if (file==glob) return true;
 	unsigned int filesize=file.size();
 	unsigned int globsize=glob.size();
-		if ( glob.find("**")==globsize-2 
+		if ( glob.find("**")==globsize-2
 		  and filesize >= globsize-2
 		  and file.substr(0,globsize-2)==glob.substr(0,globsize-2)) {
 		//cout << "match ** " << file << " # " << glob << endl;
 		return true;
-	}  else if ( glob.find("*")==globsize-1 
+	}  else if ( glob.find("*")==globsize-1
 		  and filesize >= globsize-1
 		  and file.find("/",globsize-1)==string::npos
 		  and file.substr(0,globsize-1)==glob.substr(0,globsize-1)) {
 		//cout << "match * " << file << " # " << glob << endl;
 		return true;
 	} else if ( fnmatch(glob.c_str(),file.c_str(),FNM_PATHNAME)==0 ) {
-		//cout << "fnmatch " << file << " # " << glob << endl;	  
+		//cout << "fnmatch " << file << " # " << glob << endl;
 		return true;
 	} else {
 		// fallback to shellexp.c
@@ -102,6 +102,11 @@ bool myglob(string file, string glob )
 
 int main(int argc, char *argv[])
 {
+	if (argc > 1) {
+		cerr << "commandline arguments not yet implemented" << endl;
+		exit(1);
+	}
+
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
 	FILE* fp;

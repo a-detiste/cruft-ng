@@ -15,7 +15,7 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 	string retain;
 	for (;it !=packages.end();it++) {
 		string package=*it;
-		int arch=package.find(":");
+		size_t arch=package.find(":");
 		if (arch != string::npos ) package=package.substr(0,arch);
 		if (package==retain) continue;
 		retain=package;
