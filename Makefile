@@ -30,7 +30,8 @@ test_%: %.o test_%.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $< $@.cc dpkg_popen.o -o $@
 
 install: all
-	install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
+	#install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
+	install -D -m 0755            cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
 	install -D -m 0644            cruft-ng.8 $(DESTDIR)/usr/share/man/man8/cruft-ng.8
 	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft-ng/README.md
 
