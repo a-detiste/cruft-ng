@@ -106,6 +106,11 @@ int main(int argc, char *argv[])
 		cerr << "commandline arguments not yet implemented" << endl;
 		exit(1);
 	}
+	updatedb();
+
+	std::vector<string> fs,prunefs,mounts;
+	read_mlocate(fs,prunefs);
+	read_mounts(prunefs,mounts);
 
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
@@ -123,12 +128,6 @@ int main(int argc, char *argv[])
 
 	std::vector<string> globs;
 	read_filters(packages,globs);
-
-	updatedb();
-
-	std::vector<string> fs,prunefs,mounts;
-	read_mlocate(fs,prunefs);
-	read_mounts(prunefs,mounts);
 
 	std::vector<string> dpkg;
 	read_dpkg_items(dpkg);

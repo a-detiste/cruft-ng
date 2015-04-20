@@ -18,7 +18,7 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 	if (not mlocate) {
 		cout << "can not open mlocate database" << endl << "are you root ?" << endl;
 		// you can also "setgid mlocate" the cruft-ng binary
-		return 1;
+		exit(1);
  	}
 
 	//std::cout << "MLOCATE HEADER\n";
