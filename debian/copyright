@@ -3,17 +3,22 @@ Upstream-Name: cruft-ng
 Source: https://github.com/a-detiste/cruft-ng/
 
 Files: *
-Copyright: 2014 Alexandre <alexandre.detiste@gmail.com>
+Copyright: 2014-2015 Alexandre Detiste <alexandre.detiste@gmail.com>
 License: GPL-2+
 
 Files: mlocate_db.h
 Copyright: 2005 Miloslav Trmac <mitr@redhat.com>
-License: GPL-2+
+License: mlocate_db_license
+ You can use this file without restriction.
+ .
+ This file is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty
+ of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Files: shellexp.c
 Copyright: 1998-2000 Anthony Towns <ajt@debian.org>
            2005-2011 Marcin Owsiany <porridge@debian.org>
-           2014 Alexandre <alexandre.detiste@gmail.com>
+           2014 Alexandre Detiste <alexandre.detiste@gmail.com>
 License: GPL-2+
 
 License: GPL-2+
