@@ -1,8 +1,10 @@
 cruft-ng (0.2) unstable; urgency=medium
 
   * Fix license of mlocate_db.h in d/copyright
+  * fail immediatly if can't read mlocate's db
+  * enable hardening
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 29 Apr 2015 07:48:56 +0200
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 29 Apr 2015 14:48:56 +0200
 
 cruft-ng (0.1) unstable; urgency=medium
 
