@@ -25,9 +25,10 @@ cruft-ng: cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o
 cruftlib: cruft.o explain.o filters.o mlocate.o dpkg_lib.o shellexp.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cruft.o explain.o filters.o mlocate.o dpkg_lib.o   shellexp.o -o cruftlib
 
-# TODO: dpkg_popen.o is not needed to build test_mlocate
-test_%: %.o test_%.cc
+test_%: %.o test_%.cc dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $< $@.cc dpkg_popen.o -o $@
+test_mlocate: mlocate.o test_mlocate.cc
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $< $@.cc -o $@
 
 install: all
 	#install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
