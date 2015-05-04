@@ -1,3 +1,10 @@
+cruft-ng (0.3) unstable; urgency=medium
+
+  * Fix stack-smashing error, replace strcpy by strncpy (Closes: #783723)
+  * Enable use of 'DEBUG' environment variable
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Mon, 04 May 2015 10:20:24 +0200
+
 cruft-ng (0.2) unstable; urgency=medium
 
   * Fix license of mlocate_db.h in d/copyright
