@@ -1,4 +1,4 @@
-CXXFLAGS ?= -O2
+CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z,relro -D_FORTIFY_SOURCE=2
 CXXFLAGS += -Wall
 
 all: cruft-ng
