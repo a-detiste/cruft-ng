@@ -21,7 +21,7 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 		exit(1);
  	}
 
-	cerr << "MLOCATE HEADER:\n";
+	if (debug) cerr << "MLOCATE HEADER:\n";
 	//char * header = new char [sizeof(db_header)];
 	struct db_header header;
 	mlocate.read ((char *) &header,sizeof(db_header));

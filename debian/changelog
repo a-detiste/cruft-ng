@@ -2,6 +2,7 @@ cruft-ng (0.4) UNRELEASED; urgency=medium
 
   * Enable DEBUG all over the place
   * Print DEBUG info to stderr
+  * process uppercase files in /etc/cruft/filters/ like original cruft
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Mon, 11 May 2015 16:50:37 +0200
 
