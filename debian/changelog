@@ -1,3 +1,10 @@
+cruft-ng (0.4) UNRELEASED; urgency=medium
+
+  * Enable DEBUG all over the place
+  * Print DEBUG info to stderr
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Mon, 11 May 2015 16:50:37 +0200
+
 cruft-ng (0.3) unstable; urgency=medium
 
   * Fix stack-smashing error, replace strcpy by strncpy (Closes: #783723)

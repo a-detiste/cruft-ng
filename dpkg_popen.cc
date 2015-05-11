@@ -5,12 +5,12 @@
 #include <sys/stat.h>
 #include "dpkg.h"
 
-#define debug false
-
 int read_dpkg_header(vector<string>& packages)
 {
+	bool debug=getenv("DEBUG") != NULL;
+
 	// TODO: read DPKG database directly instead of using dpkg-query
-	if (debug) cout << "DPKG DATA\n";
+	if (debug) cerr << "DPKG DATA\n";
 	FILE* fp;
 	if ((fp = popen("dpkg-query --show --showformat '${binary:Package}\n'", "r")) == NULL) return 1;
 	const int SIZEBUF = 200;
@@ -20,11 +20,11 @@ int read_dpkg_header(vector<string>& packages)
 	{
 		package=buf;
 		package=package.substr(0,package.size() - 1); // remove '/n'
-		//cout << package << endl;
+		//cerr << package << endl;
 		packages.push_back(package);
 	}
 	pclose(fp);
-	if (debug) cout << packages.size() << " packages installed"  << endl << endl;
+	if (debug) cerr << packages.size() << " packages installed"  << endl << endl;
 	return 0;
 }
 
@@ -57,7 +57,9 @@ int read_diversions(vector<Diversion>& diversions)
 
 int read_dpkg_items(vector<string>& dpkg)
 {
-	if (debug) cout << "READING FILES IN DPKG DATABASE" << endl;
+	bool debug=getenv("DEBUG") != NULL;
+
+	if (debug) cerr << "READING FILES IN DPKG DATABASE" << endl;
 	vector<Diversion> diversions;
 	read_diversions(diversions);
 
@@ -84,8 +86,8 @@ int read_dpkg_items(vector<string>& dpkg)
 		dpkg.push_back(filename);
 	}
         pclose(fp);
-	if (debug) cout << "done"  << endl;
+	if (debug) cerr << "done"  << endl;
 	sort(dpkg.begin(), dpkg.end()); // remove duplicates ???
-	if (debug) cout << dpkg.size() << " files in DPKG database" << endl;
+	if (debug) cerr << dpkg.size() << " files in DPKG database" << endl;
 	return 0;
 }

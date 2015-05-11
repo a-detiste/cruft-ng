@@ -5,11 +5,11 @@
 
 #include "filters.h"
 
-#define debug false
-
 int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 {
-	if (debug) cout << "READING GLOBS IN /usr/lib/cruft/filters-unex/" << endl;
+	bool debug=getenv("DEBUG") != NULL;
+
+	if (debug) cerr << "READING GLOBS IN /usr/lib/cruft/filters-unex/" << endl;
 	vector<string>::iterator it=packages.begin();
 
 	string retain;
@@ -39,7 +39,7 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 		glob_file.close();
 	}
 	sort(globs.begin(), globs.end());
-	if (debug) cout << globs.size() << " globs in database" << endl << endl;
+	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
 	// !!! TODO: remove duplicates
 	return 0;
 }

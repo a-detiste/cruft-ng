@@ -5,8 +5,6 @@
 #include <stdio.h>
 #include "explain.h"
 
-#define debug false
-
 static int upper(int c)
 {
       // http://www.dreamincode.net/forums/topic/15095-convert-string-to-uppercase-in-c/
@@ -15,12 +13,14 @@ static int upper(int c)
 
 int read_explain(vector<string>& packages, vector<string>& explain)
 {
-	if (debug) cout << "EXECUTING FILTERS IN /usr/lib/cruft/explain/" << endl;
+	bool debug=getenv("DEBUG") != NULL;
+
+	if (debug) cerr << "EXECUTING FILTERS IN /usr/lib/cruft/explain/" << endl;
 
 	DIR *dp;
 	struct dirent *dirp;
 	if((dp = opendir("/usr/lib/cruft/explain/")) == NULL) {
-	      cout << "Error(" << errno << ") opening /usr/lib/cruft/explain/" << endl;
+	      cerr << "Error(" << errno << ") opening /usr/lib/cruft/explain/" << endl;
 	      return errno;
 	}
 
@@ -46,7 +46,7 @@ int read_explain(vector<string>& packages, vector<string>& explain)
 			      }
 			}
 		}
-		if (debug) cout << match << ' ' << package << endl;
+		if (debug) cerr << match << ' ' << package << endl;
 		if (!match) continue;
 		FILE* fp;
 		if ((fp = popen(("/usr/lib/cruft/explain/" + package + " 3>&1").c_str(), "r")) == NULL) return 1;
@@ -57,7 +57,7 @@ int read_explain(vector<string>& packages, vector<string>& explain)
 		{
 			filter=buf;
 			filter=filter.substr(0,filter.size() - 1); // remove '/n'
-			if (debug) cout << "# " << filter << endl;
+			//if (debug) cerr << "# " << filter << endl;
 			explain.push_back(filter);
 		}
 		pclose(fp);

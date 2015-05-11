@@ -51,7 +51,7 @@ int read_mounts(vector<string>& prunefs, vector<string>& mounts)
 		      }
 	      }
 	      if (!match) {
-		     //cout << mount << " => " << type << endl;
+		     //cerr << mount << " => " << type << endl;
 		     mounts.push_back(mount);
 	      }
 	      getline(mtab,mount); // discard options
@@ -77,16 +77,16 @@ bool myglob(string file, string glob )
 		if ( glob.find("**")==globsize-2
 		  and filesize >= globsize-2
 		  and file.substr(0,globsize-2)==glob.substr(0,globsize-2)) {
-		if (debug) cout << "match ** " << file << " # " << glob << endl;
+		if (debug) cerr << "match ** " << file << " # " << glob << endl;
 		return true;
 	}  else if ( glob.find("*")==globsize-1
 		  and filesize >= globsize-1
 		  and file.find("/",globsize-1)==string::npos
 		  and file.substr(0,globsize-1)==glob.substr(0,globsize-1)) {
-		if (debug) cout << "match * " << file << " # " << glob << endl;
+		if (debug) cerr << "match * " << file << " # " << glob << endl;
 		return true;
 	} else if ( fnmatch(glob.c_str(),file.c_str(),FNM_PATHNAME)==0 ) {
-		if (debug) cout << "fnmatch " << file << " # " << glob << endl;
+		if (debug) cerr << "fnmatch " << file << " # " << glob << endl;
 		return true;
 	} else {
 		// fallback to shellexp.c
@@ -98,7 +98,7 @@ bool myglob(string file, string glob )
 		param2[sizeof(param2)-1] = '\0';
 		bool result=shellexp(param1,param2);
 		if (result and debug) {
-			cout << "shellexp.c " << file << " # " << glob << endl;
+			cerr << "shellexp.c " << file << " # " << glob << endl;
 		}
 		return result;
 	}
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 	vector<string>::iterator right=dpkg.begin();
 	while (left != fs.end() && right != dpkg.end() )
 	{
-		//cout << "[" << *left << "=" << *right << "]" << endl;
+		//cerr << "[" << *left << "=" << *right << "]" << endl;
 		if (*left==*right) {
 			left++;
 			right++;
@@ -165,8 +165,8 @@ int main(int argc, char *argv[])
 	//fs.clear();
 	//dpkg.clear();
 
-	if (debug) cout << missing.size() << " files in missing database" << endl;
-	if (debug) cout << cruft.size() << " files in cruft database" << endl << endl << flush;
+	if (debug) cerr << missing.size() << " files in missing database" << endl;
+	if (debug) cerr << cruft.size() << " files in cruft database" << endl << endl << flush;
 
 	// TODO: this should use DPKG database too
 	vector<string> cruft2;
@@ -201,7 +201,7 @@ int main(int argc, char *argv[])
 		}
 	}
 	//cruft.clear();
-	if (debug) std::cout << cruft2.size() << " files in cruft2 database" << endl << endl << std::flush;
+	if (debug) cerr << cruft2.size() << " files in cruft2 database" << endl << endl << std::flush;
 
 	// match the globs against reduced database
 	vector<string> cruft3;
@@ -219,7 +219,7 @@ int main(int argc, char *argv[])
 	}
 
 	//cruft2.clear();
-	if (debug) cout << cruft3.size() << " files in cruft3 database" << endl << endl << flush;
+	if (debug) cerr << cruft3.size() << " files in cruft3 database" << endl << endl << flush;
 
 	// match the dynamic "explain" filters
 	vector<string> cruft4;
@@ -237,7 +237,7 @@ int main(int argc, char *argv[])
 	}
 
 	//cruft3.clear();
-	if (debug) cout << cruft4.size() << " files in cruft4 database" << endl << flush;
+	if (debug) cerr << cruft4.size() << " files in cruft4 database" << endl << flush;
 
 	cout << "---- missing: dpkg ----" << endl;
 	for (unsigned int i=0;i<missing.size();i++) {
