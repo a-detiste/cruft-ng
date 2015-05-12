@@ -1,15 +1,10 @@
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <vector>
-#include <cstdlib>
 #include <algorithm>
 #include <stdio.h>
 #include <sys/stat.h>
 #include <fnmatch.h>
 #include <string.h>
-#include <dirent.h>
-#include <errno.h>
 #include <unistd.h>
 #include "explain.h"
 #include "filters.h"

@@ -1,8 +1,4 @@
-#include <assert.h>
 #include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <string.h>
 
 #define FALSE false
 #define TRUE  true
