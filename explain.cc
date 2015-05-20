@@ -5,6 +5,25 @@
 #include <stdio.h>
 #include "explain.h"
 
+void read_one_explain(const string& script,vector<string>& explain)
+{
+	//bool debug=getenv("DEBUG") != NULL;
+
+	FILE* fp;
+	if ((fp = popen((script + " 3>&1").c_str(), "r")) == NULL) return;
+	const int SIZEBUF = 200;
+	char buf[SIZEBUF];
+	string filter;
+	while (fgets(buf, sizeof(buf),fp))
+	{
+		filter=buf;
+		filter=filter.substr(0,filter.size() - 1); // remove '/n'
+		//if (debug) cerr << "# " << filter << endl;
+		explain.push_back(filter);
+	}
+	pclose(fp);
+}
+
 int read_explain(vector<string>& packages, vector<string>& explain)
 {
 	bool debug=getenv("DEBUG") != NULL;
@@ -41,20 +60,7 @@ int read_explain(vector<string>& packages, vector<string>& explain)
 			}
 		}
 		if (debug) cerr << match << ' ' << package << endl;
-		if (!match) continue;
-		FILE* fp;
-		if ((fp = popen(("/usr/lib/cruft/explain/" + package + " 3>&1").c_str(), "r")) == NULL) return 1;
-		const int SIZEBUF = 200;
-		char buf[SIZEBUF];
-		string filter;
-		while (fgets(buf, sizeof(buf),fp))
-		{
-			filter=buf;
-			filter=filter.substr(0,filter.size() - 1); // remove '/n'
-			//if (debug) cerr << "# " << filter << endl;
-			explain.push_back(filter);
-		}
-		pclose(fp);
+		if (match) read_one_explain("/usr/lib/cruft/explain/" + package, explain);
 	}
 	closedir(dp);
 	sort(explain.begin(), explain.end());
