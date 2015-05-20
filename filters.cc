@@ -7,11 +7,6 @@
 
 #include "filters.h"
 
-static int upper(int c)
-{
-	return toupper((unsigned char)c);
-}
-
 void read_one_filter(const string& glob_filename, vector<string>& globs)
 {
 	bool debug=getenv("DEBUG") != NULL;
@@ -46,7 +41,7 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 		string package=string(dirp->d_name);
 		if (package == "." or package == "..") continue;
 		string uppercase=package;
-		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), upper);
+		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), ::toupper);
 		if (package==uppercase)
 			read_one_filter("/etc/cruft/filters/" + package, globs);
 	}

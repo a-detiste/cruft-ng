@@ -15,12 +15,6 @@ extern int shellexp(char* filename, char* pattern );
 
 using namespace std;
 
-int upper(int c)
-{
-      // http://www.dreamincode.net/forums/topic/15095-convert-string-to-uppercase-in-c/
-      return std::toupper((unsigned char)c);
-}
-
 int read_mounts(vector<string>& prunefs, vector<string>& mounts)
 {
 	// this doesn't include "/", as it allways exists
@@ -39,7 +33,7 @@ int read_mounts(vector<string>& prunefs, vector<string>& mounts)
 	      else for (;it !=prunefs.end();it++) {
 		      string uppercase;
 		      uppercase=type;
-		      transform(uppercase.begin(), uppercase.end(), uppercase.begin(), upper);
+		      transform(uppercase.begin(), uppercase.end(), uppercase.begin(), ::toupper);
 		      if (uppercase==*it) {
 			  match=true;
 			  break;

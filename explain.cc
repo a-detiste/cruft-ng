@@ -5,12 +5,6 @@
 #include <stdio.h>
 #include "explain.h"
 
-static int upper(int c)
-{
-      // http://www.dreamincode.net/forums/topic/15095-convert-string-to-uppercase-in-c/
-      return toupper((unsigned char)c);
-}
-
 int read_explain(vector<string>& packages, vector<string>& explain)
 {
 	bool debug=getenv("DEBUG") != NULL;
@@ -32,7 +26,7 @@ int read_explain(vector<string>& packages, vector<string>& explain)
 		if (package=="USERS") continue; /* replaced by USERS_cruft-ng */
 		bool match=false;
 		string uppercase=package;
-		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), upper);
+		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), ::toupper);
 		if (package==uppercase)
 			match=true;
 		if (package=="USERS_cruft-ng")
