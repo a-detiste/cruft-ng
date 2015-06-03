@@ -27,7 +27,7 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 	mlocate.read ((char *) &header,sizeof(db_header));
 	// TODO: assert this
 
-	for (int i=1;i<9;i++) {
+	for (int i=0;i<8;i++) {
 		if (debug) cerr << header.magic[i];
 	} if (debug) cerr << endl << endl;
 
