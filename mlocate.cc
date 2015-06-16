@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <limits>
 #include "mlocate_db.h"
 //       original filename is 'db.h'
 // TODO: should be packaged in /usr/include by 'mlocate' package
@@ -68,18 +69,17 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 		getline(mlocate,dirname,'\0');
 		if (mlocate.eof()) break;
 		char filetype; // =sizeof(db_entry)
-		while ((filetype = mlocate.get()) != DBE_END) {
+		string toplevel = dirname.substr(0, dirname.find("/", 1));
+		if (   toplevel == "/dev"
+		    /* have a peek into /home, but not deeper */
+		    or (toplevel == "/home" and dirname != "/home")
+		    or toplevel == "/root"
+		    or toplevel == "/tmp")
+		while ((mlocate.get()) != DBE_END) {
+			mlocate.ignore(std::numeric_limits<int>::max(), '\0');
+		} else while ((filetype = mlocate.get()) != DBE_END) {
 			getline(mlocate,filename,'\0');
-			/* go into /home & /usr/local direct subfolders,
-			 * but not deeper */
-			if (dirname.length() >= 6  and dirname.substr(0, 6) == "/home/") continue;
-		        //if (dirname.length() >= 11 and dirname.substr(0,11) == "/usr/local/") continue;
 			string fullpath=dirname + '/' + filename;
-			/* don't even go into /root */
-			if (fullpath.length() >= 6  and fullpath.substr(0, 6) == "/root/") continue;
-			/* spurious entry in mlocate db */
-			if (fullpath.substr(0,28)=="/var/lib/mlocate/mlocate.db.") continue;
-			//cerr << dirname << '/' << filename << endl;
 			fs.push_back(fullpath);
 		}
 	}
