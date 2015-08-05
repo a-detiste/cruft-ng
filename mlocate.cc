@@ -73,6 +73,7 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 		if (   toplevel == "/dev"
 		    /* have a peek into /home, but not deeper */
 		    or (toplevel == "/home" and dirname != "/home")
+		    or toplevel == "/mnt"
 		    or toplevel == "/root"
 		    or toplevel == "/tmp")
 		while ((mlocate.get()) != DBE_END) {
