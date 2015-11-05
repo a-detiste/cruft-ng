@@ -1,3 +1,12 @@
+cruft-ng (0.4.1) unstable; urgency=low
+
+  * always ignore contents of /mnt & /srv
+  * run on a single file (Closes: #432026), this is a very simple implementation
+    that can be enhanced
+  * depends on cruft-common instead of "cruft (<< 0.9.20) | cruft-common"
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Thu, 05 Nov 2015 23:52:51 +0100
+
 cruft-ng (0.4) unstable; urgency=medium
 
   * Enable DEBUG all over the place

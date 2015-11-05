@@ -6,6 +6,9 @@
 #include <fnmatch.h>
 #include <string.h>
 #include <unistd.h>
+#include <dirent.h>
+#include <errno.h>
+
 #include "explain.h"
 #include "filters.h"
 #include "mlocate.h"
@@ -93,12 +96,57 @@ bool myglob(string file, string glob )
 	}
 }
 
+void one_file(string infile)
+{
+	char* file=realpath(infile.c_str(), NULL);
+	DIR *dp;
+	struct dirent *dirp;
+	if((dp = opendir("/usr/lib/cruft/filters-unex/")) == NULL) {
+		cerr << "Error(" << errno << ") opening /usr/lib/cruft/filters-unex/" << endl;
+		exit(1);
+	}
+	bool matched = false;
+	while ((dirp = readdir(dp)) != NULL) {
+		string package=string(dirp->d_name);
+		if (package == "." or package == "..") continue;
+		ifstream glob_file(("/usr/lib/cruft/filters-unex/" + package).c_str());
+		while (glob_file.good())
+		{
+			string glob_line;
+			getline(glob_file,glob_line);
+			if (glob_line.substr(0,1) == "/") {
+				if (myglob(file,glob_line)) {
+					cout << package << endl;
+					matched = true;
+				}
+			}
+			if (glob_file.eof()) break;
+		}
+	}
+	if (not matched) cerr << "no matching package found" << endl;
+}
+
+
 int main(int argc, char *argv[])
 {
 	bool debug = getenv("DEBUG") != NULL;
 
+	if (argc == 2) {
+		struct stat buffer;
+		if (stat (argv[1], &buffer) == 0) {
+			one_file(argv[1]);
+			exit(0);
+		} else {
+			cerr << "file not found" << endl;
+			exit(1);
+		}
+	}
+
 	if (argc > 1) {
-		cerr << "commandline arguments not yet implemented" << endl;
+		cerr << "cruft-ng [file]" << endl;
+		cerr << endl;
+		cerr << "if <file> is specified, this file is analysed" << endl;
+		cerr << "if not, the whole system is analysed" << endl;
 		exit(1);
 	}
 	updatedb();
