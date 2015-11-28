@@ -75,7 +75,6 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 		    or (toplevel == "/home" and dirname != "/home")
 		    or toplevel == "/mnt"
 		    or toplevel == "/root"
-		    or toplevel == "/srv"
 		    or toplevel == "/tmp")
 		while ((mlocate.get()) != DBE_END) {
 			mlocate.ignore(std::numeric_limits<int>::max(), '\0');
