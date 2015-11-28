@@ -6,6 +6,7 @@ cruft.log.old
 test_mlocate
 test_filters
 test_explain
+test_excludes
 debian/cruft-ng.debhelper.log
 debian/cruft-ng.substvars
 debian/cruft-ng/

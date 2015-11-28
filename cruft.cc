@@ -13,6 +13,7 @@
 #include "filters.h"
 #include "mlocate.h"
 #include "dpkg.h"
+#include "dpkg_exclude.h"
 
 extern int shellexp(char* filename, char* pattern );
 
@@ -175,6 +176,9 @@ int main(int argc, char *argv[])
 	std::vector<string> dpkg;
 	read_dpkg_items(dpkg);
 
+	std::vector<string> excludes;
+	read_dpkg_excludes(excludes);
+
 	// match two main data sources
 	vector<string> cruft;
 	vector<string> missing;
@@ -204,6 +208,21 @@ int main(int argc, char *argv[])
 
 	if (debug) cerr << missing.size() << " files in missing database" << endl;
 	if (debug) cerr << cruft.size() << " files in cruft database" << endl << endl << flush;
+
+	// https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=619086
+	vector<string> missing2;
+	left=missing.begin();
+	while (left != missing.end()) {
+		right=excludes.begin();
+		bool match=false;
+		while (right != excludes.end()) {
+			match=myglob(*left,*right);
+			if (match) break;
+			right++;
+		}
+		if (!match) missing2.push_back(*left);
+		left++;
+	}
 
 	// TODO: this should use DPKG database too
 	vector<string> cruft2;
@@ -277,8 +296,8 @@ int main(int argc, char *argv[])
 	if (debug) cerr << cruft4.size() << " files in cruft4 database" << endl << flush;
 
 	cout << "---- missing: dpkg ----" << endl;
-	for (unsigned int i=0;i<missing.size();i++) {
-		cout << "        " << missing[i] << endl;
+	for (unsigned int i=0;i<missing2.size();i++) {
+		cout << "        " << missing2[i] << endl;
 	}
 
 	//TODO: split by filesystem
