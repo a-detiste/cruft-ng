@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <errno.h>
+#include <time.h>
 
 #include "explain.h"
 #include "filters.h"
@@ -54,10 +55,14 @@ int read_mounts(vector<string>& prunefs, vector<string>& mounts)
 
 void updatedb()
 {
+	if (getuid()) return;
 	//TODO: compare mtime /var/cache/apt/pkgcache.bin
 	//      et mtime      /var/lib/mlocate/mlocate.db
 	//      et date systeme
-        if (!getuid()) system("updatedb");
+	if (system("updatedb")) {
+		cerr << "mlocates's updatedb failed" << endl;
+		exit(1);
+	}
 }
 
 bool myglob(string file, string glob )
@@ -158,10 +163,12 @@ int main(int argc, char *argv[])
 
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
-	FILE* fp;
-	if ((fp = popen("date", "r")) == NULL) return 1;
-	fgets(buf, sizeof(buf),fp);
-	fclose(fp);
+	time_t rawtime;
+	struct tm * timeinfo;
+	time(&rawtime);
+	timeinfo=localtime(&rawtime);
+	setlocale(LC_TIME, "");
+	strftime(buf, sizeof(buf), "%c", timeinfo);
 	cout << "cruft report: " << buf << endl << flush;
 
 	std::vector<string> packages;
