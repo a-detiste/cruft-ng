@@ -1,5 +1,6 @@
 CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z,relro -D_FORTIFY_SOURCE=2
 CXXFLAGS += -Wall
+SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o mlocate.o shellexp.o
 
 all: cruft-ng
 tests: test_mlocate test_explain test_filters test_excludes cruftlib
@@ -19,11 +20,11 @@ dpkg_popen.o: dpkg_popen.cc dpkg.h
 shellexp.o: shellexp.c
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c shellexp.c
 
-cruft-ng: cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o dpkg_exclude.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cruft.o explain.o filters.o mlocate.o dpkg_popen.o shellexp.o dpkg_exclude.o -o cruft-ng
+cruft-ng: $(SHARED_OBJS) dpkg_popen.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruft-ng
 
-cruftlib: cruft.o explain.o filters.o mlocate.o dpkg_lib.o shellexp.o dpkg_exclude.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cruft.o explain.o filters.o mlocate.o dpkg_lib.o   shellexp.o dpkg_exclude.o -o cruftlib
+cruftlib: $(SHARED_OBJS) dpkg_lib.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o   -o cruftlib
 
 test_%: %.o test_%.cc dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $< $@.cc dpkg_popen.o -o $@
