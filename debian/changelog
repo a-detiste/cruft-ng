@@ -1,9 +1,9 @@
-cruft-ng (0.4.2) UNRELEASED; urgency=low
+cruft-ng (0.4.2) unstable; urgency=low
 
   * revert ignoring /srv, let admin handle this with their custom rules
   * take into account dpkg's path-exclude configuration (Closes: #619086)
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sat, 28 Nov 2015 08:35:03 +0100
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 11 Dec 2015 13:04:38 +0100
 
 cruft-ng (0.4.1) unstable; urgency=low
 
