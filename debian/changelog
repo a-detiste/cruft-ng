@@ -1,3 +1,9 @@
+cruft-ng (0.4.3) UNRELEASED; urgency=medium
+
+  * don't report .pyc files if a .py file exist (Closes:  #366616)
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 15 Dec 2015 18:41:59 +0100
+
 cruft-ng (0.4.2) unstable; urgency=low
 
   * revert ignoring /srv, let admin handle this with their custom rules

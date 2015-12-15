@@ -102,6 +102,59 @@ bool myglob(string file, string glob )
 	}
 }
 
+bool pyc_has_py(string pyc)
+{
+	if (pyc.length() < 15)
+		return false;
+
+	// #366616: Don't report .pyc files if a .py file exist
+
+	// also ignore __pycache__ dirs
+	// if .py are found in the same directory
+	if (pyc.substr(pyc.length()-12, 12) == "/__pycache__") {
+		DIR *dp;
+		struct dirent *dirp;
+		if((dp = opendir(pyc.substr(0, pyc.length()-12).c_str())) == NULL) {
+		      return false;
+		}
+		while ((dirp = readdir(dp)) != NULL) {
+			string entry = dirp->d_name;
+			if (entry.length() < 4)
+				continue;
+			if (entry.substr(entry.length()-3,3) == ".py")
+				return true;
+		}
+		return false;
+	}
+
+	/* scenario 1:
+	/usr/share/python/debpython/debhelper.py
+	/usr/share/python/debpython/debhelper.pyc
+	*/
+	if (pyc.substr(pyc.length()-4, 4) != ".pyc")
+		return false;
+
+	struct stat buffer;
+	if (stat(pyc.substr(0, pyc.length()-1).c_str(), &buffer) == 0)
+		return true;
+
+	/* scenario 2:
+	/usr/share/pgcli/pgcli/packages/counter.py
+	/usr/share/pgcli/pgcli/packages/__pycache__/counter.cpython-34.pyc
+	*/
+	size_t pos = pyc.find("/__pycache__/");
+	if (pos == string::npos)
+		return false;
+	pyc.replace(pos, 13, "/");
+
+	pos = pyc.find(".cpython-");
+	if (pos == string::npos)
+		return false;
+	pyc.replace(pos, 15, ".py");
+
+	return stat(pyc.c_str(), &buffer) == 0;
+}
+
 void one_file(string infile)
 {
 	char* file=realpath(infile.c_str(), NULL);
@@ -139,7 +192,7 @@ int main(int argc, char *argv[])
 
 	if (argc == 2) {
 		struct stat buffer;
-		if (stat (argv[1], &buffer) == 0) {
+		if (stat(argv[1], &buffer) == 0) {
 			one_file(argv[1]);
 			exit(0);
 		} else {
@@ -310,7 +363,8 @@ int main(int argc, char *argv[])
 	//TODO: split by filesystem
 	cout << "---- unexplained: / ----" << endl;
 	for (unsigned int i=0;i<cruft4.size();i++) {
-		cout << "        " << cruft4[i] << endl;
+		if (!pyc_has_py(cruft4[i]))
+			cout << "        " << cruft4[i] << endl;
 	}
 
 	// NOT IMPLEMENTED
