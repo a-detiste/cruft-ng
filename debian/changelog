@@ -1,8 +1,8 @@
-cruft-ng (0.4.3) UNRELEASED; urgency=medium
+cruft-ng (0.4.3) unstable; urgency=low
 
   * don't report .pyc files if a .py file exist (Closes:  #366616)
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 15 Dec 2015 18:41:59 +0100
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 06 Jan 2016 21:51:45 +0100
 
 cruft-ng (0.4.2) unstable; urgency=low
 
