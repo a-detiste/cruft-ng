@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include "dpkg.h"
+#include "usr_merge.h"
 
 int read_dpkg_header(vector<string>& packages)
 {
@@ -83,7 +84,7 @@ int read_dpkg_items(vector<string>& dpkg)
 		            && stat(filename.c_str(),&stat_buffer)!= 0) filename=(*it).newfile;
 		}
 
-		dpkg.push_back(filename);
+		dpkg.push_back(usr_merge(filename));
 	}
         pclose(fp);
 	if (debug) cerr << "done"  << endl;

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #include "explain.h"
+#include "usr_merge.h"
 
 void read_one_explain(const string& script,vector<string>& explain)
 {
@@ -20,7 +21,7 @@ void read_one_explain(const string& script,vector<string>& explain)
 		filter=buf;
 		filter=filter.substr(0,filter.size() - 1); // remove '/n'
 		//if (debug) cerr << "# " << filter << endl;
-		explain.push_back(filter);
+		explain.push_back(usr_merge(filter));
 	}
 	pclose(fp);
 }

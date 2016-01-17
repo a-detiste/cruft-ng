@@ -6,6 +6,7 @@
 #include <errno.h>
 
 #include "filters.h"
+#include "usr_merge.h"
 
 void read_one_filter(const string& glob_filename, vector<string>& globs)
 {
@@ -19,7 +20,7 @@ void read_one_filter(const string& glob_filename, vector<string>& globs)
 		getline(glob_file,glob_line);
 		if (glob_file.eof()) break;
 		if (glob_line.substr(0,1) == "/") {
-			globs.push_back(glob_line);
+			globs.push_back(usr_merge(glob_line));
 			if (debug) cerr << glob_line << endl;
 		}
 	}

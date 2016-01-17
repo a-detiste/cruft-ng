@@ -1,3 +1,9 @@
+cruft-ng (0.4.4) UNRELEASED; urgency=low
+
+  * Add support for systems with UsrMerge
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 17 Jan 2016 19:31:45 +0000
+
 cruft-ng (0.4.3) unstable; urgency=low
 
   * don't report .pyc files if a .py file exist (Closes:  #366616)
