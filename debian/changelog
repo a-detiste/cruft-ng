@@ -1,8 +1,8 @@
-cruft-ng (0.4.4) UNRELEASED; urgency=low
+cruft-ng (0.4.4) unstable; urgency=low
 
   * Add support for systems with UsrMerge
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 17 Jan 2016 19:31:45 +0000
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 17 Jan 2016 21:16:43 +0100
 
 cruft-ng (0.4.3) unstable; urgency=low
 
