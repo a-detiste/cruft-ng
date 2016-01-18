@@ -3,7 +3,7 @@ CXXFLAGS += -Wall
 SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o mlocate.o shellexp.o usr_merge.o
 
 all: cruft-ng
-tests: test_mlocate test_explain test_filters test_excludes cruftlib
+tests: test_mlocate test_explain test_filters test_excludes test_dpkg cruftlib
 
 cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c cruft.cc
@@ -28,6 +28,8 @@ cruftlib: $(SHARED_OBJS) dpkg_lib.o
 
 test_%: %.o test_%.cc dpkg_popen.o usr_merge.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $< $@.cc dpkg_popen.o usr_merge.o -o $@
+test_dpkg: test_dpkg.cc dpkg_popen.o usr_merge.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_popen.o usr_merge.o test_dpkg.cc -o $@
 test_mlocate: mlocate.o test_mlocate.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) mlocate.o test_mlocate.cc -o $@
 test_excludes: dpkg_exclude.o test_excludes.cc
@@ -40,5 +42,5 @@ install: all
 	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft-ng/README.md
 
 clean:
-	rm -f cruft-ng cruftlib test_mlocate test_filters test_explain test_excludes
+	rm -f cruft-ng cruftlib test_*
 	rm -f *.o
