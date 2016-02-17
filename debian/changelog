@@ -1,3 +1,9 @@
+cruft-ng (0.4.5) UNRELEASED; urgency=medium
+
+  * Declare compliance with Policy 3.9.7
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 17 Feb 2016 10:49:01 +0100
+
 cruft-ng (0.4.4) unstable; urgency=low
 
   * Add support for systems with UsrMerge
