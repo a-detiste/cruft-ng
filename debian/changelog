@@ -1,3 +1,9 @@
+cruft-ng (0.4.4~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+
+ -- Paul Wise <pabs@debian.org>  Fri, 12 Feb 2016 13:00:30 +1100
+
 cruft-ng (0.4.4) unstable; urgency=low
 
   * Add support for systems with UsrMerge
