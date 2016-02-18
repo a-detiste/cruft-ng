@@ -11,4 +11,5 @@ test_dpkg
 debian/cruft-ng.debhelper.log
 debian/cruft-ng.substvars
 debian/cruft-ng/
+debian/debhelper-build-stamp
 debian/files
