@@ -42,5 +42,5 @@ install: all
 	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft-ng/README.md
 
 clean:
-	rm -f cruft-ng cruftlib test_*
+	rm -f cruft-ng cruftlib test_mlocate test_explain test_filters test_excludes test_dpkg
 	rm -f *.o
