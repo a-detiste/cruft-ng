@@ -56,9 +56,20 @@ int read_mounts(vector<string>& prunefs, vector<string>& mounts)
 void updatedb()
 {
 	if (getuid()) return;
-	//TODO: compare mtime /var/cache/apt/pkgcache.bin
-	//      et mtime      /var/lib/mlocate/mlocate.db
-	//      et date systeme
+
+	int rc_locate, rc_dpkg;
+	struct stat stat_locate, stat_dpkg;
+	rc_locate = stat("/var/lib/mlocate/mlocate.db", &stat_locate);
+	rc_dpkg = stat("/var/lib/dpkg/status", &stat_dpkg);
+
+	if (rc_dpkg) {
+		cerr << "can't read /var/lib/dpkg/status timestamp !!!" << endl;
+		exit(1);
+	}
+
+	if (!rc_locate && stat_locate.st_mtim.tv_sec > stat_dpkg.st_mtim.tv_sec)
+		return;
+
 	if (system("updatedb")) {
 		cerr << "mlocates's updatedb failed" << endl;
 		exit(1);
