@@ -5,7 +5,7 @@
 #include "dpkg.h"
 
 /*
-http://dpkg.alioth.debian.org/doc/
+https://dpkg.alioth.debian.org/doc/
 */
 
 int read_dpkg_header(vector<string>& packages)
