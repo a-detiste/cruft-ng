@@ -22,7 +22,7 @@ using namespace std;
 
 int read_mounts(vector<string>& prunefs, vector<string>& mounts)
 {
-	// this doesn't include "/", as it allways exists
+	// this doesn't include "/", as it always exists
 	ifstream mtab("/proc/mounts");
 	string mount,type;
 	while ( not mtab.eof() )

@@ -5,7 +5,7 @@ Cruft is built as a main shell scripts that spawn
 hundreds of helper processes (other shell scripts, 
 perl programs, C programs).
 
-This project attemps to keep all the main functionality in one process;
+This project attempts to keep all the main functionality in one process;
 while output remains 100% identical to cruft's one.
 
 Here are some [benchmarks](https://github.com/a-detiste/cruft-ng/wiki/Benchmark).
