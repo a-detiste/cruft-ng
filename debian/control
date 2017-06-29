@@ -2,8 +2,8 @@ Source: cruft-ng
 Section: admin
 Priority: optional
 Maintainer: Alexandre Detiste <alexandre.detiste@gmail.com>
-Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.7
+Build-Depends: debhelper (>= 10)
+Standards-Version: 4.0.0
 Homepage: https://github.com/a-detiste/cruft-ng/
 Vcs-Git: https://github.com/a-detiste/cruft-ng.git
 Vcs-Browser: https://github.com/a-detiste/cruft-ng
