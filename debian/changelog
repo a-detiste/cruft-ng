@@ -4,6 +4,8 @@ cruft-ng (0.4.5) UNRELEASED; urgency=medium
   * Enable full hardening
   * Only refresh mlocate database when needed
   * Switch to DebHelper 10
+  * Handle filenames longer than 199 bytes (Closes: #867016),
+    thanks to Stefan Bühler
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 17 Feb 2016 10:49:01 +0100
 
