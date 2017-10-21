@@ -50,9 +50,6 @@ TODO:
 
  * command switches are currenlty not implemented   
 
- * have cruft package split in two parts: cruft &
-   cruft-common. cruft-ng would depends on cruft-common.
-
  * cruft-ng doesn't detect broken symlinks at this time;
    it's a different topic and should be split in a
    separate tool. (and this really needs 'find'
