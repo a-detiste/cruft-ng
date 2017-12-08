@@ -1,4 +1,4 @@
-cruft-ng (0.4.5) UNRELEASED; urgency=medium
+cruft-ng (0.4.5) unstable; urgency=low
 
   * Declare compliance with Policy 4.1.2
   * Enable full hardening
@@ -8,7 +8,7 @@ cruft-ng (0.4.5) UNRELEASED; urgency=medium
     thanks to Stefan Bühler
   * set Rules-Requires-Root: no
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 17 Feb 2016 10:49:01 +0100
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 08 Dec 2017 12:21:32 +0100
 
 cruft-ng (0.4.4) unstable; urgency=low
 
