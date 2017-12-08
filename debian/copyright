@@ -3,7 +3,7 @@ Upstream-Name: cruft-ng
 Source: https://github.com/a-detiste/cruft-ng/
 
 Files: *
-Copyright: 2014-2016 Alexandre Detiste <alexandre.detiste@gmail.com>
+Copyright: 2014-2017 Alexandre Detiste <alexandre.detiste@gmail.com>
 License: GPL-2+
 
 Files: mlocate_db.h
