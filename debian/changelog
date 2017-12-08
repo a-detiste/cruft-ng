@@ -1,6 +1,6 @@
 cruft-ng (0.4.5) UNRELEASED; urgency=medium
 
-  * Declare compliance with Policy 4.0.0
+  * Declare compliance with Policy 4.1.2
   * Enable full hardening
   * Only refresh mlocate database when needed
   * Switch to DebHelper 10
