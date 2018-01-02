@@ -69,7 +69,7 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 			read_one_filter(usr_filename, globs);
 	}
 	sort(globs.begin(), globs.end());
+	globs.erase( unique( globs.begin(), globs.end() ), globs.end() );
 	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
-	// !!! TODO: remove duplicates
 	return 0;
 }

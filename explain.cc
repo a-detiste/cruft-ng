@@ -88,5 +88,6 @@ int read_explain(vector<string>& packages, vector<string>& explain)
                         read_one_explain(usr_filename, explain);
 	}
 	sort(explain.begin(), explain.end());
+	explain.erase( unique( explain.begin(), explain.end() ), explain.end() );
 	return 0;
 }
