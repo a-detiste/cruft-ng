@@ -85,10 +85,32 @@ int read_dpkg_items(vector<string>& dpkg)
 		}
 
 		dpkg.push_back(usr_merge(filename));
+
+
+		// also consider all intermediate subdirectories under /etc
+		if (filename.substr(0,5)!="/etc/")
+			continue;
+
+		if (stat(filename.c_str(),&stat_buffer) == 0)
+			if ((stat_buffer.st_mode & S_IFDIR) != 0)
+				continue;
+
+		while (1)
+		{
+			size_t found;
+			found=filename.find_last_of("/");
+			filename=filename.substr(0,found);
+			if (filename == "/etc")
+				break;
+
+			dpkg.push_back(filename);
+		}
 	}
         pclose(fp);
 	if (debug) cerr << "done"  << endl;
-	sort(dpkg.begin(), dpkg.end()); // remove duplicates ???
+	sort(dpkg.begin(), dpkg.end());
+	// remove duplicates
+	dpkg.erase( unique( dpkg.begin(), dpkg.end() ), dpkg.end() );
 	if (debug) cerr << dpkg.size() << " files in DPKG database" << endl;
 	return 0;
 }
