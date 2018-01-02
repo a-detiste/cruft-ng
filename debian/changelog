@@ -2,7 +2,7 @@ cruft-ng (0.4.6) unstable; urgency=medium
 
   * consider all intermediates subdirectories under /etc as OK
     if those contain some dpkg-managed files
-  * Declare compliance with Policy 4.1.2
+  * Declare compliance with Policy 4.1.3
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 02 Jan 2018 10:17:32 +0100
 
