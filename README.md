@@ -1,8 +1,8 @@
-cruf-ng, a rewrite of Debian 'cruft' engine 
-===========================================
+cruft-ng, a rewrite of Debian 'cruft' engine
+============================================
 
 Cruft is built as a main shell scripts that spawn
-hundreds of helper processes (other shell scripts, 
+hundreds of helper processes (other shell scripts,
 perl programs, C programs).
 
 This project attempts to keep all the main functionality in one process;
@@ -31,11 +31,11 @@ Some assumption differs:
   so the intermediary spooling in `/var/spool/cruft/`
   is un-needed; unless it is processed by external tools
 
-* Debian 
+* Debian
 
 * cruft-ng uses mlocate binary database instead of
   running 'find' on the whole file system,
-  this way, it can also be setgid mlocate to be 
+  this way, it can also be setgid mlocate to be
   able to access the db and be run by any user;
   while cruft need to be run as root.
 
@@ -48,7 +48,7 @@ Some assumption differs:
 TODO:
 -----
 
- * command switches are currenlty not implemented   
+ * command switches are currenlty not implemented
 
  * cruft-ng doesn't detect broken symlinks at this time;
    it's a different topic and should be split in a
@@ -61,6 +61,6 @@ COPYRIGHT:
 This is licensed GPL-2+, as cruft itself.
 This reuses `shellexp.c`, explain/*  and filters-unex/* from cruft.
 
-1998-2000 Anthony Towns  
-2005-2011 Marcin Owsiany    
-2014      Alexandre Detiste  
+1998-2000 Anthony Towns
+2005-2011 Marcin Owsiany
+2014      Alexandre Detiste
