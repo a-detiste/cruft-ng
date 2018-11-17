@@ -2,6 +2,7 @@ cruft-ng (0.4.7) UNRELEASED; urgency=medium
 
   * switch to debhelper compat level 11
   * drop our copy of db.h, use the one provided by mlocate instead
+  * bump Standards-Version to 4.2.1, no further change needed
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sat, 17 Nov 2018 18:00:08 +0100
 
