@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Alexandre Detiste <alexandre.detiste@gmail.com>
 Build-Depends:
     debhelper (>= 11~),
+    mlocate (>= 0.26-3),
 Standards-Version: 4.1.3
 Homepage: https://github.com/a-detiste/cruft-ng/
 Vcs-Git: https://github.com/a-detiste/cruft-ng.git
