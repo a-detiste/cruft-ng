@@ -30,21 +30,6 @@ int read_dpkg_header(vector<string>& packages)
 	return 0;
 }
 
-int read_diversions_old(vector<Diversion>& diversions)
-{
-	ifstream txt("/var/lib/dpkg/diversions");
-	while(!txt.eof())
-	{
-		string oldfile,newfile,package;
-		getline(txt,oldfile);
-		getline(txt,newfile);
-		getline(txt,package);
-		diversions.push_back(Diversion(oldfile,newfile,package));
-	}
-	txt.close();
-	return 0;
-}
-
 int read_diversions(vector<Diversion>& diversions)
 {
 	bool debug=getenv("DEBUG") != NULL;

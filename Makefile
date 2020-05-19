@@ -34,6 +34,8 @@ test_mlocate: mlocate.o test_mlocate.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) mlocate.o test_mlocate.cc -o $@
 test_excludes: dpkg_exclude.o test_excludes.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_exclude.o test_excludes.cc -o $@
+test_diversions: test_diversions.cc dpkg_popen.o usr_merge.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_diversions.cc dpkg_popen.o usr_merge.o -o $@
 
 install: all
 	#install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng

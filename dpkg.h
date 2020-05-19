@@ -17,5 +17,4 @@ struct Diversion{
         }
 };
 
-int read_diversions_old(vector<Diversion>& diversions);
 int read_diversions(vector<Diversion>& diversions);

@@ -6,6 +6,7 @@ cruft.log.old
 *.o
 test_mlocate
 test_filters
+test_diversions
 test_explain
 test_excludes
 test_dpkg
