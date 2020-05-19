@@ -1,9 +1,11 @@
 cruft-ng (0.4.8) UNRELEASED; urgency=medium
 
-  * Bump debhelper from old 11 to 12.
-  * Set debhelper-compat version in Build-Depends.
+  * Bump debhelper from old 11 to 12. [Debian Janitor]
+  * Set debhelper-compat version in Build-Depends. [Debian Janitor]
+  * Do not read /var/lib/dpkg/diversions directly,
+    instead call "dpkg-divert --list".
 
- -- Debian Janitor <janitor@jelmer.uk>  Tue, 05 May 2020 11:48:29 +0000
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 19 May 2020 15:11:27 +0200
 
 cruft-ng (0.4.7) unstable; urgency=low
 
