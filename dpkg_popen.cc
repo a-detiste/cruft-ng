@@ -42,30 +42,28 @@ int read_diversions(vector<Diversion>& diversions)
 	char buf[SIZEBUF];
 	while (fgets(buf, sizeof(buf),fp))
 	{
-		const char delim = ' ';
+		const char* delim = " ";
 		string oldfile,newfile,package;
 
+		if (debug) cerr << buf << endl;
                 //diversion of /usr/share/dict/words to /usr/share/dict/words.pre-dictionaries-common by dictionaries-common
                 //diversion of /usr/share/man/man1/sh.1.gz to /usr/share/man/man1/sh.distrib.1.gz by dash
                 //diversion of /usr/bin/firefox to /usr/bin/firefox.real by firefox-esr
                 //diversion of /bin/sh to /bin/sh.distrib by dash
 
-		char* token = strtok((char*)buf, &delim);
+		strtok((char*)buf, delim);
 
-		strtok(NULL, &delim);
+		strtok(NULL, delim);
 
-		token = strtok(NULL, &delim);
-		oldfile = token;
+		oldfile = strtok(NULL, delim);
 
-		strtok(NULL, &delim);
+		strtok(NULL, delim);
 
-		token = strtok(NULL, &delim);
-		newfile = token;
+		newfile = strtok(NULL, delim);
 
-		strtok(NULL, &delim);
+		strtok(NULL, delim);
 
-		token = strtok(NULL, &delim);
-		package = token;
+		package = strtok(NULL, delim);
 		package = package.substr(0,package.size() - 1); // remove '/n'
 
 		diversions.push_back(Diversion(oldfile,newfile,package));
