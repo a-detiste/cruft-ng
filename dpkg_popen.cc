@@ -66,6 +66,7 @@ int read_diversions(vector<Diversion>& diversions)
 
 		token = strtok(NULL, &delim);
 		package = token;
+		package = package.substr(0,package.size() - 1); // remove '/n'
 
 		diversions.push_back(Diversion(oldfile,newfile,package));
 	}
