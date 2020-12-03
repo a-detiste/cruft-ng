@@ -3,7 +3,7 @@ Section: admin
 Priority: optional
 Maintainer: Alexandre Detiste <alexandre.detiste@gmail.com>
 Build-Depends:
-    debhelper-compat (= 12),
+    debhelper-compat (= 13),
 Standards-Version: 4.5.0
 Homepage: https://github.com/a-detiste/cruft-ng/
 Vcs-Git: https://github.com/a-detiste/cruft-ng.git

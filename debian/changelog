@@ -1,3 +1,11 @@
+cruft-ng (0.4.9) unstable; urgency=low
+
+  * /usr/include/mlocate/db.h has vanished,
+    revert change of 0.4.7 (Closes: #975754)
+  * Bump debhelper from old 12 to 13.
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Thu, 03 Dec 2020 02:46:46 +0100
+
 cruft-ng (0.4.8) unstable; urgency=low
 
   * Bump debhelper from old 11 to 12. [Debian Janitor]
