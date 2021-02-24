@@ -70,7 +70,7 @@ void updatedb()
 	if (!rc_locate && stat_locate.st_mtim.tv_sec > stat_dpkg.st_mtim.tv_sec)
 		return;
 
-	if (system("updatedb")) {
+	if (system("updatedb.mlocate")) {
 		cerr << "mlocates's updatedb failed" << endl;
 		exit(1);
 	}
