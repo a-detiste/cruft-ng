@@ -54,13 +54,13 @@ int read_mounts(vector<string>& prunefs, vector<string>& mounts)
 	return 0;
 }
 
-void updatedb()
+void updatedb(string db)
 {
 	if (getuid()) return;
 
 	int rc_locate, rc_dpkg;
 	struct stat stat_locate, stat_dpkg;
-	rc_locate = stat("/var/lib/mlocate/mlocate.db", &stat_locate);
+	rc_locate = stat(db.c_str(), &stat_locate);
 	rc_dpkg = stat("/var/lib/dpkg/status", &stat_dpkg);
 
 	if (rc_dpkg) {
@@ -71,8 +71,8 @@ void updatedb()
 	if (!rc_locate && stat_locate.st_mtim.tv_sec > stat_dpkg.st_mtim.tv_sec)
 		return;
 
-	if (system("updatedb.mlocate")) {
-		cerr << "mlocates's updatedb failed" << endl;
+	if (system("updatedb")) {
+		cerr << "updatedb failed" << endl;
 		exit(1);
 	}
 }
@@ -225,9 +225,10 @@ int main(int argc, char *argv[])
 
 	struct stat has_plocate;
 	if (stat("/var/lib/plocate/plocate.db", &has_plocate) == 0) {
+		updatedb("/var/lib/plocate/plocate.db");
 		read_plocate(fs,prunefs);
 	} else {
-		updatedb();
+		updatedb("/var/lib/mlocate/mlocate.db");
 		read_mlocate(fs,prunefs);
 	}
 
