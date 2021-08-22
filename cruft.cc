@@ -13,6 +13,7 @@
 #include "explain.h"
 #include "filters.h"
 #include "mlocate.h"
+#include "plocate.h"
 #include "dpkg.h"
 #include "dpkg_exclude.h"
 
@@ -219,10 +220,17 @@ int main(int argc, char *argv[])
 		cerr << "if not, the whole system is analysed" << endl;
 		exit(1);
 	}
-	updatedb();
 
 	std::vector<string> fs,prunefs,mounts;
-	read_mlocate(fs,prunefs);
+
+	struct stat has_plocate;
+	if (stat("/var/lib/plocate/plocate.db", &has_plocate) == 0) {
+		read_plocate(fs,prunefs);
+	} else {
+		updatedb();
+		read_mlocate(fs,prunefs);
+	}
+
 	read_mounts(prunefs,mounts);
 
 	const int SIZEBUF = 200;

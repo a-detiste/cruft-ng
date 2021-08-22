@@ -5,6 +5,7 @@ cruft.log
 cruft.log.old
 *.o
 test_mlocate
+test_plocate
 test_filters
 test_diversions
 test_explain
