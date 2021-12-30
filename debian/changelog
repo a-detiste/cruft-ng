@@ -1,3 +1,9 @@
+cruft-ng (0.4.51) unstable; urgency=medium
+
+  * Drop depends on transitional mlocate package (Closes: #992742)
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Thu, 30 Dec 2021 21:22:59 +0100
+
 cruft-ng (0.4.50) unstable; urgency=low
 
   * Also support plocate. (Closes: #976367)

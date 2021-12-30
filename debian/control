@@ -12,8 +12,11 @@ Rules-Requires-Root: no
 
 Package: cruft-ng
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, mlocate | plocate,
-          cruft-common
+Depends:
+  ${shlibs:Depends},
+  ${misc:Depends},
+  plocate,
+  cruft-common
 Description: program that finds any cruft built up on your system
  cruft-ng is a program to look over your system for anything that shouldn't
  be there, but is; or for anything that should be there, but isn't.
