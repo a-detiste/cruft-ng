@@ -3,6 +3,7 @@
 #include <fstream>
 #include <algorithm>
 #include <limits>
+#include <limits.h>
 
 #include "plocate.h"
 
@@ -14,8 +15,7 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 
 	if (debug) cerr << "PLOCATE DATA\n";
 	string command = "plocate .";
-        const int SIZEBUF = 200;
-        char buf[SIZEBUF];
+        char buf[PATH_MAX];
         FILE* fp;
         if ((fp = popen(command.c_str(), "r")) == NULL) return 1;
         while (fgets(buf, sizeof(buf),fp))
