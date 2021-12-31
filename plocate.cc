@@ -7,6 +7,11 @@
 
 #include "plocate.h"
 
+// build fail on hurd-i386
+#ifndef PATH_MAX
+#define PATH_MAX 4096
+#endif
+
 int read_plocate(vector<string>& fs, vector<string>& prunefs)
 {
 	bool debug=getenv("DEBUG") != NULL;
