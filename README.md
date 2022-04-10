@@ -48,7 +48,7 @@ Some assumption differs:
 TODO:
 -----
 
- * command switches are currenlty not implemented
+ * command switches are currently not implemented
 
  * cruft-ng doesn't detect broken symlinks at this time;
    it's a different topic and should be split in a

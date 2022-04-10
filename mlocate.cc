@@ -56,7 +56,7 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 	//  whitelist /tmp , /media
 	//  ignore    paths that doesn't even exist
 	//  warn      on other (e.g.: /var/spool)
-	if (debug) cerr << "theorical length=" << header.conf_size << endl; // BAD !! UNSIGNED CHAR
+	if (debug) cerr << "theoretical length=" << header.conf_size << endl; // BAD !! UNSIGNED CHAR
 	if (debug) cerr << "actual length=" << ((int) mlocate.tellg() - param_start - 1) << endl << endl;
 
 	if (debug) cerr << "MLOCATE DATA\n";
