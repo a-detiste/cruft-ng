@@ -162,7 +162,8 @@ bool pyc_has_py(string pyc)
 	pos = pyc.find(".cpython-");
 	if (pos == string::npos)
 		return false;
-	pyc.replace(pos, 15, ".py");
+	int ugly=0; if(pyc.find(".cpython-310") != string::npos) ugly=1;
+	pyc.replace(pos, 15+ugly, ".py");
 
 	return stat(pyc.c_str(), &buffer) == 0;
 }
