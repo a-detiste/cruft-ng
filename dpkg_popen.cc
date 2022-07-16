@@ -43,15 +43,22 @@ int read_diversions(vector<Diversion>& diversions)
 	while (fgets(buf, sizeof(buf),fp))
 	{
 		const char* delim = " ";
+		bool local;
+		const char* LOCAL = "local";
 		string oldfile,newfile,package;
 
 		if (debug) cerr << buf << endl;
-                //diversion of /usr/share/dict/words to /usr/share/dict/words.pre-dictionaries-common by dictionaries-common
-                //diversion of /usr/share/man/man1/sh.1.gz to /usr/share/man/man1/sh.distrib.1.gz by dash
-                //diversion of /usr/bin/firefox to /usr/bin/firefox.real by firefox-esr
-                //diversion of /bin/sh to /bin/sh.distrib by dash
+		//diversion of /usr/share/dict/words to /usr/share/dict/words.pre-dictionaries-common by dictionaries-common
+		//diversion of /usr/share/man/man1/sh.1.gz to /usr/share/man/man1/sh.distrib.1.gz by dash
+		//diversion of /usr/bin/firefox to /usr/bin/firefox.real by firefox-esr
+		//diversion of /bin/sh to /bin/sh.distrib by dash
+		//local diversion of /etc/apt/apt.conf.d/20packagekit to /etc/PackageKit/20packagekit.distrib
 
-		strtok((char*)buf, delim);
+		// bug #1010362
+		local = !strncmp(strtok((char*)buf, delim), LOCAL, strlen(LOCAL));
+		if (local) {
+			strtok(NULL, delim);
+		}
 
 		strtok(NULL, delim);
 
@@ -61,10 +68,13 @@ int read_diversions(vector<Diversion>& diversions)
 
 		newfile = strtok(NULL, delim);
 
-		strtok(NULL, delim);
-
-		package = strtok(NULL, delim);
-		package = package.substr(0,package.size() - 1); // remove '/n'
+		if (local) {
+			package = LOCAL;
+		} else {
+			strtok(NULL, delim);
+			package = strtok(NULL, delim);
+			package = package.substr(0,package.size() - 1); // remove '/n'
+		}
 
 		diversions.push_back(Diversion(oldfile,newfile,package));
 	}
