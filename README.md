@@ -55,6 +55,8 @@ TODO:
    separate tool. (and this really needs 'find'
    and can't be done with mlocate db).
 
+ * move to Salsa, enable C.I.
+
 COPYRIGHT:
 ----------
 
@@ -63,4 +65,4 @@ This reuses `shellexp.c`, explain/*  and filters-unex/* from cruft.
 
 1998-2000 Anthony Towns
 2005-2011 Marcin Owsiany
-2014      Alexandre Detiste
+2014-2022 Alexandre Detiste
