@@ -24,7 +24,7 @@ string usr_merge(string path)
 
 	if ((MERGED_BIN and path.substr(0,5)=="/bin/")
 	 or (MERGED_LIB and path.substr(0,5)=="/lib/")
-	 or (MERGED_LIB32 and path.substr(0,5)=="/lib32/")
+	 or (MERGED_LIB32 and path.substr(0,7)=="/lib32/")
 	 or (MERGED_SBIN and path.substr(0,6)=="/sbin/"))
 		return "/usr" + path;
 	else
