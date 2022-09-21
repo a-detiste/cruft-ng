@@ -1,0 +1,2 @@
+# this is intentional, cruft-ng has too know the inners of dpkg
+cruft-ng: uses-dpkg-database-directly [usr/bin/cruft-ng]
