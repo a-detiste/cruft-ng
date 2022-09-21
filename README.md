@@ -57,6 +57,8 @@ TODO:
 
  * move to Salsa, enable C.I.
 
+ * read the AppArmor globbing paterns (with libapparmor1)
+
 COPYRIGHT:
 ----------
 
