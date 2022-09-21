@@ -69,6 +69,7 @@ int read_diversions(vector<Diversion>& diversions)
 		newfile = strtok(NULL, delim);
 
 		if (local) {
+			newfile = newfile.substr(0,newfile.size() - 1); // remove '/n'
 			package = LOCAL;
 		} else {
 			strtok(NULL, delim);
