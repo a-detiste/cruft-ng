@@ -1,3 +1,11 @@
+cruft-ng (0.4.54) unstable; urgency=medium
+
+  * UsrMerge rollout: also support /lib32 -> /usr/lib32
+  * bump Standards-Version to 4.6.1.0, no further change needed
+  * add lintian override "uses-dpkg-database-directly"
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 21 Sep 2022 19:16:21 +0200
+
 cruft-ng (0.4.53) unstable; urgency=medium
 
   * Fix segmentation fault when custom dpkg overrides are defined
