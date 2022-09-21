@@ -12,17 +12,19 @@ bool check_link(string path)
 string usr_merge(string path)
 {
 	static bool setup = false;
-	static bool MERGED_BIN, MERGED_LIB, MERGED_SBIN;
+	static bool MERGED_BIN, MERGED_LIB, MERGED_LIB32, MERGED_SBIN;
 	if (!setup)
 	{
 		MERGED_BIN=check_link("/bin");
 		MERGED_LIB=check_link("/lib");
+		MERGED_LIB32=check_link("/lib32");
 		MERGED_SBIN=check_link("/sbin");
 		setup=true;
 	}
 
 	if ((MERGED_BIN and path.substr(0,5)=="/bin/")
 	 or (MERGED_LIB and path.substr(0,5)=="/lib/")
+	 or (MERGED_LIB32 and path.substr(0,5)=="/lib32/")
 	 or (MERGED_SBIN and path.substr(0,6)=="/sbin/"))
 		return "/usr" + path;
 	else
