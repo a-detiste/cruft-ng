@@ -1,0 +1,10 @@
+# actualy libmono-security4.0-cil
+# but cruft handle versioned packages poorly
+/etc/mono/certstore/certs
+/etc/mono/certstore/certs/Trust
+/etc/mono/certstore/certs/Trust/ski-*.cer
+/etc/mono/certstore/certs/Trust/tbp-*.cer
+/etc/mono/certstore/keypairs
+/etc/mono/certstore/new-certs
+/etc/mono/certstore/new-certs/Trust
+/etc/mono/certstore/new-certs/Trust/*.0

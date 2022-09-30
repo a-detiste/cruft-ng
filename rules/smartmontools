@@ -1,0 +1,2 @@
+/var/lib/smartmontools/*
+/var/lib/smartmontools/drivedb/drivedb.h

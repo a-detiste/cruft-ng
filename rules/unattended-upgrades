@@ -1,0 +1,6 @@
+/etc/apt/apt.conf.d/20auto-upgrades
+/etc/apt/apt.conf.d/50unattended-upgrades
+/var/lib/apt/periodic/unattended-upgrades-stamp
+/var/lib/unattended-upgrades/kept-back
+/var/log/unattended-upgrades/*.log
+/var/log/unattended-upgrades/*.gz

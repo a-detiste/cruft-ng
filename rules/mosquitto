@@ -1,0 +1,3 @@
+/var/lib/mosquitto/mosquitto.db
+/var/log/mosquitto/mosquitto.log
+/var/log/mosquitto/mosquitto.log.*

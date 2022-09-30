@@ -1,0 +1,4 @@
+# checksecurity 2.0.7-10.1
+/var/log/setuid.changes*
+/var/log/setuid.today
+/var/log/setuid.yesterday

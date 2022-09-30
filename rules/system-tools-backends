@@ -1,0 +1,9 @@
+/var/cache/system-tools-backends
+/var/cache/system-tools-backends/backup
+/var/cache/system-tools-backends/backup/*
+/var/cache/system-tools-backends/backup/*/var
+/var/cache/system-tools-backends/backup/*/var/cache
+/var/cache/system-tools-backends/backup/*/var/cache/system-tools-backends
+/var/cache/system-tools-backends/backup/*/var/cache/system-tools-backends/detected-platform
+/var/cache/system-tools-backends/backup/First
+/var/cache/system-tools-backends/detected-platform

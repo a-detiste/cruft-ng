@@ -1,0 +1,3 @@
+# looks like the SONAME causes ldconfig to create this link
+/usr/lib/libfakeroot.so.0
+/usr/lib/*/libfakeroot/libfakeroot-0.so

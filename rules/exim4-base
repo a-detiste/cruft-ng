@@ -1,0 +1,11 @@
+/var/spool/exim4
+/var/spool/exim4/exim-process.info
+/var/spool/exim4/gnutls-params
+/var/spool/exim4/db
+/var/spool/exim4/db/retry
+/var/spool/exim4/db/retry.lockfile
+/var/spool/exim4/db/wait-*
+/var/spool/exim4/input
+/var/spool/exim4/input/**
+/var/spool/exim4/msglog
+/var/spool/exim4/msglog/**

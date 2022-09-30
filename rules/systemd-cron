@@ -1,0 +1,6 @@
+/var/lib/systemd/timers/stamp-cron-daily.timer
+/var/lib/systemd/timers/stamp-cron-weekly.timer
+/var/lib/systemd/timers/stamp-cron-monthly.timer
+/var/spool/cron/crontabs/*
+/lib/systemd/system-generators/__pycache__
+/lib/systemd/system-generators/__pycache__/systemd-crontab-generatorcpython-*.pyc

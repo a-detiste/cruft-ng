@@ -1,0 +1,4 @@
+/etc/lvm/archive
+/etc/lvm/archive/*.vg
+/etc/lvm/backup
+/etc/lvm/backup/*

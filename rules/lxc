@@ -1,0 +1,3 @@
+/usr/share/lxc/__pycache__
+/usr/share/lxc/__pycache__/*.pyc
+/var/cache/lxc/**

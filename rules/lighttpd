@@ -1,0 +1,4 @@
+/etc/lighttpd/conf-enabled/*
+/var/cache/lighttpd/compress/**
+/var/log/lighttpd/access.log*
+/var/log/lighttpd/error.log*

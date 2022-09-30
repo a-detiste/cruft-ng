@@ -1,0 +1,5 @@
+/etc/apticron
+/etc/apticron/apticron.conf
+/etc/cron.d/apticron
+/var/lib/apticron/cron_run
+/var/lib/apticron/last_run

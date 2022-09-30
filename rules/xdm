@@ -1,0 +1,5 @@
+/var/lib/xdm
+/var/lib/xdm/authdir
+/var/lib/xdm/authdir/authfiles
+/var/lib/xdm/authdir/authfiles/*
+/var/log/xdm.log*

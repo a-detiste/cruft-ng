@@ -1,0 +1,5 @@
+/var/cache/debconf/config.dat
+/var/cache/debconf/config.dat-old
+/var/cache/debconf/passwords.dat
+/var/cache/debconf/templates.dat
+/var/cache/debconf/templates.dat-old

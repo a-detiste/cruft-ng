@@ -1,0 +1,3 @@
+/etc/audit/audit.rules
+/etc/audit/audit.rules.prev
+/var/log/audit/audit.log*

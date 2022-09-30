@@ -1,0 +1,7 @@
+/etc/jupyter/nbconfig/*.json
+/usr/lib/python3/dist-packages/plotlywidget/static/extension.js
+/usr/lib/python3/dist-packages/plotlywidget/static/index.js
+/usr/local/etc/jupyter/nbconfig/notebook.d
+/usr/local/etc/jupyter/nbconfig/notebook.d/*.json
+/usr/local/share/jupyter/nbextensions
+/usr/local/share/jupyter/nbextensions/**

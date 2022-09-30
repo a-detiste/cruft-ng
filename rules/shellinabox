@@ -1,0 +1,4 @@
+/etc/shellinabox/options-enabled/*.css
+/var/lib/shellinabox
+/var/lib/shellinabox/.rnd
+/var/lib/shellinabox/certificate*.pem

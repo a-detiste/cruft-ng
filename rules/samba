@@ -1,0 +1,3 @@
+/etc/pam.d/samba
+/var/log/nmb*
+/var/log/smb*

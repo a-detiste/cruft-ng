@@ -1,0 +1,4 @@
+/etc/dictionaries-common/ispell-default
+/etc/dictionaries-common/words
+/usr/share/dict/words
+/var/cache/dictionaries-common/*

@@ -1,0 +1,2 @@
+/etc/lighttpd/conf-enabled
+/etc/lighttpd/conf-enabled/90-javascript-alias.conf

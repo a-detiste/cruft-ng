@@ -1,0 +1,5 @@
+# squid 2.5.9-10
+/etc/default/squid
+/etc/squid.conf
+/var/log/squid/*
+/var/spool/squid/**

@@ -1,0 +1,12 @@
+/etc/apt/sources.list.d/google-chrome.list
+/etc/apt/trusted.gpg.d/google-chrome.gpg
+/etc/default/google-chrome
+/usr/share/applications/defaults.list
+/usr/share/icons/hicolor/16x16/apps/google-chrome.png
+/usr/share/icons/hicolor/22x22/apps/google-chrome.png
+/usr/share/icons/hicolor/24x24/apps/google-chrome.png
+/usr/share/icons/hicolor/32x32/apps/google-chrome.png
+/usr/share/icons/hicolor/48x48/apps/google-chrome.png
+/usr/share/icons/hicolor/64x64/apps/google-chrome.png
+/usr/share/icons/hicolor/128x128/apps/google-chrome.png
+/usr/share/icons/hicolor/256x256/apps/google-chrome.png

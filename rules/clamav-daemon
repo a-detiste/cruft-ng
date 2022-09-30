@@ -1,0 +1,3 @@
+/etc/clamav/clamd.conf
+/etc/logrotate.d/clamav-daemon
+/var/log/clamav/clamav.log*

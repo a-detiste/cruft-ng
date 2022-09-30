@@ -1,0 +1,13 @@
+# sgml-base 1.26
+/etc/sgml
+/etc/sgml/catalog
+/etc/sgml/catalog.old
+/usr/local/share/sgml
+/usr/local/share/sgml/declaration
+/usr/local/share/sgml/dtd
+/usr/local/share/sgml/entities
+/usr/local/share/sgml/misc
+/usr/local/share/sgml/stylesheet
+/var/lib/sgml-base
+/var/lib/sgml-base/supercatalog
+/var/lib/sgml-base/supercatalog.old

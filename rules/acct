@@ -1,0 +1,3 @@
+/var/account/pacct
+/var/account/pacct.*.gz
+/var/account/pacct.0

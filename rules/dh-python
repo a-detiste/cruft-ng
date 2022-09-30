@@ -1,0 +1,3 @@
+/usr/share/dh-python/__pycache__
+/usr/share/dh-python/**/__pycache__
+/usr/share/dh-python/**/*.pyc

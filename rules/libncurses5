@@ -1,0 +1,3 @@
+# libncurses5 5.4-4
+# looks like symlinks and SONAME causes ldconfgi to create this link
+/usr/lib/libncurses.so.5

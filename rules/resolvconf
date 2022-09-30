@@ -1,0 +1,4 @@
+/etc/resolv.conf
+/etc/resolvconf/run
+/etc/resolvconf/resolv.conf.d/original
+/etc/resolvconf/resolv.conf.d/tail

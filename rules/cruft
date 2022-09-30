@@ -1,0 +1,13 @@
+/var/spool/cruft/broken_*
+/var/spool/cruft/file_*
+/var/spool/cruft/filter_list_*
+/var/spool/cruft/mayx_*
+/var/spool/cruft/msnt_*
+/var/spool/cruft/must_*
+/var/spool/cruft/frbn_*
+/var/spool/cruft/miss_*
+/var/spool/cruft/unex_*
+/var/spool/cruft/type_symlink_*
+/var/spool/cruft/whte_*
+/var/spool/cruft/DRIVES
+/var/spool/cruft/IGNORES

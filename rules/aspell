@@ -1,0 +1,5 @@
+# actually for aspell-{de,fr,...}, not 'aspell' itself
+/usr/lib/aspell/*.rws
+/var/lib/aspell/*.compat
+/var/lib/aspell/*.remove
+/var/lib/aspell/*.rws

@@ -1,0 +1,4 @@
+/etc/php/7.4/cli/php.ini
+/etc/php/7.4/cli/conf.d/*.ini
+/var/lib/php/modules/7.4/cli
+/var/lib/php/modules/7.4/cli/**

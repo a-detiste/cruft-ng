@@ -1,0 +1,4 @@
+/var/cache/minidlna
+/var/cache/minidlna/files.db
+/var/lib/minidlna
+/var/log/minidlna.log*

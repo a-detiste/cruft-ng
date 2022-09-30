@@ -1,0 +1,12 @@
+/etc/python3
+/etc/python3/debian_config
+/usr/local/lib/python3.?
+/usr/local/lib/python3.??
+/usr/local/lib/python3.?/dist-packages
+/usr/local/lib/python3.??/dist-packages
+/usr/lib/python3*/**/*.pyc
+/usr/lib/python3*/**/__pycache__
+/usr/share/python3/__pycache__
+/usr/share/python3/**/*.pyc
+/var/lib/python
+/var/lib/python/python3.*_installed

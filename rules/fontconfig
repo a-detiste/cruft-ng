@@ -1,0 +1,4 @@
+/var/cache/fontconfig
+/var/cache/fontconfig/CACHEDIR.TAG
+/var/cache/fontconfig/*.cache-?
+/var/log/fontconfig.log

@@ -1,0 +1,4 @@
+/var/log/net-acct
+/var/log/net-acct/net-acct-dump*
+/var/log/net-acct/net-acct.debug*
+/var/log/net-acct/net-acct.log*

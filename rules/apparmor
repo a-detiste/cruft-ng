@@ -1,0 +1,8 @@
+/etc/apparmor.d/cache/.features
+/etc/apparmor.d/tunables/home.d/ubuntu
+/etc/apparmor.d/tunables/xdg-user-dirs.d/site.local
+/var/cache/apparmor/*
+/var/cache/apparmor/*/*
+/var/lib/apparmor
+/var/lib/apparmor/profiles
+/var/lib/apparmor/profiles/.apparmor.md5sums

@@ -1,0 +1,3 @@
+/var/lib/logrotate/status
+/var/log/btmp.*
+/var/log/wtmp.*

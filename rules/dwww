@@ -1,0 +1,4 @@
+/etc/dwww/dwww.conf
+/var/lib/dwww/html/**
+/var/lib/dwww/quickfind.dat
+/var/spool/dwww/.cache_db

@@ -1,0 +1,11 @@
+/usr/share/games/game-data-packager/game_data_packager/__pycache__
+/usr/share/games/game-data-packager/game_data_packager/__pycache__/*.pyc
+/usr/share/games/game-data-packager/game_data_packager/games/__pycache__
+/usr/share/games/game-data-packager/game_data_packager/games/__pycache__/*.pyc
+/usr/share/games/game-data-packager/game_data_packager/packaging/__pycache__
+/usr/share/games/game-data-packager/game_data_packager/packaging/__pycache__/*.pyc
+/usr/share/games/game-data-packager/game_data_packager/unpack/__pycache__
+/usr/share/games/game-data-packager/game_data_packager/unpack/__pycache__/*.pyc
+# runtime
+/etc/apparmor.d/local
+/etc/apparmor.d/local/usr.lib.unreal

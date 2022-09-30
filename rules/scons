@@ -1,0 +1,12 @@
+/usr/lib/scons/SCons/*.pyc
+/usr/lib/scons/SCons/Variables/*.pyc
+/usr/lib/scons/SCons/Tool/*.pyc
+/usr/lib/scons/SCons/Tool/packaging/*.pyc
+/usr/lib/scons/SCons/Tool/MSCommon/*.pyc
+/usr/lib/scons/SCons/Tool/docbook/*.pyc
+/usr/lib/scons/SCons/Node/*.pyc
+/usr/lib/scons/SCons/Script/*.pyc
+/usr/lib/scons/SCons/compat/*.pyc
+/usr/lib/scons/SCons/Scanner/*.pyc
+/usr/lib/scons/SCons/Platform/*.pyc
+/usr/lib/scons/SCons/Options/*.pyc

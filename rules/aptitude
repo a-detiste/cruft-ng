@@ -1,0 +1,7 @@
+/var/backups/aptitude.pkgstates.0
+/var/backups/aptitude.pkgstates.*.gz
+/var/lib/aptitude/lock
+/var/lib/aptitude/pkgstates
+/var/lib/aptitude/pkgstates.old
+/var/lock/aptitude
+/var/log/aptitude*

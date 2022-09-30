@@ -1,0 +1,5 @@
+/etc/dictionaries-common/ispell-default
+/etc/dictionaries-common/default.aff
+/etc/dictionaries-common/default.hash
+/usr/lib/ispell/default.aff
+/usr/lib/ispell/default.hash

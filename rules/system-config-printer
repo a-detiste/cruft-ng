@@ -1,0 +1,3 @@
+/usr/share/system-config-printer/*.pyc
+/usr/share/system-config-printer/troubleshoot/*.pyc
+/usr/share/system-config-printer/xml/validate.pyc

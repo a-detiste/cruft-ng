@@ -1,0 +1,3 @@
+#find /usr/share/man -type f -exec zgrep -l /etc/ethers {} \;
+/etc/ethers
+/var/lib/misc/dnsmasq.leases

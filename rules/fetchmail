@@ -1,0 +1,3 @@
+/etc/fetchmailrc
+/etc/ppp/ip-down.d/fetchmail
+/etc/ppp/ip-up.d/fetchmail

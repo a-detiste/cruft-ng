@@ -1,0 +1,3 @@
+# symlink to /bin/which
+/usr/bin/which
+/var/lib/shells.state

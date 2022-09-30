@@ -1,0 +1,20 @@
+# gdm 3.20.1-1 (stretch)
+/etc/gdm3/greeter.dconf-defaults
+/etc/X11/default-display-manager
+/var/lib/gdm3/.ICEauthority
+/var/lib/gdm3/.cache
+/var/lib/gdm3/.cache/fontconfig
+/var/lib/gdm3/.cache/fontconfig/*
+/var/lib/gdm3/.config
+/var/lib/gdm3/.config/gnome-session
+/var/lib/gdm3/.config/gnome-session/saved-session
+/var/lib/gdm3/.config/ibus
+/var/lib/gdm3/.config/ibus/bus
+/var/lib/gdm3/.config/pulse
+/var/lib/gdm3/.config/pulse/*
+/var/lib/gdm3/.local
+/var/lib/gdm3/.local/share
+/var/lib/gdm3/.local/share/gnome-shell
+/var/lib/gdm3/.local/share/icc
+/var/lib/gdm3/.local/share/sounds
+/var/lib/gdm3/greeter-dconf-defaults

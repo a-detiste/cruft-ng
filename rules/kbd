@@ -1,0 +1,3 @@
+# symlinks to /bin
+/usr/bin/dumpkeys
+/usr/bin/loadkeys

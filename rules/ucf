@@ -1,0 +1,4 @@
+/var/lib/ucf/cache
+/var/lib/ucf/cache/*
+/var/lib/ucf/hashfile*
+/var/lib/ucf/registry*

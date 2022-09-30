@@ -1,0 +1,6 @@
+/var/spool/exim4/scan
+/var/spool/exim4/scan/**
+/var/log/exim4
+/var/log/exim4/mainlog*
+/var/log/exim4/paniclog*
+/var/log/exim4/rejectlog*

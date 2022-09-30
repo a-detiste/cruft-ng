@@ -1,0 +1,6 @@
+/var/lib/colord
+/var/lib/colord/icc
+/var/lib/colord/mapping.db
+/var/lib/colord/storage.db
+/var/lib/colord/.cache
+/var/lib/colord/.cache/*

@@ -1,0 +1,3 @@
+/etc/init.d/.depend.boot
+/etc/init.d/.depend.start
+/etc/init.d/.depend.stop

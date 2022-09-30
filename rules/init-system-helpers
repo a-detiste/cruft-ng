@@ -1,0 +1,11 @@
+/var/lib/systemd/deb-systemd-helper-enabled
+/var/lib/systemd/deb-systemd-helper-enabled/*.dsh-also
+/var/lib/systemd/deb-systemd-helper-enabled/*.service
+/var/lib/systemd/deb-systemd-helper-enabled/*.wants
+/var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.path
+/var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.service
+/var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.socket
+/var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.target
+/var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.timer
+/var/lib/systemd/deb-systemd-helper-masked
+/var/lib/systemd/deb-systemd-helper-masked/*.service

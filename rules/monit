@@ -1,0 +1,3 @@
+/var/lib/monit/id
+/var/lib/monit/state
+/var/log/monit.log

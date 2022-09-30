@@ -1,0 +1,4 @@
+# apt-show-versions 0.08
+/var/cache/apt-show-versions/files
+/var/cache/apt-show-versions/apackages
+/var/cache/apt-show-versions/ipackages

@@ -1,0 +1,5 @@
+/etc/udev/rules.d/70-snap.core.rules
+/snap/**
+/var/cache/snapd/**
+/var/lib/snapd/**
+/var/snap/**

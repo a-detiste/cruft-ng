@@ -1,0 +1,15 @@
+/etc/apparmor.d/local
+/etc/apparmor.d/local/usr.sbin.mysqld
+/etc/mysql/debian.cnf
+/var/lib/mysql
+/var/lib/mysql-files
+/var/lib/mysql-keyring
+# this should probably be more sophisticated
+/var/lib/mysql/**
+/var/log/mysql.err*
+/var/log/mysql.log*
+/var/log/mysql
+/var/log/mysql/mysql-bin.*
+/var/log/mysql/mysql.log*
+/var/log/mysql/mysql.err*
+/var/log/mysql/error.log*

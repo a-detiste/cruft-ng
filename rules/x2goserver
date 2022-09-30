@@ -1,0 +1,3 @@
+/etc/x2go/applications
+/etc/x2go/x2gosql/passwords/*
+/var/lib/x2go/x2go_sessions

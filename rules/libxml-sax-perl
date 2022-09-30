@@ -1,0 +1,6 @@
+/etc/perl/XML
+/etc/perl/XML/SAX
+/etc/perl/XML/SAX/ParserDetails.ini
+/var/lib/libxml-sax-perl/ParserDetails.d/10-XML::SAX::PurePerl
+/var/lib/libxml-sax-perl/ParserDetails.d/50-XML::LibXML::SAX
+/var/lib/libxml-sax-perl/ParserDetails.d/50-XML::LibXML::SAX::Parser

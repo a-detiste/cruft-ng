@@ -1,0 +1,8 @@
+/usr/share/i18nspector/lib/__pycache__
+/usr/share/i18nspector/lib/__pycache__/*.pyc
+/usr/share/i18nspector/lib/check/__pycache__
+/usr/share/i18nspector/lib/check/__pycache__/*.pyc
+/usr/share/i18nspector/lib/check/msgformat/__pycache__
+/usr/share/i18nspector/lib/check/msgformat/__pycache__/*.pyc
+/usr/share/i18nspector/lib/strformat/__pycache__
+/usr/share/i18nspector/lib/strformat/__pycache__/*.pyc

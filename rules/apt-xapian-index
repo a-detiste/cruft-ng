@@ -1,0 +1,16 @@
+/usr/share/apt-xapian-index/plugins/*.pyc
+/var/cache/apt-xapian-index
+/var/cache/apt-xapian-index/index.*
+/var/cache/apt-xapian-index/index.*/flintlock
+/var/cache/apt-xapian-index/index.*/iamchert
+/var/cache/apt-xapian-index/index.*/*.DB
+/var/cache/apt-xapian-index/index.*/*.baseA
+/var/cache/apt-xapian-index/index.*/*.baseB
+/var/lib/apt-xapian-index
+/var/lib/apt-xapian-index/README
+/var/lib/apt-xapian-index/cataloged_times.p
+/var/lib/apt-xapian-index/index
+/var/lib/apt-xapian-index/prefixes
+/var/lib/apt-xapian-index/update-lock
+/var/lib/apt-xapian-index/update-timestamp
+/var/lib/apt-xapian-index/values

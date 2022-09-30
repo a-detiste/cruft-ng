@@ -1,0 +1,4 @@
+/etc/crypttab
+# UsrMerge
+/usr/sbin/cryptdisks_start
+/usr/sbin/cryptdisks_stop

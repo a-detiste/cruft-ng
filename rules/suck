@@ -1,0 +1,4 @@
+/usr/sbin/get-news
+/var/lib/suck/**
+/var/log/suck-*
+/var/log/suck/*

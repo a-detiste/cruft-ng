@@ -1,0 +1,4 @@
+/var/lib/connman
+/var/lib/connman/*
+/var/lib/connman/*/data
+/var/lib/connman/*/settings

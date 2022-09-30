@@ -1,0 +1,4 @@
+/etc/ssh/moduli
+/etc/ssh/primes
+/etc/ssh/ssh_known_hosts
+/etc/ssh/ssh_known_hosts2

@@ -1,0 +1,9 @@
+/var/lib/mpd/.config
+/var/lib/mpd/.config/pulse
+/var/lib/mpd/.config/pulse/*
+/var/lib/mpd/music/mp3
+/var/lib/mpd/state
+/var/lib/mpd/sticker.sql
+/var/lib/mpd/tag_cache
+/var/log/mpd/mpd.log
+/var/log/mpd/mpd.log.*

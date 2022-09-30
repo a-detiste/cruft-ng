@@ -1,0 +1,10 @@
+/var/lib/munin-node
+/var/lib/munin-node/plugin-state
+/var/lib/munin-node/plugin-state/munin
+/var/lib/munin-node/plugin-state/munin/*
+/var/lib/munin-node/plugin-state/root
+/var/lib/munin-node/plugin-state/root/*
+/var/lib/munin-node/plugin-state/nobody
+/var/lib/munin-node/plugin-state/nobody/*
+/var/lib/munin-node/plugin-state/postgres
+/var/lib/munin-node/plugin-state/postgres/*

@@ -1,0 +1,5 @@
+/etc/lirc/irexec.lircrc
+/etc/lirc/lirc_options.conf
+/etc/lirc/lircd.conf
+/etc/lirc/lircmd.conf
+

@@ -1,0 +1,5 @@
+/etc/named.boot
+/etc/named.conf
+/var/named/boot.options
+/var/named/boot.zones
+/var/named/named.boot

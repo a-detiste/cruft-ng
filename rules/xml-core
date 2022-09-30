@@ -1,0 +1,18 @@
+# xml-core 0.13+nmu2
+/etc/xml
+/etc/xml/catalog
+/etc/xml/catalog.old
+/etc/xml/sgml-data.xml
+/etc/xml/sgml-data.xml.old
+/etc/xml/xml-core.xml
+/etc/xml/xml-core.xml.old
+/etc/sgml/xml-core.cat
+/usr/local/share/xml
+/usr/local/share/xml/declaration
+/usr/local/share/xml/entities
+/usr/local/share/xml/misc
+/usr/local/share/xml/schema
+/var/lib/xml-core
+/var/lib/xml-core/catalog
+/var/lib/xml-core/sgml-data
+/var/lib/xml-core/xml-core

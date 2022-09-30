@@ -1,0 +1,4 @@
+/usr/lib/virtualbox/sdk/bindings/xpcom/python/xpcom/*.pyc
+/usr/lib/virtualbox/sdk/bindings/xpcom/python/xpcom/client/*.pyc
+/usr/lib/virtualbox/sdk/bindings/xpcom/python/xpcom/server/*.pyc
+/usr/lib/virtualbox/vboxshell.pyc

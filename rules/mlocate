@@ -1,0 +1,3 @@
+/var/lib/mlocate/mlocate.db
+# the new database being created during updatedb run
+/var/lib/mlocate/mlocate.db.*

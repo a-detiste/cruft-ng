@@ -1,0 +1,5 @@
+/var/lib/motion
+/var/lib/motion/*.mkv
+/var/log/motion
+/var/log/motion/motion.log
+/var/log/motion/motion.log.*

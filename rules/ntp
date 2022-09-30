@@ -1,0 +1,6 @@
+/etc/ntp.conf
+/var/lib/ntp/ntp.drift
+/var/log/ntpstats
+/var/log/ntpstats/loopstats*
+/var/log/ntpstats/peerstats*
+/var/log/xntpd*

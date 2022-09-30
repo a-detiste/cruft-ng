@@ -1,0 +1,4 @@
+/etc/apt/apt.conf.d/02autoremove-postgresql
+/etc/logrotate.d/postgresql-common
+/etc/postgresql-common/createcluster.conf
+/etc/postgresql-common/root.crt

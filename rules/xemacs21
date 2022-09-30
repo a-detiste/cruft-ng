@@ -1,0 +1,3 @@
+/etc/xemacs/site-start-20.d
+/etc/xemacs/site-start-20.d/00debian.el
+/usr/share/xemacs21/site-lisp/**/*.elc

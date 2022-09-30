@@ -1,0 +1,4 @@
+# UsrMerge symlinks
+/usr/bin/chacl
+/usr/bin/getfacl
+/usr/bin/setfacl

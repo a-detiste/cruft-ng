@@ -1,0 +1,4 @@
+/var/lib/upower/history-charge-*.dat
+/var/lib/upower/history-rate-*.dat
+/var/lib/upower/history-time-empty-*.dat
+/var/lib/upower/history-time-full-*.dat

@@ -1,0 +1,5 @@
+/var/lib/omnidb/.omnidb
+/var/lib/omnidb/.omnidb/omnidb-server
+/var/lib/omnidb/.omnidb/omnidb-server/omnidb.db
+/var/lib/omnidb/.omnidb/omnidb-server/omnidb.log
+/var/lib/omnidb/.omnidb/omnidb-server/plugins

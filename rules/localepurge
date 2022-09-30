@@ -1,0 +1,5 @@
+/etc/dpkg/dpkg.cfg.d/50localepurge
+/etc/locale.nopurge
+/var/cache/localepurge
+/var/cache/localepurge/localelist
+/var/cache/localepurge/localelist-old

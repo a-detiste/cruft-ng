@@ -1,0 +1,7 @@
+/etc/.etckeeper
+/etc/.etckeeper/**
+/etc/.gitignore
+/etc/.git
+/etc/.git/**
+/var/cache/etckeeper
+/var/cache/etckeeper/**

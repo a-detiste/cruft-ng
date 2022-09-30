@@ -1,0 +1,2 @@
+/etc/lighttpd/conf-available/91-gitweb.conf
+/var/lib/git/*

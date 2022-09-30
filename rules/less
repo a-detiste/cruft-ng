@@ -1,0 +1,6 @@
+# UsrMerge symlinks
+/usr/bin/less
+/usr/bin/lessecho
+/usr/bin/lessfile
+/usr/bin/lesskey
+/usr/bin/lesspipe

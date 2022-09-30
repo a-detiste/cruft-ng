@@ -1,0 +1,5 @@
+/etc/popularity-contest.conf
+/etc/cron.d/popularity-contest
+/var/lib/popularity-contest
+/var/lib/popularity-contest/lastsub
+/var/log/popularity-contest*

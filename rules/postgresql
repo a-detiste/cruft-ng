@@ -1,0 +1,21 @@
+/etc/postgresql
+/etc/postgresql/*
+/etc/postgresql/*/main
+/etc/postgresql/*/main/conf.d
+/etc/postgresql/*/main/environment
+/etc/postgresql/*/main/pg_ctl.conf
+/etc/postgresql/*/main/pg_hba.conf
+/etc/postgresql/*/main/pg_ident.conf
+/etc/postgresql/*/main/postgresql.conf
+/etc/postgresql/*/main/start.conf
+/usr/share/postgresql/*/tsearch_data/*.affix
+/usr/share/postgresql/*/tsearch_data/*.dict
+/var/cache/postgresql
+/var/cache/postgresql/dicts
+/var/cache/postgresql/dicts/*.affix
+/var/cache/postgresql/dicts/*.dict
+/var/lib/postgresql
+# this should probably be more sophisticated
+/var/lib/postgresql/**
+/var/log/postgresql
+/var/log/postgresql/postgres*log*

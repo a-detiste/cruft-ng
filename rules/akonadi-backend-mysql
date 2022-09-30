@@ -1,0 +1,2 @@
+/etc/apparmor.d/local
+/etc/apparmor.d/local/usr.sbin.mysqld-akonadi

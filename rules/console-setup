@@ -1,0 +1,7 @@
+/etc/console-setup/cached_setup_font.sh
+/etc/console-setup/cached_setup_keyboard.sh
+/etc/console-setup/cached_setup_terminal.sh
+/etc/console-setup/*.psf.gz
+/etc/console-setup/*.kmap.gz
+/etc/default/console-setup
+/etc/default/keyboard
