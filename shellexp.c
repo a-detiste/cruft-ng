@@ -6,7 +6,7 @@
 /* 0 on no match, non-zero on match */
 int shellexp( char* string, char* pattern ) {
     /*  printf( "...matching( \"%s\", \"%s\" )\n", string, pattern ); */
-    
+
     switch( pattern[0] ) {
     case '\0':
 	return string[0] == '\0';
@@ -25,7 +25,7 @@ int shellexp( char* string, char* pattern ) {
 		fprintf( stderr, "Bad expression.\n" );
 		return -1;
 	    }
-	    if ( *pch != '/' ) return FALSE;                
+	    if ( *pch != '/' ) return FALSE;
 	    if ( pattern[3] == '\0' ) return TRUE;
 	    while ( *pch != '\0' ) {
 		if ( *pch == '/' ) {
@@ -64,7 +64,7 @@ int shellexp( char* string, char* pattern ) {
 		if ( string[0] == ']' ) { okay = TRUE; }
 		pattern++;
 	    }
-	    
+
 	    while( pattern[0] != ']' && pattern[0] != '\0' ) {
 		if ( pattern[0] == string[0] ) {
 		    okay = TRUE;
@@ -76,12 +76,12 @@ int shellexp( char* string, char* pattern ) {
 		}
 		pattern++;
 	    }
-	    
+
 	    if ( pattern[0] == '\0' ) {
 		fprintf( stderr, "Bad shell expression\n" );
 		return -1;
 	    }
-	    
+
 	    if (! (nott ? !okay : okay))
 	    	return FALSE;
 	    else
