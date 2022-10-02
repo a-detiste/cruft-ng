@@ -16,8 +16,8 @@ Depends:
   ${shlibs:Depends},
   ${misc:Depends},
   plocate,
-Breaks: cruft-common
-Replaces: cruft-common
+Breaks: cruft (<< 0.9.44~), cruft-common
+Replaces: cruft (<< 0.9.44~), cruft-common
 Description: program that finds any cruft built up on your system
  cruft-ng is a program to look over your system for anything that shouldn't
  be there, but is; or for anything that should be there, but isn't.

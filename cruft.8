@@ -1,16 +1,16 @@
-.TH CRUFT-NG 8
+.TH CRUFT 8
 .SH NAME
-cruft-ng \- Check the filesystem for cruft (missing and unexplained files)
+cruft \- Check the filesystem for cruft (missing and unexplained files)
 .SH SYNOPSIS
-.B cruft-ng [ FILE ]
+.B cruft [ FILE ]
 .\".I "[-h] [-d DRIVES] [--chroots CHROOTS] [--ignore IGNORES] [-r REPORTFILE] [-m ADDRESS]"
 .SH "DESCRIPTION"
 .\"This manual page documents briefly the
-.\".BR cruft 
+.\".BR cruft
 .\"command.
 .\"Please see /usr/share/doc/cruft/README.gz for more information.
 .\".PP
-.B cruft-ng
+.B cruft
 is a program that goes over the Debian packaging system's database, and
 compares the contents of that with the files actually on your system, and
 produces a summary of the differences.
@@ -45,20 +45,20 @@ Without any option, cruft\-ng will analyze the whole system.
 .\"absolute paths. Multiple \-\-ignore options are allowed as well.
 .\".TP
 .\".B \-r \fIREPORTFILE
-.\"Output report to 
+.\"Output report to
 .\".I REPORTFILE
 .\"instead of standard output.
 .\".TP
 .\".B \-m \fIADDRESS
-.\"Mail report to 
+.\"Mail report to
 .\".I ADDRESS.
 .\".TP
 .SH "ENVIRONMENT VARIABLES"
-It is possible to get some debugging information from cruft-ng by setting the variable
+It is possible to get some debugging information from cruft by setting the variable
 .B DEBUG.
 .SH "SEE ALSO"
 Documentation from original cruft package:
-/usr/share/doc/cruft-common/README.gz
+https://github.com/a-detiste/cruft/blob/master/README
 .SH AUTHOR
 This manual page was written by Alexandre Detiste <alexandre@detiste.be>,
 for the Debian GNU/Linux system (but may be used by others).

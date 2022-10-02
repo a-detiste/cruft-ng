@@ -2,7 +2,7 @@ CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z
 CXXFLAGS += -Wall
 SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o mlocate.o plocate.o shellexp.o usr_merge.o
 
-all: check cruft-ng
+all: check cruft
 tests: test_mlocate test_explain test_filters test_excludes test_dpkg cruftlib
 
 cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h
@@ -20,8 +20,8 @@ dpkg_popen.o: dpkg_popen.cc dpkg.h
 shellexp.o: shellexp.c
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c shellexp.c
 
-cruft-ng: $(SHARED_OBJS) dpkg_popen.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruft-ng
+cruft: $(SHARED_OBJS) dpkg_popen.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruft
 
 cruftlib: $(SHARED_OBJS) dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o   -o cruftlib
@@ -40,13 +40,14 @@ test_diversions: test_diversions.cc dpkg_popen.o usr_merge.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_diversions.cc dpkg_popen.o usr_merge.o -o $@
 
 install: all
-	#install -D -m 2755 -g mlocate cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
-	install -D -m 0755            cruft-ng   $(DESTDIR)/usr/bin/cruft-ng
-	install -D -m 0644            cruft-ng.8 $(DESTDIR)/usr/share/man/man8/cruft-ng.8
-	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft-ng/README.md
+	#install -D -m 2755 -g mlocate cruftg   $(DESTDIR)/usr/bin/cruft
+	install -D -m 0755            cruft   $(DESTDIR)/usr/bin/cruft
+	install -D -m 0644            cruft.8 $(DESTDIR)/usr/share/man/man8/cruft.8
+	install -D -m 0644            cruft.8 $(DESTDIR)/usr/share/man/man8/cruft-ng.8
+	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft/README.md
 
 clean:
-	rm -f cruft-ng cruftlib test_mlocate test_plocate test_explain test_filters test_excludes test_dpkg test_diversions
+	rm -f cruft cruftlib test_mlocate test_plocate test_explain test_filters test_excludes test_dpkg test_diversions
 	rm -f *.o
 
 check:
