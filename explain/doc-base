@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+if [ -d /var/lib/doc-base/info ]
+then
+    find /var/lib/doc-base/info -mindepth 1 -maxdepth 1 -name '*.list' -print0 | xargs -r0 cat
+fi

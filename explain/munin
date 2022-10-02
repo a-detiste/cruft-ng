@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+
+for file in $(ls /usr/share/munin/plugins)
+do
+	[ -e /etc/munin/plugins/$file ] && echo /etc/munin/plugins/$file
+done

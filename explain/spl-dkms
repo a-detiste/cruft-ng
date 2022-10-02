@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+versions=$(/usr/sbin/dkms status -m spl | cut -d\, -f 3 | tr -d ' ')
+for ver in $versions
+do
+    echo /lib/modules/${ver}/updates
+    echo /lib/modules/${ver}/updates/dkms
+    echo /lib/modules/${ver}/updates/dkms/spl.ko
+    echo /lib/modules/${ver}/updates/dkms/splat.ko
+done

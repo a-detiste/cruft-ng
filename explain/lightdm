@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+for user in root $(awk -F: '{ if ( 1000 <= $3 && $3 < 30000 ) print $1 }' /etc/passwd)
+do
+	if [ -d "/var/lib/lightdm/data/$user" ]
+	then
+		echo "/var/lib/lightdm/data/$user"
+	fi
+done

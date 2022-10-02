@@ -1,0 +1,17 @@
+#!/bin/sh -e
+versions=$(/usr/sbin/dkms status -m virtualbox | cut -d\, -f 2 | tr -d ' ')
+for ver in $versions
+do
+    echo /lib/modules/${ver}/updates
+    echo /lib/modules/${ver}/updates/dkms
+    echo /lib/modules/${ver}/updates/dkms/vboxdrv.ko
+    echo /lib/modules/${ver}/updates/dkms/vboxnetadp.ko
+    echo /lib/modules/${ver}/updates/dkms/vboxnetflt.ko
+    echo /lib/modules/${ver}/updates/dkms/vboxpci.ko
+done
+
+symlink="/var/lib/dkms/virtualbox/kernel-$(uname -r)-*"
+if test -L $symlink
+then
+    echo $symlink
+fi

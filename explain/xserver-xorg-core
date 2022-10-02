@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+test -d /etc/X11/xorg.conf.d || exit 0
+
+echo /etc/X11/xorg.conf.d
+
+for config in $(cd /etc/X11/xorg.conf.d; ls -1);
+do
+	if [ -e "/usr/share/X11/xorg.conf.d/$config" ]
+	then
+		echo "/etc/X11/xorg.conf.d/$config"
+	fi
+done;

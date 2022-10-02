@@ -1,0 +1,12 @@
+#!/bin/sh -e
+versions=$(/usr/sbin/dkms status -m zfs | cut -d\, -f 3 | tr -d ' ')
+for ver in $versions
+do
+    echo /lib/modules/${ver}/updates
+    echo /lib/modules/${ver}/updates/dkms
+    echo /lib/modules/${ver}/updates/dkms/zfs.ko
+    echo /lib/modules/${ver}/updates/dkms/zcommon.ko
+    echo /lib/modules/${ver}/updates/dkms/znvpair.ko
+    echo /lib/modules/${ver}/updates/dkms/zpios.ko
+    echo /lib/modules/${ver}/updates/dkms/zunicode.ko
+done

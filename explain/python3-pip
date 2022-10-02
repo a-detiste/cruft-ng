@@ -1,0 +1,4 @@
+#!/bin/sh
+
+PYTHON3=$(readlink /usr/bin/python3)
+find /usr/local/lib/$PYTHON3/dist-packages/

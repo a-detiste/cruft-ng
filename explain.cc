@@ -41,10 +41,9 @@ int read_explain(vector<string>& packages, vector<string>& explain)
 		string package=string(dirp->d_name);
 		if (package==".") continue;
 		if (package=="..") continue;
-		if (package=="USERS") continue; // replaced by USERS_cruft-ng
 		string uppercase=package;
 		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), ::toupper);
-		if (package==uppercase or package=="USERS_cruft-ng")
+		if (package==uppercase)
 			read_one_explain("/usr/lib/cruft/explain/" + package, explain);
 	}
 	if (debug) cerr << endl;
@@ -76,8 +75,6 @@ int read_explain(vector<string>& packages, vector<string>& explain)
                 if (arch != string::npos ) package=package.substr(0,arch);
                 if (package==retain) continue;
                 retain=package;
-
-		if (package=="dpkg") continue; /* this is done in read_dpkg_items() */
 
                 struct stat stat_buffer;
                 string etc_filename = "/etc/cruft/explain/" + package;

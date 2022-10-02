@@ -1,0 +1,24 @@
+#!/bin/sh
+
+test -x /usr/sbin/semodule || exit 0
+
+/usr/sbin/semodule --list-modules=full --store default | cut -f 1 -d\ | sort -u | while read priority
+do
+	echo "/var/lib/selinux/default/active/modules/$priority"
+done
+
+/usr/sbin/semodule --list-modules=full --store default | while read -r line
+do
+	priority=$(echo $line | cut -f1 -d\ )
+	module=$(echo $line | cut -f2 -d\ )
+	disabled=$(echo $line | grep 'disabled')
+
+	echo "/var/lib/selinux/default/active/modules/$priority/$module"
+	echo "/var/lib/selinux/default/active/modules/$priority/$module/hll"
+	echo "/var/lib/selinux/default/active/modules/$priority/$module/cil"
+	echo "/var/lib/selinux/default/active/modules/$priority/$module/lang_ext"
+        if [ -n "$disabled" ]
+	then
+        	echo "/var/lib/selinux/default/active/modules/disabled/$module"
+	fi
+done

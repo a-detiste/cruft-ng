@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+test -d /usr/share/fontconfig/conf.avail || exit 0
+
+for file in $(ls /usr/share/fontconfig/conf.avail/);
+do
+	[ -e /etc/fonts/conf.d/$file ] && echo /etc/fonts/conf.d/$file
+done
+
+find /usr/share/fonts -name .uuid
+
+test -d /usr/local/share/fonts/ && find /usr/local/share/fonts -name .uuid
