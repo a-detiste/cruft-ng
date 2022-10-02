@@ -1,4 +1,5 @@
-#!/bin/sh -e
+#!/bin/sh
+set -e
 
 for package in $(/usr/sbin/dkms status | cut -f1 -d\, | sort -u)
 do

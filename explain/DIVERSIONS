@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+set -e
 
 LANG=C dpkg-divert --list | cut -d' ' -f5 | while read diversion
 do

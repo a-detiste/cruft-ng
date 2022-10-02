@@ -1,4 +1,6 @@
-#!/bin/sh -e
+#!/bin/sh
+set -e
+
 versions=$(/usr/sbin/dkms status -m zfs | cut -d\, -f 3 | tr -d ' ')
 for ver in $versions
 do

@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 cat /var/lib/ucf/registry | awk '{print $2}' | while read f
 do
