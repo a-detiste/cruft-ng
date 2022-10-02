@@ -1,7 +1,7 @@
 cruft-ng, a rewrite of Debian 'cruft' engine
 ============================================
 
-Cruft is built as a main shell scripts that spawn
+Cruft was built as a main shell scripts that spawn
 hundreds of helper processes (other shell scripts,
 perl programs, C programs).
 
