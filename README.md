@@ -15,9 +15,8 @@ This is written in C++, but it is mostly pure C + strings + vectors.
 cruft-ng needs cruft ruleset:
 -----------------------------
 
-* `/usr/lib/cruft/explain/` : this is a set of shell/perl
-  scripts, only the most CPU-intensive - `dpkg` - is ignored and replaced
-  with native C++ code
+* `/usr/libexec/explain/` : this is a set of shell scripts
+  plugins for handling of special cases.
 
 * `/usr/lib/cruft/filters-unex/` : these are glob-like files,
   quite like, but not totally the same than in your
