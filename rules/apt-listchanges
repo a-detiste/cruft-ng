@@ -1,6 +1,4 @@
 /etc/apt/listchanges.conf
-/usr/share/apt-listchanges/__pycache__
-/usr/share/apt-listchanges/__pycache__/*.pyc
 /var/lib/apt/listchanges.db
 /var/lib/apt/listchanges-old.db
 /var/lib/apt/listchanges-new.db
