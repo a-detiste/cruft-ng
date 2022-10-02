@@ -11,8 +11,12 @@ test_diversions
 test_explain
 test_excludes
 test_dpkg
+debian/.debhelper/
 debian/cruft-ng.debhelper.log
 debian/cruft-ng.substvars
 debian/cruft-ng/
+debian/cruft.debhelper.log
+debian/cruft.substvars
+debian/cruft/
 debian/debhelper-build-stamp
 debian/files

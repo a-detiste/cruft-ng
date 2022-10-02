@@ -16,9 +16,17 @@ Depends:
   ${shlibs:Depends},
   ${misc:Depends},
   plocate,
-  cruft-common
+Breaks: cruft-common
+Replaces: cruft-common
 Description: program that finds any cruft built up on your system
  cruft-ng is a program to look over your system for anything that shouldn't
  be there, but is; or for anything that should be there, but isn't.
  .
- It bases most of its results on dpkg's & mlocate's databases.
+ It bases most of its results on dpkg's & plocate's databases.
+
+Package: cruft
+Depends: cruft-ng, ${misc:Depends}
+Architecture: all
+Section: oldlibs
+Description: transitional package
+ This is a transitional package. It can safely be removed.

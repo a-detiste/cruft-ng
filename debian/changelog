@@ -1,3 +1,11 @@
+cruft-ng (0.9.44) unstable; urgency=medium
+
+  * salvages the explain scripts and filters from retired 'cruft-common'
+  * provides 'cruft' transitional package
+  * fix regression in diversion handling introduced while fixing #1010362
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 02 Oct 2022 06:24:54 +0200
+
 cruft-ng (0.4.54) unstable; urgency=medium
 
   * UsrMerge rollout: also support /lib32 -> /usr/lib32
