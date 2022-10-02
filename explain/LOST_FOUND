@@ -1,16 +1,4 @@
 #!/bin/sh
-
 set -e
 
-mount | grep -E ".* on .* type ext[234]" | awk '{ print $3"/lost+found" }' | sed 's://*:/:g' |
-while read dir; do
-	ignores="$(get_ignores)"
-	if [ -z "$ignores" ]; then
-		echo $dir
-	else
-		[ -z "$(for ignore in $ignores
-		do
-			is_subdir "$ignore" "$dir" && echo matched
-		done)" ] && echo "$dir"
-	fi
-done
+mount | grep -E ".* on .* type ext[234]" | awk '{ print $3"/lost+found" }' | sed 's://*:/:g'
