@@ -19,7 +19,7 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 	string line;
 
 	if (debug) cerr << "PLOCATE DATA\n";
-	string command = "plocate .";
+	string command = "plocate /";
         char buf[PATH_MAX];
         FILE* fp;
         if ((fp = popen(command.c_str(), "r")) == NULL) return 1;
