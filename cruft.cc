@@ -80,7 +80,7 @@ void updatedb(string db)
 
 bool myglob(string file, string glob )
 {
-	bool debug = getenv("DEBUG") != NULL;
+	bool debug = getenv("DEBUG_GLOB") != NULL;
 
 	if (file==glob) return true;
 	unsigned int filesize=file.size();
@@ -212,7 +212,6 @@ int main(int argc, char *argv[])
 	vector<string> missing;
 	vector<string>::iterator left=fs.begin();
 	vector<string>::iterator right=dpkg.begin();
-	int count_stat = 0;
 	while (left != fs.end() && right != dpkg.end() )
 	{
 		//cerr << "[" << *left << "=" << *right << "]" << endl;
@@ -223,19 +222,12 @@ int main(int argc, char *argv[])
 			cruft.push_back(*left);
 			left++;
 		} else {
-			// file may exist on tmpfs
-			// e.g.: /var/cache/apt/archives/partial
-			struct stat stat_buffer;
-	                if ( stat((*right).c_str(), &stat_buffer)!=0 && *right != "/.") {
-				count_stat += 1;
-				missing.push_back(*right);
-			};
+			missing.push_back(*right);
 			right++;
 		}
 		if (right == dpkg.end()) while(left  !=fs.end()  ) {cruft.push_back(*left);    left++; };
 		if (left  == fs.end()  ) while(right !=dpkg.end()) {missing.push_back(*right); right++;};
 	}
-	//cerr << "count stat():" << count_stat << endl;
 	//fs.clear();
 	//dpkg.clear();
 
@@ -245,6 +237,7 @@ int main(int argc, char *argv[])
 	// https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=619086
 	vector<string> missing2;
 	left=missing.begin();
+	int count_stat = 0;
 	while (left != missing.end()) {
 		right=excludes.begin();
 		bool match=false;
@@ -253,16 +246,29 @@ int main(int argc, char *argv[])
 			if (match) break;
 			right++;
 		}
-		if (!match) missing2.push_back(*left);
+		if (!match) {
+			// file may exist on tmpfs
+			// e.g.: /var/cache/apt/archives/partial
+			struct stat stat_buffer;
+	                if ( stat((*left).c_str(), &stat_buffer) == 0) {
+				count_stat += 1;
+				if (debug) cerr << *left << " was not in plocate database" << endl;
+			} else {
+				missing2.push_back(*left);
+			};
+		}
 		left++;
 	}
+	if (debug) cerr << "count stat():" << count_stat << endl;
 
 	// TODO: this should use DPKG database too
 	vector<string> cruft2;
 	left=cruft.begin();
 	right=packages.begin();
 	while (left != cruft.end()) {
-		if ((*left).substr(0,19) !=  "/var/lib/dpkg/info/") {
+                if (pyc_has_py(*left, debug)) {
+			left++;
+		} else if ((*left).substr(0,19) !=  "/var/lib/dpkg/info/") {
 			cruft2.push_back(*left);
 			left++;
 		} else {
@@ -336,7 +342,7 @@ int main(int argc, char *argv[])
 	//TODO: split by filesystem
 	cout << "---- unexplained: / ----" << endl;
 	for (unsigned int i=0;i<cruft4.size();i++) {
-		if (!pyc_has_py(cruft4[i]))
+		if (!pyc_has_py(cruft4[i], debug))
 			cout << "        " << cruft4[i] << endl;
 	}
 

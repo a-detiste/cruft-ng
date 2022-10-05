@@ -7,7 +7,7 @@
 
 using namespace std;
 
-bool pyc_has_py(string pyc)
+bool pyc_has_py(string pyc, bool debug)
 {
 	if (pyc.length() < 15)
 		return false;
@@ -17,10 +17,11 @@ bool pyc_has_py(string pyc)
 	// also ignore __pycache__ dirs
 	// if .py are found in the same directory
 	if (pyc.substr(pyc.length()-12, 12) == "/__pycache__") {
-                //cerr << pyc << endl;
+                string dir;
 		DIR *dp;
 		struct dirent *dirp;
-		if((dp = opendir(pyc.substr(0, pyc.length()-12).c_str())) == NULL) {
+                dir = pyc.substr(0, pyc.length()-12);
+		if((dp = opendir(dir.c_str())) == NULL) {
 			return false;
 		}
 		while ((dirp = readdir(dp)) != NULL) {
@@ -28,8 +29,10 @@ bool pyc_has_py(string pyc)
 			if (entry.length() < 4)
 				continue;
                         //cerr << ' ' << entry << endl;
-			if (entry.substr(entry.length()-3,3) == ".py")
+			if (entry.substr(entry.length()-3,3) == ".py") {
+				if (debug) cerr << "match: " << dir << '/' << entry << endl;
 				return true;
+			}
 		}
 		return false;
 	}
@@ -42,8 +45,12 @@ bool pyc_has_py(string pyc)
 		return false;
 
 	struct stat buffer;
-	if (stat(pyc.substr(0, pyc.length()-1).c_str(), &buffer) == 0)
+        string py;
+	py = pyc.substr(0, pyc.length()-1);
+	if (stat(py.c_str(), &buffer) == 0) {
+		if (debug) cerr << "match: " << py << endl;
 		return true;
+	}
 
 	/* scenario 2:
 	/usr/share/pgcli/pgcli/packages/counter.py
@@ -62,5 +69,8 @@ bool pyc_has_py(string pyc)
         if(pyc.find(".cpython-311") != string::npos) ugly=1;
 	pyc.replace(pos, 15+ugly, ".py");
 
-	return stat(pyc.c_str(), &buffer) == 0;
+        bool matched;
+        matched = (stat(pyc.c_str(), &buffer) == 0);
+        if (matched && debug) cerr << "match: " << pyc << endl;
+        return matched;
 }

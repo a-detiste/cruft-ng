@@ -68,3 +68,4 @@
 /var/lib/private/systemd
 /var/lib/private/systemd/timesync
 /var/lib/private/systemd/timesync/clock
+/var/log/README
