@@ -10,7 +10,7 @@
 
 void read_one_filter(const string& glob_filename, vector<string>& globs)
 {
-	bool debug=getenv("DEBUG") != NULL;
+	bool debug=getenv("DEBUG_RULES") != NULL;
 
 	if (debug) cerr << "READING " << glob_filename << endl;
 	ifstream glob_file(glob_filename.c_str());
