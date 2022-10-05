@@ -8,4 +8,17 @@ int main(int argc, char *argv[])
         } else {
 		cout << "ERROR" << endl;
         };
+
+	// my last Python2 file
+        if (pyc_has_py("/home/tchet/git/pyposdisplay/pyposdisplay/pyposdisplay.pyc")) {
+		cout << "OK" << endl;
+        } else {
+		cout << "ERROR" << endl;
+        };
+
+	if (pyc_has_py("/usr/share/python3/debpython/__pycache__/option.cpython-310.pyc")) {
+		cout << "OK" << endl;
+        } else {
+		cout << "ERROR" << endl;
+        };
 }
