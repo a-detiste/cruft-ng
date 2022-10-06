@@ -1,2 +1,7 @@
+/lib32
+/libx32
+/usr/lib32
+/usr/lib64
 # compat symlink found on merged system
 /usr/lib64/ld-linux-x86-64.so.2
+/usr/libx32
