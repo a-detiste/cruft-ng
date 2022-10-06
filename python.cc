@@ -17,18 +17,20 @@ bool pyc_has_py(string pyc, bool debug)
 	// also ignore __pycache__ dirs
 	// if .py are found in the same directory
 	if (pyc.substr(pyc.length()-12, 12) == "/__pycache__") {
-                string dir;
+		string dir;
 		DIR *dp;
 		struct dirent *dirp;
-                dir = pyc.substr(0, pyc.length()-12);
-		if((dp = opendir(dir.c_str())) == NULL) {
+		dir = pyc.substr(0, pyc.length()-12);
+		dp = opendir(dir.c_str());
+		if(dp == NULL) {
+			cerr << "opendir() failed for " << dir << endl;
 			return false;
 		}
 		while ((dirp = readdir(dp)) != NULL) {
 			string entry = dirp->d_name;
 			if (entry.length() < 4)
 				continue;
-                        //cerr << ' ' << entry << endl;
+			//cerr << ' ' << entry << endl;
 			if (entry.substr(entry.length()-3,3) == ".py") {
 				if (debug) cerr << "match: " << dir << '/' << entry << endl;
 				return true;
