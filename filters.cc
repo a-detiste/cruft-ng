@@ -46,6 +46,7 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 		if (package==uppercase)
 			read_one_filter("/etc/cruft/filters/" + package, globs);
 	}
+	closedir(dp);
 	if (debug) cerr << endl;
 
 

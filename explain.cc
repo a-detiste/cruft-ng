@@ -46,6 +46,7 @@ int read_explain(vector<string>& packages, vector<string>& explain)
 		if (package==uppercase)
 			read_one_explain("/usr/libexec/cruft/" + package, explain);
 	}
+	closedir(dp);
 	if (debug) cerr << endl;
 
 	if (debug) cerr << "EXECUTING UPPERCASE FILTERS IN /etc/cruft/explain/" << endl;
@@ -62,6 +63,7 @@ int read_explain(vector<string>& packages, vector<string>& explain)
 		if (package==uppercase)
 			read_one_explain("/etc/cruft/explain/" + package, explain);
 	}
+	closedir(dp);
 	if (debug) cerr << endl;
 
 

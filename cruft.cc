@@ -142,6 +142,8 @@ void one_file(string infile)
 			if (glob_file.eof()) break;
 		}
 	}
+	closedir(dp);
+
 	if (not matched) cerr << "no matching package found" << endl;
 }
 

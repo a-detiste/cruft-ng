@@ -33,9 +33,11 @@ bool pyc_has_py(string pyc, bool debug)
 			//cerr << ' ' << entry << endl;
 			if (entry.substr(entry.length()-3,3) == ".py") {
 				if (debug) cerr << "match: " << dir << '/' << entry << endl;
+				closedir(dp);
 				return true;
 			}
 		}
+		closedir(dp);
 		return false;
 	}
 

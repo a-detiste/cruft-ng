@@ -38,5 +38,6 @@ int read_dpkg_excludes(vector<string>& globs)
 		if (cfg == "." or cfg == "..") continue;
 		read_one_cfg("/etc/dpkg/dpkg.cfg.d/" + cfg, globs);
 	}
+	closedir(dp);
 	return 0;
 }
