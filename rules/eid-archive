@@ -1,1 +1,2 @@
 /etc/apt/sources.list.d/eid.list
+/etc/apt/trusted.gpg.d/eid-archive-*
