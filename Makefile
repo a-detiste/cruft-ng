@@ -3,7 +3,7 @@ CXXFLAGS += -Wall
 SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o mlocate.o plocate.o shellexp.o usr_merge.o python.o
 
 all: check cruft
-tests: test_plocate test_explain test_filters test_excludes test_dpkg test_python cruftlib
+tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_python cruftlib
 
 cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h python.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c cruft.cc
@@ -12,7 +12,7 @@ cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h python.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c $<
 
 dpkg_lib.o: dpkg_lib.cc dpkg.h
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_lib.cc
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_lib.cc -ldpkg
 
 dpkg_popen.o: dpkg_popen.cc dpkg.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_popen.cc
@@ -24,12 +24,14 @@ cruft: $(SHARED_OBJS) dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruft
 
 cruftlib: $(SHARED_OBJS) dpkg_lib.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o   -o cruftlib
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o -ldpkg  -o cruftlib
 
 test_%: %.o test_%.cc dpkg_popen.o usr_merge.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $< $@.cc dpkg_popen.o usr_merge.o -o $@
 test_dpkg: test_dpkg.cc dpkg_popen.o usr_merge.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_popen.o usr_merge.o test_dpkg.cc -o $@
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_popen.o test_dpkg.cc usr_merge.o -o $@
+test_dpkg_lib: test_dpkg.cc dpkg_lib.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_lib.o test_dpkg.cc -ldpkg -o $@
 test_mlocate: mlocate.o test_mlocate.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) mlocate.o test_mlocate.cc -o $@
 test_plocate: plocate.o test_plocate.cc
@@ -49,7 +51,7 @@ install: all
 	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft/README.md
 
 clean:
-	rm -f cruft cruftlib test_mlocate test_plocate test_explain test_filters test_excludes test_dpkg test_diversions test_python
+	rm -f cruft cruftlib test_mlocate test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_diversions test_python
 	rm -f *.o
 
 check:

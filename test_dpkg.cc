@@ -3,6 +3,9 @@
 
 int main(int argc, char *argv[])
 {
+	vector<string> packages;
+	read_dpkg_header(packages);
+
 	vector<string> db;
 	read_dpkg_items(db);
 
