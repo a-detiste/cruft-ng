@@ -2,12 +2,15 @@
 #include <iostream>
 #include <algorithm>
 
+#include <sys/stat.h>
 #include <dpkg/dpkg.h>
 #include <dpkg/dpkg-db.h>
 #include <dpkg/db-fsys.h>
 #include <dpkg/pkg-array.h>
 #include <dpkg/pkg-show.h>
+
 #include "dpkg.h"
+#include "usr_merge.h"
 
 /*
 https://www.dpkg.org/doc/libdpkg/structpkginfo.html
@@ -43,6 +46,7 @@ int read_dpkg_items(vector<string>& output)
 	struct fsys_namenode_list *file;
 	struct fsys_namenode *namenode;
 	bool debug = getenv("DEBUG") != NULL;
+	struct stat buffer;
 
 	dpkg_program_init("cruft");
 	modstatdb_open(msdbrw_readonly);
@@ -59,7 +63,17 @@ int read_dpkg_items(vector<string>& output)
 			while (file) {
 				namenode = file->namenode;
 				if (debug) cout << namenode->name << endl;
-				output.push_back(namenode->name);
+				if (namenode->divert) {
+					// We trust DPKG state for now
+					if (stat(namenode->name, &buffer) == 0) {
+						output.push_back(usr_merge(namenode->name));
+					}
+					if (stat(namenode->divert->useinstead->name, &buffer) == 0) {
+						output.push_back(usr_merge(namenode->divert->useinstead->name));
+					}
+				} else {
+					output.push_back(usr_merge(namenode->name));
+				}
 				file = file->next;
 		        }
 		}

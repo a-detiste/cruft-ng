@@ -31,7 +31,7 @@ test_%: %.o test_%.cc dpkg_popen.o usr_merge.o
 test_dpkg: test_dpkg.cc dpkg_popen.o usr_merge.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_popen.o test_dpkg.cc usr_merge.o -o $@
 test_dpkg_lib: test_dpkg.cc dpkg_lib.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_lib.o test_dpkg.cc -ldpkg -o $@
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_lib.o test_dpkg.cc usr_merge.o -ldpkg -o $@
 test_mlocate: mlocate.o test_mlocate.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) mlocate.o test_mlocate.cc -o $@
 test_plocate: plocate.o test_plocate.cc
