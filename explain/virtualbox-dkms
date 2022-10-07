@@ -14,4 +14,4 @@ do
     arch=$(echo $arch | tr -d ' :')
     echo "/var/lib/dkms/virtualbox/kernel-${ver}-${arch}"
 done
-/var/lib/dkms/virtualbox
+echo /var/lib/dkms/virtualbox
