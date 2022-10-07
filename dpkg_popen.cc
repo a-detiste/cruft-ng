@@ -143,3 +143,9 @@ int read_dpkg_items(vector<string>& dpkg)
 	if (debug) cerr << dpkg.size() << " files in DPKG database" << endl;
 	return 0;
 }
+
+int read_dpkg(vector<string>& packages, vector<string>& files) {
+	read_dpkg_header(packages);
+	read_dpkg_items(files);
+	return 0;
+}

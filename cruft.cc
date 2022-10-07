@@ -195,16 +195,14 @@ int main(int argc, char *argv[])
 	cout << "cruft report: " << buf << endl << flush;
 
 	std::vector<string> packages;
-	read_dpkg_header(packages);
+	std::vector<string> dpkg;
+	read_dpkg(packages, dpkg);
 
 	std::vector<string> explain;
 	read_explain(packages,explain);
 
 	std::vector<string> globs;
 	read_filters(packages,globs);
-
-	std::vector<string> dpkg;
-	read_dpkg_items(dpkg);
 
 	std::vector<string> excludes;
 	read_dpkg_excludes(excludes);

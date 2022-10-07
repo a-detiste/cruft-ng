@@ -16,29 +16,7 @@
 https://www.dpkg.org/doc/libdpkg/structpkginfo.html
 */
 
-int read_dpkg_header(vector<string>& packages)
-{
-	return 0; // doing dpkg_program_init() will later lead to coredump
-	int i;
-	struct pkg_array array;
-	struct pkginfo *pkg;
-
-	dpkg_program_init("cruft");
-	modstatdb_open(msdbrw_available_readonly);
-	pkg_array_init_from_hash(&array);
-	pkg_array_sort(&array, pkg_sorter_by_nonambig_name_arch);
-	for (i = 0; i < array.n_pkgs; i++) {
-		pkg = array.pkgs[i];
-		if (pkg->status == PKG_STAT_INSTALLED) {
-			packages.push_back(pkg->set->name);
-		}
-	}
-	modstatdb_shutdown();
-	dpkg_program_done();
-	return 0;
-}
-
-int read_dpkg_items(vector<string>& output)
+int read_dpkg(vector<string>& packages, vector<string>& output)
 {
 	int i;
 	struct pkg_array array;
@@ -50,13 +28,15 @@ int read_dpkg_items(vector<string>& output)
 
 	dpkg_program_init("cruft");
 	modstatdb_open(msdbrw_readonly);
+	//modstatdb_open(msdbrw_available_readonly);
 	pkg_array_init_from_hash(&array);
 	pkg_array_sort(&array, pkg_sorter_by_nonambig_name_arch);
 
 	for (i = 0; i < array.n_pkgs; i++) {
 		pkg = array.pkgs[i];
 		if (pkg->status == PKG_STAT_INSTALLED) {
-			if (debug) cout << "PACKAGE:" <<pkg->set->name << endl;
+			packages.push_back(pkg->set->name);
+			if (debug) cout << "PACKAGE:" << pkg->set->name << endl;
 			ensure_packagefiles_available(pkg);
 			ensure_diversions();
 			file = pkg->files;
