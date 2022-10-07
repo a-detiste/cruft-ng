@@ -2,7 +2,5 @@
 /etc/wicd/manager-settings.conf
 /etc/wicd/wired-settings.conf
 /etc/wicd/wireless-settings.conf
-/usr/share/wicd/*/*.pyc
-/usr/share/wicd/*/*.pyo
 /var/lib/wicd/dhclient.conf
 /var/log/wicd/wicd.log

@@ -1,7 +1,5 @@
 /etc/python
 /etc/python/debian_config
-/usr/share/python/pyversions.pyc
-/usr/lib/python2*/**/*.py[co]
 /usr/local/lib/python2.7
 /usr/local/lib/python2.7/dist-packages
 /usr/local/lib/python2.7/site-packages

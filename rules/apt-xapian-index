@@ -1,4 +1,3 @@
-/usr/share/apt-xapian-index/plugins/*.pyc
 /var/cache/apt-xapian-index
 /var/cache/apt-xapian-index/index.*
 /var/cache/apt-xapian-index/index.*/flintlock
