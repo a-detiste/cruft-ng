@@ -1,6 +1,6 @@
 .*.swp
 cruft
-cruftlib
+cruftold
 cruft.log
 cruft.log.old
 *.o
