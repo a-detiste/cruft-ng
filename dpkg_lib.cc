@@ -71,8 +71,10 @@ int read_dpkg(vector<string>& packages, vector<string>& output)
 
 	for (i = 0; i < array.n_pkgs; i++) {
 		pkg = array.pkgs[i];
-		if (pkg->status == PKG_STAT_INSTALLED) {
-			packages.push_back(pkg->set->name);
+		if (pkg->status == PKG_STAT_INSTALLED || pkg->status == PKG_STAT_CONFIGFILES) {
+			if(pkg->status == PKG_STAT_INSTALLED) {
+				packages.push_back(pkg->set->name);
+			}
 			if (debug) cout << "PACKAGE:" << pkg->set->name << endl;
 
 #ifdef DB_API
