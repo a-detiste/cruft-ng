@@ -83,7 +83,14 @@ int read_dpkg(vector<string>& packages, vector<string>& output)
 			while(suffix != suffixes.end() ) {
 				string control = admindir;
 				control += "/info/";
-				control += pkg_name(pkg, pnaw_nonambig);
+				// not ok for i386 only packages:
+				//  steam, steamcmd, zsnes ...
+				//control += pkg_name(pkg, pnaw_nonambig);
+				control += pkg->set->name;
+				if (pkg->installed.multiarch == PKG_MULTIARCH_SAME) {
+					control += ":";
+					control += pkg->installed.arch->name;
+				}
 				control += *suffix;
 				if (stat(control.c_str(), &buffer) == 0) {
 					output.push_back(control);
