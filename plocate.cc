@@ -6,6 +6,7 @@
 #include <limits.h>
 
 #include "plocate.h"
+#include "python.h"
 
 // build fail on hurd-i386
 #ifndef PATH_MAX
@@ -34,7 +35,7 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 		    or toplevel == "/root"
 		    or toplevel == "/tmp")
 			continue;
-		fs.push_back(filename);
+		if (!pyc_has_py(filename, false)) fs.push_back(filename);
 	}
 	pclose(fp);
 	sort(fs.begin(), fs.end());

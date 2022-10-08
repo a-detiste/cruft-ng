@@ -82,7 +82,6 @@ int read_dpkg(vector<string>& packages, vector<string>& output)
 				control += pkg_name(pkg, pnaw_nonambig);
 				control += *suffix;
 				if (stat(control.c_str(), &buffer) == 0) {
-					cout << control << endl;
 					output.push_back(control);
 				}
 				suffix++;

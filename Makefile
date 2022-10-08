@@ -34,8 +34,8 @@ test_dpkg_lib: test_dpkg.cc dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_lib.o test_dpkg.cc usr_merge.o -ldpkg -o $@
 test_mlocate: mlocate.o test_mlocate.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) mlocate.o test_mlocate.cc -o $@
-test_plocate: plocate.o test_plocate.cc
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) plocate.o test_plocate.cc -o $@
+test_plocate: plocate.o python.o test_plocate.cc
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) plocate.o python.o test_plocate.cc -o $@
 test_python: python.o test_python.cc
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) python.o test_python.cc -o $@
 test_excludes: dpkg_exclude.o test_excludes.cc

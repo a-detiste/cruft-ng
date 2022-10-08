@@ -16,7 +16,6 @@
 #include "plocate.h"
 #include "dpkg.h"
 #include "dpkg_exclude.h"
-#include "python.h"
 
 extern int shellexp(char* filename, char* pattern );
 
@@ -261,22 +260,10 @@ int main(int argc, char *argv[])
 	}
 	if (debug) cerr << "count stat():" << count_stat << endl;
 
-	vector<string> cruft2;
-	left=cruft.begin();
-	right=packages.begin();
-	while (left != cruft.end()) {
-                if (!pyc_has_py(*left, debug)) {
-			cruft2.push_back(*left);
-		}
-		left++;
-	}
-	//cruft.clear();
-	if (debug) cerr << cruft2.size() << " files in cruft2 database" << endl << endl << std::flush;
-
 	// match the globs against reduced database
 	vector<string> cruft3;
-	left=cruft2.begin();
-	while (left != cruft2.end()) {
+	left=cruft.begin();
+	while (left != cruft.end()) {
 		right=globs.begin();
 		bool match=false;
 		while (right != globs.end()) {
@@ -317,8 +304,7 @@ int main(int argc, char *argv[])
 	//TODO: split by filesystem
 	cout << "---- unexplained: / ----" << endl;
 	for (unsigned int i=0;i<cruft4.size();i++) {
-		if (!pyc_has_py(cruft4[i], debug))
-			cout << "        " << cruft4[i] << endl;
+		cout << "        " << cruft4[i] << endl;
 	}
 
 	// NOT IMPLEMENTED
