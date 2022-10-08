@@ -17,8 +17,7 @@
 /var/lib/dpkg/cmethopt
 /var/lib/dpkg/diversions
 /var/lib/dpkg/diversions-old
-/var/lib/dpkg/info/*
-/var/lib/dpkg/methods/**
+/var/lib/dpkg/info/format
 /var/lib/dpkg/statoverride
 /var/lib/dpkg/statoverride-old
 /var/lib/dpkg/status

@@ -44,6 +44,9 @@ int read_dpkg(vector<string>& packages, vector<string>& output)
 	var_lib_dpkg_info = &output;
 #else
 	vector<string> suffixes {
+		".clilibs",
+		".conffiles",
+		".config",
 		".list",
 		".md5sums",
 		".postinst",
@@ -52,6 +55,7 @@ int read_dpkg(vector<string>& packages, vector<string>& output)
 		".prerm",
 		".shlibs",
 		".symbols",
+		".templates",
 		".triggers",
 	};
 	vector<string>::iterator suffix;
