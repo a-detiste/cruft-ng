@@ -1,4 +1,3 @@
-#include <string>
 #include <sys/stat.h>
 #include "usr_merge.h"
 

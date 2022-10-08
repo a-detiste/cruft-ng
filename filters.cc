@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <sys/stat.h>
 #include <dirent.h>
-#include <errno.h>
 
 #include "filters.h"
 #include "usr_merge.h"

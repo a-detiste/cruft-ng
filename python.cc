@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string.h>
 #include <dirent.h>
 #include <sys/stat.h>
 

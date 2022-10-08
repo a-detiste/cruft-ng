@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <dirent.h>
-#include <errno.h>
 
 #include "dpkg_exclude.h"
 

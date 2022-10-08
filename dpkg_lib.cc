@@ -5,7 +5,6 @@
 #include <sys/stat.h>
 #include <dpkg/dpkg.h>
 #include <dpkg/dpkg-db.h>
-#include <dpkg/db-ctrl.h>
 #include <dpkg/db-fsys.h>
 #include <dpkg/pkg-array.h>
 #include <dpkg/pkg-show.h>
@@ -20,6 +19,8 @@ https://www.dpkg.org/doc/libdpkg/structpkginfo.html
 static const char *admindir;
 
 #ifdef DB_API
+#include <dpkg/db-ctrl.h>
+
 vector<string>* var_lib_dpkg_info = NULL;
 
 static void callback(const char *filename, const char *filetype)

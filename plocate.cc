@@ -1,9 +1,6 @@
 #include <cstring>
 #include <iostream>
-#include <fstream>
 #include <algorithm>
-#include <limits>
-#include <limits.h>
 
 #include "plocate.h"
 #include "python.h"

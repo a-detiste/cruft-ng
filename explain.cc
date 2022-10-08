@@ -1,6 +1,5 @@
 #include <iostream>
 #include <algorithm>
-#include <errno.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <sys/stat.h>
