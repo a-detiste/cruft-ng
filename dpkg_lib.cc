@@ -79,18 +79,21 @@ int read_dpkg(vector<string>& packages, vector<string>& output)
 			// I hope this will go away in the big DPKG rewrite
 			pkg_infodb_foreach(pkg, &pkg->installed, callback);
 #else
+			string control_ = admindir;
+			control_ += "/info/";
+			// not ok for i386 only packages:
+			//  steam, steamcmd, zsnes ...
+			//control += pkg_name(pkg, pnaw_nonambig);
+			control_ += pkg->set->name;
+			if (pkg->installed.multiarch == PKG_MULTIARCH_SAME) {
+				control_ += ":";
+				control_ += pkg->installed.arch->name;
+			}
+
 			suffix = suffixes.begin();
 			while(suffix != suffixes.end() ) {
-				string control = admindir;
-				control += "/info/";
-				// not ok for i386 only packages:
-				//  steam, steamcmd, zsnes ...
-				//control += pkg_name(pkg, pnaw_nonambig);
-				control += pkg->set->name;
-				if (pkg->installed.multiarch == PKG_MULTIARCH_SAME) {
-					control += ":";
-					control += pkg->installed.arch->name;
-				}
+				string control;
+				control = control_;
 				control += *suffix;
 				if (stat(control.c_str(), &buffer) == 0) {
 					output.push_back(control);
