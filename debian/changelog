@@ -1,3 +1,24 @@
+cruft-ng (0.9.45) unstable; urgency=medium
+
+  * Rewrite most DPKG data acquisition using the
+    official static C library (Closes: #944926).
+    This also makes this tool much faster.
+  * Adding a new build dependency on "libdpkg-dev"
+
+  * Fix plocate invocation to also detect
+    extraneous files without '.' in their name.
+    Thank you Piotr Engelking (Closes: #1021297)
+
+  * Add missing "closedir()" that leaded to
+    file descriptor exhaustion.
+  * Remove extraneous *.pyc filters, now built
+    into the main engine
+  * Misc changes to various embedded rules for:
+     UsrMerge, (b)eid-archive, RabbitMQ, dpkg-cross,
+     udisks2, virtualbox, util-linux, systemd.
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sat, 08 Oct 2022 04:09:13 +0200
+
 cruft-ng (0.9.44) unstable; urgency=medium
 
   * salvages the explain scripts and filters from retired 'cruft-common'
