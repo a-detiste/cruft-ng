@@ -261,39 +261,14 @@ int main(int argc, char *argv[])
 	}
 	if (debug) cerr << "count stat():" << count_stat << endl;
 
-	// TODO: this should use DPKG database too
 	vector<string> cruft2;
 	left=cruft.begin();
 	right=packages.begin();
 	while (left != cruft.end()) {
-                if (pyc_has_py(*left, debug)) {
-			left++;
-		} else if ((*left).substr(0,19) !=  "/var/lib/dpkg/info/") {
+                if (!pyc_has_py(*left, debug)) {
 			cruft2.push_back(*left);
-			left++;
-		} else {
-			right=packages.begin();
-			bool found=false;
-			while(right != packages.end() ) {
-			    if ( *left=="/var/lib/dpkg/info/" + *right + ".clilibs"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".conffiles"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".config"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".list"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".md5sums"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".postinst"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".postrm"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".preinst"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".prerm"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".shlibs"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".symbols"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".templates"
-			      or *left=="/var/lib/dpkg/info/" + *right + ".triggers")
-				{ found=true; break; }
-				right++;
-			}
-			if (!found) cruft2.push_back(*left);
-			left++;
 		}
+		left++;
 	}
 	//cruft.clear();
 	if (debug) cerr << cruft2.size() << " files in cruft2 database" << endl << endl << std::flush;
