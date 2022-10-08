@@ -3,7 +3,7 @@ CXXFLAGS += -Wall
 SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o mlocate.o plocate.o shellexp.o usr_merge.o python.o
 
 all: check cruft
-tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_python cruftlib
+tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_python cruftold
 
 cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h python.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c cruft.cc
@@ -20,11 +20,11 @@ dpkg_popen.o: dpkg_popen.cc dpkg.h
 shellexp.o: shellexp.c
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c shellexp.c
 
-cruft: $(SHARED_OBJS) dpkg_popen.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruft
+cruftold: $(SHARED_OBJS) dpkg_popen.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruftold
 
-cruftlib: $(SHARED_OBJS) dpkg_lib.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o -ldpkg  -o cruftlib
+cruft: $(SHARED_OBJS) dpkg_lib.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o -ldpkg -o cruft
 
 test_%: %.o test_%.cc dpkg_popen.o usr_merge.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $< $@.cc dpkg_popen.o usr_merge.o -o $@
@@ -51,7 +51,7 @@ install: all
 	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft/README.md
 
 clean:
-	rm -f cruft cruftlib test_mlocate test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_diversions test_python
+	rm -f cruft cruftold test_mlocate test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_diversions test_python
 	rm -f *.o
 
 check:
