@@ -9,3 +9,15 @@
 /var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.timer
 /var/lib/systemd/deb-systemd-helper-masked
 /var/lib/systemd/deb-systemd-helper-masked/*.service
+/var/lib/systemd/deb-systemd-user-helper-enabled
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.service
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.service.dsh-also
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.service.wants
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.service.wants/*.service
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.socket.dsh-also
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants/*.service
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants/*.socket
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants/*.timer
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.timer.dsh-also
+/var/lib/systemd/deb-systemd-user-helper-masked/*.service
