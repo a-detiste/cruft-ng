@@ -11,7 +11,6 @@ int read_dpkg_header(vector<string>& packages)
 {
 	bool debug=getenv("DEBUG") != NULL;
 
-	// TODO: read DPKG database using C library instead of using dpkg-query
 	if (debug) cerr << "DPKG DATA\n";
 	FILE* fp;
 	if ((fp = popen("dpkg-query --show --showformat '${binary:Package}\n'", "r")) == NULL) return 1;
@@ -93,8 +92,6 @@ int read_dpkg_items(vector<string>& dpkg)
 	vector<Diversion> diversions;
 	read_diversions(diversions);
 
-	// TODO: read DPKG database instead of using dpkg-query
-	// cat /var/lib/dpkg/info/ *.list |sort -u
         string command="dpkg-query --listfiles $(dpkg-query --show --showformat '${binary:Package} ')|sort -u";
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
@@ -105,7 +102,6 @@ int read_dpkg_items(vector<string>& dpkg)
 		string filename=buf;
 		if (filename.substr(0,1)!="/") continue;
 		filename=filename.substr(0,filename.size() - 1);
-		// TODO: ignore ${prunepaths} here also
 		vector<Diversion>::iterator it=diversions.begin();
 		struct stat stat_buffer;
 		for(;it !=diversions.end();it++) {
