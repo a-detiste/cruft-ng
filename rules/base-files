@@ -5,10 +5,6 @@
 /floppy
 /initrd
 /media
-/media/cdrom
-/media/cdrom0
-/media/floppy
-/media/floppy0
 /mnt
 /opt
 /proc
@@ -49,7 +45,13 @@
 /usr/local/share/fonts
 /usr/local/share/games
 /usr/local/share/man
-/usr/local/share/mimelnk
-/usr/local/share/mimelnk/application
+/usr/local/share/man/man1
+/usr/local/share/man/man2
+/usr/local/share/man/man3
+/usr/local/share/man/man4
+/usr/local/share/man/man5
+/usr/local/share/man/man6
+/usr/local/share/man/man7
+/usr/local/share/man/man8
 /usr/local/src
 /usr/share/info/dir
