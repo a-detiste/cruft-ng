@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -d /usr/share/munin/plugins || exit 0
+
 for file in $(ls /usr/share/munin/plugins)
 do
 	[ -e /etc/munin/plugins/$file ] && echo /etc/munin/plugins/$file

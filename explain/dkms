@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -x /usr/sbin/dkms || exit 0
+
 for package in $(/usr/sbin/dkms status | cut -f1 -d\, | sort -u)
 do
 	if [ -d "/var/lib/dkms/$package" ]

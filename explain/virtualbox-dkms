@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -x /usr/sbin/dkms || exit 0
+
 /usr/sbin/dkms status -m virtualbox | while read x ver arch y
 do
     ver=$(echo $ver | tr -d ' ,')
