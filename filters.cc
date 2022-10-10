@@ -62,12 +62,33 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 
 		struct stat stat_buffer;
 		string etc_filename = "/etc/cruft/filters/" + package;
-		string usr_filename = "/usr/lib/cruft/filters-unex/" + package;
+		string usr_filename = "/usr/lib/cruft/filters-unex/" + package; // should be empty
 		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
 			read_one_filter(etc_filename, globs);
 		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
 			read_one_filter(usr_filename, globs);
 	}
+
+	if (debug) cerr << "READING MAIN RULE ARCHIVE " << endl;
+	ifstream glob_file("/usr/share/cruft/ruleset");
+	string etc_filename;
+	while (glob_file.good())
+	{
+		string glob_line;
+		getline(glob_file,glob_line);
+		if (glob_file.eof()) break;
+		if (glob_line.substr(0,1) == "/") {
+			struct stat stat_buffer;
+			if ( !stat(etc_filename.c_str(), &stat_buffer)==0 ) {
+				globs.push_back(usr_merge(glob_line));
+			}
+		} else {
+			// new package entry
+			etc_filename = "/etc/cruft/filters/" + glob_line;
+                }
+	}
+	glob_file.close();
+
 	sort(globs.begin(), globs.end());
 	globs.erase( unique( globs.begin(), globs.end() ), globs.end() );
 	if (debug) cerr << globs.size() << " globs in database" << endl << endl;

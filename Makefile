@@ -2,7 +2,7 @@ CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z
 CXXFLAGS += -Wall
 SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o mlocate.o plocate.o shellexp.o usr_merge.o python.o
 
-all: check cruft
+all: cruft ruleset
 tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_python cruftold
 
 cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h python.h
@@ -54,10 +54,11 @@ clean:
 	rm -f cruft cruftold test_mlocate test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_diversions test_python
 	rm -f *.o
 
-check:
+ruleset: rules/*
 	echo Checking for trailing whitespaces
 	grep -E -R -H " +$$" rules/ || true
 	! grep -E -R -q " +$$" rules/
 	echo Checking for trailing slashes
 	grep -E -R -H "/+$$" rules/ || true
 	! grep -E -R -q "/+$$" rules/
+	./ruleset.sh

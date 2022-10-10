@@ -4,6 +4,7 @@ cruftold
 cruft.log
 cruft.log.old
 *.o
+ruleset
 test_mlocate
 test_plocate
 test_filters

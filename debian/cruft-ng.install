@@ -1,2 +1,2 @@
 explain/* /usr/libexec/cruft/
-rules/*   /usr/lib/cruft/filters-unex/
+ruleset   /usr/share/cruft/
