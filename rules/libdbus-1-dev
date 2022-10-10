@@ -1,2 +1,3 @@
 /etc/xml/libdbus-1-dev.xml
 /etc/xml/libdbus-1-dev.xml.old
+/var/lib/xml-core/libdbus-1-dev
