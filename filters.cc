@@ -72,19 +72,19 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 	if (debug) cerr << "READING MAIN RULE ARCHIVE " << endl;
 	ifstream glob_file("/usr/share/cruft/ruleset");
 	string etc_filename;
+	struct stat stat_buffer;
+	bool skip = false;
 	while (glob_file.good())
 	{
 		string glob_line;
 		getline(glob_file,glob_line);
 		if (glob_file.eof()) break;
 		if (glob_line.substr(0,1) == "/") {
-			struct stat stat_buffer;
-			if ( !stat(etc_filename.c_str(), &stat_buffer)==0 ) {
-				globs.push_back(usr_merge(glob_line));
-			}
+			if (!skip) globs.push_back(usr_merge(glob_line));
 		} else {
 			// new package entry
 			etc_filename = "/etc/cruft/filters/" + glob_line;
+			skip = bool(stat(etc_filename.c_str(), &stat_buffer)==0);
                 }
 	}
 	glob_file.close();

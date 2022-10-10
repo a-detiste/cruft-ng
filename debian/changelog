@@ -1,3 +1,9 @@
+cruft-ng (0.9.46~) UNRELEASED; urgency=medium
+
+  * 
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sat, 08 Oct 2022 08:56:31 +0200
+
 cruft-ng (0.9.45) unstable; urgency=medium
 
   * Rewrite most DPKG data acquisition using the
