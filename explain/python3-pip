@@ -2,4 +2,4 @@
 set -e
 
 PYTHON3=$(readlink /usr/bin/python3)
-find /usr/local/lib/$PYTHON3/dist-packages/
+find /usr/local/lib/$PYTHON3/dist-packages/ ! -name __pycache__ ! -name '*.pyc'
