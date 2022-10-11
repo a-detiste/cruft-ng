@@ -4,7 +4,6 @@ cruftold
 cruft.log
 cruft.log.old
 *.o
-flow.png
 ruleset
 test_mlocate
 test_plocate
