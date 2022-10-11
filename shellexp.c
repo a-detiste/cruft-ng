@@ -1,7 +1,5 @@
 #include <stdio.h>
-
-#define FALSE false
-#define TRUE  true
+#include <stdbool.h>
 
 /* 0 on no match, non-zero on match */
 int shellexp( char* string, char* pattern ) {
@@ -14,7 +12,7 @@ int shellexp( char* string, char* pattern ) {
 	switch( string[0] ) {
 	case '\0':
 	case '/':
-	    return FALSE;
+	    return false;
 	default:
 	    return shellexp( string+1, pattern+1 );
 	}
@@ -25,52 +23,52 @@ int shellexp( char* string, char* pattern ) {
 		fprintf( stderr, "Bad expression.\n" );
 		return -1;
 	    }
-	    if ( *pch != '/' ) return FALSE;
-	    if ( pattern[3] == '\0' ) return TRUE;
+	    if ( *pch != '/' ) return false;
+	    if ( pattern[3] == '\0' ) return true;
 	    while ( *pch != '\0' ) {
 		if ( *pch == '/' ) {
 		    int ret = shellexp( pch, pattern + 3 );
-		    if ( ret == TRUE || ret == -1 )
+		    if ( ret == true || ret == -1 )
 		    	return ret;
 		}
 		pch++;
 	    }
-	    return FALSE;
+	    return false;
 	} else if ( string[0] == '/' ) {
 		return shellexp( string+1, pattern+1 );
 	} else
-		return FALSE;
+		return false;
     case '*':
 	if ( string[0] == '/' ) return shellexp( string, pattern+1 );
 	{
 		int ret = shellexp( string, pattern+1 );
-		if (ret == FALSE)
-			return string[0] != '\0' ? shellexp( string + 1, pattern ) : FALSE;
+		if (ret == false)
+			return string[0] != '\0' ? shellexp( string + 1, pattern ) : false;
 		else
 			return ret;
 	}
     case '[': 
-	if ( string[0] == '\0' ) return FALSE;
+	if ( string[0] == '\0' ) return false;
 	{
-	    int nott = FALSE;
-	    int okay = FALSE;
+	    int nott = false;
+	    int okay = false;
 	    pattern++;
 	    if ( pattern[0] == '!' || pattern[0] == '^' ) {
-		nott = TRUE;
+		nott = true;
 		pattern++;
 	    }
 
 	    if ( pattern[0] == ']' ) {
-		if ( string[0] == ']' ) { okay = TRUE; }
+		if ( string[0] == ']' ) { okay = true; }
 		pattern++;
 	    }
 
 	    while( pattern[0] != ']' && pattern[0] != '\0' ) {
 		if ( pattern[0] == string[0] ) {
-		    okay = TRUE;
+		    okay = true;
 		} else if ( pattern[1] == '-' && pattern[2] != ']' ) {
 		    if ( pattern[0] <= string[0] && string[0] <= pattern[2] ) {
-			okay = TRUE;
+			okay = true;
 		    }
 		    pattern += 2;
 		}
@@ -83,13 +81,13 @@ int shellexp( char* string, char* pattern ) {
 	    }
 
 	    if (! (nott ? !okay : okay))
-	    	return FALSE;
+		return false;
 	    else
 	    	return shellexp( string + 1, pattern + 1 );
 	}
     default:
     	if (pattern[0] != string[0])
-		return FALSE;
+		return false;
 	else
 		return shellexp( string + 1, pattern + 1 );
     }
