@@ -15,7 +15,7 @@
 #include "dpkg.h"
 #include "dpkg_exclude.h"
 
-extern int shellexp(char* filename, char* pattern );
+extern "C" int shellexp(char* filename, char* pattern );
 
 using namespace std;
 
