@@ -7,4 +7,4 @@ ls | sort | while read file
 do
 	echo $file
 	cat $file
-done | grep -v ^# > ../ruleset
+done | grep -v ^# | grep . > ../ruleset

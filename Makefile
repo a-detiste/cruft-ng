@@ -7,7 +7,7 @@ CXXFLAGS += $(LIBDPKG_CFLAGS)
 SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o
 
 all: cruft ruleset
-tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_python cruftold
+tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_python cruftold
 
 cruft.o: cruft.cc explain.h filters.h dpkg.h python.h
 dpkg_lib.o: dpkg_lib.cc dpkg.h
@@ -21,8 +21,8 @@ cruft: $(SHARED_OBJS) dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o $(LIBDPKG_LIBS) -o cruft
 
 test_%: %.o test_%.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
-test_dpkg: test_dpkg.cc dpkg_popen.o usr_merge.o
-test_dpkg_lib: test_dpkg.cc dpkg_lib.o $(LIBDPKG_LIBS)
+test_dpkg_old: dpkg_popen.o test_dpkg.cc usr_merge.o
+test_dpkg: dpkg_lib.o test_dpkg.cc usr_merge.o $(LIBDPKG_LIBS)
 test_plocate: plocate.o python.o test_plocate.cc
 test_python: python.o test_python.cc
 test_excludes: dpkg_exclude.o test_excludes.cc
@@ -38,7 +38,7 @@ install: all
 	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft/README.md
 
 clean:
-	rm -f cruft cruftold test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_diversions test_python
+	rm -f cruft cruftold test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python
 	rm -f *.o
 
 ruleset: rules/*

@@ -46,20 +46,13 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 			read_one_filter("/etc/cruft/filters/" + package, globs);
 	}
 	closedir(dp);
-	if (debug) cerr << endl;
-
+	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
 
 	if (debug) cerr << "READING OTHER GLOBS " << endl;
-	vector<string>::iterator it=packages.begin();
+	vector<string>::iterator it;
 
-	string retain;
-	for (;it !=packages.end();it++) {
+	for (it=packages.begin(); it!=packages.end(); it++) {
 		string package=*it;
-		size_t arch=package.find(":");
-		if (arch != string::npos ) package=package.substr(0,arch);
-		if (package==retain) continue;
-		retain=package;
-
 		struct stat stat_buffer;
 		string etc_filename = "/etc/cruft/filters/" + package;
 		string usr_filename = "/usr/lib/cruft/filters-unex/" + package; // should be empty
@@ -68,23 +61,26 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
 			read_one_filter(usr_filename, globs);
 	}
+	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
 
 	if (debug) cerr << "READING MAIN RULE ARCHIVE " << endl;
 	ifstream glob_file("/usr/share/cruft/ruleset");
 	string etc_filename;
 	struct stat stat_buffer;
-	bool skip = false;
+	bool keep = false;
 	while (glob_file.good())
 	{
 		string glob_line;
 		getline(glob_file,glob_line);
 		if (glob_file.eof()) break;
 		if (glob_line.substr(0,1) == "/") {
-			if (!skip) globs.push_back(usr_merge(glob_line));
+			if (keep) globs.push_back(usr_merge(glob_line));
 		} else {
 			// new package entry
-			etc_filename = "/etc/cruft/filters/" + glob_line;
-			skip = bool(stat(etc_filename.c_str(), &stat_buffer)==0);
+			string package = glob_line;
+			etc_filename = "/etc/cruft/filters/" + package;
+			keep = bool(find(packages.begin(), packages.end(), package) != packages.end()) & bool(!stat(etc_filename.c_str(), &stat_buffer)==0);
+			//cerr << package << " " << keep << endl;
                 }
 	}
 	glob_file.close();

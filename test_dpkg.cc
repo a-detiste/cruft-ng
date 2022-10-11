@@ -10,9 +10,9 @@ int main(int argc, char *argv[])
 	for (unsigned int i=0;i<packages.size();i++) {
 		cout << packages[i] << endl;
 	}
-	cout << endl;
+	cout << "######" << endl;
 
-	cout << '/' << endl;
+	cout << "/" << endl;
 	for (unsigned int i=0;i<db.size();i++) {
 		cout << db[i] << endl;
 	}
