@@ -12,7 +12,7 @@ cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h python.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c $<
 
 dpkg_lib.o: dpkg_lib.cc dpkg.h
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_lib.cc -ldpkg
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_lib.cc
 
 dpkg_popen.o: dpkg_popen.cc dpkg.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_popen.cc
