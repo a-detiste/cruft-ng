@@ -20,14 +20,16 @@ cruftold: $(SHARED_OBJS) dpkg_popen.o
 cruft: $(SHARED_OBJS) dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o $(LIBDPKG_LIBS) -o cruft
 
-test_%: %.o test_%.cc dpkg_popen.o usr_merge.o
+test_%: %.o test_%.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
 test_dpkg: test_dpkg.cc dpkg_popen.o usr_merge.o
-test_dpkg_lib: test_dpkg.cc dpkg_lib.o LDLIBS=$(LIBDPKG_LIBS)
+test_dpkg_lib: test_dpkg.cc dpkg_lib.o $(LIBDPKG_LIBS)
 test_mlocate: mlocate.o test_mlocate.cc
 test_plocate: plocate.o python.o test_plocate.cc
 test_python: python.o test_python.cc
 test_excludes: dpkg_exclude.o test_excludes.cc
 test_diversions: test_diversions.cc dpkg_popen.o usr_merge.o
+test_explain: explain.o test_explain.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
+test_filters: filters.o test_filters.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
 
 install: all
 	#install -D -m 2755 -g mlocate cruftg   $(DESTDIR)/usr/bin/cruft
