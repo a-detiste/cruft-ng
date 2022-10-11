@@ -22,7 +22,6 @@ dpkg_popen.o: dpkg_popen.cc dpkg.h
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_popen.cc
 
 shellexp.o: shellexp.c
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c shellexp.c
 
 cruftold: $(SHARED_OBJS) dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruftold
