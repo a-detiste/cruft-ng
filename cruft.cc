@@ -10,7 +10,6 @@
 
 #include "explain.h"
 #include "filters.h"
-#include "mlocate.h"
 #include "plocate.h"
 #include "dpkg.h"
 #include "dpkg_exclude.h"
@@ -170,14 +169,8 @@ int main(int argc, char *argv[])
 
 	std::vector<string> fs,prunefs,mounts;
 
-	struct stat has_plocate;
-	if (stat("/var/lib/plocate/plocate.db", &has_plocate) == 0) {
-		updatedb("/var/lib/plocate/plocate.db");
-		read_plocate(fs,prunefs);
-	} else {
-		updatedb("/var/lib/mlocate/mlocate.db");
-		read_mlocate(fs,prunefs);
-	}
+	updatedb("/var/lib/plocate/plocate.db");
+	read_plocate(fs,prunefs);
 
 	read_mounts(prunefs,mounts);
 
