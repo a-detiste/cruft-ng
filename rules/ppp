@@ -1,15 +1,12 @@
-# ppp 2.4.4rel-4.1 (etch)
-#files deleted in ppp.postrm seem like the right things to list here:
-/etc/ppp/pap-secrets
-/etc/ppp/chap-secrets
-/etc/ppp/resolv.conf
-/etc/ppp/peers/provider
 /etc/chatscripts/provider
-/etc/ppp/peers
+/etc/ppp/chap-secrets
 /etc/ppp/ip-up.d
 /etc/ppp/ip-down.d
+/etc/ppp/pap-secrets
+/etc/ppp/peers/provider
+/etc/ppp/peers
+/etc/ppp/resolv.conf
 /etc/ppp
-/etc/chatscripts
 /var/log/ppp.log
 /var/log/ppp-connect-errors
 /var/log/ppp-ipupdown.log
