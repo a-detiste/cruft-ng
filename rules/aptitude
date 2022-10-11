@@ -4,4 +4,3 @@
 /var/lib/aptitude/pkgstates
 /var/lib/aptitude/pkgstates.old
 /var/lock/aptitude
-/var/log/aptitude*

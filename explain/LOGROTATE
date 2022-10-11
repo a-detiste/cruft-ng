@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# /etc/logrotate.d/dpkg always exists
+
+cat /etc/logrotate.d/* | grep ^/ | while read file bracket
+do
+	find /var/log -path "${file}*"
+done

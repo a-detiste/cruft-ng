@@ -1,4 +1,3 @@
-/etc/dpkg/dpkg.cfg
 /etc/dpkg/origins/default
 /var/backups/alternatives.tar.0
 /var/backups/alternatives.tar.*.gz
@@ -24,8 +23,6 @@
 /var/lib/dpkg/status-old
 /var/lib/dpkg/triggers
 /var/lib/dpkg/triggers/*
-/var/log/alternatives.log*
-/var/log/dpkg.log*
 # transient files
 /var/lib/dpkg/lock
 /var/lib/dpkg/lock-frontend

@@ -25,5 +25,3 @@
 /var/lib/apt/periodic/upgrade-stamp
 /var/lib/systemd/timers/stamp-apt-daily.timer
 /var/log/apt/eipp.log.xz
-/var/log/apt/history.log*
-/var/log/apt/term.log*

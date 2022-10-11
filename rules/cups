@@ -18,12 +18,6 @@
 /var/lib/cups/certs
 /var/lib/cups/certs/*
 /var/log/cups
-/var/log/cups/access_log
-/var/log/cups/access_log.*
-/var/log/cups/error_log
-/var/log/cups/error_log.*
-/var/log/cups/page_log
-/var/log/cups/page_log.*
 /var/cache/cups/help.index
 /var/cache/cups/job.cache
 /var/cache/cups/job.cache.O
