@@ -192,27 +192,15 @@ int main(int argc, char *argv[])
 	updatedb("/var/lib/plocate/plocate.db");
 	elapsed("updatedb");
 
-	std::vector<string> fs,prunefs,mounts;
+	vector<string> fs,prunefs,mounts;
 	read_plocate(fs,prunefs);
 	read_mounts(prunefs,mounts);
 	elapsed("plocate");
 
-	std::vector<string> packages;
-	std::vector<string> dpkg;
+	vector<string> packages;
+	vector<string> dpkg;
 	read_dpkg(packages, dpkg);
 	elapsed("dpkg");
-
-	std::vector<string> explain;
-	read_explain(packages,explain);
-	elapsed("read explain");
-
-	std::vector<string> globs;
-	read_filters(packages,globs);
-	elapsed("read filters");
-
-	std::vector<string> excludes;
-	read_dpkg_excludes(excludes);
-	elapsed("read excludes");
 
 	// match two main data sources
 	vector<string> cruft;
@@ -237,13 +225,13 @@ int main(int argc, char *argv[])
 	}
 	elapsed("main set match");
 
-	//fs.clear();
-	//dpkg.clear();
-
 	if (debug) cerr << missing.size() << " files in missing database" << endl;
 	if (debug) cerr << cruft.size() << " files in cruft database" << endl << endl << flush;
 
 	// https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=619086
+	vector<string> excludes;
+	read_dpkg_excludes(excludes);
+	elapsed("read excludes");
 	vector<string> missing2;
 	left=missing.begin();
 	int count_stat = 0;
@@ -272,6 +260,9 @@ int main(int argc, char *argv[])
 	if (debug) cerr << "count stat():" << count_stat << endl;
 
 	// match the globs against reduced database
+	vector<string> globs;
+	read_filters(packages,globs);
+	elapsed("read filters");
 	vector<string> cruft3;
 	left=cruft.begin();
 	while (left != cruft.end()) {
@@ -286,11 +277,12 @@ int main(int argc, char *argv[])
 		left++;
 	}
 	elapsed("extra vs globs");
-
-	//cruft2.clear();
 	if (debug) cerr << cruft3.size() << " files in cruft3 database" << endl << endl << flush;
 
 	// match the dynamic "explain" filters
+	vector<string> explain;
+	read_explain(packages,explain);
+	elapsed("read explain");
 	vector<string> cruft4;
 	left=cruft3.begin();
 	while (left != cruft3.end()) {
@@ -306,7 +298,6 @@ int main(int argc, char *argv[])
 	}
 	elapsed("extra vs explain");
 
-	//cruft3.clear();
 	if (debug) cerr << cruft4.size() << " files in cruft4 database" << endl << flush;
 
 	cout << "---- missing: dpkg ----" << endl;
