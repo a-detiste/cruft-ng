@@ -4,6 +4,7 @@ Source: https://github.com/a-detiste/cruft-ng/
 
 Files: *
 Copyright: 2014-2022 Alexandre Detiste <alexandre.detiste@gmail.com>
+           2022 Guillem Jover <guillem@debian.org>
 License: GPL-2+
 
 Files: mlocate_db.h
