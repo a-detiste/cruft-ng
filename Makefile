@@ -10,17 +10,8 @@ all: cruft ruleset
 tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_lib test_python cruftold
 
 cruft.o: cruft.cc explain.h filters.h mlocate.h dpkg.h python.h
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c cruft.cc
-
-%.o: %.cc %.h
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c $<
-
 dpkg_lib.o: dpkg_lib.cc dpkg.h
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_lib.cc
-
 dpkg_popen.o: dpkg_popen.cc dpkg.h
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) -c dpkg_popen.cc
-
 shellexp.o: shellexp.c
 
 cruftold: $(SHARED_OBJS) dpkg_popen.o
@@ -30,21 +21,13 @@ cruft: $(SHARED_OBJS) dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o $(LIBDPKG_LIBS) -o cruft
 
 test_%: %.o test_%.cc dpkg_popen.o usr_merge.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $< $@.cc dpkg_popen.o usr_merge.o -o $@
 test_dpkg: test_dpkg.cc dpkg_popen.o usr_merge.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_popen.o test_dpkg.cc usr_merge.o -o $@
-test_dpkg_lib: test_dpkg.cc dpkg_lib.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_lib.o test_dpkg.cc usr_merge.o $(LIBDPKG_LIBS) -o $@
+test_dpkg_lib: test_dpkg.cc dpkg_lib.o LDLIBS=$(LIBDPKG_LIBS)
 test_mlocate: mlocate.o test_mlocate.cc
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) mlocate.o test_mlocate.cc -o $@
 test_plocate: plocate.o python.o test_plocate.cc
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) plocate.o python.o test_plocate.cc -o $@
 test_python: python.o test_python.cc
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) python.o test_python.cc -o $@
 test_excludes: dpkg_exclude.o test_excludes.cc
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) dpkg_exclude.o test_excludes.cc -o $@
 test_diversions: test_diversions.cc dpkg_popen.o usr_merge.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_diversions.cc dpkg_popen.o usr_merge.o -o $@
 
 install: all
 	#install -D -m 2755 -g mlocate cruftg   $(DESTDIR)/usr/bin/cruft
