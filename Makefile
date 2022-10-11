@@ -48,3 +48,6 @@ ruleset: rules/*
 	grep -E -R -H "/+$$" rules/ || true
 	! grep -E -R -q "/+$$" rules/
 	./ruleset.sh
+
+flow.png: flow.ditaa
+	ditaa flow.ditaa flow.png
