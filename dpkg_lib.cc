@@ -36,7 +36,7 @@ int read_dpkg(vector<string>& packages, vector<string>& output)
 	struct pkginfo *pkg;
 	struct fsys_namenode_list *file;
 	struct fsys_namenode *namenode;
-	bool debug = getenv("DEBUG") != NULL;
+	bool debug = getenv("DEBUG_DPKG") != NULL;
 	struct stat buffer;
 
 	admindir = dpkg_db_set_dir(admindir);

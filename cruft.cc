@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <ctime>
+
 #include <sys/stat.h>
 #include <fnmatch.h>
 #include <string.h>
@@ -143,6 +145,16 @@ void one_file(string infile)
 	if (not matched) cerr << "no matching package found" << endl;
 }
 
+clock_t beg = clock();
+
+void elapsed(string action)
+{
+	if (getenv("ELAPSED") == NULL) return;
+	clock_t end = clock();
+	double elapsed_seconds = (end - beg) * 1000 / CLOCKS_PER_SEC;
+	cerr << "elapsed " << action << ": " << elapsed_seconds << endl;
+	beg = end;
+}
 
 int main(int argc, char *argv[])
 {
@@ -167,13 +179,6 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 
-	std::vector<string> fs,prunefs,mounts;
-
-	updatedb("/var/lib/plocate/plocate.db");
-	read_plocate(fs,prunefs);
-
-	read_mounts(prunefs,mounts);
-
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
 	time_t rawtime;
@@ -184,18 +189,30 @@ int main(int argc, char *argv[])
 	strftime(buf, sizeof(buf), "%c", timeinfo);
 	cout << "cruft report: " << buf << endl << flush;
 
+	updatedb("/var/lib/plocate/plocate.db");
+	elapsed("updatedb");
+
+	std::vector<string> fs,prunefs,mounts;
+	read_plocate(fs,prunefs);
+	read_mounts(prunefs,mounts);
+	elapsed("plocate");
+
 	std::vector<string> packages;
 	std::vector<string> dpkg;
 	read_dpkg(packages, dpkg);
+	elapsed("dpkg");
 
 	std::vector<string> explain;
 	read_explain(packages,explain);
+	elapsed("read explain");
 
 	std::vector<string> globs;
 	read_filters(packages,globs);
+	elapsed("read filters");
 
 	std::vector<string> excludes;
 	read_dpkg_excludes(excludes);
+	elapsed("read excludes");
 
 	// match two main data sources
 	vector<string> cruft;
@@ -218,6 +235,8 @@ int main(int argc, char *argv[])
 		if (right == dpkg.end()) while(left  !=fs.end()  ) {cruft.push_back(*left);    left++; };
 		if (left  == fs.end()  ) while(right !=dpkg.end()) {missing.push_back(*right); right++;};
 	}
+	elapsed("main set match");
+
 	//fs.clear();
 	//dpkg.clear();
 
@@ -249,6 +268,7 @@ int main(int argc, char *argv[])
 		}
 		left++;
 	}
+	elapsed("missing2");
 	if (debug) cerr << "count stat():" << count_stat << endl;
 
 	// match the globs against reduced database
@@ -265,6 +285,7 @@ int main(int argc, char *argv[])
 		if (!match) cruft3.push_back(*left);
 		left++;
 	}
+	elapsed("extra vs globs");
 
 	//cruft2.clear();
 	if (debug) cerr << cruft3.size() << " files in cruft3 database" << endl << endl << flush;
@@ -283,6 +304,7 @@ int main(int argc, char *argv[])
 		if (!match) cruft4.push_back(*left);
 		left++;
 	}
+	elapsed("extra vs explain");
 
 	//cruft3.clear();
 	if (debug) cerr << cruft4.size() << " files in cruft4 database" << endl << flush;
