@@ -24,8 +24,6 @@ do
 		find /usr/share/icons/ -iwholename /usr/share/icons/Humanity-Dark/icon-theme.cache
 	fi
 
-	if test -f /usr/share/icons/$package/icon-theme.cache
-	then
-		echo /usr/share/icons/$package/icon-theme.cache
-	fi
+	# case insesitive
+	find /usr/share/icons/ -iwholename /usr/share/icons/$package/icon-theme.cache
 done
