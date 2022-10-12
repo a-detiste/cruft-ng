@@ -21,5 +21,8 @@ debian/cruft-ng/
 debian/cruft.debhelper.log
 debian/cruft.substvars
 debian/cruft/
+debian/dh-cruft.debhelper.log
+debian/dh-cruft.substvars
+debian/dh-cruft/
 debian/debhelper-build-stamp
 debian/files

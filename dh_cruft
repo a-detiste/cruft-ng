@@ -1,0 +1,77 @@
+#!/usr/bin/perl
+
+=head1 NAME
+
+dh_cruft - install cruft files into package build directories
+
+=cut
+
+use strict;
+use warnings;
+use Debian::Debhelper::Dh_Lib;
+
+our $VERSION = DH_BUILTIN_VERSION;
+
+=head1 SYNOPSIS
+
+B<dh_cruft> [S<I<debhelper options>>]
+
+=head1 DESCRIPTION
+
+B<dh_cruft> is a debhelper program that is responsible for installing
+information files used by cruft(-ng) into package build directories.
+
+=head1 FILES
+
+=over 4
+
+=item debian/I<package>.cruft
+
+Installed into usr/lib/cruft/filters-unex/I<package> in the package
+build directory. This file is used to register runtime files
+as belonging to this package
+
+#=item debian/I<package>.purge
+#
+#Installed into usr/lb/cruft/filters-unex/I<package> in the package
+#build directory. This file is used to register runtime files
+#as belonging to this package.
+#
+#Also, a snippet is appended to F<postrm>
+#with the needed I<rm -rf> commands
+#to remove these files on I<purge> phase.
+
+=back
+
+=cut
+
+init();
+
+# PROMISE: DH NOOP WITHOUT cruft cli-options()
+
+foreach my $package (@{$dh{DOPACKAGES}}) {
+	next if is_udeb($package);
+
+	my $tmp = tmpdir($package);
+	my $or_dir = "$tmp/usr/lib/cruft/filters-unex/";
+	my $overrides = pkgfile($package, "cruft");
+
+	if ($overrides ne '') {
+		install_dir($or_dir);
+		install_dh_config_file($overrides, "$or_dir/$package");
+	}
+}
+
+=head1 SEE ALSO
+
+L<debhelper(1)>
+
+This program is a part of debhelper.
+
+L<cruft(1)>
+
+=head1 AUTHOR
+
+Alexandre Detistes <alexandre.detiste@gmail.com>
+
+=cut
