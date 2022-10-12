@@ -11,7 +11,7 @@ void read_one_explain(const string& script,vector<string>& explain)
 	//bool debug=getenv("DEBUG") != NULL;
 
 	FILE* fp;
-	if ((fp = popen((script + " 3>&1").c_str(), "r")) == NULL) return;
+	if ((fp = popen((script).c_str(), "r")) == NULL) return;
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
 	string filter;
@@ -25,61 +25,43 @@ void read_one_explain(const string& script,vector<string>& explain)
 	pclose(fp);
 }
 
+void read_uppercase(vector<string>& explain, string directory)
+{
+	DIR *dp;
+	struct dirent *dirp;
+
+	bool debug=getenv("DEBUG") != NULL;
+	if (debug) cerr << "EXECUTING UPPERCASE FILTERS IN " << directory  << endl;
+
+	if((dp = opendir(directory.c_str())) == NULL) {
+		cerr << "Error(" << errno << ") " << directory << endl;
+	}
+	while ((dirp = readdir(dp)) != NULL) {
+		string package=string(dirp->d_name);
+		if (package==".") continue;
+		if (package=="..") continue;
+		string uppercase=package;
+		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), ::toupper);
+		if (package==uppercase)
+			read_one_explain(directory + package, explain);
+	}
+	closedir(dp);
+	if (debug) cerr << endl;
+}
+
 int read_explain(vector<string>& packages, vector<string>& explain)
 {
 	bool debug=getenv("DEBUG") != NULL;
 
-	if (debug) cerr << "EXECUTING UPPERCASE FILTERS IN /usr/libexec/cruft/" << endl;
-	DIR *dp;
-	struct dirent *dirp;
-	if((dp = opendir("/usr/libexec/cruft/")) == NULL) {
-	      cerr << "Error(" << errno << ") opening /usr/libexec/cruft/" << endl;
-	      return errno;
-	}
-	while ((dirp = readdir(dp)) != NULL) {
-		string package=string(dirp->d_name);
-		if (package==".") continue;
-		if (package=="..") continue;
-		string uppercase=package;
-		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), ::toupper);
-		if (package==uppercase)
-			read_one_explain("/usr/libexec/cruft/" + package, explain);
-	}
-	closedir(dp);
-	if (debug) cerr << endl;
-
-	if (debug) cerr << "EXECUTING UPPERCASE FILTERS IN /etc/cruft/explain/" << endl;
-	if((dp = opendir("/etc/cruft/explain/")) == NULL) {
-	      cerr << "Error(" << errno << ") opening /etc/cruft/explain/" << endl;
-	      return errno;
-	}
-	while ((dirp = readdir(dp)) != NULL) {
-		string package=string(dirp->d_name);
-		if (package==".") continue;
-		if (package=="..") continue;
-		string uppercase=package;
-		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), ::toupper);
-		if (package==uppercase)
-			read_one_explain("/etc/cruft/explain/" + package, explain);
-	}
-	closedir(dp);
-	if (debug) cerr << endl;
-
+	read_uppercase(explain, "/usr/libexec/cruft/");
+	read_uppercase(explain, "/etc/cruft/explain/");
 
 	if (debug) cerr << "EXECUTING OTHER FILTERS" << endl;
-	vector<string>::iterator it=packages.begin();
-
-	string retain;
-	for (;it !=packages.end();it++) {
-                string package=*it;
-                size_t arch=package.find(":");
-                if (arch != string::npos ) package=package.substr(0,arch);
-                if (package==retain) continue;
-                retain=package;
-
+	vector<string>::iterator package;
+	for (package=packages.begin();package !=packages.end();package++) {
                 struct stat stat_buffer;
-                string etc_filename = "/etc/cruft/explain/" + package;
-                string usr_filename = "/usr/libexec/cruft/" + package;
+                string etc_filename = "/etc/cruft/explain/" + *package;
+                string usr_filename = "/usr/libexec/cruft/" + *package;
                 if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
                         read_one_explain(etc_filename, explain);
                 else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
