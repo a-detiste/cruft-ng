@@ -2,16 +2,30 @@
 #include <algorithm>
 #include <dirent.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <sys/stat.h>
 #include "explain.h"
 #include "usr_merge.h"
 
 void read_one_explain(const string& script,vector<string>& explain)
 {
-	//bool debug=getenv("DEBUG") != NULL;
+	int fd[2];
+	if (pipe(fd) != 0) {
+		perror("pipe");
+		exit(1);
+	};
+	if(!fork()) // child
+	{
+		dup2(fd[1], STDOUT_FILENO);
+		close(fd[0]);
+		close(fd[1]);
+		execl(script.c_str(), script.c_str(), (char*) NULL);
+		exit(1);
+	}
 
+	close(fd[1]);
 	FILE* fp;
-	if ((fp = popen((script).c_str(), "r")) == NULL) return;
+	fp=fdopen(fd[0], "r");
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
 	string filter;
@@ -22,7 +36,7 @@ void read_one_explain(const string& script,vector<string>& explain)
 		//if (debug) cerr << "# " << filter << endl;
 		explain.push_back(usr_merge(filter));
 	}
-	pclose(fp);
+	fclose(fp);
 }
 
 void read_uppercase(vector<string>& explain, string directory)
