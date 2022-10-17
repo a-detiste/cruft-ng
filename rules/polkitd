@@ -1,0 +1,4 @@
+/etc/xml/polkitd.xml
+/etc/xml/polkitd.xml.old
+/var/lib/polkit-1/.cache
+/var/lib/xml-core/polkitd
