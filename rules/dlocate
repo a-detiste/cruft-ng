@@ -1,3 +1,4 @@
 /var/lib/dlocate/dlocatedb
+/var/lib/dlocate/dlocatedb.old
 /var/lib/dlocate/dlocatedb.stamps
 /var/lib/dlocate/dpkg-list
