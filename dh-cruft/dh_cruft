@@ -31,15 +31,15 @@ Installed into usr/lib/cruft/filters-unex/I<package> in the package
 build directory. This file is used to register runtime files
 as belonging to this package
 
-#=item debian/I<package>.purge
-#
-#Installed into usr/lb/cruft/filters-unex/I<package> in the package
-#build directory. This file is used to register runtime files
-#as belonging to this package.
-#
-#Also, a snippet is appended to F<postrm>
-#with the needed I<rm -rf> commands
-#to remove these files on I<purge> phase.
+=item debian/I<package>.purge
+
+Appended to usr/lib/cruft/filters-unex/I<package> in the package
+build directory. This file is used to register runtime files
+as belonging to this package.
+
+Also, a snippet is appended to F<postrm>
+with the needed I<rm -rf> commands
+to remove these files on I<purge> phase.
 
 =back
 
