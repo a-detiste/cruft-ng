@@ -52,6 +52,20 @@ init();
 foreach my $package (@{$dh{DOPACKAGES}}) {
 	next if is_udeb($package);
 
+	my @purgelines = ();
+	my $purge = pkgfile($package, "purge");
+	if ($purge ne '') {
+		open (IN, $purge);
+		my @lines = <IN>;
+		close IN;
+		foreach my $line (@lines)
+		{
+			chomp $line;
+			push @purgelines, $line if $line =~ /^\//;
+		}
+		autoscript($package, "postrm", "postrm-cruft", { 'PURGE' => @purgelines})
+	}
+
 	my $tmp = tmpdir($package);
 	my $or_dir = "$tmp/usr/lib/cruft/filters-unex/";
 	my $overrides = pkgfile($package, "cruft");

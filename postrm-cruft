@@ -1,0 +1,12 @@
+if [ "$1" = "purge" ]
+then
+(
+    while read line
+    do
+	# we need to glob
+        rm -rf $line
+    done
+) << __EOF
+#PURGE#
+__EOF
+fi
