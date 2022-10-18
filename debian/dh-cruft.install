@@ -1,3 +1,3 @@
-dh_cruft /usr/bin/
-cruft.pm /usr/share/perl5/Debian/Debhelper/Sequence/
-postrm-cruft /usr/share/debhelper/autoscripts/
+dh-cruft/dh_cruft /usr/bin/
+dh-cruft/cruft.pm /usr/share/perl5/Debian/Debhelper/Sequence/
+dh-cruft/postrm-cruft /usr/share/debhelper/autoscripts/

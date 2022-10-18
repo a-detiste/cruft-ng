@@ -8,3 +8,5 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/cruft-ng
+	mkdir -p debian/tmp/
+	pod2man --utf8 dh-cruft/dh_cruft debian/tmp/dh_cruft.1

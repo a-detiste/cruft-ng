@@ -26,3 +26,4 @@ debian/dh-cruft.substvars
 debian/dh-cruft/
 debian/debhelper-build-stamp
 debian/files
+debian/tmp/
