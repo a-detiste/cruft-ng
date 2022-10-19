@@ -47,7 +47,7 @@ to remove these files on I<purge> phase.
 
 init();
 
-# PROMISE: DH NOOP WITHOUT cruft cli-options()
+# PROMISE: DH NOOP WITHOUT cruft purge cli-options()
 
 foreach my $package (@{$dh{DOPACKAGES}}) {
 	next if is_udeb($package);
@@ -74,6 +74,8 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 		install_dir($cruft_dir);
 		install_dh_config_file($cruft, "$cruft_dir/$package");
 	}
+
+        # TODO: concatenate of two files
 }
 
 =head1 SEE ALSO
