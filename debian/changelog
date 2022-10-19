@@ -1,8 +1,23 @@
-cruft-ng (0.9.46~) UNRELEASED; urgency=medium
+cruft-ng (0.9.46) unstable; urgency=medium
 
-  * 
+  [ Alexandre Detiste ]
+  * new "dh-cruft" binary package: this DebHelper module is to be used
+    by source package that wants to provide their own rules.
+  * DPKG data acquisition: also consider packages in 'rc' state
+  * workaround for plocate's default "PRUNEPATH=/var/splool":
+    always scan these files ourselves
+  * new LOGROTATE generic handling script
+  * pack all the rules into a single file
+  * update ruleset for Jupyter, npm, base-files,
+    libdbus-1dev, timgm6mb-soundfont, dlocate,
+    systemd, init-system-helpers, PolicyKit.
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sat, 08 Oct 2022 08:56:31 +0200
+  [ Guillem Jover ]
+  * various build system improvement
+  * add build dependency on pkg-config to fetch libdpkg flags
+  * build: Remove unnecessary explicit make rules
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 19 Oct 2022 02:47:52 +0200
 
 cruft-ng (0.9.45) unstable; urgency=medium
 
