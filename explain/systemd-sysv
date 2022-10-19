@@ -3,17 +3,17 @@ set -e
 
 test -d /var/lib/systemd/timers/ || exit 0
 
+grep "Persistent=true" /usr/lib/systemd/system/*.timer 2>/dev/null | cut -d '/' -f 6 | cut -d '.' -f 1 | while read unit
+do
+    stamp="/var/lib/systemd/timers/stamp-${unit}.timer"
+    test -f "$stamp" && echo "$stamp"
+done
+
+exit 0
+
 for f in $(cd /var/lib/systemd/timers/ ; echo *.timer)
 do
   unit=${f#stamp-}
-
-  # known cases already handled by filters-unex/
-  case "$unit" in
-    apt-daily.timer|certbot.timer|cron-daily.timer|cron-weekly.timer|cron-monthly.timer)
-      continue
-      ;;
-  esac
-
   if [ "$(systemctl show $unit -p Persistent)" = "Persistent=yes" ]
   then
     echo /var/lib/systemd/timers/$f
