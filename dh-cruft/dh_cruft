@@ -61,7 +61,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 		foreach my $line (@lines)
 		{
 			chomp $line;
-			push @purgelines, $line if $line =~ /^\//;
+			push @purgelines, "    rm -rf ${line}" if $line =~ /^\//;
 		}
 		autoscript($package, "postrm", "postrm-cruft", { 'PURGE' => @purgelines})
 	}
