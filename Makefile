@@ -30,7 +30,7 @@ test_diversions: test_diversions.cc dpkg_popen.o usr_merge.o
 test_explain: explain.o test_explain.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
 test_filters: filters.o test_filters.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
 
-install: all
+install:
 	#install -D -m 2755 -g plocate cruftg   $(DESTDIR)/usr/bin/cruft
 	install -D -m 0755            cruft   $(DESTDIR)/usr/bin/cruft
 	install -D -m 0644            cruft.8 $(DESTDIR)/usr/share/man/man8/cruft.8
