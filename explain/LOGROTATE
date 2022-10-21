@@ -4,5 +4,5 @@
 
 cat /etc/logrotate.d/* | grep ^/ | while read file bracket
 do
-	find /var/log -path "${file}*"
+	find /var/log -path "${file}*" 2>/dev/null
 done

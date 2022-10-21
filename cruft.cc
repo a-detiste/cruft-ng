@@ -300,8 +300,10 @@ int main(int argc, char *argv[])
 
 	if (debug) cerr << cruft4.size() << " files in cruft4 database" << endl << flush;
 
+	//TODO: some smarter algo when run as non-root
+        //      like checking the R/X bits of parent dir
 	cout << "---- missing: dpkg ----" << endl;
-	for (unsigned int i=0;i<missing2.size();i++) {
+	if (geteuid() == 0 ) for (unsigned int i=0;i<missing2.size();i++) {
 		cout << "        " << missing2[i] << endl;
 	}
 

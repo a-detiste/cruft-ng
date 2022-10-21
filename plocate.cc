@@ -44,7 +44,7 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 	pclose(fp);
 
 	// default PRUNEPATH in /etc/updatedb.conf
-	command = "find /var/spool";
+	command = "find /var/spool 2> /dev/null";
 	if ((fp = popen(command.c_str(), "r")) == NULL) return 1;
 	while (fgets(buf, sizeof(buf),fp))
 	{
