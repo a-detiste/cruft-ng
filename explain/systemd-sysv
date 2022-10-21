@@ -3,10 +3,29 @@ set -e
 
 test -d /var/lib/systemd/timers/ || exit 0
 
-grep "Persistent=true" /usr/lib/systemd/system/*.timer 2>/dev/null | cut -d '/' -f 6 | cut -d '.' -f 1 | while read unit
+find /var/lib/systemd/timers/ -type f -printf "%f\n" | cut -d '-' -f 2-999 | cut -d '.' -f 1-2 | while read unit
 do
-    stamp="/var/lib/systemd/timers/stamp-${unit}.timer"
-    test -f "$stamp" && echo "$stamp"
+    stamp="/var/lib/systemd/timers/stamp-$unit"
+
+    if test -e "/etc/systemd/system/$unit"
+    then
+        if grep -q "Persistent=true" "/etc/systemd/system/$unit"
+        then
+            echo "$stamp"
+        fi
+    elif test -e "/usr/lib/systemd/system/$unit"
+    then
+        if grep -q "Persistent=true" "/usr/lib/systemd/system/$unit"
+        then
+            echo "$stamp"
+        fi
+    elif test -e "/run/systemd/generator/$unit"
+    then
+        if grep -q "Persistent=true" "/run/systemd/generator/$unit"
+        then
+            echo "$stamp"
+        fi
+    fi
 done
 
 exit 0
