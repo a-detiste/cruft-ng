@@ -1,0 +1,4 @@
+# sample ignore file
+/var/chroot
+/var/schroot
+/var/www/html

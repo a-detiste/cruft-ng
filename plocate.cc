@@ -1,5 +1,6 @@
 #include <cstring>
 #include <iostream>
+#include <fstream>
 #include <algorithm>
 
 #include "plocate.h"
@@ -10,6 +11,25 @@
 #define PATH_MAX 4096
 #endif
 
+void read_ignores(vector<string>& ignores)
+{
+        ifstream ignore_file("/etc/cruft/ignore");
+        if (!ignore_file.good())
+	        ifstream ignore_file("/usr/lib/cruft/ignore");
+        while (ignore_file.good())
+        {
+                string ignore_line;
+                getline(ignore_file,ignore_line);
+                if (ignore_file.eof()) break;
+                if (ignore_line.substr(0,1) == "/") {
+			if (ignore_line.back() != '/')
+                            ignore_line = ignore_line + "/";
+                        ignores.push_back(ignore_line);
+                }
+        }
+        ignore_file.close();
+}
+
 int read_plocate(vector<string>& fs, vector<string>& prunefs)
 {
 	bool debug=getenv("DEBUG") != NULL;
@@ -17,6 +37,9 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 	string line;
 
 	if (debug) cerr << "PLOCATE DATA\n";
+
+	vector<string> ignores;
+	read_ignores(ignores);
 
 	fs.push_back("/.");
 	fs.push_back("/dev");
@@ -39,6 +62,19 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 		    or toplevel == "/root"
 		    or toplevel == "/tmp")
 			continue;
+
+		bool ignored = false;
+	        vector<string>::iterator ignore=ignores.begin();
+	        while (ignore != ignores.end() )
+	        {
+			if (!filename.compare(0, (*ignore).size(), *ignore)) {
+				ignored = true;
+				break;
+			}
+			ignore++;
+	        }
+		if (ignored) continue;
+
 		if (!pyc_has_py(filename, false)) fs.push_back(filename);
 	}
 	pclose(fp);
