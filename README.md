@@ -63,6 +63,8 @@ TODO:
 
  * read the AppArmor globbing paterns (with libapparmor1)
 
+ * https://www.codeproject.com/Articles/5163931/Fast-String-Matching-with-Wildcards-Globs-and-Giti
+
 COPYRIGHT:
 ----------
 
