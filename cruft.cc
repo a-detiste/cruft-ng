@@ -281,18 +281,18 @@ int main(int argc, char *argv[])
 	if (debug) cerr << cruft3.size() << " files in cruft3 database" << endl << endl << flush;
 
 	// match the dynamic "explain" filters
-	vector<string> explain;
+	vector<owner> explain;
 	read_explain(packages,explain);
 	elapsed("read explain");
 	vector<string> cruft4;
 	left=cruft3.begin();
 	while (left != cruft3.end()) {
-		right=explain.begin();
+		right2=explain.begin();
 		bool match=false;
-		while (right != explain.end()) {
-			match=(*left==*right);
+		while (right2 != explain.end()) {
+			match=(*left==(*right2).glob);
 			if (match) break;
-			right++;
+			right2++;
 		}
 		if (!match) cruft4.push_back(*left);
 		left++;

@@ -1,6 +1,7 @@
 .*.swp
 cruft
 cruftold
+cpigs
 cruft.log
 cruft.log.old
 *.o

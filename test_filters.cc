@@ -1,6 +1,7 @@
 #include <iostream>
 #include "dpkg.h"
 #include "filters.h"
+#include "owner.h"
 
 int main(int argc, char *argv[])
 {

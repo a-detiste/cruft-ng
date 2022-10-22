@@ -7,16 +7,6 @@
 #include "filters.h"
 #include "usr_merge.h"
 
-owner::owner( string package_, string glob_ )
-{
-	package = package_;
-	glob = glob_;
-}
-bool operator==(owner const& l, owner const &r)
-{
-    return l.glob == r.glob;
-}
-
 bool owner_sorter(owner const& l, owner const& r)
 {
     return l.glob < r.glob;
