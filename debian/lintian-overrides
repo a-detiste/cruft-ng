@@ -1,2 +1,3 @@
 # this is intentional, cruft-ng has to know the inners of dpkg
 cruft-ng: uses-dpkg-database-directly [usr/bin/cruft]
+cruft-ng: uses-dpkg-database-directly [usr/bin/cpigs]

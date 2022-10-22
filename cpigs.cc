@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
   		return left.second < right.second;
 	});
 	for (size_t i = 0; i < pigs.size() && i < limit; ++i) {
-		if (pigs[i].second > 0) cout << pigs[i].first << " " << pigs[i].second << endl;
+		if (pigs[i].second > 0) cout << pigs[i].second << " " << pigs[i].first << endl;
 	}
 
 	return 0;
