@@ -1,0 +1,35 @@
+.TH CPIGS "2022-10-22" "cruft-ng" "Debian cruft-ng documentation"
+
+.SH "NAME"
+cpigs \- Show which installed packages occupy the most variable space
+.SH "SYNOPSIS"
+.IX Header "SYNOPSIS"
+\&\fBcpigs\fR [\fIoptions\fR]
+.SH "DESCRIPTION"
+.IX Header "DESCRIPTION"
+\&\fBcpigs\fR sorts the installed packages by size from the
+\fIcruft-ng\fR database and outputs the largest ones.
+Per default dpigs displays the largest 10 packages. You can change
+this value by using the \fB\-n\fR option (see \*(L"\s-1OPTIONS\*(R"\s0).
+.SH "OPTIONS"
+.IX Header "OPTIONS"
+.IP "\fB\-n\fR, \fB\-\-lines\fR=\fIN\fR" 4
+.IX Item "-n"
+Display the N largest packages on the system (default 10).
+.SH "AUTHOR"
+.IX Header "AUTHOR"
+Alexandre Detiste <alexandre.detiste@gmail.com>
+.SH "COPYRIGHT AND LICENCE"
+.IX Header "COPYRIGHT AND LICENCE"
+Copyright (C) 2022 Alexandre Detiste <alexandre.detiste@gmail.com>.
+.PP
+This program is free software; you can redistribute it and/or modify
+it under the terms of the \s-1GNU\s0 General Public License as published by
+the Free Software Foundation; either version 2, or (at your option)
+any later version.
+.PP
+On Debian systems, a copy of the \s-1GNU\s0 General Public License version 2
+can be found in \fI/usr/share/common\-licenses/GPL\-2\fR.
+.SH "SEE ALSO"
+.IX Header "SEE ALSO"
+\&\fBdpigs\fR\|(1), \fBcruft\-ng\fR\|(8)

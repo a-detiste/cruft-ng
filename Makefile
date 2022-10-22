@@ -41,7 +41,7 @@ test_filters: test_filters.cc filters.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG
 install:
 	#install -D -m 2755 -g plocate cruftg   $(DESTDIR)/usr/bin/cruft
 	install -D -m 0755            cruft   $(DESTDIR)/usr/bin/cruft
-	install -D -m 0644            cruft.8 $(DESTDIR)/usr/share/man/man8/cruft.8
+	install -D -m 0755            cpigs   $(DESTDIR)/usr/bin/cpigs
 	install -D -m 0644            cruft.8 $(DESTDIR)/usr/share/man/man8/cruft-ng.8
 	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft/README.md
 
