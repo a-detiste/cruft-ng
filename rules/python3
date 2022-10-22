@@ -1,5 +1,7 @@
 /etc/python3
 /etc/python3/debian_config
+/usr/lib/python3.*/dist-packages
+/usr/lib/python3.*/site-packages
 /usr/local/lib/python3.?
 /usr/local/lib/python3.??
 /usr/local/lib/python3.?/dist-packages
