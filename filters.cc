@@ -7,7 +7,22 @@
 #include "filters.h"
 #include "usr_merge.h"
 
-void read_one_filter(const string& glob_filename, vector<string>& globs)
+owner::owner( string package_, string glob_ )
+{
+	package = package_;
+	glob = glob_;
+}
+bool operator==(owner const& l, owner const &r)
+{
+    return l.glob == r.glob;
+}
+
+bool owner_sorter(owner const& l, owner const& r)
+{
+    return l.glob < r.glob;
+}
+
+void read_one_filter(const string& glob_filename, const string& package, vector<owner>& globs)
 {
 	bool debug=getenv("DEBUG_RULES") != NULL;
 
@@ -19,14 +34,15 @@ void read_one_filter(const string& glob_filename, vector<string>& globs)
 		getline(glob_file,glob_line);
 		if (glob_file.eof()) break;
 		if (glob_line.substr(0,1) == "/") {
-			globs.push_back(usr_merge(glob_line));
-			if (debug) cerr << glob_line << endl;
+			owner glob(package, usr_merge(glob_line));
+			globs.push_back(glob);
+			if (debug) cerr << package << " " << glob_line << endl;
 		}
 	}
 	glob_file.close();
 }
 
-int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
+int read_filters(/* const */ vector<string>& packages, vector<owner>& globs)
 {
 	bool debug=getenv("DEBUG") != NULL;
 
@@ -43,7 +59,7 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 		string uppercase=package;
 		transform(uppercase.begin(), uppercase.end(), uppercase.begin(), ::toupper);
 		if (package==uppercase)
-			read_one_filter("/etc/cruft/filters/" + package, globs);
+			read_one_filter("/etc/cruft/filters/" + package, package, globs);
 	}
 	closedir(dp);
 	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
@@ -57,9 +73,9 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 		string etc_filename = "/etc/cruft/filters/" + package;
 		string usr_filename = "/usr/lib/cruft/filters-unex/" + package; // should be empty
 		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
-			read_one_filter(etc_filename, globs);
+			read_one_filter(etc_filename, package, globs);
 		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
-			read_one_filter(usr_filename, globs);
+			read_one_filter(usr_filename, package, globs);
 	}
 	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
 
@@ -68,16 +84,20 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 	string etc_filename;
 	struct stat stat_buffer;
 	bool keep = false;
+	string package;
 	while (glob_file.good())
 	{
 		string glob_line;
 		getline(glob_file,glob_line);
 		if (glob_file.eof()) break;
 		if (glob_line.substr(0,1) == "/") {
-			if (keep) globs.push_back(usr_merge(glob_line));
+			if (keep) {
+				owner glob(package, usr_merge(glob_line));
+				globs.push_back(glob);
+			}
 		} else {
 			// new package entry
-			string package = glob_line;
+			package = string(glob_line);
 			etc_filename = "/etc/cruft/filters/" + package;
 			keep = bool(find(packages.begin(), packages.end(), package) != packages.end()) & bool(!stat(etc_filename.c_str(), &stat_buffer)==0);
 			//cerr << package << " " << keep << endl;
@@ -85,7 +105,7 @@ int read_filters(/* const */ vector<string>& packages, vector<string>& globs)
 	}
 	glob_file.close();
 
-	sort(globs.begin(), globs.end());
+	sort(globs.begin(), globs.end(), &owner_sorter);
 	globs.erase( unique( globs.begin(), globs.end() ), globs.end() );
 	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
 	return 0;

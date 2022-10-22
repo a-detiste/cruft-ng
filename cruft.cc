@@ -260,18 +260,19 @@ int main(int argc, char *argv[])
 	if (debug) cerr << "count stat():" << count_stat << endl;
 
 	// match the globs against reduced database
-	vector<string> globs;
+	vector<owner> globs;
 	read_filters(packages,globs);
 	elapsed("read filters");
 	vector<string> cruft3;
 	left=cruft.begin();
+	vector<owner>::iterator right2;
 	while (left != cruft.end()) {
-		right=globs.begin();
+		right2=globs.begin();
 		bool match=false;
-		while (right != globs.end()) {
-			match=myglob(*left,*right);
+		while (right2 != globs.end()) {
+			match=myglob(*left,(*right2).glob);
 			if (match) break;
-			right++;
+			right2++;
 		}
 		if (!match) cruft3.push_back(*left);
 		left++;

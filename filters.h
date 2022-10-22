@@ -1,6 +1,6 @@
 #include <vector>
 #include <string>
 
-using namespace std;
+#include "owner.h"
 
-int read_filters(vector<string>& packages, vector<string>& globs);
+int read_filters(std::vector<std::string>& packages, std::vector<owner>& globs);
