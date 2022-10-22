@@ -1,8 +1,19 @@
 #!/bin/sh
 set -e
 
-cat /var/lib/ucf/registry | awk '{print $2}' | while read f
+test -f /var/lib/ucf/registry || exit 0
+
+last_package=None
+while read package file
 do
-    test -f "$f" && echo "$f"
-done
+    if test -f "$file"
+    then
+        if [ "$package" != "$last_package" ]
+        then
+            echo "$package"
+        fi
+        echo "$file"
+        last_package="$package"
+    fi
+done < /var/lib/ucf/registry
 
