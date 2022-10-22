@@ -1,3 +1,11 @@
+cruft-ng (0.9.47~) UNRELEASED; urgency=medium
+
+  * new "dh-cruft" binary package: this DebHelper module is to be used
+    by source package that wants to provide their own rules.
+  * update ruleset for Python3
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 23 Oct 2022 01:39:19 +0200
+
 cruft-ng (0.9.46) unstable; urgency=medium
 
   [ Alexandre Detiste ]
