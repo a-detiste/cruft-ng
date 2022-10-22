@@ -26,13 +26,13 @@ Description: program that finds any cruft built up on your system
  .
  It bases most of its results on dpkg's & plocate's databases.
 
-#Package: dh-cruft
-#Depends: ${perl:Depends}, ${misc:Depends}
-#Architecture: all
-#Provides: dh-sequence-cruft
-#Description: plugin for DebHelper to register .cruft and .purge files
-# Some demo package can be found at:
-# https://github.com/a-detiste/dh-cruft-test
+Package: dh-cruft
+Depends: ${perl:Depends}, ${misc:Depends}
+Architecture: all
+Provides: dh-sequence-cruft
+Description: plugin for DebHelper to register .cruft and .purge files
+ Some demo package can be found at:
+ https://github.com/a-detiste/dh-cruft-test
 
 Package: cruft
 Depends: cruft-ng, ${misc:Depends}
