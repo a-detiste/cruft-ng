@@ -7,5 +7,6 @@ struct owner
 	std::string package;
 	std::string glob;
 	owner(std::string, std::string);
+	bool operator==(owner const&);
 };
 #endif

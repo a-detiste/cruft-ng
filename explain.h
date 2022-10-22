@@ -1,6 +1,5 @@
 #include <vector>
 #include <string>
+#include "owner.h"
 
-using namespace std;
-
-int read_explain(vector<string>& packages, vector<string>& explain);
+int read_explain(std::vector<std::string>& packages, std::vector<owner>& explain);
