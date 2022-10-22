@@ -84,7 +84,7 @@ int read_explain(vector<string>& packages, vector<owner>& explain)
                 else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
                         read_one_explain(usr_filename, *package, explain);
 	}
-	//sort(explain.begin(), explain.end());
-	//explain.erase( unique( explain.begin(), explain.end() ), explain.end() );
+	sort(explain.begin(), explain.end());
+	explain.erase( unique( explain.begin(), explain.end() ), explain.end() );
 	return 0;
 }
