@@ -1,8 +1,22 @@
-#!/bin/sh
+#!/bin/bash
 
 # /etc/logrotate.d/dpkg always exists
 
-cat /etc/logrotate.d/* | grep ^/ | while read file bracket
+for definition in /etc/logrotate.d/*
 do
-	find /var/log -path "${file}*" 2>/dev/null
+	#dpkg -S $definition is too slow
+	package=${definition##*/}
+	case $package in
+		btmp|wtmp)
+			echo logrotate
+			;;
+		*)
+			echo $package
+			;;
+	esac
+
+	grep ^/ $definition | while read file bracket
+	do
+		find /var/log -path "${file}*" 2>/dev/null
+	done
 done

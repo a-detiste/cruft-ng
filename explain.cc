@@ -31,13 +31,17 @@ void read_one_explain(const string& script, const string& package, vector<owner>
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
 	string filter;
+	string real_package = package;
 	while (fgets(buf, sizeof(buf),fp))
 	{
 		filter=buf;
 		filter=filter.substr(0,filter.size() - 1); // remove '/n'
-		//if (debug) cerr << "# " << filter << endl;
-		owner seen(package, usr_merge(filter));
-		explain.push_back(seen);
+		if (filter.front() == '/') {
+			owner seen(real_package, usr_merge(filter));
+			explain.push_back(seen);
+		} else {
+			real_package = filter;
+		};
 	}
 	fclose(fp);
 }
