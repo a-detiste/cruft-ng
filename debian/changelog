@@ -1,16 +1,20 @@
 cruft-ng (0.9.46) unstable; urgency=medium
 
   [ Alexandre Detiste ]
-  * new "dh-cruft" binary package: this DebHelper module is to be used
-    by source package that wants to provide their own rules.
+  * implement config file for ignore (Closes: #509414)
+  * new companion program "cpigs" that works similar
+    to "dpigs" from Debian Goodies package,
+    but will instead list the dynamic file usage.
   * DPKG data acquisition: also consider packages in 'rc' state
   * workaround for plocate's default "PRUNEPATH=/var/splool":
     always scan these files ourselves
+  * work almost as good as non-root, suppress warnings
   * new LOGROTATE generic handling script
   * pack all the rules into a single file
   * update ruleset for Jupyter, npm, base-files,
     libdbus-1dev, timgm6mb-soundfont, dlocate,
-    systemd, init-system-helpers, PolicyKit.
+    systemd, init-system-helpers, PolicyKit,
+    avahi-autoipd, redis-tools, iperf3.
 
   [ Guillem Jover ]
   * various build system improvement
