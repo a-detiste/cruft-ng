@@ -1,0 +1,45 @@
+#!/bin/bash
+set -e
+
+# this is usefull even when systemd is not the init system
+# because these declarative configs are shipped anyway
+
+cd /usr/lib/tmpfiles.d/
+
+ls -1 | while read definition
+do
+    package="${definition%.*}"
+    case "$package" in
+        debian)
+           package="base-files"
+           ;;
+        lighttpd.tmpfile)
+           # TODO: the .tmpfile should be upstreamed
+           package="lighttpd"
+           ;;
+        journal-nocow|var)
+           continue
+           ;;
+        systemd-pstore|systemd-tmp)
+           package="systemd"
+           ;;
+    esac
+
+    grep -v ^# < $definition | sed 's/%./*/g' | while read action path extra
+    do
+        case "$path" in
+             /etc/*)
+                  [ "$package" != "$last_package" ] && echo "$package"
+                  echo "$path"
+                  [ "$action" == "d" ] && echo "$path/**"
+                  last_package="$package"
+                  ;;
+             /var/*)
+                  [ "$package" != "$last_package" ] && echo "$package"
+                  echo "$path"
+                  [ "$action" == "d" ] && echo "$path/**"
+                  last_package="$package"
+                  ;;
+        esac
+    done
+done
