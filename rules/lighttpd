@@ -1,2 +1,3 @@
 /etc/lighttpd/conf-enabled/*
 /var/cache/lighttpd/compress/**
+/var/cache/lighttpd/uploads/**

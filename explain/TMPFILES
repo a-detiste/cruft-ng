@@ -14,10 +14,10 @@ do
            package="base-files"
            ;;
         lighttpd.tmpfile)
-           # TODO: the .tmpfile should be upstreamed
-           package="lighttpd"
+           # there is ../rules/lighttpd
+           continue
            ;;
-        journal-nocow|var)
+        journal-nocow|legacy|var)
            continue
            ;;
         systemd-pstore|systemd-tmp)
