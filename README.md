@@ -65,6 +65,9 @@ TODO:
 
  * https://www.codeproject.com/Articles/5163931/Fast-String-Matching-with-Wildcards-Globs-and-Giti
 
+ * Bugs found in other Debian packages (by this tool):
+   https://bugs.debian.org/cgi-bin/pkgreport.cgi?tag=cruft;users=alexandre.detiste@gmail.com                                                                                                   
+
 COPYRIGHT:
 ----------
 
