@@ -28,3 +28,4 @@ debian/dh-cruft/
 debian/debhelper-build-stamp
 debian/files
 debian/tmp/
+tools/Packages_amd64
