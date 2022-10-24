@@ -25,7 +25,7 @@ cruft: $(SHARED_OBJS) dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o $(LIBDPKG_LIBS) -o cruft
 
 cpigsold: cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_lib.o owner.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_popen.o owner.o -lstdc++fs -o cpigs
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_popen.o owner.o -lstdc++fs -o cpigsold
 cpigs: cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_lib.o owner.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_lib.o owner.o $(LIBDPKG_LIBS) -o cpigs
 
