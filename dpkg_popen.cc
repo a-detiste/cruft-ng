@@ -91,6 +91,8 @@ int read_dpkg_items(vector<string>& dpkg)
 	vector<Diversion> diversions;
 	read_diversions(diversions);
 
+	dpkg.push_back("/");
+
         string command="dpkg-query --listfiles $(dpkg-query --show --showformat '${binary:Package} ')|sort -u";
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
