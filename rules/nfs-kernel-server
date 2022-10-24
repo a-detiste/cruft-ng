@@ -1,1 +1,3 @@
 /etc/exports
+/var/lib/nfs/nfsdcltrack
+/var/lib/nfs/nfsdcltrack/main.sqlite
