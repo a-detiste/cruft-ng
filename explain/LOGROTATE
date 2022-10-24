@@ -7,6 +7,9 @@ do
 	#dpkg -S $definition is too slow
 	package=${definition##*/}
 	case $package in
+		alternatives)
+			echo ALTERNATIVES
+			;;
 		btmp|wtmp)
 			echo logrotate
 			;;
