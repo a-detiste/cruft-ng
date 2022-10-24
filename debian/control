@@ -18,6 +18,8 @@ Depends:
   ${shlibs:Depends},
   ${misc:Depends},
   plocate,
+Suggests:
+  ncdu,
 Breaks: cruft (<< 0.9.44~), cruft-common
 Replaces: cruft (<< 0.9.44~), cruft-common
 Description: program that finds any cruft built up on your system

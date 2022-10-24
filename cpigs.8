@@ -13,9 +13,12 @@ Per default dpigs displays the largest 10 packages. You can change
 this value by using the \fB\-n\fR option (see OPTIONS).
 .SH "OPTIONS"
 .IX Header "OPTIONS"
-.IP "\fB\-n\fR, \fB\-\-lines\fR=\fIN\fR" 4
+.IP "\fB[\-n]\fR \fIN\fR" 4
 .IX Item "-n"
 Display the N largest packages on the system (default 10).
+.IP "\fB\-e\fR" 4
+.IX Item "-e"
+Export in the JSON format expected by "ncdu".
 .SH "AUTHOR"
 .IX Header "AUTHOR"
 Alexandre Detiste <alexandre.detiste@gmail.com>
@@ -32,4 +35,4 @@ On Debian systems, a copy of the \s-1GNU\s0 General Public License version 2
 can be found in \fI/usr/share/common\-licenses/GPL\-2\fR.
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
-\&\fBdpigs\fR\|(1), \fBcruft\-ng\fR\|(8)
+\&\fBdpigs\fR\|(1), \fBcruft\fR\|(8), \fBncdu\fR\|(1)

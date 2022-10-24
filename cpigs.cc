@@ -1,6 +1,7 @@
 #include <iostream>
 #include <map>
 #include <algorithm>
+#include <ctime>
 
 #include <fnmatch.h>
 #include <string.h>
@@ -74,23 +75,49 @@ void elapsed(string action)
 
 int usage()
 {
-	cerr << "usage: cpigs [-i] [NUMBER]" << endl;
+	cerr << "usage: " << endl;
+	cerr << "  cpigs [-n] [NUMBER]  : default format" << endl;
+	cerr << "  cpigs -e             : export in ncdu format" << endl;
 	return 1;
+}
+
+void output_pigs(long unsigned int limit, map<string, int>& usage)
+{
+	vector<pair<string,int>> pigs;
+	copy(usage.begin(), usage.end(), back_inserter<vector<pair<string,int>>> (pigs));
+	sort(pigs.rbegin(), pigs.rend(), [](const std::pair<string,int> &left,
+					    const std::pair<string,int> &right) {
+		return left.second < right.second;
+	});
+	for (size_t i = 0; i < pigs.size() && i < limit; ++i) {
+		if (pigs[i].second > 0) cout << pigs[i].second << " " << pigs[i].first << endl;
+	}
+}
+
+void output_ncdu(map<string, int>& usage)
+{
+	cout << "[1,2,{\"progname\":\"cpigs\",\"progver\":\"0\",";
+	cout << "\"timestamp\":" << time(nullptr) << "},[" << endl;
+	cout << "{\"name\":\"/home/tchet/git/cruft\",\"asize\":4096,\"dsize\":4096,\"dev\":2049}," << endl;
+	cout << "{\"name\":\"TODO\",\"asize\":2347,\"dsize\":4096}" << endl;
+	cout << "]]" << endl;
 }
 
 int main(int argc, char *argv[])
 {
-	long unsigned int limit;
-        if (argc == 3) {
+	long unsigned int limit = 10;
+
+	bool ncdu = false;
+	if (argc == 2 && !strcmp(argv[1], "-e")) {
+		ncdu = true;
+	} else if (argc == 3) {
 		try {
 			limit = stoi(argv[2]);
 		} catch(...) { return usage(); }
-        } else if (argc == 2) {
+	} else if (argc == 2) {
 		try {
 			limit = stoi(argv[1]);
 		} catch(...) { return usage(); }
-	} else {
-		limit = 10;
 	}
 
 	vector<string> fs,prunefs;
@@ -163,15 +190,8 @@ int main(int argc, char *argv[])
 	}
 	elapsed("extra vs globs");
 
-	vector<pair<string,int>> pigs;
-	copy(usage.begin(), usage.end(), back_inserter<vector<pair<string,int>>> (pigs));
-	sort(pigs.rbegin(), pigs.rend(), [](const std::pair<string,int> &left,
-					    const std::pair<string,int> &right) {
-  		return left.second < right.second;
-	});
-	for (size_t i = 0; i < pigs.size() && i < limit; ++i) {
-		if (pigs[i].second > 0) cout << pigs[i].second << " " << pigs[i].first << endl;
-	}
+	if (ncdu) output_ncdu(usage);
+	else output_pigs(limit, usage);
 
 	return 0;
 }
