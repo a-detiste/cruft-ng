@@ -1,11 +1,6 @@
 /var/cache/app-info
-/var/cache/app-info/cache
-/var/cache/app-info/cache/*.cache
-/var/cache/app-info/cache/*.xb
-/var/cache/app-info/gv
-/var/cache/app-info/gv/*.gvz
-/var/cache/app-info/xapian
-/var/cache/app-info/xapian/**
+/var/cache/swcatalog
+/var/cache/swcatalog/cache
 /var/cache/swcatalog/cache/*.xb
 /var/lib/app-info
 /var/lib/app-info/**
