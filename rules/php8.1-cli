@@ -1,0 +1,5 @@
+/etc/php/8.1/cli/.start
+/etc/php/8.1/cli/php.ini
+/etc/php/8.1/cli/conf.d/*.ini
+/var/lib/php/modules/8.1/cli
+/var/lib/php/modules/8.1/cli/**
