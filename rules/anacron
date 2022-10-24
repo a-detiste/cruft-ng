@@ -1,0 +1,3 @@
+/var/spool/anacron/cron.daily
+/var/spool/anacron/cron.weekly
+/var/spool/anacron/cron.monthly
