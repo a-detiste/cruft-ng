@@ -1,0 +1,3 @@
+/var/lib/nfs/.etab.lock
+/var/lib/nfs/.xtab.lock
+/var/lib/nfs/export-lock
