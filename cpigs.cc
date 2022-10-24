@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <ctime>
 
+#include <jsoncpp/json/json.h>
 #include <fnmatch.h>
 #include <string.h>
 #include <time.h>
@@ -94,13 +95,53 @@ void output_pigs(long unsigned int limit, map<string, int>& usage)
 	}
 }
 
-void output_ncdu(map<string, int>& usage)
+void output_ncdu(vector<string>& cruft_db)
 {
-	cout << "[1,2,{\"progname\":\"cpigs\",\"progver\":\"0\",";
-	cout << "\"timestamp\":" << time(nullptr) << "},[" << endl;
-	cout << "{\"name\":\"/home/tchet/git/cruft\",\"asize\":4096,\"dsize\":4096,\"dev\":2049}," << endl;
-	cout << "{\"name\":\"TODO\",\"asize\":2347,\"dsize\":4096}" << endl;
-	cout << "]]" << endl;
+	Json::Value json(Json::arrayValue);
+	json.append(1);
+	json.append(2);
+	Json::Value signature(Json::objectValue);
+	signature["progname"] = "cpigs";
+	signature["progver"] = "0";
+	signature["timestamp"] = int(time(nullptr));
+	json.append(signature);
+	Json::Value root(Json::arrayValue);
+
+	Json::Value dir(Json::objectValue);
+	dir["name"] = "/";
+	dir["asize"] = 4096;
+	dir["dsize"] = 4096;
+	root.append(dir);
+
+	Json::Value file(Json::objectValue);
+	file["name"] = "HELLO";
+	file["asize"] = 13;
+	file["dsize"] = 4096;
+	root.append(file);
+
+	Json::Value file2(Json::objectValue);
+	file2["name"] = "WORLD";
+	file2["asize"] = 42;
+	file2["dsize"] = 4096;
+	root.append(file2);
+
+
+	Json::Value newroot(Json::arrayValue);
+	Json::Value subdir(Json::objectValue);
+	subdir["name"] = "etc";
+	subdir["asize"] = 4096;
+	subdir["dsize"] = 4096;
+	newroot.append(subdir);
+	root.append(newroot);
+
+	//vector<string>::iterator cruft=cruft_db.begin();
+	//		if (fs::is_directory(*cruft) ) {
+	//		} else if (fs::is_symlink(*cruft)) {
+	//	cruft++;
+	//}
+
+	json.append(root);
+	cout << json.toStyledString() << endl;
 }
 
 int main(int argc, char *argv[])
@@ -148,6 +189,11 @@ int main(int argc, char *argv[])
 	}
 	elapsed("main set match");
 
+	if (ncdu) {
+		output_ncdu(cruft_db);
+		return 0;
+	};
+
 	vector<owner> globs;
 	read_filters(packages,globs);
 	read_explain(packages,globs);
@@ -190,8 +236,7 @@ int main(int argc, char *argv[])
 	}
 	elapsed("extra vs globs");
 
-	if (ncdu) output_ncdu(usage);
-	else output_pigs(limit, usage);
+	output_pigs(limit, usage);
 
 	return 0;
 }
