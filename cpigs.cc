@@ -1,6 +1,5 @@
 #include <iostream>
 #include <map>
-#include <filesystem>
 #include <algorithm>
 
 #include <fnmatch.h>
@@ -15,7 +14,15 @@
 extern "C" int shellexp(char* filename, char* pattern );
 
 using namespace std;
+
+#ifndef BUSTER
+#include <filesystem>
 namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+using namespace std::experimental;
+namespace fs = std::experimental::filesystem;
+#endif
 
 bool myglob(string file, string glob )
 {
