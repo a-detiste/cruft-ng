@@ -1,0 +1,17 @@
+#!/bin/bash
+set -eu
+
+dpkg-query --showformat '${db:Status-Abbrev} ${Package} ${binary:Synopsis}\n' --show 'i*' | while read status package desc
+do
+    [ "$status" = "un" ] && continue
+    [ "$package" = "ispell" ] && continue
+    case $desc in
+        *spell*)
+             lang=${package:1}
+             test -f /usr/lib/ispell/$lang.hash && echo /usr/lib/ispell/$lang.hash
+             test -f /var/lib/ispell/$lang.compat && echo /var/lib/ispell/$lang.compat
+             test -f /var/lib/ispell/$lang.hash && echo /var/lib/ispell/$lang.hash
+             test -f /var/lib/ispell/$lang.remove && echo /var/lib/ispell/$lang.remove
+             ;;
+    esac
+done

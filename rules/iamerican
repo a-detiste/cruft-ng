@@ -1,9 +1,0 @@
-/etc/dictionaries-common/ispell-default
-/etc/dictionaries-common/default.aff
-/etc/dictionaries-common/default.hash
-/usr/lib/ispell/default.aff
-/usr/lib/ispell/default.hash
-/usr/lib/ispell/american.hash
-/var/lib/ispell/american.compat
-/var/lib/ispell/american.hash
-/var/lib/ispell/american.remove
