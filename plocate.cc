@@ -15,7 +15,7 @@ void read_ignores(vector<string>& ignores)
 {
         ifstream ignore_file("/etc/cruft/ignore");
         if (!ignore_file.good())
-	        ifstream ignore_file("/usr/lib/cruft/ignore");
+	        ifstream ignore_file("/usr/share/cruft/ignore");
         while (ignore_file.good())
         {
                 string ignore_line;
