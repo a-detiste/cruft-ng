@@ -1,4 +1,4 @@
 #!/bin/sh
 set -e
 
-dpkg-query -L grub-common | grep 'grub\.mo' | sed 's#usr/share#boot/grub#' | sed 's#/LC_MESSAGES/grub##'
+dpkg-query -L grub-common 2>/dev/null | grep 'grub\.mo' | sed 's#usr/share#boot/grub#' | sed 's#/LC_MESSAGES/grub##'

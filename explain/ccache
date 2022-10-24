@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -eu
+
+find /usr/lib/ccache/ -maxdepth 1 -type l ! -empty

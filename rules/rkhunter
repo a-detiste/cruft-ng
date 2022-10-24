@@ -1,0 +1,5 @@
+/var/lib/rkhunter/db/rkhunter.dat
+/var/lib/rkhunter/db/rkhunter.dat.old
+/var/lib/rkhunter/db/rkhunter_prop_list.dat
+/var/lib/rkhunter/tmp
+/var/lib/rkhunter/tmp/*

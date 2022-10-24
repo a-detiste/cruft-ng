@@ -1,0 +1,15 @@
+/boot/efi
+/boot/efi/EFI
+/boot/efi/EFI/debian
+/boot/efi/EFI/debian/BOOTX64.CSV
+/boot/efi/EFI/debian/fbx64.efi
+/boot/efi/EFI/debian/grub.cfg
+/boot/efi/EFI/debian/grubx64.efi
+/boot/efi/EFI/debian/mmx64.efi
+/boot/efi/EFI/debian/shimx64.efi
+/boot/grub/.background_cache.png
+/boot/grub/x86_64-efi
+/boot/grub/x86_64-efi/core.efi
+/boot/grub/x86_64-efi/grub.efi
+/boot/grub/x86_64-efi/load.cfg
+/boot/grub/x86_64-efi/modinfo.sh

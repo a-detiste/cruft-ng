@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+
+dpkg-query -L grub-efi-amd64-bin 2>/dev/null | grep ^/usr/lib/grub/x86_64-efi | grep -e '\.mod$' -e '\.lst$' | sed 's#usr/lib#boot#'
