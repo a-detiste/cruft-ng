@@ -12,7 +12,7 @@ int read_dpkg_header(vector<string>& packages)
 
 	if (debug) cerr << "DPKG DATA\n";
 	FILE* fp;
-	if ((fp = popen("dpkg-query --show --showformat '${binary:Package}\n'", "r")) == NULL) return 1;
+	if ((fp = popen("dpkg-query --show --showformat '${Package}\n'", "r")) == NULL) return 1;
 	const int SIZEBUF = 4096;
 	char buf[SIZEBUF];
 	string package;
