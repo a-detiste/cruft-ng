@@ -38,13 +38,6 @@ test_diversions: test_diversions.cc dpkg_popen.o usr_merge.o
 test_explain: test_explain.cc explain.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
 test_filters: test_filters.cc filters.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
 
-install:
-	#install -D -m 2755 -g plocate cruftg   $(DESTDIR)/usr/bin/cruft
-	install -D -m 0755            cruft   $(DESTDIR)/usr/bin/cruft
-	install -D -m 0755            cpigs   $(DESTDIR)/usr/bin/cpigs
-	install -D -m 0644            cruft.8 $(DESTDIR)/usr/share/man/man8/cruft-ng.8
-	install -D -m 0644            README.md  $(DESTDIR)/usr/share/doc/cruft/README.md
-
 clean:
 	rm -f cpigs cruft cruftold test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python
 	rm -f *.o

@@ -1,3 +1,5 @@
+cruft     /usr/bin/
+cpigs     /usr/bin/
 explain/* /usr/libexec/cruft/
 ruleset   /usr/share/cruft/
 ignore    /usr/share/cruft/
