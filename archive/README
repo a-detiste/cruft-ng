@@ -1,0 +1,5 @@
+This is an archive of old rules to make backporting
+easier and more usefull.
+
+The package not found in "unstable" are to be added wholy,
+the ones already existing have to be merged together.
