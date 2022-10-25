@@ -1,4 +1,4 @@
-cruft-ng (0.9.47~) UNRELEASED; urgency=medium
+cruft-ng (0.9.47~) buster; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
