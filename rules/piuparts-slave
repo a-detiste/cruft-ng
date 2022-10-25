@@ -1,0 +1,9 @@
+/etc/piuparts
+/var/cache/piuparts
+/var/cache/piuparts/basetgz/*.log
+/var/cache/piuparts/basetgz/*.tar.gz
+/var/cache/piuparts/tmp
+/var/lib/piuparts
+/var/lib/piuparts/piupartss
+/var/lib/piuparts/slave
+/var/lib/piuparts/slave/**
