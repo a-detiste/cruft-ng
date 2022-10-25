@@ -5,6 +5,7 @@ Maintainer: Alexandre Detiste <alexandre.detiste@gmail.com>
 Build-Depends:
     pkg-config,
     libdpkg-dev,
+    libjsoncpp-dev,
     debhelper-compat (= 13),
 Standards-Version: 4.6.1.0
 Homepage: https://github.com/a-detiste/cruft-ng/
