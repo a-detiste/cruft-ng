@@ -1,2 +1,3 @@
-# libpam-modules 0.99.7.1-6
+/etc/ftpusers
+/etc/loginusers
 /etc/security/opasswd
