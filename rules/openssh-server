@@ -1,3 +1,7 @@
+/etc/hosts.equiv
+/etc/ssh/known_hosts
+/etc/ssh/shosts.equiv
+/etc/ssh/sshrc
 /etc/ssh/ssh_host_key
 /etc/ssh/ssh_host_key.pub
 /etc/ssh/ssh_host_rsa_key

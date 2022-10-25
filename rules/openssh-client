@@ -2,3 +2,8 @@
 /etc/ssh/primes
 /etc/ssh/ssh_known_hosts
 /etc/ssh/ssh_known_hosts2
+# man ssh-keysign.8
+/etc/ssh/ssh_host_dsa_key-cert.pub
+/etc/ssh/ssh_host_ecdsa_key-cert.pub
+/etc/ssh/ssh_host_ed25519_key-cert.pub
+/etc/ssh/ssh_host_rsa_key-cert.pub
