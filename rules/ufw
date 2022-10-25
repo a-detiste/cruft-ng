@@ -1,0 +1,4 @@
+/etc/ufw
+/etc/ufw/ufw.conf
+/etc/ufw/*.init
+/etc/ufw/*.rules
