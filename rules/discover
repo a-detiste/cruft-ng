@@ -1,0 +1,4 @@
+/etc/discover.conf
+/var/lib/discover
+/var/lib/discover/**
+
