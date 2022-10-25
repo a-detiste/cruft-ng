@@ -23,7 +23,7 @@ cruft-ng (0.9.46) unstable; urgency=medium
     to "dpigs" from Debian Goodies package,
     but will instead list the dynamic file usage.
   * DPKG data acquisition: also consider packages in 'rc' state
-  * workaround for plocate's default "PRUNEPATH=/var/splool":
+  * workaround for plocate's default "PRUNEPATH=/var/spool":
     always scan these files ourselves
   * work almost as good as non-root, suppress warnings
   * new LOGROTATE generic handling script
