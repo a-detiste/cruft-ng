@@ -3,4 +3,4 @@
 /var/lib/nginx/proxy
 /var/lib/nginx/scgi
 /var/lib/nginx/uwsgi
-
+/var/www/html/index.nginx-debian.html
