@@ -1,2 +1,3 @@
 /etc/X11/default-display-manager
 /etc/X11/X
+/etc/X11/xorg.conf
