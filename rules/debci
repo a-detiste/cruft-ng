@@ -1,0 +1,4 @@
+/var/lib/debci
+/var/lib/debci/**
+/var/log/debci
+/var/log/debci/**
