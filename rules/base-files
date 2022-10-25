@@ -22,7 +22,6 @@
 /etc/networks
 /etc/nsswitch.conf
 /etc/opt
-/etc/papersize
 /etc/profile
 /etc/resolv.conf
 /var/mail
