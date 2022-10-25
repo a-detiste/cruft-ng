@@ -1,10 +1,19 @@
-cruft-ng (0.9.47~) buster; urgency=medium
+cruft-ng (0.9.47~) UNRELEASED; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
-  * update ruleset for Python3
+  * new rules provided by Christian Göttsche (Closes: #1022542):
+    ccache, grub-efi-*, fwupd, kde-config-sddm, pbuilder, rkhunter,
+    policycoreutils-dev, tlp, usbguard, vnstat
+  * update explain scripts: UCF, ispell
+  * update ruleset for Python3, apt, dpkg, openssh, util-linux
+  * misc. new rules for: acpid, fail2ban, tix, lynx, powertop, uwf, piuparts,
+    debci, debian-reference-*, server-xorg-legacy, synaptic, libgvc6, anacron,
+    nginx, fai-quickstart, pcutils, keyboard-configuration, acct,
+    installation-report, keyboard-configuration, dialog
+  * replace php7.4 by php8.1
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 23 Oct 2022 01:39:19 +0200
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 26 Oct 2022 01:43:49 +0200
 
 cruft-ng (0.9.46) unstable; urgency=medium
 
