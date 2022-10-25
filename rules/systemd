@@ -27,6 +27,7 @@
 /etc/systemd/user/*.target.wants/*.service
 /etc/systemd/user/*.target.wants/*.timer
 /etc/systemd/user/sockets.target.wants/*.socket
+/etc/vconsole.conf
 /var/cache/private
 /var/lib/container
 /var/lib/machines
