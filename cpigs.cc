@@ -28,6 +28,8 @@ namespace fs = std::experimental::filesystem;
 
 bool myglob(string file, string glob )
 {
+	//stack<string> st;
+
 	bool debug = getenv("DEBUG_GLOB") != NULL;
 
 	if (file==glob) return true;
@@ -79,6 +81,8 @@ int usage()
 	cerr << "usage: " << endl;
 	cerr << "  cpigs [-n] [NUMBER]  : default format" << endl;
 	cerr << "  cpigs -e             : export in ncdu format" << endl;
+	cerr << "  cpigs -c             : export in .csv format" << endl;
+	//cerr << "  cpigs -C             : export in .csv format, also static files" << endl;
 	return 1;
 }
 
@@ -95,6 +99,10 @@ void output_pigs(long unsigned int limit, map<string, int>& usage)
 	}
 }
 
+void output_csv(vector<string>& cruft_db)
+{
+}
+
 void output_ncdu(vector<string>& cruft_db)
 {
 	Json::Value json(Json::arrayValue);
@@ -107,6 +115,7 @@ void output_ncdu(vector<string>& cruft_db)
 	json.append(signature);
 	Json::Value root(Json::arrayValue);
 
+	/*
 	Json::Value dir(Json::objectValue);
 	dir["name"] = "/";
 	dir["asize"] = 4096;
@@ -133,12 +142,60 @@ void output_ncdu(vector<string>& cruft_db)
 	subdir["dsize"] = 4096;
 	newroot.append(subdir);
 	root.append(newroot);
+	https://en.wikibooks.org/wiki/JsonCpp#Example
+	*/
 
-	//vector<string>::iterator cruft=cruft_db.begin();
-	//		if (fs::is_directory(*cruft) ) {
-	//		} else if (fs::is_symlink(*cruft)) {
-	//	cruft++;
-	//}
+	string dir;
+
+	vector<string>::iterator cruft;
+	for (cruft=cruft_db.begin();cruft !=cruft_db.end();cruft++)
+	{
+		string dest = *cruft;
+		if (fs::is_directory(*cruft)) {
+			cerr << dest << endl;
+			if (dest.size() > dir.size() && !dest.compare(0, dir.size(), dir)) {
+				// we go down
+				size_t pos = string::npos;
+				size_t prev_pos = dir.size()+1;
+				string step;
+				while ((pos = dest.find('/', prev_pos)) != string::npos) {
+					string step = dest.substr(prev_pos, pos - prev_pos);
+					cerr << "+ " <<step << endl;
+					prev_pos = pos + 1;
+				}
+				step = dest.substr(prev_pos);
+				cerr << "+ " << step << endl;
+				dir = dest;
+			} else {
+				// we go up
+				size_t pos = dir.size();
+				size_t prev_pos = string::npos;
+				string step;
+				while ((pos = dir.rfind('/', prev_pos))) {
+					if (!dir.compare(0, pos - 2, dest)) break;
+					string step = dir.substr(pos + 1, prev_pos - pos);
+					cerr << "- " << step << endl;
+					prev_pos = pos - 1;
+				}
+
+				// we go back up again
+				prev_pos += 2;
+				while ((pos = dest.find('/', prev_pos)) != string::npos) {
+                                        string step = dest.substr(prev_pos, pos - prev_pos);
+                                        cerr << "+ " <<step << endl;
+                                        prev_pos = pos + 1;
+                                }
+				step = dest.substr(prev_pos);
+				cerr << "+ " << step << endl;
+
+				dir = dest;
+			}
+		} else if (fs::is_symlink(*cruft)) {
+			//
+		} else {
+			//
+		}
+	}
 
 	json.append(root);
 	cout << json.toStyledString() << endl;
@@ -148,9 +205,14 @@ int main(int argc, char *argv[])
 {
 	long unsigned int limit = 10;
 
-	bool ncdu = false;
+	bool ncdu = false, csv = false /*, static_ = false*/;
 	if (argc == 2 && !strcmp(argv[1], "-e")) {
 		ncdu = true;
+	} else if (argc == 2 && !strcmp(argv[1], "-c")) {
+		csv = true;
+	//} else if (argc == 2 && !strcmp(argv[1], "-C")) {
+	//	csv = true;
+	//	static_ = true;
 	} else if (argc == 3) {
 		try {
 			limit = stoi(argv[2]);
@@ -194,6 +256,8 @@ int main(int argc, char *argv[])
 		return 0;
 	};
 
+	if (csv) cout << "path;package;type;cruft;size" << endl;
+
 	vector<owner> globs;
 	read_filters(packages,globs);
 	read_explain(packages,globs);
@@ -205,33 +269,44 @@ int main(int argc, char *argv[])
 	vector<owner>::iterator owners;
 	while (cruft != cruft_db.end()) {
 		owners = globs.begin();
-		bool match = false;
+		string package = "UNKNOWN";
 		while (owners != globs.end()) {
+			bool match;
 			match = myglob(*cruft,(*owners).glob);
 			if (match) {
-				if (usage.count((*owners).package) == 0) usage[(*owners).package] = 0;
-				try
-				{
-					size_t fsize;
-					if (fs::is_symlink(*cruft)) fsize=1024;
-					else fsize = fs::file_size(*cruft);
-					//cout << *cruft << "[" << fsize << "]" << endl;
-					usage[(*owners).package] += fsize;
-				}
-				catch (...) { }
+				package = (*owners).package;
                         	break;
                 	}
 			owners++;
 		}
 
-		if (!match) {
-			//cout << *cruft << endl;
-			try
-			{
-				usage["UNKNOWN"] += fs::file_size(*cruft);
+		char type;
+		size_t fsize;
+		try
+		{
+			if (fs::is_symlink(*cruft)) {
+				type = 'l';
+				fsize = 1024;
+			} else if (fs::is_directory(*cruft)) {
+				type = 'd';
+				fsize = 1024;
+			} else {
+				type = 'f';
+				fsize = fs::file_size(*cruft);
 			}
-			catch (...) { }
 		}
+		catch (...) {
+			type = '?';
+			fsize = 1024;
+		}
+
+		if (csv) {
+			cout << *cruft << ";" << package << ";" << type << ";1;" << fsize << endl;
+		} else {
+			if (usage.count(package) == 0) usage[package] = 0;
+			usage[package] += fsize;
+		}
+
 		cruft++;
 	}
 	elapsed("extra vs globs");
