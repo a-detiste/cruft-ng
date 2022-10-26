@@ -2,4 +2,6 @@
 
 set -eu
 
+test -d /usr/lib/ccache || exit 0
+
 find /usr/lib/ccache/ -maxdepth 1 -type l ! -empty
