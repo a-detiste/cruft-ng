@@ -2,6 +2,10 @@ cruft-ng (0.9.47~) UNRELEASED; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
+  * "cpigs" command now support the new '-c' and '-C' arguments
+    to generate either a .csv dump of all the volatile files
+    or -C of the whole system also including static files.
+
   * new rules provided by Christian Göttsche (Closes: #1022542):
     ccache, grub-efi-*, fwupd, kde-config-sddm, pbuilder, rkhunter,
     policycoreutils-dev, tlp, usbguard, vnstat
@@ -13,7 +17,7 @@ cruft-ng (0.9.47~) UNRELEASED; urgency=medium
     installation-report, keyboard-configuration, dialog
   * replace php7.4 by php8.1
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 26 Oct 2022 01:43:49 +0200
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Thu, 27 Oct 2022 00:00:10 +0200
 
 cruft-ng (0.9.46) unstable; urgency=medium
 
