@@ -105,6 +105,8 @@ void output_csv(vector<string>& cruft_db)
 
 void output_ncdu(vector<string>& cruft_db)
 {
+	// https://dev.yorhel.nl/ncdu/jsonfmt
+
 	Json::Value json(Json::arrayValue);
 	json.append(1);
 	json.append(2);
