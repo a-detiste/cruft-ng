@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
 		}
 
 		if (csv) {
-			cout << *cruft << ";" << package << ";" << type << ";1;" << fsize << endl;
+			cout << *cruft << ';' << package << ';' << type << ";1;" << fsize << endl;
 		} else {
 			if (usage.count(package) == 0) usage[package] = 0;
 			usage[package] += fsize;

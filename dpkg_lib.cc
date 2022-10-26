@@ -16,6 +16,29 @@
 https://www.dpkg.org/doc/libdpkg/structpkginfo.html
 */
 
+void csv(const char *dpkg_name,
+         string realname,
+         const char *package) {
+
+	struct stat st;
+	if (!stat(dpkg_name, &st) == 0)
+		return;
+	if (S_ISDIR(st.st_mode))
+		return;
+
+	char type;
+	if (S_ISLNK(st.st_mode)) type = 'l';
+	else type = 'f';
+
+	replace(realname.begin(), realname.end(), ';', '_');
+
+	cout    << realname << ';'
+		<< package << ';'
+		<< type << ';'
+		<< '0' << ';'
+		<< st.st_size << endl;
+}
+
 static const char *admindir;
 
 #ifdef DB_API
@@ -48,13 +71,16 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 		".clilibs",
 		".conffiles",
 		".config",
+		".fortran_mod",
 		".list",
 		".md5sums",
 		".postinst",
 		".postrm",
 		".preinst",
 		".prerm",
+		".runit",
 		".shlibs",
+		".starlibs",
 		".symbols",
 		".templates",
 		".triggers",
@@ -109,17 +135,24 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 			while (file) {
 				namenode = file->namenode;
 				if (debug) cout << namenode->name << endl;
+				string realname;
 				if (namenode->divert) {
 					// We trust DPKG state for now
 					if (stat(namenode->name, &buffer) == 0) {
-						output.push_back(usr_merge(namenode->name));
+						realname = usr_merge(namenode->name);
+						output.push_back(realname);
 					}
 					if (stat(namenode->divert->useinstead->name, &buffer) == 0) {
-						output.push_back(usr_merge(namenode->divert->useinstead->name));
+						realname = usr_merge(namenode->divert->useinstead->name);
+						output.push_back(realname);
 					}
 				} else {
-					output.push_back(usr_merge(namenode->name));
+					realname = usr_merge(namenode->name);
+					output.push_back(realname);
 				}
+
+				if (print_csv) csv(namenode->name, realname, pkg->set->name);
+
 				file = file->next;
 		        }
 		}

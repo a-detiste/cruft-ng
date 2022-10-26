@@ -6,6 +6,7 @@ JSONCPP_LIBS = $(shell $(PKG_CONFIG) --libs jsoncpp)
 CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z,relro -D_FORTIFY_SOURCE=2
 CXXFLAGS += -Wall
 CXXFLAGS += $(LIBDPKG_CFLAGS)
+#CXXFLAGS += -std=c++17 #  clang++
 SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o owner.o
 
 all: cruft ruleset cpigs
