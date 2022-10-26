@@ -82,7 +82,7 @@ int usage()
 	cerr << "  cpigs [-n] [NUMBER]  : default format" << endl;
 	cerr << "  cpigs -e             : export in ncdu format" << endl;
 	cerr << "  cpigs -c             : export in .csv format" << endl;
-	//cerr << "  cpigs -C             : export in .csv format, also static files" << endl;
+	cerr << "  cpigs -C             : export in .csv format, also static files" << endl;
 	return 1;
 }
 
@@ -205,14 +205,14 @@ int main(int argc, char *argv[])
 {
 	long unsigned int limit = 10;
 
-	bool ncdu = false, csv = false /*, static_ = false*/;
+	bool ncdu = false, csv = false, static_ = false;
 	if (argc == 2 && !strcmp(argv[1], "-e")) {
 		ncdu = true;
 	} else if (argc == 2 && !strcmp(argv[1], "-c")) {
 		csv = true;
-	//} else if (argc == 2 && !strcmp(argv[1], "-C")) {
-	//	csv = true;
-	//	static_ = true;
+	} else if (argc == 2 && !strcmp(argv[1], "-C")) {
+		csv = true;
+		static_ = true;
 	} else if (argc == 3) {
 		try {
 			limit = stoi(argv[2]);
@@ -227,9 +227,11 @@ int main(int argc, char *argv[])
 	read_plocate(fs,prunefs);
 	elapsed("plocate");
 
+	if (csv) cout << "path;package;type;cruft;size" << endl;
+
 	vector<string> packages;
 	vector<string> dpkg;
-	read_dpkg(packages, dpkg);
+	read_dpkg(packages, dpkg, static_);
 	elapsed("dpkg");
 
 	vector<string> cruft_db;
@@ -255,8 +257,6 @@ int main(int argc, char *argv[])
 		output_ncdu(cruft_db);
 		return 0;
 	};
-
-	if (csv) cout << "path;package;type;cruft;size" << endl;
 
 	vector<owner> globs;
 	read_filters(packages,globs);

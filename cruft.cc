@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
 
 	vector<string> packages;
 	vector<string> dpkg;
-	read_dpkg(packages, dpkg);
+	read_dpkg(packages, dpkg, false);
 	elapsed("dpkg");
 
 	// match two main data sources

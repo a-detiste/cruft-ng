@@ -29,7 +29,7 @@ static void callback(const char *filename, const char *filetype)
 }
 #endif
 
-int read_dpkg(vector<string>& packages, vector<string>& output)
+int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 {
 	int i;
 	struct pkg_array array;

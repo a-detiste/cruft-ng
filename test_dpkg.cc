@@ -5,7 +5,7 @@ int main(int argc, char *argv[])
 {
 	vector<string> packages;
 	vector<string> db;
-	read_dpkg(packages, db);
+	read_dpkg(packages, db, false);
 
 	for (unsigned int i=0;i<packages.size();i++) {
 		cout << packages[i] << endl;

@@ -141,8 +141,12 @@ int read_dpkg_items(vector<string>& dpkg)
 	return 0;
 }
 
-int read_dpkg(vector<string>& packages, vector<string>& files) {
+int read_dpkg(vector<string>& packages, vector<string>& files, bool csv) {
 	read_dpkg_header(packages);
 	read_dpkg_items(files);
+
+	// some more horrible hack for Buster backport
+	if (csv) (system("/usr/lib/cruft/csv.py")==0);
+
 	return 0;
 }
