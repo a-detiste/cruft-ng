@@ -314,8 +314,6 @@ int main(int argc, char *argv[])
 		cout << "        " << cruft4[i] << endl;
 	}
 
-	// NOT IMPLEMENTED
-	cout << "---- broken symlinks: / ----" << endl;
 	cout << endl << "end." << endl;
 	return 0;
 }
