@@ -12,6 +12,8 @@ for list in glob.glob('/var/lib/dpkg/info/*.list') + glob.glob('/var/lib/dpkg/in
             file = file.rstrip('\n')
             if os.path.isdir(file):
                 continue
+            elif not os.path.exists(file):
+                continue
             elif os.path.islink(file):
                 type_ = 'l'
                 size = 1024
