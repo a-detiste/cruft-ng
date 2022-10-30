@@ -2,4 +2,4 @@
 
 using namespace std;
 
-string usr_merge(string);
+string usr_merge(const string&);
