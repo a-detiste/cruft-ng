@@ -69,17 +69,17 @@ static void read_uppercase(vector<owner>& explain, const string& directory, bool
 	if (debug) cerr << endl;
 }
 
-int read_explain(const vector<string>& packages, vector<owner>& explain)
+int read_explain(const string& dir, const vector<string>& packages, vector<owner>& explain)
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
 	read_uppercase(explain, "/usr/libexec/cruft/", debug);
-	read_uppercase(explain, "/etc/cruft/explain/", debug);
+	read_uppercase(explain, dir, debug);
 
 	if (debug) cerr << "EXECUTING OTHER FILTERS" << endl;
 	for (const auto& package: packages) {
 		struct stat stat_buffer;
-		string etc_filename = "/etc/cruft/explain/" + package;
+		string etc_filename = dir + package;
 		string usr_filename = "/usr/libexec/cruft/" + package;
 		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
 			read_one_explain(etc_filename, package, explain);

@@ -1,3 +1,4 @@
+#include <cstring>
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -21,15 +22,15 @@ static void read_one_filter(const string& glob_filename, const string& package, 
 	}
 }
 
-int read_filters(const vector<string>& packages, vector<owner>& globs)
+int read_filters(const string& dir, const string& ruleset_file, const vector<string>& packages, vector<owner>& globs)
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
-	if (debug) cerr << "READING UPERCASE GLOBS IN /etc/cruft/filters/" << endl;
+	if (debug) cerr << "READING UPERCASE GLOBS IN " << dir << endl;
 	DIR *dp;
 	struct dirent *dirp;
-	if((dp = opendir("/etc/cruft/filters/")) == nullptr) {
-	      cerr << "Error(" << errno << ") opening /etc/cruft/filters/" << endl;
+	if((dp = opendir(dir.c_str())) == nullptr) {
+	      cerr << "Failed to open filters directory " << dir << ": " << strerror(errno) << '\n';
 	      exit(1);
 	}
 	while ((dirp = readdir(dp)) != nullptr) {
@@ -46,7 +47,7 @@ int read_filters(const vector<string>& packages, vector<owner>& globs)
 
 	for (const auto& package : packages) {
 		struct stat stat_buffer;
-		string etc_filename = "/etc/cruft/filters/" + package;
+		string etc_filename = dir + package;
 		string usr_filename = "/usr/lib/cruft/filters-unex/" + package; // should be empty
 		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
 			read_one_filter(etc_filename, package, globs, debug);
@@ -56,7 +57,7 @@ int read_filters(const vector<string>& packages, vector<owner>& globs)
 	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
 
 	if (debug) cerr << "READING MAIN RULE ARCHIVE " << endl;
-	ifstream glob_file("/usr/share/cruft/ruleset");
+	ifstream glob_file(ruleset_file);
 	bool keep = false;
 	string package;
 	for (string glob_line; getline(glob_file, glob_line);)
@@ -71,7 +72,7 @@ int read_filters(const vector<string>& packages, vector<owner>& globs)
 		} else {
 			// new package entry
 			package = glob_line;
-			string etc_filename = "/etc/cruft/filters/" + package;
+			string etc_filename = dir + package;
 			struct stat stat_buffer;
 			keep = find(packages.begin(), packages.end(), package) != packages.end() && stat(etc_filename.c_str(), &stat_buffer)!=0;
 			//cerr << package << " " << keep << endl;

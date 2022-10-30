@@ -11,9 +11,9 @@
 #define PATH_MAX 4096
 #endif
 
-static void read_ignores(vector<string>& ignores)
+static void read_ignores(vector<string>& ignores, const string& ignore_path)
 {
-	ifstream ignore_file("/etc/cruft/ignore");
+	ifstream ignore_file(ignore_path);
 	if (!ignore_file.is_open())
 		ignore_file.open("/usr/share/cruft/ignore");
 
@@ -28,7 +28,7 @@ static void read_ignores(vector<string>& ignores)
 	}
 }
 
-int read_plocate(vector<string>& fs, vector<string>& prunefs)
+int read_plocate(vector<string>& fs, vector<string>& prunefs, const string& ignore_path)
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
@@ -37,7 +37,7 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 	if (debug) cerr << "PLOCATE DATA\n";
 
 	vector<string> ignores;
-	read_ignores(ignores);
+	read_ignores(ignores, ignore_path);
 
 	fs.emplace_back("/.");
 	fs.emplace_back("/dev");

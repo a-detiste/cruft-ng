@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
 	}
 
 	vector<string> fs,prunefs;
-	read_plocate(fs,prunefs);
+	read_plocate(fs,prunefs, "/etc/cruft/ignore");
 	elapsed("plocate");
 
 	if (csv) cout << "path;package;type;cruft;size" << endl;
@@ -264,8 +264,8 @@ int main(int argc, char *argv[])
 	};
 
 	vector<owner> globs;
-	read_filters(packages,globs);
-	read_explain(packages,globs);
+	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages,globs);
+	read_explain("/etc/cruft/explain/", packages,globs);
 	elapsed("read filters");
 
         std::map<std::string, int> usage{{"UNKNOWN", 0}};

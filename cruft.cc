@@ -5,6 +5,7 @@
 
 #include <sys/stat.h>
 #include <fnmatch.h>
+#include <getopt.h>
 #include <cstring>
 #include <unistd.h>
 #include <dirent.h>
@@ -149,27 +150,104 @@ static void elapsed(const string& action)
 	beg = end;
 }
 
+static const char* const default_explain_dir = "/etc/cruft/explain/";
+static const char* const default_filter_dir = "/etc/cruft/filters/";
+static const char* const default_ignore_file = "/etc/cruft/ignore";
+static const char* const default_ruleset_file = "/usr/share/cruft/ruleset";
+
+static void print_help_message()
+{
+	cout << "cruft-ng [OPTIONS] [file]\n\n";
+	cout << "if <file> is specified, this file is analysed\n";
+	cout << "if not, the whole system is analysed\n\n";
+
+	cout << "OPTIONS\n";
+	cout << "    -E --explain     directory for explain scripts (default: " << default_explain_dir << ")\n";
+	cout << "    -F --filter      directory for filters (default: " << default_filter_dir << ")\n";
+	cout << "    -I --ignore      path for ignore file (default: " << default_ignore_file << ")\n";
+	cout << "    -R --ruleset     path for ruleset file (default: " << default_ruleset_file << ")\n";
+
+	cout << '\n';
+
+	cout << "    -h --help        this help message\n";
+}
+
 int main(int argc, char *argv[])
 {
 	bool debug = getenv("DEBUG") != nullptr;
 
-	if (argc == 2) {
-		struct stat buffer;
-		if (stat(argv[1], &buffer) == 0) {
-			one_file(argv[1]);
-			exit(0);
-		} else {
-			cerr << "file not found\n";
-			exit(1);
-		}
-	}
+	string explain_dir = default_explain_dir;
+	string filter_dir = default_filter_dir;
+	string ignore_file = default_ignore_file;
+	string ruleset_file = default_ruleset_file;
 
-	if (argc > 1) {
-		cerr << "cruft-ng [file]\n\n";
-		cerr << "if <file> is specified, this file is analysed\n";
-		cerr << "if not, the whole system is analysed\n";
+	const struct option long_options[] =
+	{
+		{"help", no_argument, nullptr, 'h'},
+		{"explain", required_argument, nullptr, 'E'},
+		{"filter", required_argument, nullptr, 'F'},
+		{"ignore", required_argument, nullptr, 'I'},
+		{"ruleset", required_argument, nullptr, 'R'},
+	};
+
+	int opt, opti = 0;
+	while ((opt = getopt_long(argc, argv, "E:F:hI:R:", long_options, &opti)) != 0) {
+		if (opt == EOF)
+			break;
+
+		switch (opt) {
+		case 'E':
+			explain_dir = optarg;
+			if (!explain_dir.empty() && explain_dir.back() != '/')
+				explain_dir += '/';
+			break;
+		
+		case 'F':
+			filter_dir = optarg;
+			if (!filter_dir.empty() && filter_dir.back() != '/')
+				filter_dir += '/';
+			break;
+		
+		case 'h':
+			print_help_message();
+			exit(0);
+
+		case 'I':
+			ignore_file = optarg;
+			break;
+
+		case 'R':
+			ruleset_file = optarg;
+			break;
+
+		case '?':
+			break;
+
+        default:
+            cerr << "Invalid getopt return value: " << opt << "\n";
+			break;
+        }
+    }
+
+    if (optind < argc) {
+		if (optind + 1 == argc) {
+			struct stat buffer;
+			if (stat(argv[1], &buffer) == 0) {
+				one_file(argv[1]);
+				exit(0);
+			} else {
+				cerr << "file not found\n";
+				exit(1);
+			}
+		}
+
+		cerr << "Invalid non-option arguments:";
+        while (optind < argc)
+			cerr << " " << argv[optind++];
+		cerr << '\n';
+		print_help_message();
 		exit(1);
-	}
+    }
 
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
@@ -185,7 +263,7 @@ int main(int argc, char *argv[])
 	elapsed("updatedb");
 
 	vector<string> fs,prunefs,mounts;
-	read_plocate(fs,prunefs);
+	read_plocate(fs,prunefs, ignore_file);
 	read_mounts(prunefs,mounts);
 	elapsed("plocate");
 
@@ -247,7 +325,7 @@ int main(int argc, char *argv[])
 
 	// match the globs against reduced database
 	vector<owner> globs;
-	read_filters(packages,globs);
+	read_filters(filter_dir, ruleset_file, packages,globs);
 	elapsed("read filters");
 	vector<string> cruft3;
 	for (const auto& cr: cruft) {
@@ -263,7 +341,7 @@ int main(int argc, char *argv[])
 
 	// match the dynamic "explain" filters
 	vector<owner> explain;
-	read_explain(packages,explain);
+	read_explain(explain_dir, packages, explain);
 	elapsed("read explain");
 	vector<string> cruft4;
 	for (const auto& cr: cruft3) {
