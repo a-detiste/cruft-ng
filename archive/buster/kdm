@@ -1,0 +1,6 @@
+/var/lib/kdm/kdmsts
+/var/log/kdm.log*
+/var/tmp/kdecache-kdm
+/var/tmp/kdecache-kdm/icon-cache.kcache
+/usr/share/kde4/apps/kdm/faces
+/usr/share/kde4/apps/kdm/faces/*.icon
