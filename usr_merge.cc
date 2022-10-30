@@ -3,11 +3,11 @@
 #include <sys/stat.h>
 #include "usr_merge.h"
 
-static bool check_link(const string& path)
+static bool check_link(const string& path, const bool mandatory)
 {
 	struct stat file_info;
 	if (lstat(path.c_str(), &file_info) < 0) {
-		cerr << "Failed to stat '" << path << "': " << strerror(errno) << '\n';
+		if (mandatory) cerr << "Failed to stat '" << path << "': " << strerror(errno) << '\n';
 		return false;
 	}
 	return S_ISLNK(file_info.st_mode);
@@ -19,10 +19,10 @@ string usr_merge(const string& path)
 	static bool MERGED_BIN, MERGED_LIB, MERGED_LIB32, MERGED_SBIN;
 	if (!setup)
 	{
-		MERGED_BIN=check_link("/bin");
-		MERGED_LIB=check_link("/lib");
-		MERGED_LIB32=check_link("/lib32");
-		MERGED_SBIN=check_link("/sbin");
+		MERGED_BIN=check_link("/bin", true);
+		MERGED_LIB=check_link("/lib", true);
+		MERGED_LIB32=check_link("/lib32", false);
+		MERGED_SBIN=check_link("/sbin", true);
 		setup=true;
 	}
 
