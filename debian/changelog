@@ -9,6 +9,7 @@ cruft-ng (0.9.47) unstable; urgency=medium
     to backport.
   * remove misleading "broken symlinks" in the report,
     it is not implemented (Closes: #1022890).
+  * many performance improvements by Christian Göttsche
 
   * new rules provided by Christian Göttsche (Closes: #1022542):
     ccache, grub-efi-*, fwupd, kde-config-sddm, pbuilder, rkhunter,
