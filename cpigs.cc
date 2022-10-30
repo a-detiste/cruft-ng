@@ -108,7 +108,7 @@ void output_csv(vector<string>& cruft_db)
 void output_ncdu(vector<string>& cruft_db)
 {
 	// https://dev.yorhel.nl/ncdu/jsonfmt
-
+	/*
 	Json::Value json(Json::arrayValue);
 	json.append(1);
 	json.append(2);
@@ -118,6 +118,7 @@ void output_ncdu(vector<string>& cruft_db)
 	signature["timestamp"] = int(time(nullptr));
 	json.append(signature);
 	Json::Value root(Json::arrayValue);
+	*/
 
 	/*
 	Json::Value dir(Json::objectValue);
@@ -201,8 +202,8 @@ void output_ncdu(vector<string>& cruft_db)
 		}
 	}
 
-	json.append(root);
-	cout << json.toStyledString() << endl;
+	//json.append(root);
+	//cout << json.toStyledString() << endl;
 }
 
 int main(int argc, char *argv[])
@@ -210,7 +211,7 @@ int main(int argc, char *argv[])
 	long unsigned int limit = 10;
 
 	bool ncdu = false, csv = false, static_ = false;
-	if (argc == 2 && !strcmp(argv[1], "-e" && false)) {
+	if (argc == 2 && (!strcmp(argv[1], "-e") && false)) {
 		ncdu = true;
 	} else if (argc == 2 && !strcmp(argv[1], "-c")) {
 		csv = true;
