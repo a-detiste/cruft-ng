@@ -21,7 +21,7 @@ dpkg_lib.o: dpkg_lib.cc dpkg.h
 dpkg_popen.o: dpkg_popen.cc dpkg.h
 
 cruftold: $(SHARED_OBJS) dpkg_popen.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruftold
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -lstdc++fs -o cruftold
 cruft: $(SHARED_OBJS) dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o $(LIBDPKG_LIBS) -o cruft
 
