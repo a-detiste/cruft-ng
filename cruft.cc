@@ -200,13 +200,13 @@ int main(int argc, char *argv[])
 			if (!explain_dir.empty() && explain_dir.back() != '/')
 				explain_dir += '/';
 			break;
-		
+
 		case 'F':
 			filter_dir = optarg;
 			if (!filter_dir.empty() && filter_dir.back() != '/')
 				filter_dir += '/';
 			break;
-		
+
 		case 'h':
 			print_help_message();
 			exit(0);
