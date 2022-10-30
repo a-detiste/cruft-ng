@@ -11,28 +11,26 @@
 #define PATH_MAX 4096
 #endif
 
-void read_ignores(vector<string>& ignores)
+static void read_ignores(vector<string>& ignores)
 {
-        ifstream ignore_file("/etc/cruft/ignore");
-        if (!ignore_file.good())
-	        ifstream ignore_file("/usr/share/cruft/ignore");
-        while (ignore_file.good())
-        {
-                string ignore_line;
-                getline(ignore_file,ignore_line);
-                if (ignore_file.eof()) break;
-                if (ignore_line.substr(0,1) == "/") {
+	ifstream ignore_file("/etc/cruft/ignore");
+	if (!ignore_file.is_open())
+		ignore_file.open("/usr/share/cruft/ignore");
+
+	for (string ignore_line; getline(ignore_file,ignore_line);)
+	{
+		if (ignore_line.empty()) continue;
+		if (ignore_line.front() == '/') {
 			if (ignore_line.back() != '/')
-                            ignore_line = ignore_line + "/";
-                        ignores.push_back(ignore_line);
-                }
-        }
-        ignore_file.close();
+				ignore_line += "/";
+			ignores.emplace_back(ignore_line);
+		}
+	}
 }
 
 int read_plocate(vector<string>& fs, vector<string>& prunefs)
 {
-	bool debug=getenv("DEBUG") != NULL;
+	bool debug=getenv("DEBUG") != nullptr;
 
 	string line;
 
@@ -41,21 +39,20 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 	vector<string> ignores;
 	read_ignores(ignores);
 
-	fs.push_back("/.");
-	fs.push_back("/dev");
-	fs.push_back("/home");
-	fs.push_back("/root");
-	fs.push_back("/tmp");
+	fs.emplace_back("/.");
+	fs.emplace_back("/dev");
+	fs.emplace_back("/home");
+	fs.emplace_back("/root");
+	fs.emplace_back("/tmp");
 
-	string command = "plocate /";
 	char buf[PATH_MAX];
 	FILE* fp;
-	if ((fp = popen(command.c_str(), "r")) == NULL) return 1;
+	if ((fp = popen("plocate /", "r")) == nullptr) return 1;
 	while (fgets(buf, sizeof(buf),fp))
 	{
 		buf[strlen(buf)-1] = '\0';
 		string filename = buf;
-		string toplevel = filename.substr(0, filename.find("/", 1));
+		string toplevel = filename.substr(0, filename.find('/', 1));
 		if (   toplevel == "/dev"
 		    or (toplevel == "/home" /* and dirname != "/home" */)
 		    or toplevel == "/mnt"
@@ -64,29 +61,24 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs)
 			continue;
 
 		bool ignored = false;
-	        vector<string>::iterator ignore=ignores.begin();
-	        while (ignore != ignores.end() )
-	        {
-			if (!filename.compare(0, (*ignore).size(), *ignore)) {
+        for (const auto& it : ignores) {
+            if (filename.compare(0, it.size(), it) == 0) {
 				ignored = true;
 				break;
 			}
-			ignore++;
-	        }
+        }
 		if (ignored) continue;
 
-		if (!pyc_has_py(filename, false)) fs.push_back(filename);
+		if (!pyc_has_py(filename, debug)) fs.emplace_back(filename);
 	}
 	pclose(fp);
 
 	// default PRUNEPATH in /etc/updatedb.conf
-	command = "find /var/spool 2> /dev/null";
-	if ((fp = popen(command.c_str(), "r")) == NULL) return 1;
+	if ((fp = popen("find /var/spool 2> /dev/null", "r")) == nullptr) return 1;
 	while (fgets(buf, sizeof(buf),fp))
 	{
 		buf[strlen(buf)-1] = '\0';
-		string filename = buf;
-		fs.push_back(filename);
+		fs.emplace_back(buf);
 	}
 	pclose(fp);
 
