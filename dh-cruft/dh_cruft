@@ -55,6 +55,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 	my $purge = pkgfile($package, "purge");
 	my @lines;
 	if ($purge ne '') {
+		my $IN;
 		open (IN, $purge) or error("Failed to read ${IN}: $!");
 		@lines = <IN>;
 		close IN;
@@ -74,9 +75,14 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 		install_dir($cruft_dir);
 		install_dh_config_file($cruft, "$cruft_dir/$package");
 		if (@lines) {
+			my $APPEND;
 			open(APPEND, ">>", "$cruft_dir/$package") or error("Failed to read ${APPEND}: $!");
 			foreach my $line (@lines)
 			{
+				if (substr($line, -1) eq "/") {
+					print APPEND $line . "**\n";
+					chop $line;
+				}
 				print APPEND $line . "\n";
 			}
 			close APPEND or error("Failed to close ${APPEND}: $!");
