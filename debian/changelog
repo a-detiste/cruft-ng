@@ -1,4 +1,4 @@
-cruft-ng (0.9.47~) UNRELEASE; urgency=medium
+cruft-ng (0.9.47) unstable; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
@@ -21,7 +21,7 @@ cruft-ng (0.9.47~) UNRELEASE; urgency=medium
     installation-report, keyboard-configuration, dialog
   * replace php7.4 by php8.1
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Thu, 27 Oct 2022 00:00:10 +0200
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 30 Oct 2022 12:35:31 +0100
 
 cruft-ng (0.9.46) unstable; urgency=medium
 
