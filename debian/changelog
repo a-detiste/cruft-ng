@@ -4,7 +4,9 @@ cruft-ng (0.9.47~) UNRELEASED; urgency=medium
     by source package that wants to provide their own rules.
   * "cpigs" command now support the new '-c' and '-C' arguments
     to generate either a .csv dump of all the volatile files
-    or -C of the whole system also including static files.
+    or with '-C' of the whole system also including static files.
+  * keep an archive of old rules and make the package easier
+    to backport.
 
   * new rules provided by Christian Göttsche (Closes: #1022542):
     ccache, grub-efi-*, fwupd, kde-config-sddm, pbuilder, rkhunter,
