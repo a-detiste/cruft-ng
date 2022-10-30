@@ -10,7 +10,7 @@ use strict;
 use warnings;
 use Debian::Debhelper::Dh_Lib;
 
-our $VERSION = DH_BUILTIN_VERSION;
+our $VERSION = DH_CRUFT_VERSION;
 
 =head1 SYNOPSIS
 
