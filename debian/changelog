@@ -1,4 +1,4 @@
-cruft-ng (0.9.47~) UNRELEASED; urgency=medium
+cruft-ng (0.9.47~) UNRELEASE; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
@@ -7,6 +7,8 @@ cruft-ng (0.9.47~) UNRELEASED; urgency=medium
     or with '-C' of the whole system also including static files.
   * keep an archive of old rules and make the package easier
     to backport.
+  * remove misleading "broken symlinks" in the report,
+    it is not implemented (Closes: #1022890).
 
   * new rules provided by Christian Göttsche (Closes: #1022542):
     ccache, grub-efi-*, fwupd, kde-config-sddm, pbuilder, rkhunter,
