@@ -4,8 +4,8 @@ using namespace std;
 
 owner::owner( std::string package_, std::string glob_ )
 {
-        package = package_;
-        glob = glob_;
+        package = std::move(package_);
+        glob = std::move(glob_);
 }
 
 bool operator==(owner const& l, owner const &r)
