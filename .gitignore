@@ -13,7 +13,7 @@ test_diversions
 test_explain
 test_excludes
 test_dpkg
-test_dpkg_lib
+test_dpkg_old
 test_python
 debian/.debhelper/
 debian/cruft-ng.debhelper.log

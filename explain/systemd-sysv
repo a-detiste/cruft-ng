@@ -19,6 +19,13 @@ do
         then
             echo "$stamp"
         fi
+    # Buster is not UsrMerge'd
+    elif test -e "/lib/systemd/system/$unit"
+    then
+        if grep -q "Persistent=true" "/lib/systemd/system/$unit"
+        then
+            echo "$stamp"
+        fi
     elif test -e "/run/systemd/generator/$unit"
     then
         if grep -q "Persistent=true" "/run/systemd/generator/$unit"
