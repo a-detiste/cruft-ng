@@ -3,4 +3,4 @@
 
 using namespace std;
 
-int read_plocate(vector<string>& fs, vector<string>& prunefs);
+int read_plocate(vector<string>& fs, vector<string>& prunefs, const string& ignore_path);

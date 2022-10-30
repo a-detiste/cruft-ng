@@ -4,7 +4,7 @@
 int main(int argc, char *argv[])
 {
 	vector<string> fs,prunefs;
-	read_plocate(fs,prunefs);
+	read_plocate(fs,prunefs, "/etc/cruft/ignore");
 
 	cout << '/' << endl;
 	for (unsigned int i=0;i<fs.size();i++) {

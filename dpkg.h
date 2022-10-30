@@ -3,8 +3,6 @@
 using namespace std;
 
 int read_dpkg(vector<string>& packages, vector<string>& db, bool print_csv);
-int read_dpkg_header(vector<string>& packages);
-int read_dpkg_items(vector<string>& dpkg);
 
 struct Diversion{
         string oldfile;

@@ -6,6 +6,13 @@
 
 using namespace std;
 
+static bool ends_with(const string& str, const string& suffix)
+{
+    if (suffix.size() > str.size())
+		return false;
+    return std::equal(suffix.rbegin(), suffix.rend(), str.rbegin());
+}
+
 bool pyc_has_py(string pyc, bool debug)
 {
 	if (pyc.length() < 15)
@@ -15,22 +22,22 @@ bool pyc_has_py(string pyc, bool debug)
 
 	// also ignore __pycache__ dirs
 	// if .py are found in the same directory
-	if (pyc.substr(pyc.length()-12, 12) == "/__pycache__") {
+	if (ends_with(pyc, "/__pycache__")) {
 		string dir;
 		DIR *dp;
 		struct dirent *dirp;
 		dir = pyc.substr(0, pyc.length()-12);
 		dp = opendir(dir.c_str());
-		if(dp == NULL) {
+		if(dp == nullptr) {
 			cerr << "opendir() failed for " << dir << endl;
 			return false;
 		}
-		while ((dirp = readdir(dp)) != NULL) {
+		while ((dirp = readdir(dp)) != nullptr) {
 			string entry = dirp->d_name;
 			if (entry.length() < 4)
 				continue;
 			//cerr << ' ' << entry << endl;
-			if (entry.substr(entry.length()-3,3) == ".py") {
+			if (ends_with(entry, ".py")) {
 				if (debug) cerr << "match: " << dir << '/' << entry << endl;
 				closedir(dp);
 				return true;
@@ -44,7 +51,7 @@ bool pyc_has_py(string pyc, bool debug)
 	/usr/share/python/debpython/debhelper.py
 	/usr/share/python/debpython/debhelper.pyc
 	*/
-	if (pyc.substr(pyc.length()-4, 4) != ".pyc")
+	if (!ends_with(pyc, ".pyc"))
 		return false;
 
 	struct stat buffer;

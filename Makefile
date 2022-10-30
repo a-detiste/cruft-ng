@@ -3,8 +3,8 @@ LIBDPKG_LIBS = $(shell $(PKG_CONFIG) --static --libs libdpkg)
 LIBDPKG_CFLAGS = $(shell $(PKG_CONFIG) --static --cflags libdpkg)
 
 CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z,relro -D_FORTIFY_SOURCE=2
-CXXFLAGS += -Wall
-CXXFLAGS += $(LIBDPKG_CFLAGS)
+CXXFLAGS += -Wall -Wextra
+override CXXFLAGS += $(LIBDPKG_CFLAGS)
 #CXXFLAGS += -std=c++17 #  clang++
 SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o owner.o
 
@@ -19,7 +19,6 @@ filters.o: filters.cc owner.h
 cruft.o: cruft.cc explain.h filters.h dpkg.h python.h
 dpkg_lib.o: dpkg_lib.cc dpkg.h
 dpkg_popen.o: dpkg_popen.cc dpkg.h
-shellexp.o: shellexp.c
 
 cruftold: $(SHARED_OBJS) dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruftold
@@ -43,7 +42,7 @@ test_explain: test_explain.cc explain.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG
 test_filters: test_filters.cc filters.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
 
 clean:
-	rm -f cpigs cruft cruftold test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python
+	rm -f cpigs cruft cruftold ruleset test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python
 	rm -f *.o
 
 ruleset: rules/*

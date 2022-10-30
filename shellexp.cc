@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include "shellexp.h"
 
 /* 0 on no match, non-zero on match */
-int shellexp( char* string, char* pattern ) {
+int shellexp(const char* string, const char* pattern ) {
     /*  printf( "...matching( \"%s\", \"%s\" )\n", string, pattern ); */
 
     switch( pattern[0] ) {
@@ -18,7 +18,7 @@ int shellexp( char* string, char* pattern ) {
 	}
     case '/':
 	if ( pattern[1] == '*' && pattern[2] == '*' ) {
-	    char* pch = string;
+	    const char* pch = string;
 	    if ( pattern[3] != '/' && pattern[3] != '\0' ) {
 		fprintf( stderr, "Bad expression.\n" );
 		return -1;
