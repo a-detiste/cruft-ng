@@ -6,6 +6,15 @@
 #include "plocate.h"
 #include "python.h"
 
+#ifndef BUSTER
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+using namespace std::experimental;
+namespace fs = std::experimental::filesystem;
+#endif
+
 // build fail on hurd-i386
 #ifndef PATH_MAX
 #define PATH_MAX 4096
@@ -66,6 +75,14 @@ int read_plocate(vector<string>& fs, vector<string>& prunefs, const string& igno
 				ignored = true;
 				break;
 			}
+
+            // ignore directory '/foo' for ignore entry '/foo/'
+            if (filename.size() + 1 == it.size()
+                && it.compare(0, filename.size(), filename) == 0
+                && fs::is_directory(filename)) {
+                ignored = true;
+				break;
+            }
         }
 		if (ignored) continue;
 
