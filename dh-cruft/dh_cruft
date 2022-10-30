@@ -29,13 +29,14 @@ information files used by cruft(-ng) into package build directories.
 
 Installed into usr/lib/cruft/filters-unex/I<package> in the package
 build directory. This file is used to register runtime files
-as belonging to this package
+as belonging to this package.
 
 =item debian/I<package>.purge
 
 Appended to usr/lib/cruft/filters-unex/I<package> in the package
 build directory. This file is used to register runtime files
-as belonging to this package.
+as belonging to this package. For claririty, directories
+should end with a B<'/'>.
 
 Also, a snippet is appended to F<postrm>
 with the needed I<rm -rf> commands
