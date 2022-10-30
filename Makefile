@@ -1,7 +1,6 @@
 PKG_CONFIG ?= pkg-config
 LIBDPKG_LIBS = $(shell $(PKG_CONFIG) --static --libs libdpkg)
 LIBDPKG_CFLAGS = $(shell $(PKG_CONFIG) --static --cflags libdpkg)
-JSONCPP_LIBS = $(shell $(PKG_CONFIG) --libs jsoncpp)
 
 CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z,relro -D_FORTIFY_SOURCE=2
 CXXFLAGS += -Wall
@@ -28,9 +27,9 @@ cruft: $(SHARED_OBJS) dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o $(LIBDPKG_LIBS) -o cruft
 
 cpigsold: cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_popen.o owner.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_popen.o owner.o -lstdc++fs $(JSONCPP_LIBS) -o cpigsold
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_popen.o owner.o -lstdc++fs -o cpigsold
 cpigs: cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_lib.o owner.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_lib.o owner.o $(LIBDPKG_LIBS) $(JSONCPP_LIBS) -o cpigs
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_lib.o owner.o $(LIBDPKG_LIBS) -o cpigs
 
 test_%: %.o test_%.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
 test_dpkg_old: dpkg_popen.o test_dpkg.cc usr_merge.o

@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <ctime>
 
-#include <jsoncpp/json/json.h>
 #include <fnmatch.h>
 #include <string.h>
 #include <time.h>
@@ -80,7 +79,7 @@ int usage()
 {
 	cerr << "usage: " << endl;
 	cerr << "  cpigs [-n] [NUMBER]  : default format" << endl;
-	cerr << "  cpigs -e             : export in ncdu format" << endl;
+	//cerr << "  cpigs -e             : export in ncdu format" << endl;
 	cerr << "  cpigs -c             : export in .csv format" << endl;
 	cerr << "  cpigs -C             : export in .csv format, also static files" << endl;
 	return 1;
@@ -208,7 +207,7 @@ int main(int argc, char *argv[])
 	long unsigned int limit = 10;
 
 	bool ncdu = false, csv = false, static_ = false;
-	if (argc == 2 && !strcmp(argv[1], "-e")) {
+	if (argc == 2 && !strcmp(argv[1], "-e" && false)) {
 		ncdu = true;
 	} else if (argc == 2 && !strcmp(argv[1], "-c")) {
 		csv = true;
