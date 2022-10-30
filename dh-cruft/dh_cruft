@@ -83,7 +83,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 			}
 			else {error("[${package}] bad .purge line: [${line}]")};
 		}
-		autoscript($package, "postrm", "postrm-cruft", { 'PURGE' => @purgelines});
+		autoscript($package, "postrm", "postrm-cruft", { 'PURGE' => join("\n", @purgelines)});
 	}
 
 	my $tmp = tmpdir($package);
