@@ -27,24 +27,24 @@ using namespace std::experimental;
 namespace fs = std::experimental::filesystem;
 #endif
 
-bool myglob(string file, string glob )
+static bool myglob(const string& file, const string& glob )
 {
 	//stack<string> st;
 
 	bool debug = getenv("DEBUG_GLOB") != NULL;
 
 	if (file==glob) return true;
-	unsigned int filesize=file.size();
-	unsigned int globsize=glob.size();
+	auto filesize=file.size();
+	auto globsize=glob.size();
 		if ( glob.find("**")==globsize-2
 		  and filesize >= globsize-2
-		  and file.substr(0,globsize-2)==glob.substr(0,globsize-2)) {
+		  and file.compare(0, globsize-2, glob) == 0) {
 		if (debug) cerr << "match ** " << file << " # " << glob << endl;
 		return true;
-	}  else if ( glob.find("*")==globsize-1
+	}  else if ( glob.find('*')==globsize-1
 		  and filesize >= globsize-1
-		  and file.find("/",globsize-1)==string::npos
-		  and file.substr(0,globsize-1)==glob.substr(0,globsize-1)) {
+		  and file.find('/',globsize-1)==string::npos
+		  and file.compare(0, globsize - 1, glob) == 0) {
 		if (debug) cerr << "match * " << file << " # " << glob << endl;
 		return true;
 	} else if ( fnmatch(glob.c_str(),file.c_str(),FNM_PATHNAME)==0 ) {
@@ -52,13 +52,7 @@ bool myglob(string file, string glob )
 		return true;
 	} else {
 		// fallback to shellexp.c
-		char param1[256];
-		strncpy(param1,file.c_str(),sizeof(param1));
-		param1[sizeof(param1)-1] = '\0';
-		char param2[256];
-		strncpy(param2,glob.c_str(),sizeof(param2));
-		param2[sizeof(param2)-1] = '\0';
-		bool result=shellexp(param1,param2);
+		bool result=shellexp(file.c_str(),glob.c_str());
 		if (result and debug) {
 			cerr << "shellexp.c " << file << " # " << glob << endl;
 		}
