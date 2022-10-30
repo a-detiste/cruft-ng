@@ -14,8 +14,7 @@
 #include "filters.h"
 #include "plocate.h"
 #include "dpkg.h"
-
-extern "C" int shellexp(char* filename, char* pattern );
+#include "shellexp.h"
 
 using namespace std;
 

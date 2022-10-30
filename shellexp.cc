@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include "shellexp.h"
 
 /* 0 on no match, non-zero on match */
 int shellexp(const char* string, const char* pattern ) {

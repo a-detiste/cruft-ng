@@ -15,8 +15,7 @@
 #include "plocate.h"
 #include "dpkg.h"
 #include "dpkg_exclude.h"
-
-extern "C" int shellexp(char* filename, char* pattern );
+#include "shellexp.h"
 
 using namespace std;
 

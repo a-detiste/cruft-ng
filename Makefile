@@ -19,7 +19,6 @@ filters.o: filters.cc owner.h
 cruft.o: cruft.cc explain.h filters.h dpkg.h python.h
 dpkg_lib.o: dpkg_lib.cc dpkg.h
 dpkg_popen.o: dpkg_popen.cc dpkg.h
-shellexp.o: shellexp.c
 
 cruftold: $(SHARED_OBJS) dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -o cruftold
