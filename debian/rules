@@ -27,4 +27,5 @@ override_dh_install:
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
 	mkdir -p debian/cruft-ng/usr/lib/cruft/
 	cp -a csv.py debian/cruft-ng/usr/lib/cruft/
+	echo /var/lib/dpkg/info >> debian/cruft-ng/usr/share/cruft/ignore
 endif
