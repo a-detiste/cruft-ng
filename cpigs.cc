@@ -94,10 +94,6 @@ void output_pigs(long unsigned int limit, map<string, int>& usage)
 	}
 }
 
-void output_csv(vector<string>& cruft_db)
-{
-}
-
 void output_ncdu(vector<string>& cruft_db)
 {
 	// https://dev.yorhel.nl/ncdu/jsonfmt
