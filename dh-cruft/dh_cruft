@@ -64,7 +64,24 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 		foreach my $line (@lines)
 		{
 			chomp $line;
-			push @purgelines, "    rm -rf ${line}" if $line =~ /^\//;
+			# rtrim
+			$line =~ s/\s+$//;
+			if ($line =~ /^#/) {} # comment
+			elsif ($line =~ /^$/) {} # empty
+			elsif ($line =~ /^\//) {
+				if ($line =~ /^[a-zA-Z0-9_:~\-\/\.\?\*]*$/ ) {
+					if ($line =~ /\*\*$/ ) {
+						chop $line;
+						chop $line;
+					}
+					push @purgelines, "    rm -rf ${line}";
+				} else {
+					my $badchar = $line;
+					$badchar =~ tr/[a-zA-Z0-9_:~\-\/\.\?\*]//d;
+					error("[${package}] unexpected characters in line: ${line}: [${badchar}]");
+				}
+			}
+			else {error("[${package}] bad .purge line: [${line}]")};
 		}
 		autoscript($package, "postrm", "postrm-cruft", { 'PURGE' => @purgelines});
 	}
