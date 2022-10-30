@@ -6,7 +6,7 @@
 #include "dpkg.h"
 #include "usr_merge.h"
 
-int read_dpkg_header(vector<string>& packages)
+static int read_dpkg_header(vector<string>& packages)
 {
 	bool debug=getenv("DEBUG") != NULL;
 
@@ -83,7 +83,7 @@ int read_diversions(vector<Diversion>& diversions)
 	return 0;
 }
 
-int read_dpkg_items(vector<string>& dpkg)
+static int read_dpkg_items(vector<string>& dpkg)
 {
 	bool debug=getenv("DEBUG") != NULL;
 
