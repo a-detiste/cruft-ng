@@ -22,17 +22,34 @@ Suggests:
   ncdu,
 Breaks: cruft (<< 0.9.44~), cruft-common
 Replaces: cruft (<< 0.9.44~), cruft-common
-Description: program that finds any cruft built up on your system
+Description: programs that helps analyse volatile "cruft" files on your system
  cruft-ng is a program to look over your system for anything that shouldn't
- be there, but is; or for anything that should be there, but isn't.
+ be there, but is - the so called "cruft";  or for anything
+ that should be there, but isn't.
  .
- It bases most of its results on dpkg's & plocate's databases.
+ cpigs is a program that by default it works like dpigs
+ but for volatile data. it prints out the package with the most volatile
+ data (usualy apt, plocate...)
+ It can also dump it's whole state into a .csv format usable for
+ more in depth analysis.
+ .
+ Both cruft-ng and cpigs base most of their results on
+ dpkg's & plocate's databases, and also use a built-in custom
+ homegrown ruleset to match volatile files
+ to the corresponding engine.
+ .
+ Packages wanting to document such volatile files can do so
+ using dh-cruft.
 
 Package: dh-cruft
 Depends: ${perl:Depends}, ${misc:Depends}
 Architecture: all
 Provides: dh-sequence-cruft
 Description: plugin for DebHelper to register .cruft and .purge files
+ While the files listed in debian/<package>.cruft will simply be
+ accounted for; the one in debian/<package>.purge will actually
+ be removed in the final purge step after package removal.
+ .
  Some demo package can be found at:
  https://github.com/a-detiste/dh-cruft-test
 
