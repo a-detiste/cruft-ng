@@ -34,6 +34,7 @@ cpigs: cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpk
 
 test_%: %.o test_%.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
 test_dpkg_old: dpkg_popen.o test_dpkg.cc usr_merge.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_dpkg.cc usr_merge.o dpkg_popen.o -o test_dpkg_old
 test_dpkg: dpkg_lib.o test_dpkg.cc usr_merge.o $(LIBDPKG_LIBS)
 test_plocate: plocate.o python.o test_plocate.cc
 test_python: python.o test_python.cc
