@@ -3,4 +3,4 @@
 
 #include "owner.h"
 
-int read_filters(std::vector<std::string>& packages, std::vector<owner>& globs);
+int read_filters(const std::vector<std::string>& packages, std::vector<owner>& globs);
