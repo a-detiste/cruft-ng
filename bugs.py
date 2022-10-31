@@ -8,6 +8,7 @@ import debianbts as bts
 # Shell: /bin/sh linked to /bin/dash
 FALSE_POSITIVES = ['/bin/sh', '/bin/dash',
                    '/usr/bin/sh', '/usr/bin/dash',
+                   '/usr/sbin/piuparts',
                   ]
 
 # exclude "'" because it's added by dpkg in error messages
@@ -21,19 +22,28 @@ else:
 
 cruft = dict()
 
-for bug in bts.get_status(bugs):
-    #print(bug)
-    for mail in bts.get_bug_log(bug.bug_num):
-        for line in mail['body'].splitlines():
-            for match in re.findall(re_cruft, line):
-                if match in FALSE_POSITIVES:
-                    continue
-                if match.startswith('/var/lib/dpkg/'):
-                    continue
-                if '  interest-noawait ' in line:
-                    continue
-                match = match.rstrip('.')
-                cruft[match] = (bug.bug_num, bug.source, line)
+todo = set(bugs)
+done = set()
+
+while todo:
+    todo -= done
+    for bug in bts.get_status(list(todo)):
+        todo.update(set(bug.mergedwith))
+        done.add(bug.bug_num)
+        for mail in bts.get_bug_log(bug.bug_num):
+            for line in mail['body'].splitlines():
+                for match in re.findall(re_cruft, line):
+                    if match in FALSE_POSITIVES:
+                        continue
+                    if match.startswith('/var/lib/dpkg/'):
+                        continue
+                    if '  interest-noawait ' in line:
+                        continue
+                    match = match.rstrip('./')
+                    if match in cruft:
+                        # keep original bug report
+                        continue
+                    cruft[match] = (bug.bug_num, bug.source, line)
 
 for path,data in sorted(cruft.items()):
     bug, package, raw = data
