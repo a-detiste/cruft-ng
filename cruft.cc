@@ -54,10 +54,15 @@ static int read_mounts(const vector<string>& prunefs, vector<string>& mounts)
 	return 0;
 }
 
-static bool updatedb(const string& db)
+static bool updatedb()
 {
 	/* return value is meant as an are_we_up_to_date flag
 	   when running as non-root */
+	#ifdef BUSTER
+	const string db = "/var/lib/mlocate/mlocate.db";
+	#else
+	const string db = "/var/lib/plocate/plocate.db";
+	#endif
 
 	int rc_locate, rc_dpkg;
 	struct stat stat_locate, stat_dpkg;
@@ -239,7 +244,7 @@ int main(int argc, char *argv[])
 	strftime(buf, sizeof(buf), "%c", timeinfo);
 	cout << "cruft report: " << buf << '\n';
 
-	bool updated = updatedb("/var/lib/plocate/plocate.db");
+	bool updated = updatedb();
 	if (!updated) {
 		cerr << "warning: plocate database is outdated" << endl << flush;
 	}
