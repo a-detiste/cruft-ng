@@ -27,39 +27,6 @@ using namespace std::experimental;
 namespace fs = std::experimental::filesystem;
 #endif
 
-static bool myglob(const string& file, const string& glob )
-{
-	//stack<string> st;
-
-	bool debug = getenv("DEBUG_GLOB") != NULL;
-
-	if (file==glob) return true;
-	auto filesize=file.size();
-	auto globsize=glob.size();
-		if ( glob.find("**")==globsize-2
-		  and filesize >= globsize-2
-		  and file.compare(0, globsize-2, glob) == 0) {
-		if (debug) cerr << "match ** " << file << " # " << glob << endl;
-		return true;
-	}  else if ( glob.find('*')==globsize-1
-		  and filesize >= globsize-1
-		  and file.find('/',globsize-1)==string::npos
-		  and file.compare(0, globsize - 1, glob) == 0) {
-		if (debug) cerr << "match * " << file << " # " << glob << endl;
-		return true;
-	} else if ( fnmatch(glob.c_str(),file.c_str(),FNM_PATHNAME)==0 ) {
-		if (debug) cerr << "fnmatch " << file << " # " << glob << endl;
-		return true;
-	} else {
-		// fallback to shellexp.c
-		bool result=shellexp(file.c_str(),glob.c_str());
-		if (result and debug) {
-			cerr << "shellexp.c " << file << " # " << glob << endl;
-		}
-		return result;
-	}
-}
-
 clock_t beg = clock();
 
 void elapsed(string action)
