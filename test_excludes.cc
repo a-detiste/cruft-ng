@@ -1,7 +1,7 @@
 #include <iostream>
 #include "dpkg_exclude.h"
 
-int main(int argc, char *argv[])
+int main()
 {
 	vector<string> packages,globs;
 	read_dpkg_excludes(globs);

@@ -10,7 +10,7 @@ void test(string path) {
 	};
 }
 
-int main(int argc, char *argv[])
+int main()
 {
 	test("/usr/share/games/game-data-packager/game_data_packager/__pycache__");
 	test("/home/tchet/git/pyposdisplay/pyposdisplay/pyposdisplay.pyc");

@@ -1,7 +1,7 @@
 #include <iostream>
 #include "mlocate.h"
 
-int main(int argc, char *argv[])
+int main()
 {
 	vector<string> fs,prunefs;
 	read_mlocate(fs,prunefs);

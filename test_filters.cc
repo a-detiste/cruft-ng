@@ -3,7 +3,7 @@
 #include "filters.h"
 #include "owner.h"
 
-int main(int argc, char *argv[])
+int main()
 {
 	vector<string> packages,useless;
 	vector<owner> globs;
@@ -11,6 +11,6 @@ int main(int argc, char *argv[])
 	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, globs);
 	for (unsigned int i=0;i<globs.size();i++) {
 		//cout << globs[i].glob << endl;
-		cout << globs[i].package << " " << globs[i].glob  << endl;
+		cout << globs[i].package << ' ' << globs[i].glob  << endl;
 	}
 }

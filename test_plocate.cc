@@ -1,7 +1,7 @@
 #include <iostream>
 #include "plocate.h"
 
-int main(int argc, char *argv[])
+int main()
 {
 	vector<string> fs,prunefs;
 	read_plocate(fs,prunefs, "/etc/cruft/ignore");

@@ -19,7 +19,7 @@ int read_diversions_old(vector<Diversion>& diversions)
 }
 
 
-int main(int argc, char *argv[])
+int main()
 {
 	vector<Diversion> diversions1;
 	read_diversions_old(diversions1);

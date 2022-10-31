@@ -1,7 +1,7 @@
 #include <iostream>
 #include "dpkg.h"
 
-int main(int argc, char *argv[])
+int main()
 {
 	vector<string> packages;
 	vector<string> db;
