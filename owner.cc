@@ -2,6 +2,11 @@
 
 using namespace std;
 
+owner::owner()
+{
+	// why is this even needed ?
+}
+
 owner::owner( std::string package_, std::string glob_ )
 {
         package = std::move(package_);

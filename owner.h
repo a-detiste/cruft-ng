@@ -7,6 +7,7 @@ struct owner
 	std::string package;
 	std::string glob;
 	std::string bug;
+	owner();
 	owner(std::string, std::string);
 	owner(std::string, std::string, std::string);
 };

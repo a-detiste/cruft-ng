@@ -14,7 +14,7 @@ void error(const string& bugs_path, const string& bugs_line)
 	cerr << bugs_path << " is corrupted here: " << bugs_line << endl;
 }
 
-static void read_bugs(map<string, owner>& bugs, const string& bugs_path)
+void read_bugs(map<string, owner>& bugs, const string& bugs_path)
 {
 	ifstream bugs_file(bugs_path);
 	if (!bugs_file.is_open())

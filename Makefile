@@ -6,7 +6,7 @@ CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z
 CXXFLAGS += -Wall -Wextra
 override CXXFLAGS += $(LIBDPKG_CFLAGS)
 #CXXFLAGS += -std=c++17 #  clang++
-SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o owner.o
+SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o owner.o bugs.o
 
 all: cruft ruleset cpigs
 tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_python cruftold

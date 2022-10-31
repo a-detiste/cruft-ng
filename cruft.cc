@@ -15,6 +15,7 @@
 #include "dpkg.h"
 #include "dpkg_exclude.h"
 #include "shellexp.h"
+#include "bugs.h"
 
 using namespace std;
 
@@ -125,6 +126,7 @@ static const char* const default_explain_dir = "/etc/cruft/explain/";
 static const char* const default_filter_dir = "/etc/cruft/filters/";
 static const char* const default_ignore_file = "/etc/cruft/ignore";
 static const char* const default_ruleset_file = "/usr/share/cruft/ruleset";
+static const char* const default_bugs_file = "/usr/share/cruft/bugs";
 
 static void print_help_message()
 {
@@ -137,6 +139,7 @@ static void print_help_message()
 	cout << "    -F --filter      directory for filters (default: " << default_filter_dir << ")\n";
 	cout << "    -I --ignore      path for ignore file (default: " << default_ignore_file << ")\n";
 	cout << "    -R --ruleset     path for ruleset file (default: " << default_ruleset_file << ")\n";
+	cout << "    -B --bugs        path for known bugs file (default: " << default_bugs_file << ")\n";
 
 	cout << '\n';
 
@@ -151,6 +154,7 @@ int main(int argc, char *argv[])
 	string filter_dir = default_filter_dir;
 	string ignore_file = default_ignore_file;
 	string ruleset_file = default_ruleset_file;
+	string bugs_file = default_bugs_file;
 
 	const struct option long_options[] =
 	{
@@ -159,10 +163,11 @@ int main(int argc, char *argv[])
 		{"filter", required_argument, nullptr, 'F'},
 		{"ignore", required_argument, nullptr, 'I'},
 		{"ruleset", required_argument, nullptr, 'R'},
+		{"bugs", required_argument, nullptr, 'B'},
 	};
 
 	int opt, opti = 0;
-	while ((opt = getopt_long(argc, argv, "E:F:hI:R:", long_options, &opti)) != 0) {
+	while ((opt = getopt_long(argc, argv, "E:F:hI:R:B:", long_options, &opti)) != 0) {
 		if (opt == EOF)
 			break;
 
@@ -189,6 +194,10 @@ int main(int argc, char *argv[])
 
 		case 'R':
 			ruleset_file = optarg;
+			break;
+
+		case 'B':
+			bugs_file = optarg;
 			break;
 
 		case '?':
@@ -245,6 +254,9 @@ int main(int argc, char *argv[])
 	vector<string> dpkg;
 	read_dpkg(packages, dpkg, false);
 	elapsed("dpkg");
+
+	map<string, owner> bugs;
+	read_bugs(bugs, "bugs");
 
 	// match two main data sources
 	vector<string> cruft;
@@ -340,7 +352,12 @@ int main(int argc, char *argv[])
 	//TODO: split by filesystem
 	cout << "---- unexplained: / ----\n";
 	for (const auto& cr: cruft4) {
-		cout << "        " << cr << '\n';
+		cout << "        " << cr;
+		if (bugs.count(cr)) {
+			auto bug = bugs[cr];
+			cout << "       (Bug: #" << bug.bug << ")";
+		}
+		cout << '\n';
 	}
 
 	cout << "\nend.\n";
