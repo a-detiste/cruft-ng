@@ -53,9 +53,10 @@ static int read_mounts(const vector<string>& prunefs, vector<string>& mounts)
 	return 0;
 }
 
-static void updatedb(const string& db)
+static bool updatedb(const string& db)
 {
-	if (getuid()) return;
+	/* return value is meant as an are_we_up_to_date flag
+	   when running as non-root */
 
 	int rc_locate, rc_dpkg;
 	struct stat stat_locate, stat_dpkg;
@@ -68,12 +69,15 @@ static void updatedb(const string& db)
 	}
 
 	if (!rc_locate && stat_locate.st_mtim.tv_sec > stat_dpkg.st_mtim.tv_sec)
-		return;
+		return true;
+
+	if (getuid()) return false;
 
 	if (system("updatedb")) {
 		cerr << "updatedb failed\n";
 		exit(1);
 	}
+	return true;
 }
 
 static void one_file(const string& infile)
@@ -226,7 +230,10 @@ int main(int argc, char *argv[])
 	strftime(buf, sizeof(buf), "%c", timeinfo);
 	cout << "cruft report: " << buf << '\n';
 
-	updatedb("/var/lib/plocate/plocate.db");
+	bool updated = updatedb("/var/lib/plocate/plocate.db");
+	if (!updated) {
+		cerr << "warning: plocate database is outdated" << endl << flush;
+	}
 	elapsed("updatedb");
 
 	vector<string> fs,prunefs,mounts;
