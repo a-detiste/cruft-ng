@@ -131,17 +131,18 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 					// We trust DPKG state for now
 					if (stat(namenode->name, &buffer) == 0) {
 						realname = usr_merge(namenode->name);
+						output.emplace_back(realname);
 					}
 					if (stat(namenode->divert->useinstead->name, &buffer) == 0) {
 						realname = usr_merge(namenode->divert->useinstead->name);
+						output.emplace_back(realname);
 					}
 				} else {
 					realname = usr_merge(namenode->name);
+					output.emplace_back(realname);
 				}
 
 				if (print_csv) csv(namenode->name, realname, pkg->set->name);
-
-				output.emplace_back(realname);
 			}
 		}
 	}
