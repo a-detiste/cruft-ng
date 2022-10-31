@@ -10,7 +10,7 @@ do
 	# so rules can already be rewriten in new format
 	# expected by dh-cruft
 	# --- o<  --- o< ---
-	cat "$file" | while read rule
+	while read rule
 	do
 		case "$rule" in
 			"")
@@ -25,7 +25,7 @@ do
 				echo "$rule"
 			;;
 		esac
-	done
+	done < "$file"
 	# --- o<  --- o< ---
 
 done | grep -v ^# | grep .) > ruleset
