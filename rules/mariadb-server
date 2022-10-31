@@ -5,7 +5,7 @@
 /var/lib/mysql-files
 /var/lib/mysql-keyring
 # this should probably be more sophisticated
-/var/lib/mysql/**
+/var/lib/mysql/
 /var/log/mysql.err*
 /var/log/mysql.log*
 /var/log/mysql

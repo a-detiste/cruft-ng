@@ -43,8 +43,7 @@
 /var/lib/systemd/rfkill
 /var/lib/systemd/rfkill/*
 /var/lib/systemd/timers
-/var/log/journal
-/var/log/journal/**
+/var/log/journal/
 /var/log/private
 /var/tmp/systemd-private-*
 /var/tmp/systemd-private-*/tmp

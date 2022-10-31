@@ -49,9 +49,6 @@ ruleset: rules/*
 	echo Checking for trailing whitespaces
 	grep -E -R -H " +$$" rules/ || true
 	! grep -E -R -q " +$$" rules/
-	echo Checking for trailing slashes
-	grep -E -R -H "/+$$" rules/ || true
-	! grep -E -R -q "/+$$" rules/
 	./ruleset.sh
 
 flow.png: flow.ditaa

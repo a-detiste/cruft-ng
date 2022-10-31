@@ -2,8 +2,7 @@
 /etc/apt-cacher-ng/backends_debvol
 /etc/apt-cacher-ng/backends_ubuntu
 /etc/apt-cacher-ng/zz_debconf.conf
-/var/cache/apt-cacher-ng
-/var/cache/apt-cacher-ng/**
+/var/cache/apt-cacher-ng/
 /var/lib/apt-cacher-ng/backends_debian.default
 /var/lib/apt-cacher-ng/backends_ubuntu.default
 /var/log/apt-cacher-ng

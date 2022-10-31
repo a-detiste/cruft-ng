@@ -1,3 +1,2 @@
-/var/cache/man
-/var/cache/man/**
+/var/cache/man/
 /var/lib/man-db/auto-update

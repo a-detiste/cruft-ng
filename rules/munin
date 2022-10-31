@@ -1,4 +1,4 @@
 # this is a symlink
 /etc/apache2/conf-available/munin.conf
-/var/cache/munin/www/**
+/var/cache/munin/www/
 /var/log/munin/munin*.log*

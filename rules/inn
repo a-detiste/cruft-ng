@@ -4,6 +4,5 @@
 /etc/news/server
 /etc/news/whoami
 /var/lib/news/*
-/var/log/news
-/var/log/news/**
-/var/spool/news/**
+/var/log/news/
+/var/spool/news/

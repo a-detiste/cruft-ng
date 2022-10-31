@@ -2,4 +2,4 @@
 /etc/texmf/hyphen.d
 /etc/texmf/web2c/texmf.cnf
 /usr/local/share/texmf
-/var/lib/texmf/**
+/var/lib/texmf/

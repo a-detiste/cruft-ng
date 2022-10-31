@@ -2,4 +2,4 @@
 /etc/default/squid
 /etc/squid.conf
 /var/log/squid/*
-/var/spool/squid/**
+/var/spool/squid/

@@ -8,5 +8,4 @@
 /usr/local/etc/jupyter/nbconfig/notebook.d
 /usr/local/etc/jupyter/nbconfig/notebook.d/*.json
 /usr/local/share/jupyter
-/usr/local/share/jupyter/nbextensions
-/usr/local/share/jupyter/nbextensions/**
+/usr/local/share/jupyter/nbextensions/

@@ -1,12 +1,7 @@
 /var/lib/doc-base/info
-# old DB format
-/var/lib/doc-base/info/*.list
-/var/lib/doc-base/info/*.status
-# new since 2011
 /var/lib/doc-base/info/files-old.yml
 /var/lib/doc-base/info/files.yml
 /var/lib/doc-base/info/status-old.yml
 /var/lib/doc-base/info/status.yml
 /var/lib/doc-base/documents/*
-/var/lib/doc-base/omf/**
-/var/lib/doc-base/omf/*/*.omf
+/var/lib/doc-base/omf/

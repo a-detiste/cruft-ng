@@ -5,5 +5,4 @@
 /var/cache/piuparts/tmp
 /var/lib/piuparts
 /var/lib/piuparts/piupartss
-/var/lib/piuparts/slave
-/var/lib/piuparts/slave/**
+/var/lib/piuparts/slave/

@@ -16,6 +16,6 @@
 /var/cache/postgresql/dicts/*.dict
 /var/lib/postgresql
 # this should probably be more sophisticated
-/var/lib/postgresql/**
+/var/lib/postgresql/
 /var/log/postgresql
 /var/log/postgresql/postgres*log*

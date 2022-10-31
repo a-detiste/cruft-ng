@@ -25,8 +25,7 @@
 /var/lib/sddm/.cache/sddm-greeter/qmlcache/*.qmlc
 /var/lib/sddm/.cache/tracker
 /var/lib/sddm/.cache/tracker/*
-/var/lib/sddm/.cache/tracker3
-/var/lib/sddm/.cache/tracker3/**
+/var/lib/sddm/.cache/tracker3/
 /var/lib/sddm/.config
 /var/lib/sddm/.config/pipewire-media-session
 /var/lib/sddm/.config/pipewire-media-session/*

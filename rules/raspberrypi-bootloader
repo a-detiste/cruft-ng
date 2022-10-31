@@ -3,8 +3,7 @@
 /boot/config.txt
 /boot/issue.txt
 /boot/LICENSE.oracle
-/boot.bak
-/boot.bak/**
+/boot.bak/
 /etc/X11/Xsession.d/75source-profile
 /etc/rpi-issue
 /etc/apt/apt.conf.d/50raspi
@@ -13,7 +12,6 @@
 /etc/modprobe.d/raspi-blacklist.conf
 /etc/udev/rules.d/40-scratch.rules
 /etc/udev/rules.d/99-input.rules
-/lib/modules.bak
-/lib/modules.bak/**
+/lib/modules.bak/
 /usr/share/rpikernelhack
 /usr/share/rpikernelhack/overlays

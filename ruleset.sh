@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 rm -f ruleset
 
@@ -6,7 +6,28 @@ rm -f ruleset
 ls | sort | while read file
 do
 	echo "$file"
-	cat "$file"
+	# this is a temporary comptability layer
+	# so rules can already be rewriten in new format
+	# expected by dh-cruft
+	# --- o<  --- o< ---
+	cat "$file" | while read rule
+	do
+		case "$rule" in
+			"")
+			;;
+			"#*")
+			;;
+			*/)
+				echo "${rule:0: -1}"
+				echo "${rule}**"
+			;;
+			*)
+				echo "$rule"
+			;;
+		esac
+	done
+	# --- o<  --- o< ---
+
 done | grep -v ^# | grep .) > ruleset
 
 # backport
