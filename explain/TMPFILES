@@ -20,7 +20,7 @@ do
         journal-nocow|legacy|var)
            continue
            ;;
-        systemd-pstore|systemd-tmp)
+        systemd-nologin|systemd-pstore|systemd-tmp)
            package="systemd"
            ;;
     esac
@@ -29,17 +29,20 @@ do
     do
         case "$path" in
              /etc/*)
-                  [ "$package" != "$last_package" ] && echo "$package"
                   echo "$path"
-                  [ "$action" == "d" ] && echo "$path/**"
-                  last_package="$package"
                   ;;
              /var/*)
-                  [ "$package" != "$last_package" ] && echo "$package"
                   echo "$path"
-                  [ "$action" == "d" ] && echo "$path/**"
-                  last_package="$package"
                   ;;
         esac
+    done | sort -u | while read path
+    do
+        [ "$package" != "$last_package" ] && echo "$package"
+        # we purposefuly want the shell to glob these paths
+        #
+        # false positives like "/var/log/journal/*/system.journal"
+        # are not a problem, they will never match a real file
+        echo $path
+        last_package="$package"
     done
 done
