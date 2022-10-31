@@ -1,0 +1,9 @@
+/usr/share/emacs/site-lisp/debian-startup.el
+/usr/share/emacs/site-lisp/debian-startup.elc
+/usr/share/emacs/site-lisp/dictionaries-common
+/usr/share/emacs/site-lisp/dictionaries-common/.nosearch
+/usr/share/emacs/site-lisp/dictionaries-common/done
+/usr/share/emacs/site-lisp/dictionaries-common/*.el
+/usr/share/emacs/site-lisp/dictionaries-common/*.elc
+/usr/share/emacs/site-lisp/elpa/
+/var/lib/emacsen-common/state/flavor/installed/emacs

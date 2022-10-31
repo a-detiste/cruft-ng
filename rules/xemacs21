@@ -1,3 +1,11 @@
-/etc/xemacs/site-start-20.d
-/etc/xemacs/site-start-20.d/00debian.el
+/usr/lib/xemacs-21.4.24/etc/
+/usr/lib/xemacs-21.4.24/lisp/
+/usr/local/lib/xemacs/
+/usr/local/lib/xemacs/site-lisp/
 /usr/share/xemacs21/site-lisp/**/*.elc
+/usr/share/xemacs21/site-lisp/debian-startup.el
+/usr/share/xemacs21/site-lisp/dictionaries-common
+/usr/share/xemacs21/site-lisp/dictionaries-common/.nosearch
+/usr/share/xemacs21/site-lisp/dictionaries-common/done
+/usr/share/xemacs21/site-lisp/dictionaries-common/*.el
+/var/lib/emacsen-common/state/flavor/installed/xemacs21

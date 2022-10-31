@@ -15,7 +15,8 @@ cruft-ng (0.9.47) unstable; urgency=medium
     ccache, grub-efi-*, fwupd, kde-config-sddm, pbuilder, rkhunter,
     policycoreutils-dev, tlp, usbguard, vnstat
   * update explain scripts: UCF, ispell
-  * update ruleset for Python3, apt, dpkg, openssh, util-linux
+  * update ruleset for Python3, apt, dpkg, openssh, util-linux,
+    emacs, xemacs21
   * misc. new rules for: acpid, fail2ban, tix, lynx, powertop, uwf, piuparts,
     debci, debian-reference-*, server-xorg-legacy, synaptic, libgvc6, anacron,
     nginx, fai-quickstart, pcutils, keyboard-configuration, acct,
