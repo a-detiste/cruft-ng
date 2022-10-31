@@ -15,6 +15,7 @@ test_excludes
 test_dpkg
 test_dpkg_old
 test_python
+test_bugs
 debian/.debhelper/
 debian/cruft-ng.debhelper.log
 debian/cruft-ng.substvars
