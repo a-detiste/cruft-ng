@@ -4,7 +4,6 @@
 #include <ctime>
 
 #include <sys/stat.h>
-#include <fnmatch.h>
 #include <getopt.h>
 #include <cstring>
 #include <unistd.h>

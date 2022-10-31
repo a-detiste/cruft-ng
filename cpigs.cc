@@ -6,7 +6,6 @@
 #include <algorithm>
 #include <ctime>
 
-#include <fnmatch.h>
 #include <string.h>
 #include <time.h>
 
