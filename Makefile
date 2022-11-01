@@ -42,7 +42,7 @@ test_explain: test_explain.cc explain.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG
 test_filters: test_filters.cc filters.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
 
 clean:
-	rm -f cpigs cruft cruftold ruleset test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python
+	rm -f cpigs cruft cruftold ruleset test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python test_bugs
 	rm -f *.o
 
 ruleset: rules/*
