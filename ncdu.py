@@ -11,8 +11,7 @@ import time
 from itertools import takewhile
 from operator import eq
 
-print('[1,0,{"progname": "cpigs", "progver": "0.9", "timestamp": %s },' % int(time.time()))
-print('[{"name":"/"}', end='') # not the ','
+print('[1,0,{"progname": "cpigs", "progver": "0.9", "timestamp": %s }' % int(time.time()), end='')
 
 prev_dirs = []
 
@@ -21,7 +20,7 @@ HEAD = 300
 count = 0
 
 HEAD = 2000
-#HEAD = 99999999999
+HEAD = 99999999999
 
 bug = """
 {"name": "xml-core.xml", "dsize": 840},
@@ -49,6 +48,8 @@ def adjust_depth(dirs, prev_dirs):
         print("]"*closed, end="")
     if opened:
         for opened_dir in dirs[-opened:]:
+            if opened_dir == '':
+                opened_dir = '/'
             print(',\n[{"name": "%s"}' % opened_dir, end="")
 
 with open('cpigs.csv', 'r') as dump:
@@ -56,6 +57,7 @@ with open('cpigs.csv', 'r') as dump:
         # "package" and "cruft" metadata are not supported in NCDU format
         path, _, type_, _, size = line.rstrip('\n').split(';')
         path = path.replace('"','_')
+        path = path.replace('\\','\\\\')
 
         basename = os.path.basename(path)
         if type == 'd':
@@ -63,7 +65,7 @@ with open('cpigs.csv', 'r') as dump:
         else:
             dirname = os.path.dirname(path)
 
-        dirs = dirname.lstrip("/").split("/")
+        dirs = dirname.split("/") if dirname != '/' else ['']
         adjust_depth(dirs, prev_dirs)
         if type_ == 'd':
             print(',\n[{"name": "%s"}' % basename , end="")
@@ -81,6 +83,6 @@ with open('cpigs.csv', 'r') as dump:
 dirs = []
 adjust_depth(dirs, prev_dirs)
 
-print(']]')
+print(']')
 
 # ./ncdu.py 2>/dev/null | ncdu -f - --color dark
