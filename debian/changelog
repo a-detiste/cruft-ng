@@ -5,6 +5,8 @@ cruft-ng (0.9.47) unstable; urgency=medium
   * "cpigs" command now support the new '-c' and '-C' arguments
     to generate either a .csv dump of all the volatile files
     or with '-C' of the whole system also including static files.
+  * "cpigs" now also support the new '-e' command switch
+    to export data in the format expected by NCDU (Closes: #291823)
   * keep an archive of old rules and make the package easier
     to backport.
   * remove misleading "broken symlinks" in the report,

@@ -41,7 +41,7 @@ int usage()
 {
 	cerr << "usage: " << endl;
 	cerr << "  cpigs [-n] [NUMBER]  : default format" << endl;
-	//cerr << "  cpigs -e             : export in ncdu format" << endl;
+	cerr << "  cpigs -e             : export in ncdu format" << endl;
 	cerr << "  cpigs -c             : export in .csv format" << endl;
 	cerr << "  cpigs -C             : export in .csv format, also static files" << endl;
 	return 1;
@@ -70,61 +70,64 @@ void output_ncdu(vector<string>& cruft_db)
 
 	cout << "[{\"name\":\"/\"}"; // not the ','
 
-	string dir;
+	fs::path last_dir = "/";
 
-	/*
-	vector<string>::iterator cruft;
-	for (cruft=cruft_db.begin();cruft !=cruft_db.end();cruft++)
+	vector<string>::iterator it;
+	for (it=cruft_db.begin(); it != cruft_db.end(); it++)
 	{
-		string dest = *cruft;
-		if (fs::is_directory(*cruft)) {
-			cerr << dest << endl;
-			if (dest.size() > dir.size() && !dest.compare(0, dir.size(), dir)) {
-				// we go down
-				size_t pos = string::npos;
-				size_t prev_pos = dir.size()+1;
-				string step;
-				while ((pos = dest.find('/', prev_pos)) != string::npos) {
-					string step = dest.substr(prev_pos, pos - prev_pos);
-					cerr << "+ " <<step << endl;
-					prev_pos = pos + 1;
-				}
-				step = dest.substr(prev_pos);
-				cerr << "+ " << step << endl;
-				dir = dest;
-			} else {
-				// we go up
-				size_t pos = dir.size();
-				size_t prev_pos = string::npos;
-				string step;
-				while ((pos = dir.rfind('/', prev_pos))) {
-					if (!dir.compare(0, pos - 2, dest)) break;
-					string step = dir.substr(pos + 1, prev_pos - pos);
-					cerr << "- " << step << endl;
-					prev_pos = pos - 1;
-				}
+		fs::path cruft = *it;
+		fs::path basename = cruft.filename();
+		fs::path dirname;
 
-				// we go back up again
-				prev_pos += 2;
-				while ((pos = dest.find('/', prev_pos)) != string::npos) {
-                                        string step = dest.substr(prev_pos, pos - prev_pos);
-                                        cerr << "+ " <<step << endl;
-                                        prev_pos = pos + 1;
-                                }
-				step = dest.substr(prev_pos);
-				cerr << "+ " << step << endl;
-
-				dir = dest;
-			}
-		} else if (fs::is_symlink(*cruft)) {
-			//
+		if (fs::is_directory(cruft)) {
+			dirname = cruft;
 		} else {
-			//
+			dirname = cruft.parent_path();
 		}
-	}
-	*/
 
-	cout << "]]" << endl;
+		if (last_dir != dirname)
+		{
+			auto l = last_dir.begin();
+			auto d = dirname.begin();
+			int common_len = 0;
+			while(l != last_dir.end() && d != dirname.end() && *l == *d)
+			{
+				common_len++;
+				l++;
+				d++;
+			}
+
+			int len_last_dir = 0;
+			for(l = last_dir.begin(); l != last_dir.end() ;l++) len_last_dir++;
+
+			int closed = len_last_dir - common_len;
+			for(int c = closed; c; c--) cout << ']';
+
+			int skipped = 0;
+			for(auto& part : dirname)
+			{
+				if (skipped >= common_len) {
+				        cout << ",\n[{\"name\":" << part << "}";
+				}
+				skipped++;
+			}
+		}
+
+		if (!fs::is_directory(cruft)) {
+			cout << ",\n{\"name\":" << basename;
+			try {
+				auto fsize = fs::file_size(cruft);
+				cout << ",\"dsize\":" << fsize;
+			}
+			catch (...) {}
+			cout << "}";
+		}
+
+		last_dir = dirname;
+	}
+
+	for(auto& part : last_dir) { cout << ']'; }
+	cout << "]" << endl;
 }
 
 int main(int argc, char *argv[])
