@@ -28,7 +28,7 @@ cruft-ng (0.9.47) unstable; urgency=medium
     installation-report, keyboard-configuration, dialog
   * replace php7.4 by php8.1
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 30 Oct 2022 12:35:31 +0100
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 01 Nov 2022 20:56:28 +0100
 
 cruft-ng (0.9.46) unstable; urgency=medium
 
