@@ -8,7 +8,6 @@ dh_cruft - install cruft files into package build directories
 
 use strict;
 use warnings;
-use File::Path qw(make_path);
 use Debian::Debhelper::Dh_Lib;
 
 our $VERSION = DH_CRUFT_VERSION;
@@ -96,7 +95,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 	}
 	
 	if (@lines) {
-		make_path($cruft_dir);
+		install_dir($cruft_dir);
 		my $APPEND;
 		open(APPEND, ">>", "$cruft_dir/$package") or error("Failed to append to ${cruft_dir}/${package}: $!");
 		foreach my $line (@lines)
