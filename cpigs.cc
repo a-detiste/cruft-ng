@@ -111,6 +111,7 @@ void output_ncdu(vector<string>& cruft_db)
 				}
 				skipped++;
 			}
+			last_dir = dirname;
 		}
 
 		if (!fs::is_directory(cruft)) {
@@ -122,8 +123,6 @@ void output_ncdu(vector<string>& cruft_db)
 			catch (...) {}
 			cout << "}";
 		}
-
-		last_dir = dirname;
 	}
 
 	for(auto& part : last_dir) { cout << ']'; }
