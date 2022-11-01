@@ -63,50 +63,16 @@ void output_pigs(long unsigned int limit, map<string, int>& usage)
 void output_ncdu(vector<string>& cruft_db)
 {
 	// https://dev.yorhel.nl/ncdu/jsonfmt
-	/*
-	Json::Value json(Json::arrayValue);
-	json.append(1);
-	json.append(2);
-	Json::Value signature(Json::objectValue);
-	signature["progname"] = "cpigs";
-	signature["progver"] = "0";
-	signature["timestamp"] = int(time(nullptr));
-	json.append(signature);
-	Json::Value root(Json::arrayValue);
-	*/
+	// https://github.com/rofl0r/ncdu/blob/master/src/dir_export.c
 
-	/*
-	Json::Value dir(Json::objectValue);
-	dir["name"] = "/";
-	dir["asize"] = 4096;
-	dir["dsize"] = 4096;
-	root.append(dir);
+	cout << "[1,0,{\"progname\": \"cpigs\", \"progver\": \"0.9\",";
+	cout << "\"timestamp\": " <<  int(time(nullptr)) << "},\n";
 
-	Json::Value file(Json::objectValue);
-	file["name"] = "HELLO";
-	file["asize"] = 13;
-	file["dsize"] = 4096;
-	root.append(file);
-
-	Json::Value file2(Json::objectValue);
-	file2["name"] = "WORLD";
-	file2["asize"] = 42;
-	file2["dsize"] = 4096;
-	root.append(file2);
-
-
-	Json::Value newroot(Json::arrayValue);
-	Json::Value subdir(Json::objectValue);
-	subdir["name"] = "etc";
-	subdir["asize"] = 4096;
-	subdir["dsize"] = 4096;
-	newroot.append(subdir);
-	root.append(newroot);
-	https://en.wikibooks.org/wiki/JsonCpp#Example
-	*/
+	cout << "[{\"name\":\"/\"}"; // not the ','
 
 	string dir;
 
+	/*
 	vector<string>::iterator cruft;
 	for (cruft=cruft_db.begin();cruft !=cruft_db.end();cruft++)
 	{
@@ -156,9 +122,9 @@ void output_ncdu(vector<string>& cruft_db)
 			//
 		}
 	}
+	*/
 
-	//json.append(root);
-	//cout << json.toStyledString() << endl;
+	cout << "]]" << endl;
 }
 
 int main(int argc, char *argv[])
@@ -166,7 +132,7 @@ int main(int argc, char *argv[])
 	long unsigned int limit = 10;
 
 	bool ncdu = false, csv = false, static_ = false;
-	if (argc == 2 && (!strcmp(argv[1], "-e") && false)) {
+	if (argc == 2 && !strcmp(argv[1], "-e")) {
 		ncdu = true;
 	} else if (argc == 2 && !strcmp(argv[1], "-c")) {
 		csv = true;
