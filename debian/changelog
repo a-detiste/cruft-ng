@@ -7,6 +7,9 @@ cruft-ng (0.9.47) unstable; urgency=medium
     or with '-C' of the whole system also including static files.
   * "cpigs" now also support the new '-e' command switch
     to export data in the format expected by NCDU (Closes: #291823)
+  * list loose files with known bug numbers in "cruft" report.
+    These bugs needs to be tagged with
+    user = "cruft-ng@packages.debian.org" and tag = "cruft".
   * keep an archive of old rules and make the package easier
     to backport.
   * remove misleading "broken symlinks" in the report,
