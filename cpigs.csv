@@ -1,0 +1,17 @@
+/boot/grub/i386-pc/video_bochs.mod;grub-pc-bin;f;1;5636
+/boot/grub/i386-pc/video_cirrus.mod;grub-pc-bin;f;1;6052
+/boot/grub/i386-pc/video_colors.mod;grub-pc-bin;f;1;5648
+/boot/grub/i386-pc/video.mod;grub-pc-bin;f;1;6060
+/boot/grub/i386-pc/videotest_checksum.mod;grub-pc-bin;f;1;2372
+/boot/grub/i386-pc/videotest.mod;grub-pc-bin;f;1;4264
+/boot/vmlinuz-5.19.0-2-amd64;linux-image-5.19.0-2-amd64;f;0;7700736
+/boot/vmlinuz-6.0.0-2-amd64;linux-image-6.0.0-2-amd64;f;0;7783328
+/etc/alsa/conf.d/10-rate-lav.conf;libasound2-plugins;f;0;425
+/etc/alsa/conf.d/10-samplerate.conf;libasound2-plugins;f;0;429
+/etc/alsa/conf.d/99-pulseaudio-default.conf.example;libasound2-plugins;f;0;201
+/etc/alsa/conf.d/99-pulse.conf;pulseaudio;f;0;376
+/initrd.img;LINUX-IMAGE;l;1;1024
+/initrd.img.old;LINUX-IMAGE;l;1;1024
+/usr/lib/python3/dist-packages/diffoscope/comparators/vmlinuz.py;diffoscope-minimal;f;0;1921
+/vmlinuz;LINUX-IMAGE;l;1;1024
+/vmlinuz.old;LINUX-IMAGE;l;1;1024
