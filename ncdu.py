@@ -2,19 +2,54 @@
 
 # cpigs -C | grep ^/ | sort -k1,1 -t ';' -u > cpigs.csv
 
+# https://github.com/wodny/ncdu-export
+# (GPL-3: but this file is not meant for distriubtion)
+
 import os
 import sys
 import time
+from itertools import takewhile
+from operator import eq
 
 print('[1,0,{"progname": "cpigs", "progver": "0.9", "timestamp": %s },' % int(time.time()))
 print('[{"name":"/"}', end='') # not the ','
 
-level = 0
-location = ''
+prev_dirs = []
 
 # carefuly selected number to have a few files from /etc too
 HEAD = 300
 count = 0
+
+HEAD = 2000
+#HEAD = 99999999999
+
+bug = """
+{"name": "xml-core.xml", "dsize": 840},
+{"name": "xml-core.xml.old", "dsize": 673}]],
+[{"name": ""},
+{"name": "initrd.img", "dsize": 1024},
+{"name": "initrd.img.old", "dsize": 1024}],
+[{"name": "lib64"},
+{"name": "ld-linux-x86-64.so.2", "dsize": 223152}],
+[{"name": ""},
+{"name": "libx32", "dsize": 1024},
+[{"name": "lost+found"}],
+[{"name": "media"}]],
+"""
+
+def compare_dirs(dirs, prev_dirs):
+    common_len = len(list(takewhile(lambda x: eq(*x), zip(dirs, prev_dirs))))
+    closed = len(prev_dirs) - common_len
+    opened = len(dirs) - common_len
+    return closed, opened
+
+def adjust_depth(dirs, prev_dirs):
+    closed, opened = compare_dirs(dirs, prev_dirs)
+    if closed:
+        print("]"*closed, end="")
+    if opened:
+        for opened_dir in dirs[-opened:]:
+            print(',\n[{"name": "%s"}' % opened_dir, end="")
 
 with open('cpigs.csv', 'r') as dump:
     for line in dump:
@@ -22,67 +57,30 @@ with open('cpigs.csv', 'r') as dump:
         path, _, type_, _, size = line.rstrip('\n').split(';')
         path = path.replace('"','_')
 
-        dirname = os.path.dirname(path)
         basename = os.path.basename(path)
+        if type == 'd':
+            dirname = path
+        else:
+            dirname = os.path.dirname(path)
 
-        w = ' ' * (level+1)
-        if type_ != 'd':
-            if dirname == location:
-                # we stay in the same dir, we just add more files
-                print(',\n%s' % w, end='')
-                print('{"name": "%s", "dsize": %s}' % (basename, size), end='')
-            elif os.path.dirname(dirname) == location:
-                # we go down one dir
-                level +=1
-                w = ' ' * (level+1)
-                print(',\n%s' % w, end='')
-                print('[{"name": "%s"},' % dirname)
-                print(w, end='')
-                print('{"name": "%s", "dsize": %s}' % (basename, size), end='')
-                location = dirname
-            elif dirname.startswith(location + '/'):
-                # we need to go down further
-                # and also generate intermediary dirs
-                steps = dirname[len(location)+1:]
-                print('steps', steps, file=sys.stderr)
-                for step in steps.split('/'):
-                    w = ' ' * (level+1)
-                    print(',\n%s' % w, end='')
-                    print('[{"name": "%s"}' % step, end='')
-                    level += 1
-                print(',\n%s' % w, end='')
-                print('{"name": "%s", "dsize": %s}' % (basename, size), end='')
-                location = dirname
-            else:
-                # we go up
-                while not (dirname+'/').startswith(location + '/'):
-                    location = os.path.dirname(location)
-                    level -= 1
-                    print(']', end='')
-                    if level < 0:
-                        location = '/'
-                        break
+        dirs = dirname.lstrip("/").split("/")
+        adjust_depth(dirs, prev_dirs)
+        if type_ == 'd':
+            print(',\n[{"name": "%s"}' % basename , end="")
+            dirs.append(basename)
+        else:
+            print(',\n{"name": "%s", "dsize": %s}' % (basename, size), end="")
+        prev_dirs = dirs
 
-                steps = dirname[len(location):]
-                for step in steps[:len(steps)-1].split('/'):
-                    if not step:
-                        break
-                    w = ' ' * (level+1)
-                    print(',\n%s' % w, end='')
-                    print('[{"name": "%s"}' % step, end='')
-                    level +=1
-                location = dirname
-
-                print(',\n%s' % w, end='')
-                print('{"name": "%s", "dsize": %s}' % (basename, size), end='')
-
-
+        # debug code
         count += 1
         if count > HEAD:
             break
 
-print(']' * level)
+
+dirs = []
+adjust_depth(dirs, prev_dirs)
 
 print(']]')
 
-# ./ncdu.py 2>/dev/null | ncdu -f -
+# ./ncdu.py 2>/dev/null | ncdu -f - --color dark
