@@ -1,3 +1,6 @@
+// Copyright © 2022 Alexandre Detiste <alexandre@detiste.be>
+// SPDX-License-Identifier: GPL-2.0-or-later
+
 #define LIBDPKG_VOLATILE_API
 #include <iostream>
 #include <algorithm>
