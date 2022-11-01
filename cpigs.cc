@@ -76,7 +76,6 @@ void output_ncdu(vector<string>& cruft_db)
 	for (it=cruft_db.begin(); it != cruft_db.end(); it++)
 	{
 		fs::path cruft = *it;
-		fs::path basename = cruft.filename();
 		fs::path dirname;
 
 		if (fs::is_directory(cruft)) {
@@ -115,6 +114,7 @@ void output_ncdu(vector<string>& cruft_db)
 		}
 
 		if (!fs::is_directory(cruft)) {
+			fs::path basename = cruft.filename();
 			cout << ",\n{\"name\":" << basename;
 			try {
 				auto fsize = fs::file_size(cruft);
