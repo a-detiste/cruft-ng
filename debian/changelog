@@ -1,7 +1,12 @@
-cruft-ng (0.9.47) unstable; urgency=medium
+cruft-ng (0.9.48) UNRELEASED; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 01 Nov 2022 22:19:25 +0100
+
+cruft-ng (0.9.47) unstable; urgency=medium
+
   * "cpigs" command now support the new '-c' and '-C' arguments
     to generate either a .csv dump of all the volatile files
     or with '-C' of the whole system also including static files.
