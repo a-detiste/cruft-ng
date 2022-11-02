@@ -11,6 +11,7 @@
 namespace fs = std::filesystem;
 #else
 #include <experimental/filesystem>
+#include <experimental/string_view>
 using namespace std::experimental;
 namespace fs = std::experimental::filesystem;
 #endif
@@ -32,7 +33,7 @@ static void read_ignores(vector<string>& ignores, const string& ignore_path)
 		if (ignore_line.front() == '/') {
 			if (ignore_line.back() != '/')
 				ignore_line += "/";
-			ignores.emplace_back(ignore_line);
+			ignores.emplace_back(std::move(ignore_line));
 		}
 	}
 }
@@ -40,8 +41,6 @@ static void read_ignores(vector<string>& ignores, const string& ignore_path)
 int read_plocate(vector<string>& fs, const string& ignore_path)
 {
 	bool debug=getenv("DEBUG") != nullptr;
-
-	string line;
 
 	if (debug) cerr << "PLOCATE DATA\n";
 
@@ -59,9 +58,11 @@ int read_plocate(vector<string>& fs, const string& ignore_path)
 	if ((fp = popen("plocate /", "r")) == nullptr) return 1;
 	while (fgets(buf, sizeof(buf),fp))
 	{
-		buf[strlen(buf)-1] = '\0';
-		string filename = buf;
-		string toplevel = filename.substr(0, filename.find('/', 1));
+		auto len = strlen(buf);
+		if (len == 0)
+			continue;
+		string_view filename { buf, len - 1 };  // trim trailing newline
+		auto toplevel { filename.substr(0, filename.find('/', 1)) };
 		if (   toplevel == "/dev"
 		    or (toplevel == "/home" /* and dirname != "/home" */)
 		    or toplevel == "/mnt"
@@ -70,34 +71,38 @@ int read_plocate(vector<string>& fs, const string& ignore_path)
 			continue;
 
 		bool ignored = false;
-        for (const auto& it : ignores) {
-            if (filename.compare(0, it.size(), it) == 0) {
+		for (const auto& it : ignores) {
+			if (filename.size() > it.size() && filename.compare(0, it.size(), it) == 0) {
 				ignored = true;
 				break;
 			}
 
             // ignore directory '/foo' for ignore entry '/foo/'
+			error_code ec;
             if (filename.size() + 1 == it.size()
                 && it.compare(0, filename.size(), filename) == 0
-                && fs::is_directory(filename)) {
+                && fs::is_directory(filename, ec)) {
                 ignored = true;
 				break;
             }
         }
 		if (ignored) continue;
 
-		if (!pyc_has_py(filename, debug)) fs.emplace_back(filename);
+		if (!pyc_has_py(string{filename}, debug))
+			fs.emplace_back(filename);
 	}
 	pclose(fp);
 
 	// default PRUNEPATH in /etc/updatedb.conf
-	if ((fp = popen("find /var/spool 2> /dev/null", "r")) == nullptr) return 1;
-	while (fgets(buf, sizeof(buf),fp))
-	{
-		buf[strlen(buf)-1] = '\0';
-		fs.emplace_back(buf);
+	fs.emplace_back("/var/spool");
+	try {
+		for (const auto& entry: filesystem::recursive_directory_iterator{"/var/spool", filesystem::directory_options::skip_permission_denied}) 
+		{
+			fs.emplace_back(entry.path());
+		}
+	} catch(const exception& e) {
+		cerr << "Failed to iterate directory /var/spool/: " << e.what() << endl;
 	}
-	pclose(fp);
 
 	sort(fs.begin(), fs.end());
 	fs.erase( unique( fs.begin(), fs.end() ), fs.end() );
