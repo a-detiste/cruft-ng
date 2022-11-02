@@ -22,8 +22,8 @@ static void read_one_explain(const string& script, const string& package, vector
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[0]);
 		close(fd[1]);
-		execl(script.c_str(), script.c_str(), (char*) nullptr);
-		cerr << "Failed to execute command '" << script.c_str() << "': " << strerror(errno) << '\n';
+		execl(script.c_str(), script.c_str(), static_cast<char*>(nullptr));
+		cerr << "Failed to execute command '" << script.c_str() << "': " << strerror(errno) << endl;
 		exit(1);
 	}
 
@@ -38,8 +38,7 @@ static void read_one_explain(const string& script, const string& package, vector
 		filter=buf;
 		filter=filter.substr(0,filter.size() - 1); // remove '/n'
 		if (filter.front() == '/') {
-			owner seen(real_package, usr_merge(filter));
-			explain.emplace_back(seen);
+			explain.emplace_back(real_package, usr_merge(filter));
 		} else {
 			real_package = filter;
 		}
@@ -55,7 +54,7 @@ static void read_uppercase(vector<owner>& explain, const string& directory, bool
 	if (debug) cerr << "EXECUTING UPPERCASE FILTERS IN " << directory  << endl;
 
 	if((dp = opendir(directory.c_str())) == nullptr) {
-		cerr << "Error(" << errno << ") " << directory << endl;
+		cerr << "Failed to open directory " << directory << ": " << strerror(errno) << endl;
 		return;
 	}
 	while ((dirp = readdir(dp)) != nullptr) {
