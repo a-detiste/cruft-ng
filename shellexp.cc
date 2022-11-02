@@ -50,7 +50,9 @@ using namespace std;
 */
 bool myglob(const string& file, const string& glob )
 {
+#ifdef DEBUG
 	bool debug = getenv("DEBUG_GLOB") != nullptr;
+#endif
 
 	if (file==glob) return true;
 	auto filesize=file.size();
@@ -58,23 +60,31 @@ bool myglob(const string& file, const string& glob )
 		if ( glob.find("**")==globsize-2
 		  and filesize >= globsize-2
 		  and file.compare(0, globsize - 2, glob) == 0) {
+#ifdef DEBUG
 		if (debug) cerr << "match ** " << file << " # " << glob << '\n';
+#endif
 		return true;
 	}  else if ( glob.find('*')==globsize-1
 		  and filesize >= globsize-1
 		  and file.find('/',globsize-1)==string::npos
 		  and file.compare(0, globsize - 1, glob) == 0) {
+#ifdef DEBUG
 		if (debug) cerr << "match * " << file << " # " << glob << '\n';
+#endif
 		return true;
 	} else if ( fnmatch(glob.c_str(),file.c_str(),FNM_PATHNAME)==0 ) {
+#ifdef DEBUG
 		if (debug) cerr << "fnmatch " << file << " # " << glob << '\n';
+#endif
 		return true;
 	} else {
 		// fallback to shellexp.c
 		bool result=shellexp(file.c_str(),glob.c_str());
+#ifdef DEBUG
 		if (result and debug) {
 			cerr << "shellexp.c " << file << " # " << glob << '\n';
 		}
+#endif
 		return result;
 	}
 }
