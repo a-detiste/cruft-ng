@@ -209,7 +209,8 @@ int main(int argc, char *argv[])
 			break;
 
 		case '?':
-			break;
+			print_help_message();
+			exit(1);
 
         default:
             cerr << "Invalid getopt return value: " << opt << "\n";
