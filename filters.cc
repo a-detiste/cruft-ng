@@ -30,7 +30,7 @@ int read_filters(const string& dir, const string& ruleset_file, const vector<str
 	DIR *dp;
 	struct dirent *dirp;
 	if((dp = opendir(dir.c_str())) == nullptr) {
-	      cerr << "Failed to open filters directory " << dir << ": " << strerror(errno) << '\n';
+	      cerr << "Failed to open filters directory " << dir << ": " << strerror(errno) << endl;
 	      exit(1);
 	}
 	while ((dirp = readdir(dp)) != nullptr) {
@@ -66,8 +66,7 @@ int read_filters(const string& dir, const string& ruleset_file, const vector<str
 			continue;
 		if (glob_line.front() == '/') {
 			if (keep) {
-				owner glob(package, usr_merge(glob_line));
-				globs.push_back(glob);
+				globs.emplace_back(package, usr_merge(glob_line));
 			}
 		} else {
 			// new package entry
