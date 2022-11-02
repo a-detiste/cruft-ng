@@ -47,12 +47,12 @@ int usage()
 	return 1;
 }
 
-void output_pigs(long unsigned int limit, map<string, int>& usage)
+static void output_pigs(long unsigned int limit, const map<string, size_t>& usage)
 {
-	vector<pair<string,int>> pigs;
-	copy(usage.begin(), usage.end(), back_inserter<vector<pair<string,int>>> (pigs));
-	sort(pigs.rbegin(), pigs.rend(), [](const std::pair<string,int> &left,
-					    const std::pair<string,int> &right) {
+	vector<pair<string,size_t>> pigs;
+	copy(usage.begin(), usage.end(), back_inserter(pigs));
+	sort(pigs.rbegin(), pigs.rend(), [](const auto &left,
+					    const auto &right) {
 		return left.second < right.second;
 	});
 	for (size_t i = 0; i < pigs.size() && i < limit; ++i) {
@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
 	read_explain("/etc/cruft/explain/", packages,globs);
 	elapsed("read filters");
 
-        std::map<std::string, int> usage{{"UNKNOWN", 0}};
+	std::map<std::string, size_t> usage{{"UNKNOWN", 0}};
 
 	vector<string>::iterator cruft=cruft_db.begin();
 	vector<owner>::iterator owners;
