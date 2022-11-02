@@ -255,7 +255,7 @@ int main(int argc, char *argv[])
 	elapsed("updatedb");
 
 	vector<string> fs,prunefs,mounts;
-	read_plocate(fs,prunefs, ignore_file);
+	read_plocate(fs, ignore_file);
 	read_mounts(prunefs,mounts);
 	elapsed("plocate");
 
