@@ -77,8 +77,9 @@ void output_ncdu(vector<string>& cruft_db)
 	{
 		fs::path cruft = *it;
 		fs::path dirname;
+		error_code ec;
 
-		if (fs::is_directory(cruft)) {
+		if (fs::is_directory(cruft, ec)) {
 			dirname = cruft;
 		} else {
 			dirname = cruft.parent_path();
@@ -113,7 +114,7 @@ void output_ncdu(vector<string>& cruft_db)
 			last_dir = dirname;
 		}
 
-		if (!fs::is_directory(cruft)) {
+		if (!fs::is_directory(cruft, ec)) {
 			fs::path basename = cruft.filename();
 			cout << ",\n{\"name\":" << basename;
 			try {
