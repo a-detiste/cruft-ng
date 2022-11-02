@@ -151,8 +151,8 @@ int main(int argc, char *argv[])
 		} catch(...) { return usage(); }
 	}
 
-	vector<string> fs,prunefs;
-	read_plocate(fs,prunefs, "/etc/cruft/ignore");
+	vector<string> fs;
+	read_plocate(fs, "ignore");
 	elapsed("plocate");
 
 	if (csv) cout << "path;package;type;cruft;size" << endl;
