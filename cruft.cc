@@ -264,7 +264,7 @@ int main(int argc, char *argv[])
 	read_dpkg(packages, dpkg, false);
 	elapsed("dpkg");
 
-	map<string, owner> bugs;
+	map<string, bug> bugs;
 	read_bugs(bugs, "bugs");
 
 	// match two main data sources
@@ -362,9 +362,9 @@ int main(int argc, char *argv[])
 	cout << "---- unexplained: / ----\n";
 	for (const auto& cr: cruft4) {
 		cout << "        " << cr;
-		if (bugs.count(cr)) {
-			auto bug = bugs[cr];
-			cout << "       (Bug: #" << bug.bug << ")";
+		auto bug = bugs.find(cr);
+		if (bug != bugs.end()) {
+			cout << "       (Bug: #" << bug->second.bugno << ")";
 		}
 		cout << '\n';
 	}
