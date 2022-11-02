@@ -1,12 +1,18 @@
+#include <cstring>
 #include <iostream>
 #include <dirent.h>
 #include <sys/stat.h>
 
 #include "python.h"
 
+#ifdef BUSTER
+#include <experimental/string_view>
+using namespace std::experimental;
+#endif
+
 using namespace std;
 
-static bool ends_with(const string& str, const string& suffix)
+static bool ends_with(string_view str, string_view suffix)
 {
     if (suffix.size() > str.size())
 		return false;
@@ -29,11 +35,11 @@ bool pyc_has_py(string pyc, bool debug)
 		dir = pyc.substr(0, pyc.length()-12);
 		dp = opendir(dir.c_str());
 		if(dp == nullptr) {
-			cerr << "opendir() failed for " << dir << endl;
+			cerr << "Failed to open directory " << dir << ": " << strerror(errno) << endl;
 			return false;
 		}
 		while ((dirp = readdir(dp)) != nullptr) {
-			string entry = dirp->d_name;
+			string_view entry { dirp->d_name };
 			if (entry.length() < 4)
 				continue;
 			//cerr << ' ' << entry << endl;
