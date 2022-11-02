@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #define LIBDPKG_VOLATILE_API
+#include <array>
 #include <iostream>
 #include <algorithm>
 
@@ -39,7 +40,7 @@ static void csv(const char *dpkg_name,
 		<< package << ';'
 		<< type << ';'
 		<< '0' << ';'
-		<< st.st_size << endl;
+		<< st.st_size << '\n';
 }
 
 static const char *admindir;
@@ -67,7 +68,7 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 #ifdef DB_API
 	var_lib_dpkg_info = &output;
 #else
-	const vector<string> suffixes {
+	const std::array<string, 16> suffixes {
 		".clilibs",
 		".conffiles",
 		".config",
@@ -100,7 +101,7 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 			if(pkg->status == PKG_STAT_INSTALLED) {
 				packages.emplace_back(pkg->set->name);
 			}
-			if (debug) cout << "PACKAGE:" << pkg->set->name << endl;
+			if (debug) cout << "PACKAGE:" << pkg->set->name << '\n';
 
 #ifdef DB_API
 			// this is just too slow, from 2 seconds to 40
@@ -128,24 +129,24 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 
 			for (const struct fsys_namenode_list *file = pkg->files; file != nullptr; file = file->next) {
 				const struct fsys_namenode *namenode = file->namenode;
-				if (debug) cout << namenode->name << endl;
-				string realname;
+				if (debug) cout << namenode->name << '\n';
 				if (namenode->divert) {
 					// We trust DPKG state for now
 					if (stat(namenode->name, &buffer) == 0) {
-						realname = usr_merge(namenode->name);
-						output.emplace_back(realname);
+						string realname = usr_merge(namenode->name);
+						if (print_csv) csv(namenode->name, realname, pkg->set->name);
+						output.emplace_back(std::move(realname));
 					}
 					if (stat(namenode->divert->useinstead->name, &buffer) == 0) {
-						realname = usr_merge(namenode->divert->useinstead->name);
-						output.emplace_back(realname);
+						string realname = usr_merge(namenode->divert->useinstead->name);
+						if (print_csv) csv(namenode->name, realname, pkg->set->name);
+						output.emplace_back(std::move(realname));
 					}
 				} else {
-					realname = usr_merge(namenode->name);
-					output.emplace_back(realname);
+					string realname = usr_merge(namenode->name);
+					if (print_csv) csv(namenode->name, realname, pkg->set->name);
+					output.emplace_back(std::move(realname));
 				}
-
-				if (print_csv) csv(namenode->name, realname, pkg->set->name);
 			}
 		}
 	}
