@@ -130,8 +130,8 @@ int shellexp(const char* string_, const char* pattern ) {
     case '[':
 	if ( string_[0] == '\0' ) return false;
 	{
-	    int nott = false;
-	    int okay = false;
+	    bool nott = false;
+	    bool okay = false;
 	    pattern++;
 	    if ( pattern[0] == '!' || pattern[0] == '^' ) {
 		nott = true;

@@ -1,3 +1,5 @@
+#include <string>
+
 using namespace std;
 
 bool myglob(const string& file, const string& glob );
