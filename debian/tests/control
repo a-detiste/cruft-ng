@@ -1,2 +1,6 @@
 Tests: basic
 Restrictions: needs-root
+
+Tests: ncdu
+Restrictions: needs-root
+Depends: @, jq
