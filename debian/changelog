@@ -2,6 +2,7 @@ cruft-ng (0.9.48) UNRELEASED; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
+  * rewrite last script that needed the "file" command (Closes: #1023336)
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 01 Nov 2022 22:19:25 +0100
 

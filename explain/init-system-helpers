@@ -1,7 +1,4 @@
 #!/bin/sh
 set -e
 
-file /etc/rc?.d/[SK]???* |
-    grep -E ": *symbolic link to \`?../init.d/[-a-zA-Z0-9_.]*'?$" |
-    sed "s/: *symbolic.*$//"
-
+find /etc/rc?.d/ -type l -name '[SK][0-9][0-9]*' ! -xtype l
