@@ -77,15 +77,15 @@ int read_plocate(vector<string>& fs, const string& ignore_path)
 				break;
 			}
 
-            // ignore directory '/foo' for ignore entry '/foo/'
+			// ignore directory '/foo' for ignore entry '/foo/'
 			error_code ec;
-            if (filename.size() + 1 == it.size()
-                && it.compare(0, filename.size(), filename) == 0
-                && fs::is_directory(filename, ec)) {
-                ignored = true;
+			if (filename.size() + 1 == it.size()
+			&& it.compare(0, filename.size(), filename) == 0
+			&& fs::is_directory(filename, ec)) {
+				ignored = true;
 				break;
-            }
-        }
+			}
+		}
 		if (ignored) continue;
 
 		if (!pyc_has_py(string{filename}, debug))
