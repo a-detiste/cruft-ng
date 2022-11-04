@@ -1,0 +1,10 @@
+# dh-cruft needs some templating feature
+# to replace ${SOMETHING} by the version
+/etc/firebird/3.0/SYSDBA.password
+/var/lib/firebird/3.0
+/var/lib/firebird/3.0/data
+/var/lib/firebird/3.0/data/*.fdb
+/var/lib/firebird/3.0/system
+/var/lib/firebird/3.0/system/security3.fdb
+/var/lib/firebird/3.0/data
+/var/log/firebird/firebird3.0.log
