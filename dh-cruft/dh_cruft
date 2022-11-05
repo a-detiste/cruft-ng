@@ -42,6 +42,9 @@ Also, a snippet is appended to F<postrm>
 with the needed I<rm -rf> commands
 to remove these files on I<purge> phase.
 
+Some basic templating is implemented: the B<#VERSION#> tag
+will be replaced by the basic upstream version.
+
 =back
 
 =cut
@@ -52,6 +55,12 @@ init();
 
 foreach my $package (@{$dh{DOPACKAGES}}) {
 	next if is_udeb($package);
+
+	# get package basic upstream version for templating
+	isnative($package);
+	my $version = $dh{VERSION};
+	$version = (split('-', $version))[0];
+	$version = (split('~', $version))[0];
 
 	my $purge = pkgfile($package, "purge");
 	my @lines;
@@ -69,6 +78,9 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 			if ($line =~ /^#/) {} # comment
 			elsif ($line =~ /^$/) {} # empty
 			elsif ($line =~ /^\//) {
+
+				$line =~ s/#VERSION#/$version/g;
+
 				if ($line =~ /^[a-zA-Z0-9_:~\-\/\.\?\*]*$/ ) {
 					if ($line =~ /\*\*$/ ) {
 						chop $line;
