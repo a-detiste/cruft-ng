@@ -1,3 +1,6 @@
+// Copyright © 2015 Alexandre Detiste <alexandre@detiste.be>
+// SPDX-License-Identifier: GPL-2.0-or-later
+
 #include <cstring>
 #include <iostream>
 #include <algorithm>
