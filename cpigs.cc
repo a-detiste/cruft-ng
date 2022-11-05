@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 	}
 
 	vector<string> fs;
-	read_plocate(fs, "ignore");
+	read_plocate(fs, "/usr/share/cruft/ignore");
 	elapsed("plocate");
 
 	if (csv) cout << "path;package;type;cruft;size" << endl;
