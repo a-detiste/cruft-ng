@@ -62,8 +62,10 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 	$version = (split('-', $version))[0];
 	$version = (split('~', $version))[0];
 
-	my $purge = pkgfile($package, "purge");
+	# the sum of .purge and .cruft lines
 	my @lines;
+
+	my $purge = pkgfile($package, "purge");
 	if ($purge ne '') {
 		my $IN;
 		open (IN, $purge) or error("Failed to read ${purge}: $!");
@@ -98,27 +100,32 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 		autoscript($package, "postrm", "postrm-cruft", { 'PURGE' => join("\n", @purgelines)});
 	}
 
-	my $tmp = tmpdir($package);
-	my $cruft_dir = "$tmp/usr/lib/cruft/filters-unex/";
 	my $cruft = pkgfile($package, "cruft");
 	if ($cruft ne '') {
-		install_dir($cruft_dir);
-		install_dh_config_file($cruft, "$cruft_dir/$package");
+		open (IN, $cruft) or error("Failed to read ${cruft}: $!");
+		foreach my $line (<IN>)
+		{
+			$line =~ s/#VERSION#/$version/g;
+			push @lines, $line;
+		}
+		close IN;
 	}
 	
 	if (@lines) {
+		my $tmp = tmpdir($package);
+		my $cruft_dir = "$tmp/usr/lib/cruft/filters-unex/";
 		install_dir($cruft_dir);
-		my $APPEND;
-		open(APPEND, ">>", "$cruft_dir/$package") or error("Failed to append to ${cruft_dir}/${package}: $!");
+		my $OUT;
+		open(OUT, ">", "$cruft_dir/$package") or error("Failed to write to ${cruft_dir}/${package}: $!");
 		foreach my $line (@lines)
 		{
 			if (substr($line, -1) eq "/") {
-				print APPEND $line . "**\n";
+				print OUT $line . "**\n";
 				chop $line;
 			}
-			print APPEND $line . "\n";
+			print OUT $line . "\n";
 		}
-		close APPEND or error("Failed to close ${APPEND}: $!");
+		close OUT or error("Failed to close ${OUT}: $!");
 	}
 }
 
