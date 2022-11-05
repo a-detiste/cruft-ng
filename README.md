@@ -13,12 +13,13 @@ perl programs, C programs).
 This project attempts to keep all the main functionality in one process;
 while output remains 100% identical to cruft's one.
 
-Here are some [benchmarks](https://github.com/a-detiste/cruft-ng/wiki/Benchmark).
+The new `cpigs` program included provides a more
+analytical interface: dump to .csv or viewing with `ncdu` tool.
 
-This is written in C++, but it is mostly pure C + strings + vectors.
+More information: https://wiki.debian.org/Cruft
 
-cruft-ng needs cruft ruleset:
------------------------------
+cruft-ng needs a ruleset:
+-------------------------
 
 * `/usr/libexec/explain/` : this is a set of shell scripts
   plugins for handling of special cases.
@@ -26,6 +27,10 @@ cruft-ng needs cruft ruleset:
 * `/usr/lib/cruft/filters-unex/` : these are glob-like files,
   quite like, but not totally the same than in your
   standard shell. this re-uses cruft' `shellexp.c`
+
+  These can be moved into individual Debian package
+  (or some proprietary .deb distro in my case)
+  using `dh-cruft`.
 
 Some assumption differs:
 ------------------------
@@ -66,7 +71,7 @@ TODO:
  * https://www.codeproject.com/Articles/5163931/Fast-String-Matching-with-Wildcards-Globs-and-Giti
 
  * Bugs found in other Debian packages (by this tool):
-   https://bugs.debian.org/cgi-bin/pkgreport.cgi?tag=cruft;users=alexandre.detiste@gmail.com                                                                                                   
+   https://bugs.debian.org/cgi-bin/pkgreport.cgi?tag=cruft;users=cruft-ng@packages.debian.org
 
 COPYRIGHT:
 ----------
