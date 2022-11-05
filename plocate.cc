@@ -58,10 +58,15 @@ int read_plocate(vector<string>& fs, const string& ignore_path)
 	if ((fp = popen("plocate /", "r")) == nullptr) return 1;
 	while (fgets(buf, sizeof(buf),fp))
 	{
+#ifndef BUSTER
 		auto len = strlen(buf);
 		if (len == 0)
 			continue;
 		string_view filename { buf, len - 1 };  // trim trailing newline
+#else
+		buf[strlen(buf)-1] = '\0';
+		string filename = buf;
+#endif
 		auto toplevel { filename.substr(0, filename.find('/', 1)) };
 		if (   toplevel == "/dev"
 		    or (toplevel == "/home" /* and dirname != "/home" */)
