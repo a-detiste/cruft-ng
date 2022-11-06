@@ -118,8 +118,15 @@ void output_ncdu(vector<string>& cruft_db)
 			fs::path basename = cruft.filename();
 			cout << ",\n{\"name\":" << basename;
 			try {
-				auto fsize = fs::file_size(cruft);
-				cout << ",\"dsize\":" << fsize;
+				if(fs::is_symlink(cruft)) {
+					// some arbitrary value
+					// still better than  /var/cache/pbuilder/base.cow/dev/core -> /proc/kcore
+					// showing up as 128 TiB and dwarfing everything else
+					cout << ",\"dsize\":1024";
+				} else {
+					auto fsize = fs::file_size(cruft);
+					cout << ",\"dsize\":" << fsize;
+				}
 			}
 			catch (...) {}
 			cout << "}";
