@@ -1,0 +1,2 @@
+# it's created from _outside_ the target
+/var/log/bootstrap.log
