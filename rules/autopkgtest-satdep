@@ -1,0 +1,13 @@
+# this is a dummy package generated on the fly
+# by autopkgtest and installed inside the target
+#
+# we use it to detect as running inside such disposable chroot
+/etc/apt/apt.conf.d/01autopkgtest-setup-proxy
+/etc/apt/apt.conf.d/02periodic
+/etc/apt/apt.conf.d/90always-include-phased-updates
+/etc/apt/apt.conf.d/90nolanguages
+/etc/apt/apt.conf.d/90retry
+/etc/dpkg/dpkg.cfg.d/autopkgtest
+/usr/sbin/autopkgtest-reboot
+# debci does use autopkgtest
+/var/tmp/debci.pkg
