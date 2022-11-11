@@ -5,6 +5,7 @@
 #include <fstream>
 #include <algorithm>
 #include <ctime>
+#include <thread>
 
 #include <sys/stat.h>
 #include <getopt.h>
@@ -22,6 +23,7 @@
 
 using namespace std;
 
+/*
 static int read_mounts(const vector<string>& prunefs, vector<string>& mounts)
 {
 	// this doesn't include "/", as it always exists
@@ -56,6 +58,7 @@ static int read_mounts(const vector<string>& prunefs, vector<string>& mounts)
 	}
 	return 0;
 }
+*/
 
 static bool updatedb()
 {
@@ -255,14 +258,14 @@ int main(int argc, char *argv[])
 	elapsed("updatedb");
 
 	vector<string> fs;
-	read_plocate(fs, ignore_file);
-	//read_mounts(prunefs,mounts);
-	elapsed("plocate");
+	thread thr_plocate(read_plocate, ref(fs), ignore_file);
 
 	vector<string> packages;
 	vector<string> dpkg;
-	read_dpkg(packages, dpkg, false);
-	elapsed("dpkg");
+	thread thr_dpkg(read_dpkg, ref(packages), ref(dpkg), false);
+	thr_plocate.join();
+	thr_dpkg.join();
+	elapsed("plocate + dpkg");
 
 	map<string, bug> bugs;
 	read_bugs(bugs, "bugs");
