@@ -1,12 +1,11 @@
 cruft-ng (0.9.48) unstable; urgency=medium
 
-  * new "dh-cruft" binary package: this DebHelper module is to be used
-    by source package that wants to provide their own rules.
-  * rewrite last script that needed the "file" command (Closes: #1023336)
+  * rewrite last script that needed the "file" command
+    (Closes: #1023336, #1024168)
   * many more performance improvements by Christian Göttsche
   * add rules for: firebird3.0-server
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sat, 05 Nov 2022 01:48:53 +0100
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 18 Nov 2022 11:38:34 +0100
 
 cruft-ng (0.9.47) unstable; urgency=medium
 

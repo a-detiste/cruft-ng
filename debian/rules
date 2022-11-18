@@ -18,12 +18,12 @@ endif
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/cruft-ng
-	mkdir -p debian/tmp/
-	pod2man --utf8 dh-cruft/dh_cruft debian/tmp/dh_cruft.1
+#	mkdir -p debian/tmp/
+#	pod2man --utf8 dh-cruft/dh_cruft debian/tmp/dh_cruft.1
 
 override_dh_install:
 	dh_install
-	sed -i 's/DH_CRUFT_VERSION/"$(DEB_VERSION)"/' debian/dh-cruft/usr/bin/dh_cruft
+#	sed -i 's/DH_CRUFT_VERSION/"$(DEB_VERSION)"/' debian/dh-cruft/usr/bin/dh_cruft
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
 	mkdir -p debian/cruft-ng/usr/lib/cruft/
 	cp -a csv.py debian/cruft-ng/usr/lib/cruft/
