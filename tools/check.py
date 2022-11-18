@@ -41,7 +41,7 @@ with open('tools/Packages_amd64', 'r', encoding='utf8') as p:
             stable.add(line.split(':', 1)[1].strip())
 
 
-filters = set([os.path.basename(f) for f in glob.glob('rules/*')])
+filters = set([os.path.basename(f) for f in glob.glob('rules/*') if f == f.lower()])
 explain = set([os.path.basename(f) for f in glob.glob('explain/*') if f == f.lower()])
 
 def process(category, packages, testing, stable, archive):
