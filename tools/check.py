@@ -19,6 +19,10 @@ for line in proc.stdout:
 testing.add('raspberrypi-bootloader')
 testing.add('libraspberrypi0')
 
+# Add Hurd
+testing.add('hurd')
+testing.add('libc0.3')
+
 # Google repository
 testing.add('google-earth-stable')
 
