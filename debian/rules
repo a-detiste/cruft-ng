@@ -7,6 +7,15 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 %:
 	dh $@
 
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye))
+CPPFLAGS += -std=gnu++17
+override_dh_auto_build:
+	./ruleset.sh bullseye
+	make cruftold cpigsold
+	mv cruftold cruft
+	mv cpigsold cpigs
+endif
+
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
 CPPFLAGS += -DBUSTER
 override_dh_auto_build:
