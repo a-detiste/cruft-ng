@@ -1,3 +1,5 @@
+/etc/dpkg/buildflags.conf
+/etc/dpkg/buildpackage.conf
 /etc/dpkg/symbols
 /etc/dpkg/symbols/*.symbols
 /etc/dpkg/symbols/*.symbols.*
