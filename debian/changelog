@@ -3,6 +3,7 @@ cruft-ng (0.9.49) UNRELEASED; urgency=medium
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
   * fix build on Hurd, also add rules for "hurd" and "libc0.3" packages.
+  * fix rule for dpkg-dev optional files handling
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 18 Nov 2022 12:27:28 +0100
 
