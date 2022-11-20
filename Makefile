@@ -39,6 +39,7 @@ test_%: %.o test_%.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
 test_dpkg_old: dpkg_popen.o test_dpkg.cc usr_merge.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_dpkg.cc usr_merge.o dpkg_popen.o -o test_dpkg_old
 test_dpkg: dpkg_lib.o test_dpkg.cc usr_merge.o $(LIBDPKG_LIBS)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_dpkg.cc usr_merge.o dpkg_lib.o $(LIBDPKG_LIBS) -Wl,--no-demangle -o test_dpkg
 
 ifdef $(BUSTER):
 test_locate: test_mlocate
