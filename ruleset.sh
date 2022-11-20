@@ -31,12 +31,36 @@ do
 done | grep -v ^# | grep .) > ruleset
 
 # backport
-if [ -n "$1" ]
+case "$1" in
+    "")
+        exit 0
+        ;;
+    UNRELEASED)
+        exit 0
+        ;;
+    unstable)
+        exit 0
+        ;;
+    explain)
+        echo "Backport of explain scripts is not supported ATM"
+        exit 1
+        ;;
+    focal)
+        release="bullseye"
+        ;;
+    *)
+        release="$1"
+esac
+
+if ! [ -d "archive/$release" ]
 then
-    (cd "archive/$1"
-    ls | sort | while read file
-    do
+    echo "WARNING: no rule defined for release \"$release\""
+    exit 0
+fi
+
+(cd "archive/$release"
+ls | sort | while read file
+do
 	echo "$file"
 	cat "$file"
-    done | grep -v ^# | grep .) >> ruleset
-fi
+done | grep -v ^# | grep .) >> ruleset

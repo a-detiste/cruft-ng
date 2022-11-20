@@ -4,30 +4,34 @@ include /usr/share/dpkg/pkg-info.mk
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
-%:
-	dh $@
-
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye))
 CPPFLAGS += -std=gnu++17
-override_dh_auto_build:
-	./ruleset.sh bullseye
-	make cruft cpigs
 endif
 
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
-SUBSTVARS = -Vdist:Depends="mlocate"
 CPPFLAGS += -DBUSTER
+endif
+
+%:
+	dh $@
+
 override_dh_auto_build:
-	./ruleset.sh buster
+	./ruleset.sh $(DEB_DISTRIBUTION)
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
 	make cruftold cpigsold
 	mv cruftold cruft
 	mv cpigsold cpigs
 else
-SUBSTVARS = -Vdist:Depends="plocate"
+	make cruft cpigs
 endif
 
+
 override_dh_gencontrol:
-	dh_gencontrol -- $(SUBSTVARS)
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
+	dh_gencontrol -- -Vdist:Depends="mlocate"
+else
+	dh_gencontrol -- -Vdist:Depends="plocate"
+endif
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/cruft-ng
