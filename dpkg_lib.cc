@@ -6,12 +6,14 @@
 #include <iostream>
 #include <algorithm>
 
+extern "C" {
 #include <sys/stat.h>
 #include <dpkg/dpkg.h>
 #include <dpkg/dpkg-db.h>
 #include <dpkg/db-fsys.h>
 #include <dpkg/pkg-array.h>
 #include <dpkg/pkg-show.h>
+}
 
 #include "dpkg.h"
 #include "usr_merge.h"

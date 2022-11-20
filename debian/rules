@@ -11,9 +11,7 @@ ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye))
 CPPFLAGS += -std=gnu++17
 override_dh_auto_build:
 	./ruleset.sh bullseye
-	make cruftold cpigsold
-	mv cruftold cruft
-	mv cpigsold cpigs
+	make cruft cpigs
 endif
 
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
