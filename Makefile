@@ -6,9 +6,12 @@ CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z
 CXXFLAGS += -Wall -Wextra
 override CXXFLAGS += $(LIBDPKG_CFLAGS)
 #CXXFLAGS += -std=c++17 #  clang++
-SHARED_OBJS = cruft.o dpkg_exclude.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o owner.o bugs.o
+SHARED_OBJS = explain.o filters.o shellexp.o usr_merge.o python.o owner.o
+CRUFT_OBJS = cruft.o dpkg_exclude.o bugs.o
 
-all: cruft ruleset cpigs
+sid: cruft ruleset cpigs
+buster: cruftold cpigsold
+
 tests: test_plocate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_python cruftold
 
 cpigs.o: cpigs.cc owner.h
@@ -20,15 +23,15 @@ cruft.o: cruft.cc explain.h filters.h dpkg.h python.h
 dpkg_lib.o: dpkg_lib.cc dpkg.h
 dpkg_popen.o: dpkg_popen.cc dpkg.h
 
-cruftold: $(SHARED_OBJS) dpkg_popen.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_popen.o -lstdc++fs -pthread -o cruftold
-cruft: $(SHARED_OBJS) dpkg_lib.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) dpkg_lib.o $(LIBDPKG_LIBS) -pthread -o cruft
+cruftold: $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_popen.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_popen.o -lstdc++fs -pthread -o cruftold
+cruft: $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o $(LIBDPKG_LIBS) -pthread -o cruft
 
-cpigsold: cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_popen.o owner.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_popen.o owner.o -lstdc++fs -o cpigsold
-cpigs: cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_lib.o owner.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) cpigs.o explain.o filters.o plocate.o shellexp.o usr_merge.o python.o dpkg_lib.o owner.o $(LIBDPKG_LIBS) -o cpigs
+cpigsold: $(SHARED_OBJS) cpigs.o plocate.o dpkg_popen.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) cpigs.o plocate.o dpkg_popen.o -lstdc++fs -o cpigsold
+cpigs: $(SHARED_OBJS) cpigs.o plocate.o dpkg_lib.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) cpigs.o plocate.o dpkg_lib.o $(LIBDPKG_LIBS) -o cpigs
 
 test_%: %.o test_%.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
 test_dpkg_old: dpkg_popen.o test_dpkg.cc usr_merge.o
