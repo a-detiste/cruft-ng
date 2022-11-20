@@ -5,12 +5,10 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <filesystem>
 
 #include "locate.h"
 #include "python.h"
-
-#include <filesystem>
-namespace fs = std::filesystem;
 
 // build fail on hurd-i386
 #ifndef PATH_MAX
@@ -54,15 +52,10 @@ int read_locate(vector<string>& fs, const string& ignore_path)
 	if ((fp = popen("plocate /", "r")) == nullptr) return 1;
 	while (fgets(buf, sizeof(buf),fp))
 	{
-#ifndef BUSTER
 		auto len = strlen(buf);
 		if (len == 0)
 			continue;
 		string_view filename { buf, len - 1 };  // trim trailing newline
-#else
-		buf[strlen(buf)-1] = '\0';
-		string filename = buf;
-#endif
 		auto toplevel { filename.substr(0, filename.find('/', 1)) };
 		if (   toplevel == "/dev"
 		    or (toplevel == "/home" /* and dirname != "/home" */)
@@ -82,7 +75,7 @@ int read_locate(vector<string>& fs, const string& ignore_path)
 			error_code ec;
 			if (filename.size() + 1 == it.size()
 			&& it.compare(0, filename.size(), filename) == 0
-			&& fs::is_directory(filename, ec)) {
+			&& filesystem::is_directory(filename, ec)) {
 				ignored = true;
 				break;
 			}

@@ -15,7 +15,6 @@
 #include "python.h"
 
 #include <experimental/filesystem>
-#include <experimental/string_view>
 using namespace std::experimental;
 namespace fs = std::experimental::filesystem;
 
@@ -84,7 +83,8 @@ int read_locate(vector<string>& fs, const string& ignore_path) // vector<string>
 		    or (toplevel == "/home" and dirname != "/home")
 		    or toplevel == "/mnt"
 		    or toplevel == "/root"
-		    or toplevel == "/tmp")
+		    or toplevel == "/tmp"
+		    or dirname == "/var/lib/dpkg/info")
 		while ((mlocate.get()) != DBE_END) {
 			mlocate.ignore(std::numeric_limits<int>::max(), '\0');
 		} else while ((filetype = mlocate.get()) != DBE_END) {
