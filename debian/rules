@@ -17,13 +17,19 @@ override_dh_auto_build:
 endif
 
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
+SUBSTVARS = -Vdist:Depends="mlocate"
 CPPFLAGS += -DBUSTER
 override_dh_auto_build:
 	./ruleset.sh buster
 	make cruftold cpigsold
 	mv cruftold cruft
 	mv cpigsold cpigs
+else
+SUBSTVARS = -Vdist:Depends="plocate"
 endif
+
+override_dh_gencontrol:
+	dh_gencontrol -- $(SUBSTVARS)
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/cruft-ng

@@ -17,7 +17,7 @@ Architecture: any
 Depends:
   ${shlibs:Depends},
   ${misc:Depends},
-  plocate,
+  ${dist:Depends},
 Suggests:
   ncdu,
 Breaks: cruft (<< 0.9.44~), cruft-common
