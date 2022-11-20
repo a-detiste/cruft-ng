@@ -5,11 +5,11 @@ include /usr/share/dpkg/pkg-info.mk
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye))
-CPPFLAGS += -std=gnu++17
+export DEB_CPPFLAGS_MAINT_APPEND = -std=gnu++17
 endif
 
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
-CPPFLAGS += -DBUSTER
+export DEB_CPPFLAGS_MAINT_APPEND = -DBUSTER
 endif
 
 %:
