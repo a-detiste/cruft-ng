@@ -2,6 +2,7 @@
 /etc/rc.local
 /var/lib/urandom/random-seed
 /var/log/dmesg
+/var/log/dmesg*
 # nologin is a symlink to a file which may be created in /var...
 /etc/nologin
 /etc/motd.tail
