@@ -15,7 +15,7 @@
 
 #include "explain.h"
 #include "filters.h"
-#include "plocate.h"
+#include "locate.h"
 #include "dpkg.h"
 #include "dpkg_exclude.h"
 #include "shellexp.h"
@@ -258,7 +258,7 @@ int main(int argc, char *argv[])
 	elapsed("updatedb");
 
 	vector<string> fs;
-	thread thr_plocate(read_plocate, ref(fs), ignore_file);
+	thread thr_plocate(read_locate, ref(fs), ignore_file);
 
 	vector<string> packages;
 	vector<string> dpkg;

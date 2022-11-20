@@ -11,9 +11,15 @@
 //       like 'make' provides '/usr/include/gnumake.h'
 //       and  'sudo' provides '/usr/include/sudo_plugin.h'
 
-#include "mlocate.h"
+#include "locate.h"
+#include "python.h"
 
-int read_mlocate(vector<string>& fs, vector<string>& prunefs)
+#include <experimental/filesystem>
+#include <experimental/string_view>
+using namespace std::experimental;
+namespace fs = std::experimental::filesystem;
+
+int read_locate(vector<string>& fs, const string& ignore_path) // vector<string>& prunefs
 {
 	bool debug=getenv("DEBUG") != NULL;
 
@@ -50,7 +56,7 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 		while (getline(mlocate,line,'\0'))
 		{
 			if (line.empty()) break;
-			if (key=="prunefs") prunefs.push_back(line);
+			//if (key=="prunefs") prunefs.push_back(line);
 			if (debug) cerr << line << ' ';
 		}
 		if (debug) cerr << endl;
@@ -72,7 +78,7 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 		getline(mlocate,dirname,'\0');
 		if (mlocate.eof()) break;
 		char filetype; // =sizeof(db_entry)
-		string toplevel = dirname.substr(0, dirname.find("/", 1));
+		string toplevel = dirname.substr(0, dirname.find('/', 1));
 		if (   toplevel == "/dev"
 		    /* have a peek into /home, but not deeper */
 		    or (toplevel == "/home" and dirname != "/home")
@@ -84,12 +90,27 @@ int read_mlocate(vector<string>& fs, vector<string>& prunefs)
 		} else while ((filetype = mlocate.get()) != DBE_END) {
 			getline(mlocate,filename,'\0');
 			string fullpath=dirname + '/' + filename;
-			fs.push_back(fullpath);
+			if (!pyc_has_py(fullpath, debug))
+				fs.emplace_back(fullpath);
 		}
 	}
 	mlocate.close();
-	sort(fs.begin(), fs.end());
-	if (debug) cerr << prunefs.size() << " relevant records in PRUNEFS database" << endl;
+
+	// default PRUNEPATH in /etc/updatedb.conf
+	fs.emplace_back("/var/spool");
+	try {
+		for (const auto& entry: filesystem::recursive_directory_iterator{"/var/spool", filesystem::directory_options::skip_permission_denied})
+		{
+			fs.emplace_back(entry.path());
+		}
+	} catch(const exception& e) {
+		cerr << "Failed to iterate directory /var/spool/: " << e.what() << endl;
+	}
+
+        sort(fs.begin(), fs.end());
+        fs.erase( unique( fs.begin(), fs.end() ), fs.end() );
+
+	//if (debug) cerr << prunefs.size() << " relevant records in PRUNEFS database" << endl;
 	if (debug) cerr << fs.size() << " relevant files in MLOCATE database"  << endl << endl;
 	return 0;
 }

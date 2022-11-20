@@ -6,18 +6,11 @@
 #include <fstream>
 #include <algorithm>
 
-#include "plocate.h"
+#include "locate.h"
 #include "python.h"
 
-#ifndef BUSTER
 #include <filesystem>
 namespace fs = std::filesystem;
-#else
-#include <experimental/filesystem>
-#include <experimental/string_view>
-using namespace std::experimental;
-namespace fs = std::experimental::filesystem;
-#endif
 
 // build fail on hurd-i386
 #ifndef PATH_MAX
@@ -41,7 +34,7 @@ static void read_ignores(vector<string>& ignores, const string& ignore_path)
 	}
 }
 
-int read_plocate(vector<string>& fs, const string& ignore_path)
+int read_locate(vector<string>& fs, const string& ignore_path)
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
@@ -104,7 +97,7 @@ int read_plocate(vector<string>& fs, const string& ignore_path)
 	// default PRUNEPATH in /etc/updatedb.conf
 	fs.emplace_back("/var/spool");
 	try {
-		for (const auto& entry: filesystem::recursive_directory_iterator{"/var/spool", filesystem::directory_options::skip_permission_denied}) 
+		for (const auto& entry: filesystem::recursive_directory_iterator{"/var/spool", filesystem::directory_options::skip_permission_denied})
 		{
 			fs.emplace_back(entry.path());
 		}
