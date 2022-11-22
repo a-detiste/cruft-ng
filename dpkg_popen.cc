@@ -97,7 +97,7 @@ static int read_dpkg_items(vector<string>& dpkg)
 	dpkg.push_back("/");
 
         string command="dpkg-query --listfiles $(dpkg-query --show --showformat '${binary:Package} ')|sort -u";
-	const int SIZEBUF = 200;
+	const int SIZEBUF = 300;
 	char buf[SIZEBUF];
 	FILE* fp;
 	if ((fp = popen(command.c_str(), "r")) == NULL) return 1;
