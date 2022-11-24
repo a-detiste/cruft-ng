@@ -1,0 +1,2 @@
+/etc/apt/sources.list.d/sublime-text.list
+/etc/apt/trusted.gpg.d/sublimehq-archive.gpg
