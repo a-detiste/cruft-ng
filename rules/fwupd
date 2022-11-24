@@ -2,6 +2,8 @@
 /var/cache/fwupd/devices.json
 /var/cache/fwupd/metadata.xmlb
 /var/cache/fwupd/metainfo.xmlb
+/var/cache/fwupd/motd.d
+/var/cache/fwupd/motd.d/*
 /var/cache/fwupd/quirks.xmlb
 /var/cache/fwupdmgr
 /var/lib/fwupd
@@ -14,8 +16,6 @@
 /var/lib/fwupd/metadata/lvfs
 /var/lib/fwupd/metadata/lvfs/metadata.xml.gz
 /var/lib/fwupd/metadata/lvfs/metadata.xml.gz.jcat
-/var/cache/fwupd/motd.d
-/var/cache/fwupd/motd.d/*
 /var/lib/fwupd/pending.db
 /var/lib/fwupd/pki
 /var/lib/fwupd/pki/client.pem
