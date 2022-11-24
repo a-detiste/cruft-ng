@@ -1,0 +1,13 @@
+/var/lib/flatpak
+/var/lib/flatpak/.changed
+/var/lib/flatpak/repo
+/var/lib/flatpak/repo/config
+/var/lib/flatpak/repo/extensions
+/var/lib/flatpak/repo/objects
+/var/lib/flatpak/repo/refs
+/var/lib/flatpak/repo/refs/heads
+/var/lib/flatpak/repo/refs/mirrors
+/var/lib/flatpak/repo/refs/remotes
+/var/lib/flatpak/repo/state
+/var/lib/flatpak/repo/tmp
+/var/lib/flatpak/repo/tmp/cache
