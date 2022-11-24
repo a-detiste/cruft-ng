@@ -1,0 +1,3 @@
+/etc/opt/chrome
+/etc/opt/chrome/native-messaging-hosts
+/etc/opt/chrome/native-messaging-hosts/org.gnome.chrome_gnome_shell.json
