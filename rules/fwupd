@@ -14,6 +14,8 @@
 /var/lib/fwupd/metadata/lvfs
 /var/lib/fwupd/metadata/lvfs/metadata.xml.gz
 /var/lib/fwupd/metadata/lvfs/metadata.xml.gz.jcat
+/var/cache/fwupd/motd.d
+/var/cache/fwupd/motd.d/*
 /var/lib/fwupd/pending.db
 /var/lib/fwupd/pki
 /var/lib/fwupd/pki/client.pem
