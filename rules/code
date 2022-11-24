@@ -1,0 +1,3 @@
+/etc/apt/sources.list.d/vscode.list
+/etc/apt/trusted.gpg.d/microsoft.gpg
+/usr/bin/code
