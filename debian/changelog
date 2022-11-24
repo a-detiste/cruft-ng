@@ -5,6 +5,17 @@ cruft-ng (0.9.49) UNRELEASED; urgency=medium
   * fix build on Hurd, also add rules for "hurd" and "libc0.3" packages.
   * fix rule for dpkg-dev optional files handling
 
+  [ NicolasJamar ]
+  * add/refresh filters for Debian: alsa-base, alsa-utils, apache2, bolt,
+    chrome-gnome-shell, chrony, command-not-found, fwupd, gdm3,
+    pcmciatuils, resolvconf, sane-utils.
+  * add filters only applicable to Ubuntu and derivatives:
+    apport, flatpak, ubuntu-advantage-tools, whoopsie.
+  * add filters only applicable to Pop_OS:
+    kernelstub, pop-upgrade.
+  * add filters for independent proprietary softwares:
+    Microsoft Visual Code, Sublime Text.
+
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 18 Nov 2022 12:27:28 +0100
 
 cruft-ng (0.9.48) unstable; urgency=medium
