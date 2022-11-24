@@ -1,0 +1,3 @@
+/etc/apm/resume.d/20alsa
+/etc/apm/suspend.d/80alsa
+/etc/default/alsa

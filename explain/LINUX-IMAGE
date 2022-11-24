@@ -14,7 +14,7 @@ packages="$(dpkg-query -W -f='${binary:Package}\n' 'linux-image-*-*' 2> /dev/nul
 for package in $packages
 do
 	echo $package
-	ver=$(echo $package | awk '{ print substr($1,13,20); }' )
+	ver=$(echo $package | awk '{ print substr($1,13,40); }' )
 	[ -e "/boot/initrd.img-${ver}"                 ] && echo /boot/initrd.img-${ver}
         [ -e "/lib/modules/${ver}/modules.alias"       ] && echo /lib/modules/${ver}/modules.alias
         [ -e "/lib/modules/${ver}/modules.alias.bin"   ] && echo /lib/modules/${ver}/modules.alias.bin

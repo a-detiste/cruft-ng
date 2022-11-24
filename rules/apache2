@@ -13,6 +13,7 @@
 /var/lib/apache2/site
 /var/lib/apache2/site/enabled_by_admin
 /var/lib/apache2/site/enabled_by_admin/000-default
+/var/lock/apache2
 /var/log/apache2/access.log*
 /var/log/apache2/error.log*
 /var/log/apache2/other_vhosts_access.log*

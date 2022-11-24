@@ -1,0 +1,3 @@
+/etc/kernelstub
+/etc/kernelstub/configuration
+/var/log/kernelstub.log

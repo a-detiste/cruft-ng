@@ -1,0 +1,5 @@
+/etc/apt/sources.list.d/pop-os-apps.sources
+/etc/apt/sources.list.d/pop-os-release.sources
+/usr/share/icons/pop-os-branding/icon-theme.cache
+/var/lib/pop-upgrade
+/var/lib/pop-upgrade/**

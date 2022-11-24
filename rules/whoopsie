@@ -1,0 +1,4 @@
+/var/lib/whoopsie/whoopsie-id
+/var/lock/whoopsie
+/var/metrics
+/var/metrics/**
