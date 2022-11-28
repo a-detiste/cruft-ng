@@ -8,8 +8,12 @@ ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye))
 export DEB_CPPFLAGS_MAINT_APPEND = -std=gnu++17
 endif
 
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
 export DEB_CPPFLAGS_MAINT_APPEND = -DBUSTER
+endif
+
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),xenial))
+export DEB_CPPFLAGS_MAINT_APPEND = -DBUSTER -std=gnu++1y
 endif
 
 %:
