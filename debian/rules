@@ -8,7 +8,7 @@ ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye))
 export DEB_CPPFLAGS_MAINT_APPEND = -std=gnu++17
 endif
 
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
 export DEB_CPPFLAGS_MAINT_APPEND = -DBUSTER
 endif
 
@@ -17,7 +17,7 @@ endif
 
 override_dh_auto_build:
 	./ruleset.sh $(DEB_DISTRIBUTION)
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
 	make cruftold cpigsold
 	mv cruftold cruft
 	mv cpigsold cpigs
@@ -27,7 +27,7 @@ endif
 
 
 override_dh_gencontrol:
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
 	dh_gencontrol -- -Vdist:Depends="mlocate"
 else
 	dh_gencontrol -- -Vdist:Depends="plocate"
@@ -41,7 +41,7 @@ override_dh_auto_install:
 override_dh_install:
 	dh_install
 	sed -i 's/DH_CRUFT_VERSION/"$(DEB_VERSION)"/' debian/dh-cruft/usr/bin/dh_cruft
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
 	mkdir -p debian/cruft-ng/usr/lib/cruft/
 	cp -a csv.py debian/cruft-ng/usr/lib/cruft/
 endif
