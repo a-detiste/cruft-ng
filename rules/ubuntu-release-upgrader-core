@@ -1,0 +1,7 @@
+/etc/apt/sources.list.distUpgrade
+/etc/apt/sources.list.d/*.list.distUpgrade
+/etc/apt/sources.list.save
+/etc/apt/sources.list.d/*.list.save
+/var/lib/ubuntu-release-upgrader/release-upgrade-available
+/var/log/dist-upgrade
+/var/log/dist-upgrade/**
