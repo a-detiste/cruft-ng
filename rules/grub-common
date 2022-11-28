@@ -4,6 +4,7 @@
 /boot/grub/fonts
 /boot/grub/fonts/unicode.pf2
 /boot/grub/locale
+/boot/grub/locale/*.mo
 /boot/grub/unicode.pf2
 /etc/default/grub
 /var/lib/grub/ucf/grub.previous
