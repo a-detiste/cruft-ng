@@ -1,0 +1,4 @@
+/etc/freeradius/3.0/certs/dh
+/etc/freeradius/3.0/mods-enabled/*
+/etc/freeradius/3.0/sites-enabled/*
+/var/log/freeradius/radwtmp
