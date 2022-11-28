@@ -1,0 +1,3 @@
+# old-style monolithic keyring
+/var/lib/apt/keyrings
+/var/lib/apt/keyrings/ubuntu-archive-keyring.gpg
