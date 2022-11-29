@@ -17,7 +17,7 @@ cruft-ng (0.9.49) UNRELEASED; urgency=medium
     update-manager-core, update-notifier, whoopsie.
   * add filters only applicable to Pop_OS:
     kernelstub, pop-upgrade.
-  * add filters for independent proprietary softwares:
+  * add filters for independent proprietary software:
     Microsoft Visual Code, MongoDB, Sublime Text, Teamviewer
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 18 Nov 2022 12:27:28 +0100
