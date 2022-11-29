@@ -1,0 +1,5 @@
+/etc/default/isc-dhcp-server
+/etc/dhcp/ddns-keys
+/etc/dhcp/ddns-keys/*
+/var/lib/dhcp/dhcpd.leases
+/var/lib/dhcp/dhcpd.leases~
