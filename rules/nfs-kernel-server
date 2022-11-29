@@ -1,6 +1,7 @@
 /etc/default/nfs-kernel-server
 /etc/exports
 /var/lib/nfs/.etab.lock
+/var/lib/nfs/.rmtab.lock
 /var/lib/nfs/etab
 /var/lib/nfs/export-lock
 /var/lib/nfs/rmtab
