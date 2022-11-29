@@ -1,10 +1,9 @@
-# phpmyadmin 4:2.6.2-3
-/etc/apache/conf.d/phpmyadmin.conf
-/etc/apache-ssl/conf.d/phpmyadmin.conf
-/etc/apache-perl/conf.d/phpmyadmin.conf
-/etc/apache2/conf.d/phpmyadmin.conf
-/etc/phpmyadmin/config.footer.inc.php
-/etc/phpmyadmin/config.header.inc.php
-/etc/phpmyadmin/config.inc.php
-/etc/phpmyadmin/htaccess
-/etc/phpmyadmin/blowfish_secret.inc.php
+/etc/apache2/conf-available/phpmyadmin.conf
+/etc/avahi/services/phpmyadmin.service
+/etc/phpmyadmin/config-db.php
+/etc/phpmyadmin/htpasswd.setup
+/usr/share/applications/phpmyadmin.desktop
+/var/backups/phpmyadmin
+/var/backups/phpmyadmin/webbased-config.inc.php
+/var/lib/phpmyadmin/blowfish_secret.inc.php
+/var/lib/phpmyadmin/tmp/twig
