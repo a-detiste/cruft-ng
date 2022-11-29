@@ -1,2 +1,2 @@
-        /var/lib/update-notifier/dpkg-run-stamp
-        /var/lib/update-notifier/updates-available
+/var/lib/update-notifier/dpkg-run-stamp
+/var/lib/update-notifier/updates-available
