@@ -13,6 +13,7 @@
 /sys
 /tmp
 /etc/adjtime
+/etc/default/motd-news.wasremoved
 /etc/environment
 /etc/fstab
 /etc/hostname
