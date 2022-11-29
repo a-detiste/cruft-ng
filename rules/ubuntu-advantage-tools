@@ -2,4 +2,6 @@
 /var/lib/ubuntu-advantage/flags/show-apt-news
 /var/lib/ubuntu-advantage/jobs-status.json
 /var/lib/ubuntu-advantage/messages
+/var/lib/ubuntu-advantage/messages/*
 /var/lib/ubuntu-advantage/private
+/var/lib/ubuntu-advantage/private/*
