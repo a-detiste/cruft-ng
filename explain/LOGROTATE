@@ -18,7 +18,7 @@ do
 			;;
 	esac
 
-	grep ^/ $definition | while read file bracket
+	grep ^/ $definition | cut -d ' ' -f 1 | cut -d '.' -f 1 | while read file
 	do
 		find /var/log -path "${file}*" 2>/dev/null
 	done
