@@ -8,13 +8,17 @@ cruft-ng (0.9.49) UNRELEASED; urgency=medium
   [ NicolasJamar ]
   * add/refresh filters for Debian: alsa-base, alsa-utils, apache2, bolt,
     chrome-gnome-shell, chrony, command-not-found, fwupd, gdm3,
-    pcmciatuils, resolvconf, sane-utils.
+    geoclue-2.0, grub-*, nfs-kernel-server, pcmciatuils, php-dbg,
+    power-profiles-daemon, resolvconf, sane-utils, shim-signed,
+    snmp-mibs-downloader, yaru-theme-icon.
   * add filters only applicable to Ubuntu and derivatives:
-    apport, flatpak, ubuntu-advantage-tools, whoopsie.
+    apport, flatpak, ubuntu-advantage-tools,
+    ubuntu-drivers-common, ubuntu-mono, ubuntu-release-upgrader,
+    update-manager-core, update-notifier, whoopsie.
   * add filters only applicable to Pop_OS:
     kernelstub, pop-upgrade.
   * add filters for independent proprietary softwares:
-    Microsoft Visual Code, Sublime Text.
+    Microsoft Visual Code, MongoDB, Sublime Text, Teamviewer
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 18 Nov 2022 12:27:28 +0100
 
