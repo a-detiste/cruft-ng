@@ -1,3 +1,10 @@
 /var/lib/menu-xdg
 /var/lib/menu-xdg/applications
+/var/lib/menu-xdg/applications/menu-xdg
+/var/lib/menu-xdg/applications/menu-xdg/*.desktop
 /var/lib/menu-xdg/desktop-directories
+/var/lib/menu-xdg/desktop-directories/menu-xdg
+/var/lib/menu-xdg/desktop-directories/menu-xdg/*.directory
+/var/lib/menu-xdg/menus
+/var/lib/menu-xdg/menus/debian-menu.menu
+/var/lib/menu-xdg/xsessions
