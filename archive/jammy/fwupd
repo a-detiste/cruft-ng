@@ -1,0 +1,8 @@
+# not verified on Debian
+/var/cache/fwupdmgr/fwupd
+/var/cache/fwupdmgr/fwupd/lvfs-metadata.xml.gz
+/var/cache/fwupdmgr/fwupd/lvfs-metadata.xml.gz.asc
+/var/lib/fwupd/remotes.d/lvfs
+/var/lib/fwupd/remotes.d/lvfs/metadata.xml.gz
+/var/lib/fwupd/remotes.d/lvfs/metadata.xml.gz.asc
+/var/lib/fwupd/remotes.d/lvfs/metadata.xml.gz.jcat

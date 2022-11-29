@@ -1,2 +1,5 @@
 /var/crash
 /var/crash/*.crash
+/var/crash/*.upload
+/var/crash/*.uploaded
+/var/lib/apport/autoreport

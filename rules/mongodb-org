@@ -1,0 +1,5 @@
+/etc/apt/sources.list.d/mongodb-org-*.list
+/var/lib/mongodb
+/var/lib/mongodb/*
+/var/log/mongodb
+/var/log/mongodb/mongod.log

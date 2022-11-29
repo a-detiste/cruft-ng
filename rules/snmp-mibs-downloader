@@ -1,0 +1,4 @@
+/var/lib/mibs/iana
+/var/lib/mibs/iana/*
+/var/lib/mibs/ietf
+/var/lib/mibs/ietf/*

@@ -1,1 +1,10 @@
+/var/lib/boltd/bootacl
+/var/lib/boltd/bootacl/*
 /var/lib/boltd/version
+/var/lib/boltd/devices
+/var/lib/boltd/devices/*
+/var/lib/boltd/domains
+/var/lib/boltd/domains/*
+/var/lib/boltd/times
+/var/lib/boltd/times/*.authtime
+/var/lib/boltd/times/*.conntime

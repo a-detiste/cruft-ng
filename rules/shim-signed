@@ -1,0 +1,5 @@
+/var/lib/shim-signed/dkms-list
+/var/lib/shim-signed/dkms-list.new
+/var/lib/shim-signed/mok/.rnd
+/var/lib/shim-signed/mok/MOK.der
+/var/lib/shim-signed/mok/MOK.priv

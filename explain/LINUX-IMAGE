@@ -5,6 +5,11 @@ set -e
 [ -e /initrd.img.old ] && echo /initrd.img.old
 [ -e /vmlinuz ] && echo /vmlinuz
 [ -e /vmlinuz.old ] && echo /vmlinuz.old
+[ -e /boot/initrd.img ] && echo /boot/initrd.img
+[ -e /boot/initrd.img.old ] && echo /boot/initrd.img.old
+[ -e /boot/vmlinuz ] && echo /boot/vmlinuz
+[ -e /boot/vmlinuz.old ] && echo /boot/vmlinuz.old
+
 [ -e /etc/apt/apt.conf.d/01autoremove-kernels ] && echo /etc/apt/apt.conf.d/01autoremove-kernels
 
 packages="$(dpkg-query -W -f='${binary:Package}\n' 'linux-image-*-*' 2> /dev/null)"

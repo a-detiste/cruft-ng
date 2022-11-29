@@ -1,0 +1,3 @@
+/etc/teamviewer/global.conf
+/var/log/teamviewer15
+/var/log/teamviewer15/*
