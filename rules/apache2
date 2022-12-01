@@ -11,6 +11,7 @@
 /var/lib/apache2/module/enabled_by_maint
 /var/lib/apache2/module/enabled_by_maint/*
 /var/lib/apache2/site
+/var/lib/apache2/site/disabled_by_admin
 /var/lib/apache2/site/enabled_by_admin
 /var/lib/apache2/site/enabled_by_admin/000-default
 /var/lock/apache2
