@@ -4,5 +4,6 @@
 /var/lib/rabbitmq/mnesia/
 /var/log/rabbitmq/*.log
 /var/log/rabbitmq/*.log.*
+/var/log/rabbitmq/log
 /var/log/rabbitmq/log/*.log
 /var/log/rabbitmq/log/*.log.*
