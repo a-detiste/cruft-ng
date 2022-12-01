@@ -10,6 +10,8 @@
 /var/lib/lightdm/.cache/fontconfig/*
 /var/lib/lightdm/.cache/lightdm-gtk-greeter
 /var/lib/lightdm/.cache/lightdm-gtk-greeter/state
+/var/lib/lightdm/.cache/mesa_shader_cache
+/var/lib/lightdm/.cache/mesa_shader_cache/index
 /var/lib/lightdm/.dbus
 /var/lib/lightdm/.dbus/session-bus
 /var/lib/lightdm/.dbus/session-bus/*
