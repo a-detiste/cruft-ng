@@ -1,9 +1,12 @@
-cruft-ng (0.9.49) UNRELEASED; urgency=medium
+cruft-ng (0.9.49) unstable; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
   * fix build on Hurd, also add rules for "hurd" and "libc0.3" packages.
   * fix rule for dpkg-dev optional files handling
+  * add rules for isc-dhcp-server, ap-hotspot, linux-sound-base,
+    menu-xdg, sntp, watchdog, proftpd-basic
+  * update rules for: lightdm, rabbitmq-server, logrotate, nfs*.
 
   [ NicolasJamar ]
   * add/refresh filters for Debian: alsa-base, alsa-utils, apache2, bolt,
