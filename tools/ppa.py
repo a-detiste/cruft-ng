@@ -62,6 +62,7 @@ for release in sorted(releases):
     BACKPORT = supported_debhelper < current_debhelper
 
     if supported_debhelper < 10:
+        os.unlink('debian/dh-cruft.manpages')
         with open('debian/compat', 'w') as old:
             old.write('%s\n' % supported_debhelper)
         build_dep = 'debhelper (>= %d~)' %  supported_debhelper
@@ -92,6 +93,8 @@ for release in sorted(releases):
                           cwd = CRUFT)
     if BACKPORT:
         subprocess.check_call(['git', 'checkout', 'debian/control'],
+                               cwd = CRUFT)
+        subprocess.check_call(['git', 'checkout', 'debian/dh-cruft.manpages'],
                                cwd = CRUFT)
     if os.path.isfile('debian/compat'):
         os.unlink('debian/compat')
