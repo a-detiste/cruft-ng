@@ -1,0 +1,5 @@
+# BeagleBone-only package
+/etc/modules-load.d/robotcontrol_modules.conf
+/opt/scripts/boot/default/robotcontrol_modules.conf
+/opt/source/librobotcontrol/
+/var/log/robotcontrol/*
