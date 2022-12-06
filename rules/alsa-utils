@@ -1,3 +1,4 @@
+/etc/asound.conf
 /var/lib/alsa/asound.state
 /var/lib/alsa/asound.state.lock
 /var/lock/asound.state.lock
