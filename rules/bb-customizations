@@ -1,5 +1,11 @@
 # BeagleBoard.org Debian Buster IoT Image 2020-04-06
 /etc/dogtag
+/etc/cpsw_0_mac
+/etc/cpsw_1_mac
+/etc/cpsw_2_mac
+/etc/cpsw_3_mac
+/etc/cpsw_4_mac
+/etc/cpsw_5_mac
 /opt/source/list.txt
 # and it's listed contents:
 /opt/scripts/
