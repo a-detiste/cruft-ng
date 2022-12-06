@@ -1,5 +1,7 @@
 # more BeagleBone cheesy scripts
 /etc/avahi/services/nodered.service
+/etc/default/node
+/etc/profile.d/node.sh
 /var/lib/node-red/
 /opt/scripts/mods/node-red/
 /opt/scripts/tools/software/add_nodesource_repo.sh
