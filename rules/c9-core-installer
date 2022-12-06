@@ -1,0 +1,5 @@
+# as found in a Buster BeagleBone
+/opt/cloud9
+/opt/cloud9/**
+/var/lib/cloud9
+/var/lib/cloud9/**
