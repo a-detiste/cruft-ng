@@ -3,6 +3,7 @@
 /opt/source/list.txt
 # and it's listed contents:
 /opt/scripts/
+/opt/source
 /opt/source/adafruit-beaglebone-io-python/
 /opt/source/BBIOConfig/
 /opt/source/dtb-4.14-ti/
