@@ -1,8 +1,9 @@
 # BeagleBone garbage
-/var/cache/ti-pru-cgt-installer
-/var/cache/ti-pru-cgt-installer/*_installer.sh
+/usr/bin/*pru
 /usr/share/doc/ti
 /usr/share/doc/ti/cgt-pru
 /usr/share/doc/ti/cgt-pru/*
 /usr/share/ti
 /usr/share/ti/**
+/var/cache/ti-pru-cgt-installer
+/var/cache/ti-pru-cgt-installer/*_installer.sh
