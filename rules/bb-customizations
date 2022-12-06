@@ -1,2 +1,17 @@
 # BeagleBoard.org Debian Buster IoT Image 2020-04-06
 /etc/dogtag
+/opt/source/list.txt
+# and it's listed contents:
+/opt/scripts/
+/opt/source/adafruit-beaglebone-io-python/
+/opt/source/BBIOConfig/
+/opt/source/dtb-4.14-ti/
+/opt/source/dtb-4.19-ti
+/opt/source/dtb-5.4-ti/
+/opt/source/bb.org-overlays/
+/opt/source/librobotcontrol/
+/opt/source/rcpy/
+/opt/source/pyctrl/
+/opt/source/py-uio/
+/opt/source/u-boot_v2019.04/
+/opt/source/u-boot_v2019.07-rc4/
