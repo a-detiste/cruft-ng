@@ -1,4 +1,6 @@
 # BeagleBone garbage
+# as of 2.1.5-0rcnee4~buster+20200806 this has been cleaned-up
+# and replace with normal packaging
 /usr/bin/*pru
 /usr/share/doc/ti
 /usr/share/doc/ti/cgt-pru
