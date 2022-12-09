@@ -1,3 +1,4 @@
+/etc/nginx/sites-enabled/default
 /var/lib/nginx/body
 /var/lib/nginx/fastcgi
 /var/lib/nginx/proxy
