@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+test -d /boot/grub/themes/kali || exit 0
+echo /boot/grub/themes
+echo /boot/grub/themes/kali
+
+cd /usr/share/grub/themes/kali/
+
+for t in *
+do
+    test -f /boot/grub/themes/kali/$t && echo /boot/grub/themes/kali/$t
+done
