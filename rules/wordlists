@@ -1,2 +1,3 @@
 # Kali Linux
+/usr/share/sqlmap/data/txt/wordlist.txt
 /usr/share/wordlists/*
