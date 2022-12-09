@@ -14,6 +14,7 @@
 /var/lib/lightdm/.cache/lightdm-gtk-greeter/state
 /var/lib/lightdm/.cache/mesa_shader_cache
 /var/lib/lightdm/.cache/mesa_shader_cache/index
+/var/lib/lightdm/.config
 /var/lib/lightdm/.config/pulse
 /var/lib/lightdm/.config/pulse/*
 /var/lib/lightdm/.dbus
