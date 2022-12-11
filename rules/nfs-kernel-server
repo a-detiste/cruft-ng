@@ -7,6 +7,7 @@
 /var/lib/nfs/export-lock
 /var/lib/nfs/rmtab
 /var/lib/nfs/nfsdcld
+/var/lib/nfs/nfsdcld/main.sqlite
 /var/lib/nfs/nfsdcltrack
 /var/lib/nfs/nfsdcltrack/main.sqlite
 /var/lib/nfs/v4recovery
