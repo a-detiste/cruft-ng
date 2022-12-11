@@ -1,0 +1,9 @@
+/etc/apt/sources.list.d/kgilmer-ubuntu-regolith-stable-bionic.list
+/etc/apt/sources.list.d/regolith-linux-ubuntu-release-focal.list
+/etc/apt/sources.list.d/regolith.list
+/etc/apt/trusted.gpg.d/kgilmer_ubuntu_regolith-stable.gpg
+/etc/apt/trusted.gpg.d/regolith-linux_ubuntu_release.gpg
+/etc/regolith/i3xrocks
+/etc/regolith/i3xrocks/conf.d
+/etc/regolith/rofi
+/usr/share/keyrings/regolith-archive-keyring.gpg
