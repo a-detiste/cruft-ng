@@ -6,4 +6,4 @@
 /var/backups/phpmyadmin
 /var/backups/phpmyadmin/webbased-config.inc.php
 /var/lib/phpmyadmin/blowfish_secret.inc.php
-/var/lib/phpmyadmin/tmp/twig
+/var/lib/phpmyadmin/tmp/twig/
