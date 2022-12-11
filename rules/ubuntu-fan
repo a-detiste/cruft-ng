@@ -1,0 +1,4 @@
+/etc/network/fan
+/var/lib/ubuntu-fan
+/var/lib/ubuntu-fan/config
+/var/lib/ubuntu-fan/config/*
