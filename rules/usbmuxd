@@ -1,2 +1,2 @@
 /var/lib/lockdown
-/var/lib/lockdown/SystemConfiguration.plist
+/var/lib/lockdown/*.plist
