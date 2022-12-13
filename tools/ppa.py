@@ -24,7 +24,7 @@ old_lts = info.supported()[-3]
 releases = sorted(set([old_lts, lts, stable]))
 if len(sys.argv) > 1:
     release = sys.argv[1]
-    assert release in releases
+    assert release in releases or release == 'xenial'
     releases = set([release])
 
 print('RELEASES:', releases)
