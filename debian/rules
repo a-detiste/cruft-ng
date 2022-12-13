@@ -44,7 +44,7 @@ override_dh_auto_install:
 
 override_dh_install:
 	dh_install
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),xenial))
+ifneq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),xenial))
 	sed -i 's/DH_CRUFT_VERSION/"$(DEB_VERSION)"/' debian/dh-cruft/usr/bin/dh_cruft
 endif
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
