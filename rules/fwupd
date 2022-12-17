@@ -14,8 +14,8 @@
 /var/lib/fwupd/gnupg/trustdb.gpg
 /var/lib/fwupd/metadata
 /var/lib/fwupd/metadata/lvfs
-/var/lib/fwupd/metadata/lvfs/metadata.xml.gz
-/var/lib/fwupd/metadata/lvfs/metadata.xml.gz.jcat
+/var/lib/fwupd/metadata/lvfs/metadata.xml.xz
+/var/lib/fwupd/metadata/lvfs/metadata.xml.xz.jcat
 /var/lib/fwupd/pending.db
 /var/lib/fwupd/pki
 /var/lib/fwupd/pki/client.pem
