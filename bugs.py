@@ -1,15 +1,22 @@
 #!/usr/bin/python3
 
+import glob
 import re
 import sys
 
 import debianbts as bts
 
 # Shell: /bin/sh linked to /bin/dash
-FALSE_POSITIVES = ['/bin/sh', '/bin/dash',
+FALSE_POSITIVES = set(['/bin/sh', '/bin/dash',
                    '/usr/bin/sh', '/usr/bin/dash',
                    '/usr/sbin/piuparts',
-                  ]
+                   '/usr/share/fonts',
+                  ])
+
+for dpkg_list in glob.glob('/var/lib/dpkg/info/*.list') + glob.glob('/var/lib/dpkg/info/*.conffiles'):
+    with open(dpkg_list, 'r') as files:
+        for file in files:
+            FALSE_POSITIVES.add(file.rstrip('\n'))
 
 # exclude "'" because it's added by dpkg in error messages
 re_cruft = re.compile(r'/(?:bin|usr|etc|var)/[A-Za-z0-9_\/\.\-]*')

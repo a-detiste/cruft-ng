@@ -3,11 +3,11 @@
 import glob
 import os
 
-for list in glob.glob('/var/lib/dpkg/info/*.list') + glob.glob('/var/lib/dpkg/info/*.conffiles'):
-    package = os.path.basename(list)
+for dpkg_list in glob.glob('/var/lib/dpkg/info/*.list') + glob.glob('/var/lib/dpkg/info/*.conffiles'):
+    package = os.path.basename(dpkg_list)
     package = package.split(':')[0]
     package = package.split('.')[0]
-    with open(list, 'r') as files:
+    with open(dpkg_list, 'r') as files:
         for file in files:
             file = file.rstrip('\n')
             if os.path.isdir(file):
