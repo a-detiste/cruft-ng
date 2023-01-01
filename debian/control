@@ -41,17 +41,17 @@ Description: programs that helps analyse volatile "cruft" files on your system
  Packages wanting to document such volatile files can do so
  using dh-cruft.
 
-#Package: dh-cruft
-#Depends: ${perl:Depends}, ${misc:Depends}
-#Architecture: all
-#Provides: dh-sequence-cruft
-#Description: plugin for DebHelper to register .cruft and .purge files
-# While the files listed in debian/<package>.cruft will simply be
-# accounted for; the one in debian/<package>.purge will actually
-# be removed in the final purge step after package removal.
-# .
-# Some demo package can be found at:
-# https://github.com/a-detiste/dh-cruft-test
+Package: dh-cruft
+Depends: ${perl:Depends}, ${misc:Depends}
+Architecture: all
+Provides: dh-sequence-cruft
+Description: plugin for DebHelper to register .cruft and .purge files
+ While the files listed in debian/<package>.cruft will simply be
+ accounted for; the one in debian/<package>.purge will actually
+ be removed in the final purge step after package removal.
+ .
+ Some demo package can be found at:
+ https://github.com/a-detiste/dh-cruft-test
 
 Package: cruft
 Depends: cruft-ng, ${misc:Depends}
