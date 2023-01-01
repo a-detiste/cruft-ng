@@ -13,7 +13,7 @@ cruft-ng (0.9.49) unstable; urgency=medium
   * add support for Kali Linux derivative, and Debian packages found
     in it's default toolkit: stunnel4, ntpsec, rwhod, blueman,
     openvpn, iodine, inetsim.
-  * add support for BeagleBone derivatie: bb-customizations,
+  * add support for BeagleBone derivative: bb-customizations,
     ti-pru-cgt-installer, doc-beaglebone-getting-started,
     bb-node-red-installer, cloud9.
 
