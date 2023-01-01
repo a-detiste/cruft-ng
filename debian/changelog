@@ -6,22 +6,33 @@ cruft-ng (0.9.49) unstable; urgency=medium
   * fix rule for dpkg-dev optional files handling
   * add rules for isc-dhcp-server, ap-hotspot, linux-sound-base,
     menu-xdg, sntp, watchdog, proftpd-basic
-  * update rules for: lightdm, rabbitmq-server, logrotate, nfs*.
+  * update rules for: lightdm, rabbitmq-server, logrotate, nfs*,
+    fwupd, atfpd, nginx.
+  * add filters for independent proprietary software:
+    Grafana
+  * add support for Kali Linux derivative, and Debian packages found
+    in it's default toolkit: stunnel4, ntpsec, rwhod, blueman,
+    openvpn, iodine, inetsim.
+  * add support for BeagleBone derivatie: bb-customizations,
+    ti-pru-cgt-installer, doc-beaglebone-getting-started,
+    bb-node-red-installer, cloud9.
 
   [ NicolasJamar ]
   * add/refresh filters for Debian: alsa-base, alsa-utils, apache2, bolt,
     chrome-gnome-shell, chrony, command-not-found, fwupd, gdm3,
     geoclue-2.0, grub-*, nfs-kernel-server, pcmciatuils, php-dbg,
     power-profiles-daemon, resolvconf, sane-utils, shim-signed,
-    snmp-mibs-downloader, yaru-theme-icon.
+    snmp-mibs-downloader, yaru-theme-iconn usbmuxd, pkgconf,
+    gconf2, docker.io, containerd, phpmyadmin.
   * add filters only applicable to Ubuntu and derivatives:
-    apport, flatpak, ubuntu-advantage-tools,
+    apport, flatpak, ubuntu-advantage-tools, ubuntu-fan,
     ubuntu-drivers-common, ubuntu-mono, ubuntu-release-upgrader,
     update-manager-core, update-notifier, whoopsie.
   * add filters only applicable to Pop_OS:
     kernelstub, pop-upgrade.
   * add filters for independent proprietary software:
-    Microsoft Visual Code, MongoDB, Sublime Text, Teamviewer
+    Microsoft Visual Code, MongoDB, Sublime Text, Teamviewer,
+    VirtualBox extensions package.
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 18 Nov 2022 12:27:28 +0100
 
