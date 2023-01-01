@@ -39,13 +39,13 @@ endif
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/cruft-ng
-	mkdir -p debian/tmp/
-	pod2man --utf8 dh-cruft/dh_cruft debian/tmp/dh_cruft.1
+#	mkdir -p debian/tmp/
+#	pod2man --utf8 dh-cruft/dh_cruft debian/tmp/dh_cruft.1
 
 override_dh_install:
 	dh_install
 ifneq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),xenial))
-	sed -i 's/DH_CRUFT_VERSION/"$(DEB_VERSION)"/' debian/dh-cruft/usr/bin/dh_cruft
+#	sed -i 's/DH_CRUFT_VERSION/"$(DEB_VERSION)"/' debian/dh-cruft/usr/bin/dh_cruft
 endif
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
 	mkdir -p debian/cruft-ng/usr/lib/cruft/
