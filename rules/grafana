@@ -24,3 +24,4 @@
 /var/lib/grafana/png/
 /var/log/grafana
 /var/log/grafana/grafana.log
+/var/log/grafana/grafana.log.*
