@@ -1,0 +1,5 @@
+/var/lib/quassel
+/var/lib/quassel/quassel-storage.sqlite
+/var/lib/quassel/quasselCert.pem
+/var/lib/quassel/quasselcore.conf
+/var/log/quassel
