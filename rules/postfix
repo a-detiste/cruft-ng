@@ -4,10 +4,18 @@
 /etc/postfix/dynamicmaps.cf
 /etc/postfix/main.cf
 /etc/postfix/master.cf
+/var/lib/postfix/master.lock
+/var/lib/postfix/postscreen_cache.db
+/var/lib/postfix/prng_exch
+/var/lib/postfix/smtp_scache.db
+/var/lib/postfix/smtpd_scache.db
+/var/lib/postfix/verify_cache.db
 /var/spool/postfix/incoming/
 /var/spool/postfix/active/
 /var/spool/postfix/defer/
 /var/spool/postfix/deferred/
+/var/spool/postfix/dev/random
+/var/spool/postfix/dev/urandom
 /var/spool/postfix/bounce/
 /var/spool/postfix/corrupt
 /var/spool/postfix/flush
@@ -23,6 +31,8 @@
 /var/spool/postfix/public/qmgr
 /var/spool/postfix/public/flush
 /var/spool/postfix/public/showq
+/var/spool/postfix/public/postlog
+/var/spool/postfix/public/subcleanup
 /var/spool/postfix/etc/
 /var/spool/postfix/lib/
 /var/spool/postfix/usr/
