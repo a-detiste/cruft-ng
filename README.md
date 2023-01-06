@@ -42,11 +42,19 @@ Some assumption differs:
 
 * Debian
 
-* cruft-ng uses mlocate binary database instead of
+* cruft-ng used to use `mlocate` binary database instead of
   running 'find' on the whole file system,
-  this way, it can also be setgid mlocate to be
+  this way, it could also be setgid `mlocate` to be
   able to access the db and be run by any user;
   while cruft need to be run as root.
+
+* PS: nowadays `mlocate` has been replaced by `plocate`.
+  The new binary database is in a private format
+  without a promise of stability,
+  so cruft-ng simply calls ou the `plocate` binary.
+  This means it can run as non-root and mostly gives
+  the same results. It of course can not list
+  files only root can see.
 
 * cruft scan `/home` with find *twice*, only to detect
   files not owned by /home/$user & broken symlinks;
