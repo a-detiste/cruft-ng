@@ -3,7 +3,7 @@ Upstream-Name: cruft-ng
 Source: https://github.com/a-detiste/cruft-ng/
 
 Files: *
-Copyright: 2014-2022 Alexandre Detiste <alexandre.detiste@gmail.com>
+Copyright: 2014-2023 Alexandre Detiste <alexandre.detiste@gmail.com>
            2022 Guillem Jover <guillem@debian.org>
            2022 Christian Göttsche <cgzones@googlemail.com>
 License: GPL-2+
@@ -27,7 +27,7 @@ License: GPL-2+
 Files: explain/* rules/*
 Copyright: 1998-2000 Anthony Towns <ajt@debian.org>
            2005-2011 Marcin Owsiany <porridge@debian.org>
-           2014-2022 Alexandre Detiste <alexandre.detiste@gmail.com>
+           2014-2023 Alexandre Detiste <alexandre.detiste@gmail.com>
 License: GPL-2+
 
 License: GPL-2+
