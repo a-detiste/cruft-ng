@@ -69,3 +69,5 @@ ruleset: rules/*
 
 flow.png: flow.ditaa
 	ditaa flow.ditaa flow.png
+
+doc: flow.png
