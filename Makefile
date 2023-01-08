@@ -71,3 +71,8 @@ flow.png: flow.ditaa
 	ditaa flow.ditaa flow.png
 
 doc: flow.png
+
+bugs: debian/changelog
+	./bugs.py > bugs
+
+release: doc bugs
