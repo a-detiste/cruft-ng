@@ -2,7 +2,8 @@
 set -e
 rm -f ruleset
 
-(cd rules
+function concat() {
+(cd $1
 ls | sort | while read file
 do
 	echo "$file"
@@ -28,7 +29,11 @@ do
 	done < "$file"
 	# --- o<  --- o< ---
 
-done | grep -v ^# | grep .) > ruleset
+done | grep -v ^# | grep .
+)
+}
+
+concat rules > ruleset
 
 # backport
 case "$1" in
@@ -58,9 +63,9 @@ then
     exit 0
 fi
 
-(cd "archive/$release"
-ls | sort | while read file
-do
-	echo "$file"
-	cat "$file"
-done | grep -v ^# | grep .) >> ruleset
+if ! [ "$(readlink archive/stable)" == "$release" ]
+then
+    concat archive/stable >> ruleset
+fi
+
+concat archive/$release >> ruleset
