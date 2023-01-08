@@ -36,7 +36,8 @@ done | grep -v ^# | grep .
 concat rules > ruleset
 
 # backport
-case "$1" in
+release="$1"
+case "$release" in
     "")
         exit 0
         ;;
@@ -53,9 +54,11 @@ case "$1" in
     focal)
         release="bullseye"
         ;;
-    *)
-        release="$1"
+    *-backports)
+        release="${release%\-backports}"
+        ;;
 esac
+echo "release:$release"
 
 if ! [ -d "archive/$release" ]
 then
