@@ -49,5 +49,5 @@ ifneq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),xenial))
 endif
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
 	mkdir -p debian/cruft-ng/usr/lib/cruft/
-	cp -a csv.py debian/cruft-ng/usr/lib/cruft/
+	cp -a dpkg_csv.py debian/cruft-ng/usr/lib/cruft/
 endif
