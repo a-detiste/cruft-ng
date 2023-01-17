@@ -1,0 +1,7 @@
+# as seen in the official non-Debian backport package
+# http://nginx.org/packages/debian/pool/nginx/n/nginx/nginx_1.22.0-1~buster_i386.deb
+/var/cache/nginx/client_temp/
+/var/cache/nginx/fastcgi_temp/
+/var/cache/nginx/proxy_temp/
+/var/cache/nginx/scgi_temp/
+/var/cache/nginx/uwsgi_temp/
