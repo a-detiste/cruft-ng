@@ -3,3 +3,4 @@
 /var/cache/debconf/passwords.dat
 /var/cache/debconf/templates.dat
 /var/cache/debconf/templates.dat-old
+/var/cache/debconf/tmp.ci/
