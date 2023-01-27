@@ -1,3 +1,10 @@
+cruft-ng (0.9.51) unstable; urgency=medium
+
+  * New upload to Mentors, fixing copyright attribution of mlocate_db.h
+    as hinted by FTP-Master.
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 27 Jan 2023 10:14:52 +0100
+
 cruft-ng (0.9.50) unstable; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
