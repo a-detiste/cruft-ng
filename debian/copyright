@@ -5,11 +5,11 @@ Source: https://github.com/a-detiste/cruft-ng/
 Files: *
 Copyright: 2014-2023 Alexandre Detiste <alexandre.detiste@gmail.com>
            2022 Guillem Jover <guillem@debian.org>
-           2022 Christian Göttsche <cgzones@googlemail.com>
+           2023 Christian Göttsche <cgzones@googlemail.com>
 License: GPL-2+
 
 Files: mlocate_db.h
-Copyright: 2005 Miloslav Trmac <mitr@redhat.com>
+Copyright: 2005 Redhat <mitr@redhat.com>
 License: mlocate_db_license
  You can use this file without restriction.
  .
