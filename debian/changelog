@@ -1,7 +1,14 @@
-cruft-ng (0.9.50) UNRELEASED; urgency=medium
+cruft-ng (0.9.50) unstable; urgency=medium
 
   * new "dh-cruft" binary package: this DebHelper module is to be used
     by source package that wants to provide their own rules.
+  * update filters for: grafana, npm, python3-pip, cron*, debconf.
+  * add support for nginx.deb from nginx.org.
+  * ship documentation in .deb in ASCII and .png formats.
+
+  [ Christian Göttsche ]
+  * new filters for: dovecot, geoipupdate, php-fm, postfix,
+    quassel-core, redis-server, rspamd, strongswan, unbound.
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 01 Jan 2023 19:53:19 +0100
 
