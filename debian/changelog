@@ -10,7 +10,7 @@ cruft-ng (0.9.50) unstable; urgency=medium
   * new filters for: dovecot, geoipupdate, php-fm, postfix,
     quassel-core, redis-server, rspamd, strongswan, unbound.
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 01 Jan 2023 19:53:19 +0100
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Fri, 27 Jan 2023 10:11:08 +0100
 
 cruft-ng (0.9.49) unstable; urgency=medium
 
