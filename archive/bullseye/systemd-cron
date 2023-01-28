@@ -1,3 +1,8 @@
 /etc/cron.allow
 /etc/cron.deny
 /var/spool/cron/crontabs/*
+/var/lib/systemd/timers/stamp-cron-daily.timer
+/var/lib/systemd/timers/stamp-cron-weekly.timer
+/var/lib/systemd/timers/stamp-cron-monthly.timer
+/lib/systemd/system-generators/__pycache__
+/lib/systemd/system-generators/__pycache__/systemd-crontab-generatorcpython-*.pyc
