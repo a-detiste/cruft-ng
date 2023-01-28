@@ -1,3 +1,9 @@
+cruft-ng (0.9.52) unstable; urgency=medium
+
+  * Fix FTBFS on buildd: separate -arch and -indep targets.
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sat, 28 Jan 2023 13:28:04 +0100
+
 cruft-ng (0.9.51) unstable; urgency=medium
 
   * New upload to Mentors, fixing copyright attribution of mlocate_db.h
