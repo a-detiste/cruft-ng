@@ -45,6 +45,7 @@ Description: programs that helps analyse volatile "cruft" files on your system
 Package: dh-cruft
 Depends: ${perl:Depends}, ${misc:Depends}
 Architecture: all
+Multi-Arch: foreign
 Provides: dh-sequence-cruft
 Description: plugin for DebHelper to register .cruft and .purge files
  While the files listed in debian/<package>.cruft will simply be
