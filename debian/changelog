@@ -1,3 +1,12 @@
+cruft-ng (0.9.53~0) UNRELEASED; urgency=medium
+
+  * Use /usr/share/cruft/rules/ as location for new dh-cruft rules
+    to avoid that every single package switching to dh-cruft would
+    also need to Breaks+Replaces on old cruft-commnon. (See #1030024)
+  * make dh-cruft Multi-Arch: foreign as hinted
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Mon, 30 Jan 2023 19:34:00 +0100
+
 cruft-ng (0.9.52) unstable; urgency=medium
 
   * Fix FTBFS on buildd: separate -arch and -indep targets.
