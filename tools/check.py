@@ -26,8 +26,15 @@ testing.add('libc0.3')
 # Google repository
 testing.add('google-earth-stable')
 
-# Add Stable, remove cache file to trigger download
-if not os.path.isfile('tools/Packages_amd64'):
+old_stable = os.path.basename(os.readlink('archive/stable'))
+if old_stable != STABLE:
+    print('Stable distribution has changed: %s -> %s' % (old_stable, STABLE))
+    os.unlink('archive/stable')
+    os.chdir('archive')
+    os.symlink(STABLE, 'stable')
+    os.chdir('..')
+
+if old_stable != STABLE or not os.path.isfile('tools/Packages_amd64'):
     subprocess.check_call(['ben', 'download',
                            '--archs', 'amd64',
                            '--suite', 'stable'],

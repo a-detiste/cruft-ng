@@ -86,6 +86,8 @@ bool pyc_has_py(string pyc, bool debug)
 	int ugly=0;
         if(pyc.find(".cpython-310") != string::npos) ugly=1;
         if(pyc.find(".cpython-311") != string::npos) ugly=1;
+        if(pyc.find(".cpython-312") != string::npos) ugly=1;
+        if(pyc.find(".cpython-313") != string::npos) ugly=1;
 	pyc.replace(pos, 15+ugly, ".py");
 
         bool matched;
