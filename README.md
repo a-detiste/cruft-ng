@@ -33,7 +33,7 @@ cruft-ng needs a ruleset:
   using `dh-cruft`.
   
 * `/usr/share/cruft/ruleset` : this is a fallback
-  ruleset for packages not yet providing thei own rules.
+  ruleset for packages not yet providing their own rules.
 
 Some assumption differs:
 ------------------------
