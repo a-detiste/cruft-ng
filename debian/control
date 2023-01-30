@@ -28,8 +28,8 @@ Description: programs that helps analyse volatile "cruft" files on your system
  be there, but is - the so called "cruft";  or for anything
  that should be there, but isn't.
  .
- cpigs is a program that by default it works like dpigs
- but for volatile data. it prints out the package with the most volatile
+ cpigs is a program that by default works like dpigs
+ but for volatile data. It prints out the package with the most volatile
  data (usually apt, plocate...)
  It can also dump it's whole state into a .csv format usable for
  more in depth analysis.
