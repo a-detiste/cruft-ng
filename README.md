@@ -24,13 +24,16 @@ cruft-ng needs a ruleset:
 * `/usr/libexec/explain/` : this is a set of shell scripts
   plugins for handling of special cases.
 
-* `/usr/lib/cruft/filters-unex/` : these are glob-like files,
+* `/usr/share/cruft/rules/*` : these are glob-like files,
   quite like, but not totally the same than in your
   standard shell. this re-uses cruft' `shellexp.c`
 
   These can be moved into individual Debian package
   (or some proprietary .deb distro in my case)
   using `dh-cruft`.
+  
+* `/usr/share/cruft/ruleset` : this is a fallback
+  ruleset for packages not yet providing thei own rules.
 
 Some assumption differs:
 ------------------------
