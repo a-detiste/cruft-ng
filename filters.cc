@@ -51,11 +51,14 @@ int read_filters(const string& dir, const string& ruleset_file, const vector<str
 	for (const auto& package : packages) {
 		struct stat stat_buffer;
 		string etc_filename = dir + package;
-		string usr_filename = "/usr/lib/cruft/filters-unex/" + package; // should be empty
+		string usr_filename = "/usr/lib/cruft/filters-unex/" + package;
+		string usr_filename_new = "/usr/share/cruft/rules/" + package;
 		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
 			read_one_filter(etc_filename, package, globs, debug);
 		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
 			read_one_filter(usr_filename, package, globs, debug);
+		else if ( stat(usr_filename_new.c_str(), &stat_buffer)==0 )
+			read_one_filter(usr_filename_new, package, globs, debug);
 	}
 	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
 
