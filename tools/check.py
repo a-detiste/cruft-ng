@@ -23,6 +23,21 @@ testing.add('libraspberrypi0')
 testing.add('hurd')
 testing.add('libc0.3')
 
+# Add Kali Linux
+testing.add('kali-archive-keyring')
+testing.add('kali-defaults')
+testing.add('kali-menu')
+testing.add('kali-themes')
+testing.add('kali-themes-common')
+testing.add('kali-undercover')
+
+# Add Ubuntu
+testing.add('ubuntu-advantage-tools')
+testing.add('ubuntu-drivers-common')
+testing.add('ubuntu-fan')
+testing.add('ubuntu-mono')
+testing.add('ubuntu-release-upgrader-core')
+
 # Google repository
 testing.add('google-earth-stable')
 
