@@ -1,0 +1,6 @@
+/etc/backup-manager.conf
+/etc/backup-manager.conf.old
+/etc/cron.d/backup-manager
+/etc/cron.daily/backup-manager
+/etc/cron.monthly/backup-manager
+/etc/cron.weekly/backup-manager
