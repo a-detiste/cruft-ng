@@ -1,0 +1,6 @@
+/etc/auto.master
+/etc/auto.misc
+/etc/auto.net
+/etc/auto.smb
+/etc/autofs.conf
+/etc/default/autofs
