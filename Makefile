@@ -70,7 +70,10 @@ ruleset: rules/*
 flow.png: flow.ditaa
 	ditaa flow.ditaa flow.png
 
-doc: flow.png
+debhelper.png: debhelper.ditaa
+	ditaa debhelper.ditaa debhelper.png
+
+doc: flow.png debhelper.png
 
 bugs: debian/changelog
 	./bugs.py > bugs

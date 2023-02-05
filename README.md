@@ -4,7 +4,7 @@ cruft-ng, a rewrite of Debian 'cruft' engine
 cruft-ng is a program to look over your system for anything that shouldn't
 be there, but is; or for anything that should be there, but isn't.
 
-![Flowchar](flow.png)
+![Flowchart](flow.png)
 
 Cruft was built as a main shell scripts that spawn
 hundreds of helper processes (other shell scripts,
@@ -26,12 +26,14 @@ cruft-ng needs a ruleset:
 
 * `/usr/share/cruft/rules/*` : these are glob-like files,
   quite like, but not totally the same than in your
-  standard shell. this re-uses cruft' `shellexp.c`
+  standard shell. This re-uses cruft' `shellexp.c`
 
   These can be moved into individual Debian package
   (or some proprietary .deb distro in my case)
   using `dh-cruft`.
-  
+
+![DhCruft](debhelper.png)
+
 * `/usr/share/cruft/ruleset` : this is a fallback
   ruleset for packages not yet providing their own rules.
 
