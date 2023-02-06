@@ -175,6 +175,7 @@ int main(int argc, char *argv[])
 		{"ignore", required_argument, nullptr, 'I'},
 		{"ruleset", required_argument, nullptr, 'R'},
 		{"bugs", required_argument, nullptr, 'B'},
+		{0, 0, 0, 0}
 	};
 
 	int opt, opti = 0;
