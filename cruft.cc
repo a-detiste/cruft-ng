@@ -92,34 +92,44 @@ static bool updatedb()
 	return true;
 }
 
-static void one_file(const string& infile)
+static void one_file(const string& path)
 {
-	char* file=realpath(infile.c_str(), nullptr);
-	DIR *dp;
-	struct dirent *dirp;
-	if((dp = opendir("/usr/lib/cruft/filters-unex/")) == nullptr) {
-		cerr << "Error(" << errno << ") opening /usr/lib/cruft/filters-unex/\n";
-		exit(1);
+	string infile = path;
+	if ((path.rfind("/bin/", 0) == 0)
+         or (path.rfind("/lib/", 0) == 0)
+         or (path.rfind("/sbin/", 0) == 0)) {
+		infile = "/usr" + infile;
 	}
-	bool matched = false;
-	while ((dirp = readdir(dp)) != nullptr) {
-		string package=dirp->d_name;
-		if (package == "." or package == "..") continue;
-		ifstream glob_file("/usr/lib/cruft/filters-unex/" + package);
-		for (string glob_line; getline(glob_file,glob_line);)
-		{
-			if (glob_line.empty()) continue;
-			if (glob_line.front() == '/') {
-				if (myglob(file,glob_line)) {
-					cout << package << '\n';
-					matched = true;
-				}
-			}
-		}
-	}
-	closedir(dp);
 
-	if (not matched) cerr << "no matching package found\n";
+	char* file = realpath(infile.c_str(), nullptr);
+
+	vector<string> packages;
+	vector<string> dpkg;
+	read_dpkg(packages, dpkg, false);
+	// is it a static file ?
+	// TODO
+
+	// is it a dynamic file ?
+	vector<owner> globs;
+	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, globs);
+	for (const auto& gl: globs) {
+		if (myglob(file, gl.glob)) {
+			cout << gl.package << '\n';
+			return;
+		};
+	}
+
+	// match the dynamic "explain" filters
+	vector<owner> explain;
+	read_explain("/etc/cruft/explain/", packages, explain);
+	for (const auto& ex: explain) {
+		if (infile == ex.glob) {
+			cout << ex.package << '\n';
+			return;
+                }
+        }
+
+	cerr << "no matching package found\n";
 }
 
 static clock_t beg = clock();
@@ -324,7 +334,7 @@ int main(int argc, char *argv[])
 
 	// match the globs against reduced database
 	vector<owner> globs;
-	read_filters(filter_dir, ruleset_file, packages,globs);
+	read_filters(filter_dir, ruleset_file, packages, globs);
 	elapsed("read filters");
 	vector<string> cruft3;
 	for (const auto& cr: cruft) {
