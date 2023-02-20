@@ -5,7 +5,7 @@
 struct owner
 {
 	std::string package;
-	std::string glob;
+	std::string path;
 	owner(std::string, std::string);
 };
 

@@ -113,7 +113,7 @@ static void one_file(const string& path)
 	vector<owner> globs;
 	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, globs);
 	for (const auto& gl: globs) {
-		if (myglob(file, gl.glob)) {
+		if (myglob(file, gl.path)) {
 			cout << gl.package << '\n';
 			return;
 		};
@@ -123,7 +123,7 @@ static void one_file(const string& path)
 	vector<owner> explain;
 	read_explain("/etc/cruft/explain/", packages, explain);
 	for (const auto& ex: explain) {
-		if (infile == ex.glob) {
+		if (infile == ex.path) {
 			cout << ex.package << '\n';
 			return;
                 }
@@ -340,7 +340,7 @@ int main(int argc, char *argv[])
 	for (const auto& cr: cruft) {
 		bool match=false;
 		for (const auto& gl: globs) {
-			match=myglob(cr, gl.glob);
+			match=myglob(cr, gl.path);
 			if (match) break;
 		}
 		if (!match) cruft3.push_back(cr);
@@ -356,7 +356,7 @@ int main(int argc, char *argv[])
 	for (const auto& cr: cruft3) {
 		bool match=false;
 		for (const auto& ex: explain) {
-			match=(cr==ex.glob);
+			match=(cr==ex.path);
 			if (match) break;
 		}
 		if (!match) cruft4.push_back(cr);

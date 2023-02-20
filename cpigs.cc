@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
 		string package = "UNKNOWN";
 		while (owners != globs.end()) {
 			bool match;
-			match = myglob(*cruft,(*owners).glob);
+			match = myglob(*cruft,(*owners).path);
 			if (match) {
 				package = (*owners).package;
                         	break;
