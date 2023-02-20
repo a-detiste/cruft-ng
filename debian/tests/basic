@@ -3,5 +3,5 @@ set -e
 
 cruft
 
-echo 'should print: "base-files"'
+echo 'should print: "base-passwd"'
 cruft /etc/passwd
