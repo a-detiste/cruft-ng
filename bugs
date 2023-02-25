@@ -1,4 +1,13 @@
-/etc/fwupd/redfish.conf 1026243 fwupd
+/usr/lib/python3.10 1031909 python3-stdlib-extensions
+/usr/lib/python3.10/tkinter 1031909 python3-stdlib-extensions
+/usr/lib/python3.6 918098 python3-stdlib-extensions
+/usr/lib/python3.6/distutils 918098 python3-stdlib-extensions
+/usr/lib/python3.6/distutils/command 918098 python3-stdlib-extensions
+/usr/lib/python3.6/lib2to3 918098 python3-stdlib-extensions
+/usr/lib/python3.6/lib2to3/fixes 918098 python3-stdlib-extensions
+/usr/lib/python3.6/lib2to3/pgen2 918098 python3-stdlib-extensions
+/usr/lib/python3.7 960653 python3-stdlib-extensions
+/usr/lib/python3.7/tkinter/__pycache__ 960653 python3-stdlib-extensions
 /usr/lib/python3.9 1017445 python3-stdlib-extensions
 /usr/lib/python3.9/tkinter 1017445 python3-stdlib-extensions
 /usr/lib/python3.9/tkinter/__pycache__ 1017445 python3-stdlib-extensions
@@ -54,6 +63,7 @@
 /usr/share/fonts/woff/font-awesome/.uuid 909541 fontconfig
 /usr/share/fonts/woff/jetbrains-mono 897040 fontconfig
 /usr/share/fonts/woff2/jetbrains-mono 897040 fontconfig
+/usr/share/texmf/fonts 1022566 fontconfig
 /var/cache/fontconfig 1022566 fontconfig
 /var/lib/app-info 1009825 appstream
 /var/lib/fwupd/metadata/lvfs 1026243 fwupd
