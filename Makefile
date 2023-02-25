@@ -22,7 +22,7 @@ plocate.o: plocate.cc locate.h
 mlocate.o: mlocate.cc locate.h
 
 cruft.o: cruft.cc explain.h filters.h dpkg.h python.h
-dpkg_lib.o: dpkg_lib.cc dpkg.h
+dpkg_lib.o: dpkg_lib.cc dpkg.h /usr/include/dpkg/dpkg.h
 dpkg_popen.o: dpkg_popen.cc dpkg.h
 
 cruftold: $(SHARED_OBJS) $(CRUFT_OBJS) mlocate.o dpkg_popen.o
