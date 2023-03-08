@@ -1,3 +1,10 @@
+cruft-ng (0.9.55) UNRELEASED; urgency=medium
+
+  [ NicolasJamar ]
+  * refresh misc filters for Debian, Ubuntu & Pop_OS
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Thu, 09 Mar 2023 00:39:20 +0100
+
 cruft-ng (0.9.54) unstable; urgency=medium
 
   * fix single file matching feature (Closes: #1030522)
