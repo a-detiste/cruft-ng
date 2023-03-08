@@ -1,0 +1,3 @@
+/etc/apt/trusted.gpg.d/tableplus-archive.gpg
+/usr/local/bin/tableplus
+/usr/share/applications/tableplus.desktop
