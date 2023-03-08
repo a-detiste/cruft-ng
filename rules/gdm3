@@ -17,6 +17,7 @@
 /var/lib/gdm3/.local/share/**
 /var/lib/gdm3/.local/state
 /var/lib/gdm3/.local/state/wireplumber
+/var/lib/gdm3/.local/state/wireplumber/default-routes
 /var/lib/gdm3/.local/state/wireplumber/restore-stream
 /var/lib/gdm3/greeter-dconf-defaults
 /var/lib/gdm3/snap
