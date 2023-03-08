@@ -1,3 +1,4 @@
 /etc/chrony/chrony.conf
 /etc/chrony/chrony.keys
+/var/lib/chrony/chrony.drift
 /var/log/chrony
