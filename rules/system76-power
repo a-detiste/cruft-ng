@@ -1,0 +1,2 @@
+/etc/modprobe.d/system76-power.conf
+/etc/modules-load.d/system76-power.conf

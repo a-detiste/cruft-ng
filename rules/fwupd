@@ -12,6 +12,10 @@
 /var/lib/fwupd/gnupg/pubring.kbx
 /var/lib/fwupd/gnupg/pubring.kbx~
 /var/lib/fwupd/gnupg/trustdb.gpg
+/var/lib/fwupd/gnupg/S.gpg-agent
+/var/lib/fwupd/gnupg/S.gpg-agent.browser
+/var/lib/fwupd/gnupg/S.gpg-agent.extra
+/var/lib/fwupd/gnupg/S.gpg-agent.ssh
 /var/lib/fwupd/metadata
 /var/lib/fwupd/metadata/lvfs
 /var/lib/fwupd/metadata/lvfs/metadata.xml.xz

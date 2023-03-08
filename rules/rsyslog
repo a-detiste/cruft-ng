@@ -1,3 +1,4 @@
+/etc/rsyslog.d/50-default.conf
 /var/log/auth.log*
 /var/log/daemon.log*
 /var/log/debug*
