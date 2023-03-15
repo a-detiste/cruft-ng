@@ -46,6 +46,8 @@ if old_stable != STABLE:
     print('Stable distribution has changed: %s -> %s' % (old_stable, STABLE))
     os.unlink('archive/stable')
     os.chdir('archive')
+    if not os.path.isdir(STABLE):
+        os.mkdir(STABLE)
     os.symlink(STABLE, 'stable')
     os.chdir('..')
 
