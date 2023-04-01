@@ -23,3 +23,6 @@ do
         	echo "/var/lib/selinux/default/active/modules/disabled/$module"
 	fi
 done
+
+read policyvers < /sys/fs/selinux/policyvers
+echo "/etc/selinux/default/policy/policy.$(policyvers)"

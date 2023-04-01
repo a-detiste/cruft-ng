@@ -2,7 +2,6 @@
 /etc/selinux/default/contexts/files/file_contexts.bin
 /etc/selinux/default/contexts/files/file_contexts.homedirs
 /etc/selinux/default/contexts/files/file_contexts.homedirs.bin
-/etc/selinux/default/policy/policy.*
 /etc/selinux/default/seusers
 /var/lib/selinux/default/active
 /var/lib/selinux/default/active/booleans.local
