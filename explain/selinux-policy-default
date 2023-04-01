@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+#set -e
 
 test -x /usr/sbin/semodule || exit 0
 
