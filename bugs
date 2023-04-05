@@ -1,3 +1,4 @@
+/usr/lib/gio/modules 852549 glib2.0
 /usr/lib/python3.10 1031909 python3-stdlib-extensions
 /usr/lib/python3.10/tkinter 1031909 python3-stdlib-extensions
 /usr/lib/python3.6 918098 python3-stdlib-extensions
@@ -25,6 +26,8 @@
 /usr/lib/python3.9/tkinter/__pycache__/simpledialog.cpython-39.pyc 1017445 python3-stdlib-extensions
 /usr/lib/python3.9/tkinter/__pycache__/tix.cpython-39.pyc 1017445 python3-stdlib-extensions
 /usr/lib/python3.9/tkinter/__pycache__/ttk.cpython-39.pyc 1017445 python3-stdlib-extensions
+/usr/lib/x86_64-linux-gnu 852549 glib2.0
+/usr/lib/x86_64-linux-gnu/gio/modules 852549 glib2.0
 /usr/local/share/fonts 897040 fontconfig
 /usr/local/share/fonts/.uuid 897040 fontconfig
 /usr/share/fonts 897040 fontconfig
@@ -65,6 +68,9 @@
 /usr/share/fonts/woff2/jetbrains-mono 897040 fontconfig
 /usr/share/texmf/fonts 1022566 fontconfig
 /var/cache/fontconfig 1022566 fontconfig
+/var/cache/pbuilder/build/cow.30225 852549 glib2.0
+/var/cache/pbuilder/build/cow.30225/.ilist 852549 glib2.0
+/var/cache/pbuilder/sid.cow 852549 glib2.0
 /var/lib/app-info 1009825 appstream
 /var/lib/fwupd/metadata/lvfs 1026243 fwupd
 /var/lib/fwupd/metadata/lvfs/metadata.xml.gz 1026243 fwupd
