@@ -1,4 +1,4 @@
-cruft-ng (0.9.55) UNRELEASED; urgency=medium
+cruft-ng (0.9.55~0) UNRELEASED; urgency=medium
 
   [ NicolasJamar ]
   * refresh misc filters for Debian, Ubuntu & Pop_OS
