@@ -1,0 +1,4 @@
+/etc/openvas/gnupg/private-keys-v1.d
+/etc/openvas/gnupg/pubring.kbx
+/etc/openvas/gnupg/pubring.kbx~
+/etc/openvas/gnupg/trustdb.gpg
