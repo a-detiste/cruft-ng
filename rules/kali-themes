@@ -2,6 +2,7 @@
 /etc/lightdm/lightdm-gtk-greeter.conf
 /etc/plymouth/plymouthd.conf
 /etc/sddm.conf.d/kde_settings.conf
+/etc/xdg/alacritty/alacritty.yml
 /etc/xdg/compton.conf
 /etc/xdg/gtk-3.0/settings.ini
 /etc/xdg/kdeglobals
