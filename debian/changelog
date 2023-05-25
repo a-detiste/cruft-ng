@@ -1,5 +1,9 @@
 cruft-ng (0.9.55~0) UNRELEASED; urgency=medium
 
+  [ Christian Göttsche ]
+  * Misc tweaks to rules: chkrootkit, geoipupdate,
+    selinux (Closes: #1033804)
+
   [ NicolasJamar ]
   * refresh misc filters for Debian, Ubuntu & Pop_OS
 
