@@ -3,3 +3,4 @@
 /var/cache/apt-show-versions/apackages-multiarch
 /var/cache/apt-show-versions/ipackages
 /var/cache/apt-show-versions/ipackages-multiarch
+/var/lib/systemd/timers/stamp-apt-show-versions.timer
