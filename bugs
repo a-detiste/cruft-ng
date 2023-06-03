@@ -79,4 +79,5 @@
 /var/lib/lockdown/SystemConfiguration.plist 817942 usbmuxd
 /var/lib/swcatalog 1009825 appstream
 /var/lib/systemd/timers/stamp- 769895 init-system-helpers
+/var/lib/systemd/timers/stamp-apt-show-versions.timer 769895 init-system-helpers
 /var/log/fontconfig.log 1022566 fontconfig
