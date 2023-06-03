@@ -1,20 +1,17 @@
-#include <cstdlib>
-#include <iostream>
-
-#include <fnmatch.h>
-#include <stdio.h>
 #include "shellexp.h"
 
 using namespace std;
 
 /* this was a C++ wrapper around C shellexpt() as
-   a attempt to be more performant
+   a failed attempt to be more performant
 
    maybe the whole thing can now be ripped out
    and replace by a simplified "Non-recursive gitignore-style glob Matching"
    algorithm as seen here.
 
    https://www.codeproject.com/Articles/5163931/Fast-String-Matching-with-Wildcards-Globs-and-Giti
+
+   --> CPOL is not DFSG compliant
 
    We do not want to support the "[...]" regexp, only
    the usual '?', '*' and the special '**'.
@@ -50,43 +47,8 @@ using namespace std;
 */
 bool myglob(const string& file, const string& glob )
 {
-#ifdef DEBUG
-	bool debug = getenv("DEBUG_GLOB") != nullptr;
-#endif
-
-	if (file==glob) return true;
-	auto filesize=file.size();
-	auto globsize=glob.size();
-		if ( glob.find("**")==globsize-2
-		  and filesize >= globsize-2
-		  and file.compare(0, globsize - 2, glob) == 0) {
-#ifdef DEBUG
-		if (debug) cerr << "match ** " << file << " # " << glob << '\n';
-#endif
-		return true;
-	}  else if ( glob.find('*')==globsize-1
-		  and filesize >= globsize-1
-		  and file.find('/',globsize-1)==string::npos
-		  and file.compare(0, globsize - 1, glob) == 0) {
-#ifdef DEBUG
-		if (debug) cerr << "match * " << file << " # " << glob << '\n';
-#endif
-		return true;
-	} else if ( fnmatch(glob.c_str(),file.c_str(),FNM_PATHNAME)==0 ) {
-#ifdef DEBUG
-		if (debug) cerr << "fnmatch " << file << " # " << glob << '\n';
-#endif
-		return true;
-	} else {
-		// fallback to shellexp.c
-		bool result=shellexp(file.c_str(),glob.c_str());
-#ifdef DEBUG
-		if (result and debug) {
-			cerr << "shellexp.c " << file << " # " << glob << '\n';
-		}
-#endif
-		return result;
-	}
+	bool result=shellexp(file.c_str(), glob.c_str());
+	return result;
 }
 
 /* this is the original function from original "cruft" project */
@@ -136,44 +98,6 @@ int shellexp(const char* string_, const char* pattern ) {
 			return string_[0] != '\0' ? shellexp( string_ + 1, pattern ) : false;
 		else
 			return ret;
-	}
-    case '[':
-	if ( string_[0] == '\0' ) return false;
-	{
-	    bool nott = false;
-	    bool okay = false;
-	    pattern++;
-	    if ( pattern[0] == '!' || pattern[0] == '^' ) {
-		nott = true;
-		pattern++;
-	    }
-
-	    if ( pattern[0] == ']' ) {
-		if ( string_[0] == ']' ) { okay = true; }
-		pattern++;
-	    }
-
-	    while( pattern[0] != ']' && pattern[0] != '\0' ) {
-		if ( pattern[0] == string_[0] ) {
-		    okay = true;
-		} else if ( pattern[1] == '-' && pattern[2] != ']' ) {
-		    if ( pattern[0] <= string_[0] && string_[0] <= pattern[2] ) {
-			okay = true;
-		    }
-		    pattern += 2;
-		}
-		pattern++;
-	    }
-
-	    if ( pattern[0] == '\0' ) {
-		fprintf( stderr, "Bad shell expression\n" );
-		return -1;
-	    }
-
-	    if (! (nott ? !okay : okay))
-		return false;
-	    else
-		return shellexp( string_ + 1, pattern + 1 );
 	}
     default:
 	if (pattern[0] != string_[0])
