@@ -73,6 +73,9 @@ then
     exit 0
 fi
 
+# do not fail on "grep ." if dir is empty
+set +e
+
 if ! [ "$(readlink archive/stable)" == "$release" ]
 then
     concat archive/stable >> ruleset
