@@ -67,10 +67,12 @@ case "$release" in
 esac
 echo "release:$release"
 
-if ! [ -d "archive/$release" ]
+if [ -d "archive/$release" ]
 then
-    echo "WARNING: no rule defined for release \"$release\""
-    exit 0
+    concat archive/$release >> ruleset
+elif [ -d "ubuntu/$release" ]
+then
+    concat ubuntu/$release >> ruleset
 fi
 
 # do not fail on "grep ." if dir is empty
@@ -80,5 +82,3 @@ if ! [ "$(readlink archive/stable)" == "$release" ]
 then
     concat archive/stable >> ruleset
 fi
-
-concat archive/$release >> ruleset
