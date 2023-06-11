@@ -1,4 +1,4 @@
-cruft-ng (0.9.55~0) UNRELEASED; urgency=medium
+cruft-ng (0.9.55) unstable; urgency=low
 
   [ Christian Göttsche ]
   * Misc tweaks to rules: chkrootkit, geoipupdate,
@@ -11,8 +11,9 @@ cruft-ng (0.9.55~0) UNRELEASED; urgency=medium
   * move the bulk of Ubuntu rules out of the way,
     only handle /etc/NetworkManager/system-connections/*
     on Debian (LP: #2019940)
+  * add a generic explain script for runit-helper
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Thu, 09 Mar 2023 00:39:20 +0100
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 11 Jun 2023 17:18:27 +0200
 
 cruft-ng (0.9.54) unstable; urgency=medium
 
