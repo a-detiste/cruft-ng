@@ -1,5 +1,0 @@
-/etc/php/8.1/phpdbg/conf.d/*.ini
-/var/lib/php/modules/8.1/phpdbg
-/var/lib/php/modules/8.1/phpdbg/disabled_by_maint
-/var/lib/php/modules/8.1/phpdbg/enabled_by_maint
-/var/lib/php/modules/8.1/phpdbg/enabled_by_maint/*
