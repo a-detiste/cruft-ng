@@ -9,8 +9,8 @@ cruft-ng (0.9.55) unstable; urgency=low
 
   [ Alexandre Detiste ]
   * move the bulk of Ubuntu rules out of the way,
-    only handle /etc/NetworkManager/system-connections/*
-    on Debian (LP: #2019940)
+    handle /etc/NetworkManager/system-connections/*
+    on Debian only (LP: #2019940)
   * add a generic explain script for runit-helper
 
  -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 11 Jun 2023 17:18:27 +0200
