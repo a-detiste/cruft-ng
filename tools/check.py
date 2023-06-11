@@ -48,6 +48,9 @@ if old_stable != STABLE:
     os.chdir('archive')
     if not os.path.isdir(STABLE):
         os.mkdir(STABLE)
+        gitkeep = os.path.join(STABLE, '.gitkeep')
+        open(gitkeep, 'w').close()
+        subprocess.call(['git', 'add', gitkeep])
     os.symlink(STABLE, 'stable')
     os.chdir('..')
 
@@ -79,6 +82,9 @@ def process(category, packages, testing, stable, archive):
         if not os.path.isdir(destdir):
             os.makedirs(destdir)
         subprocess.call(['git', 'mv', os.path.join(category, item), destdir])
+        gitkeep = os.path.join(destdir, '.gitkeep')
+        if os.path.isfile(gitkeep):
+            subprocess.call(['git', 'rm', gitkeep])
     print('unknown:', sorted(unknown))
 
 process('rules', filters, testing, stable, STABLE)
