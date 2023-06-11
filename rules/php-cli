@@ -1,0 +1,4 @@
+/etc/php/*/cli/.start
+/etc/php/*/cli/php.ini
+/etc/php/*/cli/conf.d/*.ini
+/var/lib/php/modules/*/cli/
