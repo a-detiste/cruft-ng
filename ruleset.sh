@@ -35,6 +35,13 @@ done | grep -v ^# | grep .
 
 concat rules > ruleset
 
+if dpkg-vendor --derives-from Ubuntu
+then
+    concat ubuntu/devel >> ruleset
+else
+    concat archive/sid >> ruleset
+fi
+
 # backport
 release="$1"
 case "$release" in

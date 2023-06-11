@@ -1,4 +1,3 @@
-/etc/NetworkManager/system-connections/*
 /var/lib/NetworkManager/NetworkManager.state
 /var/lib/NetworkManager/*.conf
 /var/lib/NetworkManager/dhclient*.lease

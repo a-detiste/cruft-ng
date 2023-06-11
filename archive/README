@@ -3,3 +3,7 @@ easier and more usefull.
 
 The package not found in "unstable" are to be added wholy,
 the ones already existing have to be merged together.
+
+
+sid/ : rules  that only apply to Debian
+       and shouldn't leak into Ubuntu

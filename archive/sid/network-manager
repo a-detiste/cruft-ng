@@ -1,0 +1,2 @@
+# only on Debian, not on Ubuntu (#2019940)
+/etc/NetworkManager/system-connections/*
