@@ -1,0 +1,3 @@
+# there is no postrm for this
+/var/lib/debian-security-support
+/var/lib/debian-security-support/security-support.semaphore
