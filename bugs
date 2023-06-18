@@ -72,6 +72,7 @@
 /var/cache/pbuilder/build/cow.30225/.ilist 852549 glib2.0
 /var/cache/pbuilder/sid.cow 852549 glib2.0
 /var/lib/app-info 1009825 appstream
+/var/lib/debian-security-support 990432 debian-security-support
 /var/lib/fwupd/metadata/lvfs 1026243 fwupd
 /var/lib/fwupd/metadata/lvfs/metadata.xml.gz 1026243 fwupd
 /var/lib/fwupd/metadata/lvfs/metadata.xml.gz.jcat 1026243 fwupd
