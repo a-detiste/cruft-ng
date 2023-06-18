@@ -40,6 +40,7 @@
 /usr/share/fonts/opentype/cantarell 897040 fontconfig
 /usr/share/fonts/opentype/cantarell/.uuid 897040 fontconfig
 /usr/share/fonts/opentype/font-awesome/.uuid 909541 fontconfig
+/usr/share/fonts/opentype/noto 995497 fontconfig
 /usr/share/fonts/opentype/noto/.uuid 995497 fontconfig
 /usr/share/fonts/svg/.uuid 909541 fontconfig
 /usr/share/fonts/svg/font-awesome 909541 fontconfig
@@ -49,8 +50,10 @@
 /usr/share/fonts/truetype/.uuid 897040 fontconfig
 /usr/share/fonts/truetype/dejavu 897040 fontconfig
 /usr/share/fonts/truetype/dejavu/.uuid 897040 fontconfig
+/usr/share/fonts/truetype/font-awesome 898522 fontconfig
 /usr/share/fonts/truetype/font-awesome/.uuid 898522 fontconfig
 /usr/share/fonts/truetype/jetbrains-mono 897040 fontconfig
+/usr/share/fonts/truetype/lyx 1037170 fontconfig
 /usr/share/fonts/truetype/lyx/.uuid 923939 fontconfig
 /usr/share/fonts/truetype/mplus 1022566 fontconfig
 /usr/share/fonts/truetype/mplus/.uuid 1022566 fontconfig

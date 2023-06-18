@@ -37,6 +37,11 @@ while todo:
     for bug in bts.get_status(list(todo)):
         todo.update(set(bug.mergedwith))
         done.add(bug.bug_num)
+        for match in re.findall(re_cruft, bug.subject):
+            match = match.rstrip('./')
+            if match in cruft:
+                continue
+            cruft[match] = (bug.bug_num, bug.source, bug.subject)
         for mail in bts.get_bug_log(bug.bug_num):
             for line in mail['body'].splitlines():
                 for match in re.findall(re_cruft, line):
