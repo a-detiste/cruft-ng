@@ -19,6 +19,14 @@ for line in proc.stdout:
 testing.add('raspberrypi-bootloader')
 testing.add('libraspberrypi0')
 
+# Add BeagleBone
+testing.add('bb-customizations')
+testing.add('bb-node-red-installer')
+testing.add('c9-core-installer')
+testing.add('doc-beaglebone-getting-started')
+testing.add('librobotcontrol')
+testing.add('ti-pru-cgt-installer')
+
 # Add Hurd
 testing.add('hurd')
 testing.add('libc0.3')
@@ -30,6 +38,9 @@ testing.add('kali-menu')
 testing.add('kali-themes')
 testing.add('kali-themes-common')
 testing.add('kali-undercover')
+testing.add('king-phisher')
+testing.add('webshells')
+testing.add('wordlists')
 
 # Google repository
 testing.add('google-earth-stable')
