@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# /usr/share/lintian/data/fields/obsolete-packages
+
 import glob
 import os
 import subprocess
