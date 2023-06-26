@@ -6,16 +6,21 @@ import glob
 import os
 import subprocess
 
+import apt
 import distro_info
 
 STABLE = distro_info.DebianDistroInfo().stable()
 
 testing = set()
-proc = subprocess.Popen(['apt-cache', 'pkgnames'],
-                        universal_newlines=True,
-                        stdout=subprocess.PIPE)
-for line in proc.stdout:
-    testing.add(line.rstrip())
+c = apt.Cache()
+for p in c.keys():
+    o = c[p]
+    if o.candidate:
+        d = o.candidate.record['Description'].lower()
+        if 'transitional' in d or 'dummy' in d:
+            pass
+        else:
+            testing.add(p)
 
 # Add RaspBian
 testing.add('raspberrypi-bootloader')
