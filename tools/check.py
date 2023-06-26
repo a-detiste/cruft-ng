@@ -20,7 +20,7 @@ for p in c.keys():
         if 'transitional' in d or 'dummy' in d:
             pass
         else:
-            testing.add(p)
+            testing.add(o.shortname)
 testing.add('usr-is-merged')
 
 # Add RaspBian
