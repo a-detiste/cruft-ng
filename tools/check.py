@@ -21,6 +21,7 @@ for p in c.keys():
             pass
         else:
             testing.add(p)
+testing.add('usr-is-merged')
 
 # Add RaspBian
 testing.add('raspberrypi-bootloader')
