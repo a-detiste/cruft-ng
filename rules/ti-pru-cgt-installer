@@ -3,9 +3,7 @@
 # and replace with normal packaging
 /usr/bin/*pru
 /usr/share/doc/ti
-/usr/share/doc/ti/cgt-pru
-/usr/share/doc/ti/cgt-pru/*
-/usr/share/ti
-/usr/share/ti/**
+/usr/share/doc/ti/cgt-pru/
+/usr/share/ti/
 /var/cache/ti-pru-cgt-installer
 /var/cache/ti-pru-cgt-installer/*_installer.sh

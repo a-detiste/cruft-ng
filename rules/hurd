@@ -1,5 +1,5 @@
 /ftp:
 /http:
-/proc/**
-/run/**
-/servers/**
+/proc/
+/run/
+/servers/
