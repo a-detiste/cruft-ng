@@ -11,5 +11,6 @@
 /var/lib/apt-xapian-index/index
 /var/lib/apt-xapian-index/prefixes
 /var/lib/apt-xapian-index/update-lock
+/var/lib/apt-xapian-index/update-socket
 /var/lib/apt-xapian-index/update-timestamp
 /var/lib/apt-xapian-index/values
