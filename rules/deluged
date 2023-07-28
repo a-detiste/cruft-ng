@@ -1,0 +1,14 @@
+/var/lib/deluged/config/auth
+/var/lib/deluged/config/core.conf
+/var/lib/deluged/config/core.conf.bak
+/var/lib/deluged/config/deluged.pid
+/var/lib/deluged/config/plugins
+/var/lib/deluged/config/session.state
+/var/lib/deluged/config/session.state.bak
+/var/lib/deluged/config/ssl
+/var/lib/deluged/config/ssl/daemon.cert
+/var/lib/deluged/config/ssl/daemon.pkey
+/var/lib/deluged/config/state
+/var/lib/deluged/config/state/.safe_state_check
+/var/lib/deluged/config/state/torrents.state
+/var/lib/deluged/config/state/torrents.state.bak
