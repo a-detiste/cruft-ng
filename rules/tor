@@ -1,0 +1,8 @@
+/var/lib/tor
+/var/lib/tor/lock
+/var/lib/tor/cached-microdesc-consensus
+/var/lib/tor/state
+/var/lib/tor/keys/
+/var/lib/tor/cached-certs
+/var/lib/tor/cached-microdescs.new
+/var/lob/tor/
