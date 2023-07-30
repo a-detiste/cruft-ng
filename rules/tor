@@ -4,5 +4,6 @@
 /var/lib/tor/state
 /var/lib/tor/keys/
 /var/lib/tor/cached-certs
+/var/lib/tor/cached-microdescs
 /var/lib/tor/cached-microdescs.new
 /var/log/tor/
