@@ -1,8 +1,8 @@
 /etc/mono/registry
 /etc/mono/registry/LocalMachine
-# actually libmono-corlib4.5-cil
-# but versioned packages are a pain to maintain in cruft-common;
-# and this one depends one mono-runtime
+# actually in libmono-corlib4.5-cil
+# but versioned packages are a pain to maintain
+# and this one depends on mono-runtime
 /usr/lib/mono/aot-cache
 /usr/lib/mono/aot-cache/*
 /usr/lib/mono/aot-cache/*/mscorlib.dll.so
