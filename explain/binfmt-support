@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -e
+
+/usr/sbin/update-binfmts --display | while read line
+do
+    case "$line" in
+       package*)
+            package="${line##*= }"
+            echo "$package"
+            echo "/var/lib/binfmts/$file"
+            ;;
+       type*)
+            ;;
+       offset*)
+            ;;
+       magic*)
+            ;;
+       mask*)
+            ;;
+       interpreter*)
+            ;;
+       detector*)
+            ;;
+       *)
+            file="${line%% *}"
+            ;;
+    esac
+done
