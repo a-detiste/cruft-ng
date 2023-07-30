@@ -1,3 +1,18 @@
+cruft-ng (0.9.56) unstable; urgency=low
+
+  * add explain/catch-all script for binfmt-support
+  * add rules for deluged, tor, qemu-user-static, angband,
+    debian-security-support, papirus-icon-theme
+  * locales: handle /etc/default/locale -> /etc/locale.conf transition
+  * better automatic tracking of transitional packages:
+    * mime-support -> mailcap
+    * proftpd-basic -> proftpd-core
+    * ntp -> ntpsec
+    * telnet -> inetutils-telnet
+  * remove Ubuntu specific rules from the Debian build
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Sun, 30 Jul 2023 22:00:04 +0200
+
 cruft-ng (0.9.55) unstable; urgency=low
 
   [ Christian Göttsche ]
