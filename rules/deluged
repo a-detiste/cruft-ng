@@ -1,3 +1,5 @@
+/var/lib/deluged/config/archive
+/var/lib/deluged/config/archive/state-*.tar.xz
 /var/lib/deluged/config/auth
 /var/lib/deluged/config/core.conf
 /var/lib/deluged/config/core.conf.bak
