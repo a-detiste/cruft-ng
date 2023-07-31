@@ -19,7 +19,7 @@ for dpkg_list in glob.glob('/var/lib/dpkg/info/*.list') + glob.glob('/var/lib/dp
             FALSE_POSITIVES.add(file.rstrip('\n'))
 
 # exclude "'" because it's added by dpkg in error messages
-re_cruft = re.compile(r'/(?:bin|usr|etc|var)/[A-Za-z0-9_\/\.\-]*')
+re_cruft = re.compile(r'/(?:bin|usr|etc|var|\.cache)/[A-Za-z0-9_\/\.\-]*')
 
 # https://udd.debian.org/cgi-bin/bts-usertags.cgi?user=cruft-ng@packages.debian.org&tag=cruft
 if len(sys.argv) > 1:
