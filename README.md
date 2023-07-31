@@ -94,4 +94,4 @@ This reuses `shellexp.c`, explain/*  and filters-unex/* from cruft.
 
 1998-2000 Anthony Towns
 2005-2011 Marcin Owsiany
-2014-2022 Alexandre Detiste
+2014-2023 Alexandre Detiste
