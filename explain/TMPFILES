@@ -20,7 +20,7 @@ do
         journal-nocow|legacy|var)
            continue
            ;;
-        systemd-nologin|systemd-pstore|systemd-tmp)
+        systemd-nologin|systemd-pstore|systemd-tmp|provision)
            package="systemd"
            ;;
     esac
