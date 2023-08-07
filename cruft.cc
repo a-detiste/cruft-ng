@@ -23,6 +23,14 @@
 
 using namespace std;
 
+#ifdef BUSTER
+#define LOCATE_DB "/var/lib/mlocate/mlocate.db"
+#define UPDATEDB "updatedb.mlocate"
+#else
+#define LOCATE_DB "/var/lib/plocate/plocate.db"
+#define UPDATEDB "updatedb.plocate"
+#endif
+
 /*
 static int read_mounts(const vector<string>& prunefs, vector<string>& mounts)
 {
@@ -64,11 +72,7 @@ static bool updatedb()
 {
 	/* return value is meant as an are_we_up_to_date flag
 	   when running as non-root */
-	#ifdef BUSTER
-	const string db = "/var/lib/mlocate/mlocate.db";
-	#else
-	const string db = "/var/lib/plocate/plocate.db";
-	#endif
+	const string db = LOCATE_DB;
 
 	int rc_locate, rc_dpkg;
 	struct stat stat_locate, stat_dpkg;
@@ -85,7 +89,7 @@ static bool updatedb()
 
 	if (getuid()) return false;
 
-	if (system("updatedb")) {
+	if (system(UPDATEDB)) {
 		cerr << "updatedb failed\n";
 		exit(1);
 	}
