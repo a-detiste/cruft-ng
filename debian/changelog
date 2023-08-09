@@ -1,3 +1,10 @@
+cruft-ng (0.9.57) UNRELEASED; urgency=medium
+
+  * call updatedb.plocate explicitly, to behave as expected when the old
+    traditional updatedb.findutils is the default (Closes: #1043209)
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 09 Aug 2023 17:27:13 +0200
+
 cruft-ng (0.9.56) unstable; urgency=low
 
   * add explain/catch-all script for binfmt-support
