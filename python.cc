@@ -59,6 +59,18 @@ bool pyc_has_py(string pyc, bool debug)
 	if (!ends_with(pyc, ".pyc"))
 		return false;
 
+	struct stat buffer;
+
+#ifdef BUSTER
+	// python2 support
+	string py;
+	py = pyc.substr(0, pyc.length()-1);
+	if (stat(py.c_str(), &buffer) == 0) {
+		if (debug) cerr << "match: " << py << endl;
+		return true;
+	}
+#endif
+
 	/* TODO: consider old .pyc from old uinstalled Python3.x as leftover garbage
 	$ py3versions -s
 	python3.11
@@ -86,7 +98,6 @@ bool pyc_has_py(string pyc, bool debug)
 	pyc.replace(pos, 15+ugly, ".py");
 
 	bool matched;
-	struct stat buffer;
 	matched = (stat(pyc.c_str(), &buffer) == 0);
 	if (matched && debug) cerr << "match: " << pyc << endl;
 	return matched;
