@@ -56,22 +56,10 @@ bool pyc_has_py(string pyc, bool debug)
 		return false;
 	}
 
-	/* scenario 1:
-	/usr/share/python/debpython/debhelper.py
-	/usr/share/python/debpython/debhelper.pyc
-	*/
 	if (!ends_with(pyc, ".pyc"))
 		return false;
 
-	struct stat buffer;
-        string py;
-	py = pyc.substr(0, pyc.length()-1);
-	if (stat(py.c_str(), &buffer) == 0) {
-		if (debug) cerr << "match: " << py << endl;
-		return true;
-	}
-
-	/* scenario 2:
+	/*
 	/usr/share/pgcli/pgcli/packages/counter.py
 	/usr/share/pgcli/pgcli/packages/__pycache__/counter.cpython-34.pyc
 	*/
@@ -90,8 +78,9 @@ bool pyc_has_py(string pyc, bool debug)
         if(pyc.find(".cpython-313") != string::npos) ugly=1;
 	pyc.replace(pos, 15+ugly, ".py");
 
-        bool matched;
-        matched = (stat(pyc.c_str(), &buffer) == 0);
-        if (matched && debug) cerr << "match: " << pyc << endl;
-        return matched;
+	bool matched;
+	struct stat buffer;
+	matched = (stat(pyc.c_str(), &buffer) == 0);
+	if (matched && debug) cerr << "match: " << pyc << endl;
+	return matched;
 }
