@@ -70,12 +70,10 @@ Some assumption differs:
 TODO:
 -----
 
- * command switches are currently not implemented
-
  * cruft-ng doesn't detect broken symlinks at this time;
    it's a different topic and should be split in a
    separate tool. (and this really needs 'find'
-   and can't be done with mlocate db).
+   and can't be done with {m|p}locate db).
 
  * move to Salsa, enable C.I.
 
