@@ -59,6 +59,13 @@ bool pyc_has_py(string pyc, bool debug)
 	if (!ends_with(pyc, ".pyc"))
 		return false;
 
+	/* TODO: consider old .pyc from old uinstalled Python3.x as leftover garbage
+	$ py3versions -s
+	python3.11
+	tchet@brix ~/git/cruft-ng $ grep ^supported-versions /usr/share/python3/debian_defaults
+	supported-versions = python3.11
+	*/
+
 	/*
 	/usr/share/pgcli/pgcli/packages/counter.py
 	/usr/share/pgcli/pgcli/packages/__pycache__/counter.cpython-34.pyc
