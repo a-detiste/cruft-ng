@@ -1,7 +1,7 @@
 cruft-ng (0.9.57) UNRELEASED; urgency=medium
 
-  * cruft will now detected old **/__pycache__/VirtSubproc.cpython-3*.pyc
-    files that don't match the interpretors in /usr/bin/python3.*
+  * cruft will now detected old **/__pycache__/*.cpython-3*.pyc files
+    that don't match the interpretors in /usr/bin/python3.*
   * call updatedb.plocate explicitly, to behave as expected when the old
     traditional updatedb.findutils is the default (Closes: #1043209)
   * new rules for: wvdial, ofono, sks, painintheapt, deluged
