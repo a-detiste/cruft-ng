@@ -1,7 +1,14 @@
 
 propose dh-cruft patches for versionned/templated
-packages like php-x.x etc ... where the
-binary package name change all the time.
+packages like where the binary package name change all the time.
+
+list:
+  firebird#.#-server
+  libapache2-mod-php#."
+  llvm-15-runtime
+  tcl#.#
+  xemacs##
+
 
 parse /usr/share/lintian/data/fields/obsolete-packages
 in tools/check.py
