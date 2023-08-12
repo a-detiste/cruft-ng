@@ -5,7 +5,7 @@ for user in root `awk -F: '{ if ( 1000 <= $3 && $3 < 30000 ) print $1 }' /etc/pa
 do
 	home=`grep "^$user:" /etc/passwd | cut -d: -f6`
 
-	[ -d "$home" ] && echo $home
-	[ -e /var/mail/$user ] && echo /var/mail/$user
-	[ -e /var/spool/cron/crontabs/$user ] && echo /var/spool/cron/crontabs/$user
+	[ -d "$home" ] && echo $home || true
+	[ -e /var/mail/$user ] && echo /var/mail/$user || true
+	[ -e /var/spool/cron/crontabs/$user ] && echo /var/spool/cron/crontabs/$user || true
 done
