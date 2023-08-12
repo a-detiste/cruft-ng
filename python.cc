@@ -78,6 +78,10 @@ bool pyc_has_py(string pyc, bool debug)
 	supported-versions = python3.11
 
 	take 3.11 as a baseline but also support the next expected version 3.12
+
+	$ ls /usr/bin/python3\.* | grep 3\.[0-9]*$
+	/usr/bin/python3.11
+	/usr/bin/python3.12
 	*/
 
 	/*
