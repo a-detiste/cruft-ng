@@ -116,20 +116,17 @@ bool pyc_has_py(string pyc, bool debug)
 		return false;
 
 	bool installed = false;
+	int offset;
 	for (unsigned int i=0;i<versions.size();i++) {
 		if(pyc.find(versions[i], pos) != string::npos) {
 			installed = true;
+			offset = 13 + versions[i].length();
 			break;
 		}
 	}
 	if (!installed) return false;
 
-	int ugly=0;
-        if(pyc.find(".cpython-310") != string::npos) ugly=1;
-        if(pyc.find(".cpython-311") != string::npos) ugly=1;
-        if(pyc.find(".cpython-312") != string::npos) ugly=1;
-        if(pyc.find(".cpython-313") != string::npos) ugly=1;
-	pyc.replace(pos, 15+ugly, ".py");
+	pyc.replace(pos, offset, ".py");
 
 	bool matched;
 	matched = (stat(pyc.c_str(), &buffer) == 0);
