@@ -2,6 +2,8 @@
 
 set -e
 
+test -d /usr/share/kali-menu/applications/ || exit 0
+
 cd /usr/share/kali-menu/applications/
 
 for m in *
