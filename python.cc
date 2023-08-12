@@ -1,6 +1,7 @@
 // Copyright © 2016 Alexandre Detiste <alexandre@detiste.be>
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <algorithm>
 #include <cstring>
 #include <iostream>
 #include <dirent.h>
@@ -23,11 +24,13 @@ void init_python()
 	struct dirent *dirp;
 	dp = opendir("/usr/bin");
 	while ((dirp = readdir(dp)) != nullptr) {
-		string_view entry { dirp->d_name };
+		string entry { dirp->d_name };
 		if (entry.rfind("python3.") == 0 && entry.find("-") == string::npos) {
-			versions.emplace_back(entry.substr(6));
+			string pyc_ver = "3" + entry.substr(8);
+			versions.emplace_back(pyc_ver);
 		}
 	}
+	sort(versions.begin(), versions.end());
 }
 
 static bool ends_with(string_view str, string_view suffix)
@@ -111,6 +114,15 @@ bool pyc_has_py(string pyc, bool debug)
 	pos = pyc.find(".cpython-");
 	if (pos == string::npos)
 		return false;
+
+	bool installed = false;
+	for (unsigned int i=0;i<versions.size();i++) {
+		if(pyc.find(versions[i], pos) != string::npos) {
+			installed = true;
+			break;
+		}
+	}
+	if (!installed) return false;
 
 	int ugly=0;
         if(pyc.find(".cpython-310") != string::npos) ugly=1;
