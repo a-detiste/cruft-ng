@@ -33,3 +33,4 @@ do
         [ -e "/lib/modules/${ver}/modules.symbols.bin" ] && echo /lib/modules/${ver}/modules.symbols.bin
 	[ -e "/var/lib/initramfs-tools/${ver}"         ] && echo /var/lib/initramfs-tools/${ver}
 done
+exit 0
