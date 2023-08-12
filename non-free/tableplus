@@ -1,3 +1,4 @@
+# https://tableplus.com/blog/2019/10/tableplus-linux-installation.html
 /etc/apt/trusted.gpg.d/tableplus-archive.gpg
 /usr/local/bin/tableplus
 /usr/share/applications/tableplus.desktop

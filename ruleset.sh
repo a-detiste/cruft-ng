@@ -42,6 +42,8 @@ else
     concat archive/sid >> ruleset
 fi
 
+concat non-free >> ruleset
+
 # backport
 release="$1"
 case "$release" in

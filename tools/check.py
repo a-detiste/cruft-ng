@@ -47,11 +47,9 @@ testing.add('kali-themes')
 testing.add('kali-themes-common')
 testing.add('kali-undercover')
 testing.add('king-phisher')
+testing.add('powershell-empire')
 testing.add('webshells')
 testing.add('wordlists')
-
-# Google repository
-testing.add('google-earth-stable')
 
 old_stable = os.path.basename(os.readlink('archive/stable'))
 if old_stable != STABLE:
