@@ -1,0 +1,6 @@
+/var/lib/ofono/*
+/var/lib/ofono/*/lte
+/var/lib/ofono/*/radiosetting
+/var/lib/ofono/*/sms
+/var/lib/ofono/*/version
+/var/lib/ofono/*/voicecall
