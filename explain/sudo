@@ -8,3 +8,4 @@ for user in root `awk -F: '{ if ( 1000 <= $3 && $3 < 30000 ) print $1 }' /etc/pa
 	[ -e /var/lib/sudo/lectured/$user ] && echo /var/lib/sudo/lectured/$user
 	[ -e /var/lib/sudo/ts/$user ] && echo /var/lib/sudo/ts/$user
 done
+exit 0
