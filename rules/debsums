@@ -1,2 +1,2 @@
-# debsums 2.0.16
+/etc/debsums-ignore
 /etc/apt/apt.conf.d/90debsums
