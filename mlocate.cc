@@ -22,6 +22,8 @@ int read_locate(vector<string>& fs, const string& ignore_path) // vector<string>
 {
 	bool debug=getenv("DEBUG") != NULL;
 
+	init_python();
+
 	string line;
 	ifstream mlocate("/var/lib/mlocate/mlocate.db");
 	if (not mlocate) {

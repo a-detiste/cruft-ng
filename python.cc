@@ -15,6 +15,21 @@ using namespace std::experimental;
 
 using namespace std;
 
+vector<string> versions;
+
+void init_python()
+{
+	DIR *dp;
+	struct dirent *dirp;
+	dp = opendir("/usr/bin");
+	while ((dirp = readdir(dp)) != nullptr) {
+		string_view entry { dirp->d_name };
+		if (entry.rfind("python3.") == 0 && entry.find("-") == string::npos) {
+			versions.emplace_back(entry.substr(6));
+		}
+	}
+}
+
 static bool ends_with(string_view str, string_view suffix)
 {
     if (suffix.size() > str.size())
@@ -96,6 +111,7 @@ bool pyc_has_py(string pyc, bool debug)
 	pos = pyc.find(".cpython-");
 	if (pos == string::npos)
 		return false;
+
 	int ugly=0;
         if(pyc.find(".cpython-310") != string::npos) ugly=1;
         if(pyc.find(".cpython-311") != string::npos) ugly=1;

@@ -38,6 +38,8 @@ int read_locate(vector<string>& fs, const string& ignore_path)
 
 	if (debug) cerr << "PLOCATE DATA\n";
 
+	init_python();
+
 	vector<string> ignores;
 	read_ignores(ignores, ignore_path);
 
