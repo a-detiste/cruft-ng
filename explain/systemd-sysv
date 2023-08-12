@@ -3,7 +3,7 @@ set -e
 
 test -d /var/lib/systemd/timers/ || exit 0
 
-find /var/lib/systemd/timers/ -type f -printf "%f\n" | cut -d '-' -f 2-999 | cut -d '.' -f 1-2 | while read unit
+find /var/lib/systemd/timers/ -type f -printf "%f\n" | cut -d '-' -f 2-999 | cut -d '.' -f 1-2 | sort | while read unit
 do
     stamp="/var/lib/systemd/timers/stamp-$unit"
 
