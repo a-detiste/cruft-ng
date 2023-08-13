@@ -1,0 +1,10 @@
+#!/bin/sh
+
+test -x /usr/bin/ruby || exit 0
+
+version=$(readlink /usr/bin/ruby)
+version=${version##ruby}
+echo $version
+
+find /var/lib/gems/${version}* 2>/dev/null
+exit 0

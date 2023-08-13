@@ -6,6 +6,7 @@ list:
   firebird#.#-server
   libapache2-mod-php#."
   llvm-15-runtime
+  ruby#.#
   tcl#.#
   xemacs##
 
