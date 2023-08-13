@@ -25,7 +25,7 @@ do
            ;;
     esac
 
-    grep -v ^# < "$definition" | sed 's/%./*/g' | while read -r action path extra
+    grep -v ^# < "$definition" | sed 's/%./*/g' | while read -r _action path _extra
     do
         case "$path" in
              /etc/*)

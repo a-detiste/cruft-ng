@@ -3,7 +3,7 @@ set -e
 
 ALTDIR="/etc/alternatives"
 
-update-alternatives --get-selections | while read -r alternative y z
+update-alternatives --get-selections | while read -r alternative _y _z
 do
     echo "$ALTDIR/$alternative"
     update-alternatives --query "$alternative" 2>/dev/null | while read -r line

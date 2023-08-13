@@ -3,7 +3,7 @@ set -e
 
 test -x /usr/sbin/dkms || exit 0
 
-/usr/sbin/dkms status -m virtualbox | while read -r x ver arch y
+/usr/sbin/dkms status -m virtualbox | while read -r _x ver arch _y
 do
     ver=$(echo "$ver" | tr -d ' ,')
     echo "/lib/modules/${ver}/updates"
