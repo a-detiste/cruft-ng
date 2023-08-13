@@ -1,0 +1,3 @@
+/etc/php/*/cgi/php.ini
+/etc/php/*/cgi/conf.d/*.ini
+/var/lib/php/modules/*/cgi/
