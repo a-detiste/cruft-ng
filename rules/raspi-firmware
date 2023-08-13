@@ -1,0 +1,6 @@
+/boot/firmware
+/boot/firmware/COPYING.linux
+/boot/firmware/cmdline.txt
+/boot/firmware/config.txt
+/boot/firmware/kernel.img
+/boot/firmware/kernel7.img

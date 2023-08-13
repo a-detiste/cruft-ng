@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -eu
+
+for i in /usr/lib/raspi-firmware/*
+do
+    name=$(basename -- "${i}")
+    echo "/boot/firmware/${name}"
+done
+
+for i in /boot/firmware/bcm*.dtb
+do
+    echo "${i}"
+done
+
+packages="$(dpkg-query -W -f='${binary:Package}\n' 'linux-image-*-*' 2> /dev/null)"
+
+for package in $packages
+do
+    ver=$(echo "$package" | awk '{ print substr($1,13,40); }' )
+    [ -e "/boot/firmware/initrd.img-${ver}" ] && echo "/boot/firmware/initrd.img-${ver}"
+    [ -e "/boot/firmware/vmlinuz-${ver}"    ] && echo "/boot/firmware/vmlinuz-${ver}"
+done
