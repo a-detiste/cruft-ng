@@ -42,6 +42,8 @@ do
         #
         # false positives like "/var/log/journal/*/system.journal"
         # are not a problem, they will never match a real file
+        #
+        # shellcheck disable=SC2086
         echo $path
         last_package="$package"
     done
