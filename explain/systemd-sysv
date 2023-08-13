@@ -3,7 +3,7 @@ set -e
 
 test -d /var/lib/systemd/timers/ || exit 0
 
-find /var/lib/systemd/timers/ -type f -printf "%f\n" | cut -d '-' -f 2-999 | cut -d '.' -f 1-2 | sort | while read unit
+find /var/lib/systemd/timers/ -type f -printf "%f\n" | cut -d '-' -f 2-999 | cut -d '.' -f 1-2 | sort | while read -r unit
 do
     stamp="/var/lib/systemd/timers/stamp-$unit"
 
@@ -37,11 +37,11 @@ done
 
 exit 0
 
-for f in $(cd /var/lib/systemd/timers/ ; echo *.timer)
-do
-  unit=${f#stamp-}
-  if [ "$(systemctl show $unit -p Persistent)" = "Persistent=yes" ]
-  then
-    echo /var/lib/systemd/timers/$f
-  fi
-done
+#for f in $(cd /var/lib/systemd/timers/ ; echo *.timer)
+#do
+#  unit=${f#stamp-}
+#  if [ "$(systemctl show $unit -p Persistent)" = "Persistent=yes" ]
+#  then
+#    echo "/var/lib/systemd/timers/$f"
+#  fi
+#done

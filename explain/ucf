@@ -4,7 +4,7 @@ set -e
 test -f /var/lib/ucf/registry || exit 0
 
 last_package=None
-while read package file
+while read -r package file
 do
     if test -f "$file"
     then

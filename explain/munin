@@ -3,7 +3,7 @@ set -e
 
 test -d /usr/share/munin/plugins || exit 0
 
-for file in $(ls /usr/share/munin/plugins)
+for file in /usr/share/munin/plugins/*
 do
-	[ -e /etc/munin/plugins/$file ] && echo /etc/munin/plugins/$file
+	[ -e "/etc/munin/plugins/$file" ] && echo "/etc/munin/plugins/$file"
 done

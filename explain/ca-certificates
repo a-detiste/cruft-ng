@@ -4,20 +4,20 @@ set -e
 [ -d /etc/ssl/certs ] || exit 0
 
 find /etc/ssl/certs -type l -name \*.pem |
- while read name
+ while read -r name
  do
    [ -e "$name" ] && echo "$name"
  done
 
 find /etc/ssl/certs -type l -name '????????.?' |
- while read name
+ while read -r name
  do
    [ -e "$name" ] && echo "$name"
  done
 
 find /etc/ssl/certs -type l -name '????????' |
- while read name
+ while read -r name
  do
-	link=$(readlink $name)
-   [ "$link"="ssl-cert-snakeoil.pem" ] && echo "$name"
+	link=$(readlink "$name")
+   [ "$link" = "ssl-cert-snakeoil.pem" ] && echo "$name"
  done

@@ -3,9 +3,9 @@ set -e
 
 test -d /usr/share/fontconfig/conf.avail || exit 0
 
-for file in $(ls /usr/share/fontconfig/conf.avail/);
+for file in /usr/share/fontconfig/conf.avail/*
 do
-	[ -e /etc/fonts/conf.d/$file ] && echo /etc/fonts/conf.d/$file
+	[ -e "/etc/fonts/conf.d/$file" ] && echo "/etc/fonts/conf.d/$file"
 done
 
 find /usr/share/fonts -name .uuid

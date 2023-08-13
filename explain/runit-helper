@@ -2,8 +2,8 @@
 
 set -e
 
-find /etc/sv/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | while read package
+find /etc/sv/ -mindepth 1 -maxdepth 1 -type d -printf "%f\n" | while read -r package
 do
     link="/etc/runit/runsvdir/default/${package}"
-    test -e $link && echo $link || true
+    test -e "$link" && echo "$link" || true
 done

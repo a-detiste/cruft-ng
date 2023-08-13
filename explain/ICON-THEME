@@ -27,5 +27,5 @@ do
 	fi
 
 	# case insesitive
-	find /usr/share/icons/ -iwholename /usr/share/icons/$package/icon-theme.cache
+	find /usr/share/icons/ -iwholename "/usr/share/icons/$package/icon-theme.cache"
 done

@@ -8,5 +8,5 @@ cd /usr/share/kali-menu/applications/
 
 for m in *
 do
-    test -f /usr/share/applications/$m && echo /usr/share/applications/$m
+    test -f "/usr/share/applications/$m" && echo "/usr/share/applications/$m"
 done

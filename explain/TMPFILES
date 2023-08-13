@@ -6,7 +6,7 @@ set -e
 
 cd /usr/lib/tmpfiles.d/
 
-ls -1 | while read definition
+ls -1 | while read -r definition
 do
     package="${definition%.*}"
     case "$package" in
@@ -25,7 +25,7 @@ do
            ;;
     esac
 
-    grep -v ^# < $definition | sed 's/%./*/g' | while read action path extra
+    grep -v ^# < "$definition" | sed 's/%./*/g' | while read -r action path extra
     do
         case "$path" in
              /etc/*)
@@ -35,7 +35,7 @@ do
                   echo "$path"
                   ;;
         esac
-    done | sort -u | while read path
+    done | sort -u | while read -r path
     do
         [ "$package" != "$last_package" ] && echo "$package"
         # we purposefuly want the shell to glob these paths

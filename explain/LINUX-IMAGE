@@ -18,19 +18,19 @@ packages="$(dpkg-query -W -f='${binary:Package}\n' 'linux-image-*-*' 2> /dev/nul
 
 for package in $packages
 do
-	echo $package
-	ver=$(echo $package | awk '{ print substr($1,13,40); }' )
-	[ -e "/boot/initrd.img-${ver}"                 ] && echo /boot/initrd.img-${ver}
-        [ -e "/lib/modules/${ver}/modules.alias"       ] && echo /lib/modules/${ver}/modules.alias
-        [ -e "/lib/modules/${ver}/modules.alias.bin"   ] && echo /lib/modules/${ver}/modules.alias.bin
-        [ -e "/lib/modules/${ver}/modules.builtin.bin" ] && echo /lib/modules/${ver}/modules.builtin.alias.bin
-        [ -e "/lib/modules/${ver}/modules.builtin.bin" ] && echo /lib/modules/${ver}/modules.builtin.bin
-        [ -e "/lib/modules/${ver}/modules.dep"         ] && echo /lib/modules/${ver}/modules.dep
-        [ -e "/lib/modules/${ver}/modules.dep.bin"     ] && echo /lib/modules/${ver}/modules.dep.bin
-        [ -e "/lib/modules/${ver}/modules.devname"     ] && echo /lib/modules/${ver}/modules.devname
-        [ -e "/lib/modules/${ver}/modules.softdep"     ] && echo /lib/modules/${ver}/modules.softdep
-        [ -e "/lib/modules/${ver}/modules.symbols"     ] && echo /lib/modules/${ver}/modules.symbols
-        [ -e "/lib/modules/${ver}/modules.symbols.bin" ] && echo /lib/modules/${ver}/modules.symbols.bin
-	[ -e "/var/lib/initramfs-tools/${ver}"         ] && echo /var/lib/initramfs-tools/${ver}
+	echo "$package"
+	ver=$(echo "$package" | awk '{ print substr($1,13,40); }' )
+	[ -e "/boot/initrd.img-${ver}"                 ] && echo "/boot/initrd.img-${ver}"
+        [ -e "/lib/modules/${ver}/modules.alias"       ] && echo "/lib/modules/${ver}/modules.alias"
+        [ -e "/lib/modules/${ver}/modules.alias.bin"   ] && echo "/lib/modules/${ver}/modules.alias.bin"
+        [ -e "/lib/modules/${ver}/modules.builtin.bin" ] && echo "/lib/modules/${ver}/modules.builtin.alias.bin"
+        [ -e "/lib/modules/${ver}/modules.builtin.bin" ] && echo "/lib/modules/${ver}/modules.builtin.bin"
+        [ -e "/lib/modules/${ver}/modules.dep"         ] && echo "/lib/modules/${ver}/modules.dep"
+        [ -e "/lib/modules/${ver}/modules.dep.bin"     ] && echo "/lib/modules/${ver}/modules.dep.bin"
+        [ -e "/lib/modules/${ver}/modules.devname"     ] && echo "/lib/modules/${ver}/modules.devname"
+        [ -e "/lib/modules/${ver}/modules.softdep"     ] && echo "/lib/modules/${ver}/modules.softdep"
+        [ -e "/lib/modules/${ver}/modules.symbols"     ] && echo "/lib/modules/${ver}/modules.symbols"
+        [ -e "/lib/modules/${ver}/modules.symbols.bin" ] && echo "/lib/modules/${ver}/modules.symbols.bin"
+	[ -e "/var/lib/initramfs-tools/${ver}"         ] && echo "/var/lib/initramfs-tools/${ver}"
 done
 exit 0

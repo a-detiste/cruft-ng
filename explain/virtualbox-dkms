@@ -3,17 +3,17 @@ set -e
 
 test -x /usr/sbin/dkms || exit 0
 
-/usr/sbin/dkms status -m virtualbox | while read x ver arch y
+/usr/sbin/dkms status -m virtualbox | while read -r x ver arch y
 do
-    ver=$(echo $ver | tr -d ' ,')
-    echo /lib/modules/${ver}/updates
-    echo /lib/modules/${ver}/updates/dkms
-    echo /lib/modules/${ver}/updates/dkms/vboxdrv.ko
-    echo /lib/modules/${ver}/updates/dkms/vboxnetadp.ko
-    echo /lib/modules/${ver}/updates/dkms/vboxnetflt.ko
-    echo /lib/modules/${ver}/updates/dkms/vboxpci.ko
+    ver=$(echo "$ver" | tr -d ' ,')
+    echo "/lib/modules/${ver}/updates"
+    echo "/lib/modules/${ver}/updates/dkms"
+    echo "/lib/modules/${ver}/updates/dkms/vboxdrv.ko"
+    echo "/lib/modules/${ver}/updates/dkms/vboxnetadp.ko"
+    echo "/lib/modules/${ver}/updates/dkms/vboxnetflt.ko"
+    echo "/lib/modules/${ver}/updates/dkms/vboxpci.ko"
 
-    arch=$(echo $arch | tr -d ' :')
+    arch=$(echo "$arch" | tr -d ' :')
     echo "/var/lib/dkms/virtualbox/kernel-${ver}-${arch}"
 done
 echo /var/lib/dkms/virtualbox

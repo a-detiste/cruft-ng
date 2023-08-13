@@ -10,5 +10,5 @@ cd /usr/share/grub/themes/kali/
 
 for t in *
 do
-    test -f /boot/grub/themes/kali/$t && echo /boot/grub/themes/kali/$t
+    test -f "/boot/grub/themes/kali/$t" && echo "/boot/grub/themes/kali/$t"
 done
