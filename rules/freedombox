@@ -1,0 +1,6 @@
+/etc/apt/sources.list.d/freedombox.list
+/etc/apt/sources.list.d/freedombox2.list
+/etc/apt/preferences.d/50freedombox.pref
+/etc/apt/preferences.d/50freedombox2.pref
+/etc/apt/preferences.d/50freedombox4.pref
+/var/lib/plinth/
