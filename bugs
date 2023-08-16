@@ -38,11 +38,17 @@
 /usr/local/share/fonts/.uuid 897040 fontconfig
 /usr/share/autopkgtest/lib/__pycache__ 1043543 autopkgtest
 /usr/share/autopkgtest/lib/__pycache__/VirtSubproc.cpython-310.pyc 1043543 autopkgtest
+/usr/share/autopkgtest/lib/__pycache__/VirtSubproc.cpython-311.pyc 1043543 autopkgtest
 /usr/share/autopkgtest/lib/__pycache__/adt_binaries.cpython-310.pyc 1043543 autopkgtest
+/usr/share/autopkgtest/lib/__pycache__/adt_binaries.cpython-311.pyc 1043543 autopkgtest
 /usr/share/autopkgtest/lib/__pycache__/adt_testbed.cpython-310.pyc 1043543 autopkgtest
+/usr/share/autopkgtest/lib/__pycache__/adt_testbed.cpython-311.pyc 1043543 autopkgtest
 /usr/share/autopkgtest/lib/__pycache__/adtlog.cpython-310.pyc 1043543 autopkgtest
+/usr/share/autopkgtest/lib/__pycache__/adtlog.cpython-311.pyc 1043543 autopkgtest
 /usr/share/autopkgtest/lib/__pycache__/autopkgtest_args.cpython-310.pyc 1043543 autopkgtest
+/usr/share/autopkgtest/lib/__pycache__/autopkgtest_args.cpython-311.pyc 1043543 autopkgtest
 /usr/share/autopkgtest/lib/__pycache__/testdesc.cpython-310.pyc 1043543 autopkgtest
+/usr/share/autopkgtest/lib/__pycache__/testdesc.cpython-311.pyc 1043543 autopkgtest
 /usr/share/fonts 897040 fontconfig
 /usr/share/fonts/.uuid 897040 fontconfig
 /usr/share/fonts/eot/.uuid 909541 fontconfig
@@ -102,6 +108,9 @@
 /var/lib/fwupd/metadata/lvfs/metadata.xml.gz.jcat 1026243 fwupd
 /var/lib/lockdown 817942 usbmuxd
 /var/lib/lockdown/SystemConfiguration.plist 817942 usbmuxd
+/var/lib/mpd/.config 1049454 mpd
+/var/lib/mpd/.config/pulse 1049454 mpd
+/var/lib/mpd/.config/pulse/6d9d5e560bba76cd7f32a04751bca7f8-runtime 1049454 mpd
 /var/lib/swcatalog 1009825 appstream
 /var/lib/systemd/timers/stamp- 769895 init-system-helpers
 /var/lib/systemd/timers/stamp-apt-show-versions.timer 769895 init-system-helpers
