@@ -14,3 +14,5 @@ do
    echo -n "$script "
    $script > /dev/null && echo "$OK" || echo "$KO"
 done
+
+shellcheck explain/*

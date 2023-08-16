@@ -1,14 +1,17 @@
 #!/bin/sh
 set -e
+set -u
 
 test -d /etc/X11/xorg.conf.d || exit 0
 
 echo /etc/X11/xorg.conf.d
 
-for config in $(cd /etc/X11/xorg.conf.d; ls -1);
+find /etc/X11/xorg.conf.d -type f -type f -printf "%f\n" | while read -r config
 do
 	if [ -e "/usr/share/X11/xorg.conf.d/$config" ]
 	then
 		echo "/etc/X11/xorg.conf.d/$config"
 	fi
-done;
+done
+
+exit 0

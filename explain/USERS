@@ -1,13 +1,23 @@
 #!/bin/sh
 set -e
+set -u
 
-for user in root $(awk -F: '{ if ( 1000 <= $3 && $3 < 30000 ) print $1 }' /etc/passwd)
+awk -F: '{ if ( 1000 <= $3 && $3 < 30000 ) print $1 " " $6}' /etc/passwd | while read -r user home
 do
-	home=$(grep "^$user:" /etc/passwd | cut -d: -f6)
+	if test -d "$home"
+	then
+		echo "$home"
+	fi
 
-	[ -d "$home" ] && echo "$home"
-	[ -e "/var/mail/$user" ] && echo "/var/mail/$user"
-	[ -e "/var/spool/cron/crontabs/$user" ] && echo "/var/spool/cron/crontabs/$user"
+	if test -e "/var/mail/$user"
+	then
+		echo "/var/mail/$user"
+	fi
+
+	if test -e "/var/spool/cron/crontabs/$user"
+	then
+		echo "/var/spool/cron/crontabs/$user"
+	fi
 done
 
 exit 0

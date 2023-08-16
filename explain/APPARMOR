@@ -5,10 +5,8 @@ test -d /etc/apparmor.d || exit 0
 
 test -d /etc/apparmor.d/local && echo /etc/apparmor.d/local
 
-find /etc/apparmor.d/ -maxdepth 1 -type f |
-while read -r fullname
+find /etc/apparmor.d/ -maxdepth 1 -type f -printf "%f\n" | while read -r file
 do
-        file=$(basename "$fullname")
 	[ -e "/etc/apparmor.d/cache/$file" ] && echo "/etc/apparmor.d/cache/$file"
 	[ -e "/etc/apparmor.d/disable/$file" ] && echo "/etc/apparmor.d/disable/$file"
 	[ -e "/etc/apparmor.d/local/$file" ] && echo "/etc/apparmor.d/local/$file"

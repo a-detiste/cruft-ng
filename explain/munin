@@ -3,7 +3,7 @@ set -e
 
 test -d /usr/share/munin/plugins || exit 0
 
-for file in /usr/share/munin/plugins/*
+find /usr/share/munin/plugins -maxdepth 1 -type f -printf "%f\n" | while read -r file
 do
 	[ -e "/etc/munin/plugins/$file" ] && echo "/etc/munin/plugins/$file"
 done

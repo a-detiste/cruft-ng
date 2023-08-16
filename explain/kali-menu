@@ -4,9 +4,7 @@ set -e
 
 test -d /usr/share/kali-menu/applications/ || exit 0
 
-cd /usr/share/kali-menu/applications/
-
-for m in *
+find /usr/share/kali-menu/applications/ -maxdepth 1 -type f -printf "%f\n" | while read -r m
 do
     test -f "/usr/share/applications/$m" && echo "/usr/share/applications/$m"
 done

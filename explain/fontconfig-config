@@ -1,13 +1,19 @@
 #!/bin/sh
 set -e
+set -u
 
 test -d /usr/share/fontconfig/conf.avail || exit 0
 
-for file in /usr/share/fontconfig/conf.avail/*
+find /usr/share/fontconfig/conf.avail/ -maxdepth 1 -type f -printf "%f\n" | while read -r file
 do
-	[ -e "/etc/fonts/conf.d/$file" ] && echo "/etc/fonts/conf.d/$file"
+    if test -e "/etc/fonts/conf.d/$file"
+    then
+        echo "/etc/fonts/conf.d/$file"
+    fi
 done
 
 find /usr/share/fonts -name .uuid
 
 test -d /usr/local/share/fonts/ && find /usr/local/share/fonts -name .uuid
+
+exit 0

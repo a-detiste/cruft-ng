@@ -4,9 +4,7 @@ set -e
 # this is usefull even when systemd is not the init system
 # because these declarative configs are shipped anyway
 
-cd /usr/lib/tmpfiles.d/
-
-ls -1 | while read -r definition
+find /usr/lib/tmpfiles.d/ -maxdepth 1 -type f -printf "%f\n"  | while read -r definition
 do
     package="${definition%.*}"
     case "$package" in
@@ -25,7 +23,7 @@ do
            ;;
     esac
 
-    grep -v ^# < "$definition" | sed 's/%./*/g' | while read -r _action path _extra
+    grep -v ^# < "/usr/lib/tmpfiles.d/${definition}" | sed 's/%./*/g' | while read -r _action path _extra
     do
         case "$path" in
              /etc/*)

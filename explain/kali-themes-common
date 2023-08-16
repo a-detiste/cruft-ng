@@ -6,9 +6,7 @@ test -d /boot/grub/themes/kali || exit 0
 echo /boot/grub/themes
 echo /boot/grub/themes/kali
 
-cd /usr/share/grub/themes/kali/
-
-for t in *
+find /usr/share/grub/themes/kali/ -maxdepth 1 -type f -printf "%f\n" | while read -r t
 do
     test -f "/boot/grub/themes/kali/$t" && echo "/boot/grub/themes/kali/$t"
 done
