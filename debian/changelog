@@ -1,4 +1,4 @@
-cruft-ng (0.9.57) UNRELEASED; urgency=medium
+cruft-ng (0.9.57) unstable; urgency=low
 
   * cruft will now detected old **/__pycache__/*.cpython-3*.pyc files
     that don't match the interpretors in /usr/bin/python3.*
@@ -7,10 +7,20 @@ cruft-ng (0.9.57) UNRELEASED; urgency=medium
     a lot of file will be marked as cruft after each major version bump.
   * call updatedb.plocate explicitly, to behave as expected when the old
     traditional updatedb.findutils is the default (Closes: #1043209)
-  * new rules for: wvdial, ofono, sks, painintheapt, deluged
+  * new rules for: wvdial, ofono, sks, painintheapt, deluged,
+    freedombox, prosody.
   * archive rules for old packages: gconf2, libncurses5
+  * explain: review scripts with shellcheck
+  * mention %ghost files in description and d/TODO
+  * compatibility with DebHelper 14 & 15
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Wed, 09 Aug 2023 17:27:13 +0200
+  [ Christian Göttsche ]
+  * apache: ignore all managed enabled and disabled entries
+  * postfix: ignore distribution defaults
+  * php-cgi: add package
+  * raspi-firmware: ignore /boot/firmware stuff
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 22 Aug 2023 17:32:24 +0200
 
 cruft-ng (0.9.56) unstable; urgency=low
 
