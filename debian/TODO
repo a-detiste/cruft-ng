@@ -13,3 +13,15 @@ list:
 
 parse /usr/share/lintian/data/fields/obsolete-packages
 in tools/check.py
+
+
+
+machine-parse Fedora ghost files
+
+https://src.fedoraproject.org/rpms/cronie/blob/rawhide/f/cronie.spec
+
+%files anacron
+...
+%ghost %attr(0600,root,root) %verify(not md5 size mtime) /var/spool/anacron/cron.daily
+%ghost %attr(0600,root,root) %verify(not md5 size mtime) /var/spool/anacron/cron.weekly
+%ghost %attr(0600,root,root) %verify(not md5 size mtime) /var/spool/anacron/cron.monthly

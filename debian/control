@@ -37,6 +37,7 @@ Description: programs that helps analyse volatile "cruft" files on your system
  Both cruft-ng and cpigs base most of their results on
  dpkg's & plocate's databases, and also use a built-in custom
  homegrown ruleset to match volatile files
+ - also known as "ghost" files on .rpm based systemds -
  to the corresponding engine.
  .
  Packages wanting to document such volatile files can do so
