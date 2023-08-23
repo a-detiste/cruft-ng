@@ -136,6 +136,14 @@ static void one_file(const string& path)
 	cerr << "no matching package found\n";
 }
 
+static int one_package(const string& package)
+{
+	// read matching filter
+	// exec matching explain + all uppercase explains
+	cout << "TODO:" << package << "\n";
+	return 0;
+}
+
 static clock_t beg = clock();
 
 static void elapsed(const string& action)
@@ -160,6 +168,7 @@ static void print_help_message()
 	cout << "if not, the whole system is analysed\n\n";
 
 	cout << "OPTIONS\n";
+	cout << "    -p --package     list volatile files only for this one package\n";
 	cout << "    -E --explain     directory for explain scripts (default: " << default_explain_dir << ")\n";
 	cout << "    -F --filter      directory for filters (default: " << default_filter_dir << ")\n";
 	cout << "    -I --ignore      path for ignore file (default: " << default_ignore_file << ")\n";
@@ -175,6 +184,8 @@ int main(int argc, char *argv[])
 {
 	bool debug = getenv("DEBUG") != nullptr;
 
+	bool do_one_package = false;
+	string package = "";
 	string explain_dir = default_explain_dir;
 	string filter_dir = default_filter_dir;
 	string ignore_file = default_ignore_file;
@@ -184,6 +195,7 @@ int main(int argc, char *argv[])
 	const struct option long_options[] =
 	{
 		{"help", no_argument, nullptr, 'h'},
+		{"package", required_argument, nullptr, 'p'},
 		{"explain", required_argument, nullptr, 'E'},
 		{"filter", required_argument, nullptr, 'F'},
 		{"ignore", required_argument, nullptr, 'I'},
@@ -193,11 +205,15 @@ int main(int argc, char *argv[])
 	};
 
 	int opt, opti = 0;
-	while ((opt = getopt_long(argc, argv, "E:F:hI:R:B:", long_options, &opti)) != 0) {
+	while ((opt = getopt_long(argc, argv, "p:E:F:hI:R:B:", long_options, &opti)) != 0) {
 		if (opt == EOF)
 			break;
 
 		switch (opt) {
+		case 'p':
+			do_one_package = true;
+			package = optarg;
+			break;
 		case 'E':
 			explain_dir = optarg;
 			if (!explain_dir.empty() && explain_dir.back() != '/')
@@ -230,11 +246,14 @@ int main(int argc, char *argv[])
 			print_help_message();
 			exit(1);
 
-        default:
-            cerr << "Invalid getopt return value: " << opt << "\n";
-			break;
-        }
-    }
+	        default:
+	            cerr << "Invalid getopt return value: " << opt << "\n";
+				break;
+		}
+	}
+
+
+	if(do_one_package) exit(one_package(package));
 
     if (optind < argc) {
 		if (optind + 1 == argc) {
