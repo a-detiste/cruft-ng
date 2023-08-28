@@ -180,100 +180,12 @@ static void print_help_message()
 	cout << "    -h --help        this help message\n";
 }
 
-int main(int argc, char *argv[])
+static void cruft(const string& ignore_file,
+                  const string& filter_dir,
+                  const string& ruleset_file,
+                  const string& explain_dir)
 {
 	bool debug = getenv("DEBUG") != nullptr;
-
-	bool do_one_package = false;
-	string package = "";
-	string explain_dir = default_explain_dir;
-	string filter_dir = default_filter_dir;
-	string ignore_file = default_ignore_file;
-	string ruleset_file = default_ruleset_file;
-	string bugs_file = default_bugs_file;
-
-	const struct option long_options[] =
-	{
-		{"help", no_argument, nullptr, 'h'},
-		{"package", required_argument, nullptr, 'p'},
-		{"explain", required_argument, nullptr, 'E'},
-		{"filter", required_argument, nullptr, 'F'},
-		{"ignore", required_argument, nullptr, 'I'},
-		{"ruleset", required_argument, nullptr, 'R'},
-		{"bugs", required_argument, nullptr, 'B'},
-		{0, 0, 0, 0}
-	};
-
-	int opt, opti = 0;
-	while ((opt = getopt_long(argc, argv, "p:E:F:hI:R:B:", long_options, &opti)) != 0) {
-		if (opt == EOF)
-			break;
-
-		switch (opt) {
-		case 'p':
-			do_one_package = true;
-			package = optarg;
-			break;
-		case 'E':
-			explain_dir = optarg;
-			if (!explain_dir.empty() && explain_dir.back() != '/')
-				explain_dir += '/';
-			break;
-
-		case 'F':
-			filter_dir = optarg;
-			if (!filter_dir.empty() && filter_dir.back() != '/')
-				filter_dir += '/';
-			break;
-
-		case 'h':
-			print_help_message();
-			exit(0);
-
-		case 'I':
-			ignore_file = optarg;
-			break;
-
-		case 'R':
-			ruleset_file = optarg;
-			break;
-
-		case 'B':
-			bugs_file = optarg;
-			break;
-
-		case '?':
-			print_help_message();
-			exit(1);
-
-	        default:
-	            cerr << "Invalid getopt return value: " << opt << "\n";
-				break;
-		}
-	}
-
-
-	if(do_one_package) exit(one_package(package));
-
-    if (optind < argc) {
-		if (optind + 1 == argc) {
-			struct stat buffer;
-			if (stat(argv[1], &buffer) == 0) {
-				one_file(argv[1]);
-				exit(0);
-			} else {
-				cerr << "file not found\n";
-				exit(1);
-			}
-		}
-
-		cerr << "Invalid non-option arguments:";
-        while (optind < argc)
-			cerr << " " << argv[optind++];
-		cerr << '\n';
-		print_help_message();
-		exit(1);
-    }
 
 	const int SIZEBUF = 200;
 	char buf[SIZEBUF];
@@ -407,5 +319,102 @@ int main(int argc, char *argv[])
 	}
 
 	cout << "\nend.\n";
-	return 0;
+	exit(0);
+}
+
+int main(int argc, char *argv[])
+{
+	bool do_one_package = false;
+	string package = "";
+	string explain_dir = default_explain_dir;
+	string filter_dir = default_filter_dir;
+	string ignore_file = default_ignore_file;
+	string ruleset_file = default_ruleset_file;
+	string bugs_file = default_bugs_file;
+
+	const struct option long_options[] =
+	{
+		{"help", no_argument, nullptr, 'h'},
+		{"package", required_argument, nullptr, 'p'},
+		{"explain", required_argument, nullptr, 'E'},
+		{"filter", required_argument, nullptr, 'F'},
+		{"ignore", required_argument, nullptr, 'I'},
+		{"ruleset", required_argument, nullptr, 'R'},
+		{"bugs", required_argument, nullptr, 'B'},
+		{0, 0, 0, 0}
+	};
+
+	int opt, opti = 0;
+	while ((opt = getopt_long(argc, argv, "p:E:F:hI:R:B:", long_options, &opti)) != 0) {
+		if (opt == EOF)
+			break;
+
+		switch (opt) {
+		case 'p':
+			do_one_package = true;
+			package = optarg;
+			break;
+		case 'E':
+			explain_dir = optarg;
+			if (!explain_dir.empty() && explain_dir.back() != '/')
+				explain_dir += '/';
+			break;
+
+		case 'F':
+			filter_dir = optarg;
+			if (!filter_dir.empty() && filter_dir.back() != '/')
+				filter_dir += '/';
+			break;
+
+		case 'h':
+			print_help_message();
+			exit(0);
+
+		case 'I':
+			ignore_file = optarg;
+			break;
+
+		case 'R':
+			ruleset_file = optarg;
+			break;
+
+		case 'B':
+			bugs_file = optarg;
+			break;
+
+		case '?':
+			print_help_message();
+			exit(1);
+
+	        default:
+	            cerr << "Invalid getopt return value: " << opt << "\n";
+				break;
+		}
+	}
+
+
+	if(do_one_package) exit(one_package(package));
+
+	if (optind < argc) {
+		if (optind + 1 == argc) {
+			struct stat buffer;
+			if (stat(argv[1], &buffer) == 0) {
+				one_file(argv[1]);
+				exit(0);
+			} else {
+				cerr << "file not found\n";
+				exit(1);
+			}
+		}
+
+		cerr << "Invalid non-option arguments:";
+		while (optind < argc)
+			cerr << " " << argv[optind++];
+		cerr << '\n';
+		print_help_message();
+		exit(1);
+	}
+
+	// else: standard cruft report
+	cruft(ignore_file, filter_dir, ruleset_file, explain_dir);
 }
