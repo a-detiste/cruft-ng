@@ -1,3 +1,11 @@
+cruft-ng (0.9.58) UNRELEASED; urgency=medium
+
+  * add support for running on "Windows Subsystem for Linux 2"
+  * add rules for : asylum, bastet, pachi,
+    petris, topper, xjump.
+
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Mon, 28 Aug 2023 21:27:32 +0200
+
 cruft-ng (0.9.57) unstable; urgency=low
 
   * cruft will now detected old **/__pycache__/*.cpython-3*.pyc files
