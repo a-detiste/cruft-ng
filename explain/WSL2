@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if ! test -e /proc/sys/fs/binfmt_misc/WSLInterop
+then
+    exit 0
+fi
+
+echo /etc/wsl.conf
+echo /etc/ld.so.conf.d/ld.wsl.conf
+echo /init
+echo /usr/bin/wslpath
+echo /usr/lib/wsl
+echo /usr/lib/wsl/drivers
+echo /usr/lib/wsl/lib
+echo /usr/lib/wsl/lib/libd3d12.so
+echo /usr/lib/wsl/lib/libd3d12core.so
+echo /usr/lib/wsl/lib/libdxcore.so
+echo /usr/sbin/mount.drvfs
