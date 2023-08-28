@@ -1,9 +1,6 @@
 #!/bin/sh
 
-if ! test -e /proc/sys/fs/binfmt_misc/WSLInterop
-then
-    exit 0
-fi
+test -e /proc/sys/fs/binfmt_misc/WSLInterop || exit 0
 
 echo /etc/wsl.conf
 echo /etc/ld.so.conf.d/ld.wsl.conf
