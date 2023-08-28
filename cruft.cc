@@ -138,9 +138,14 @@ static void one_file(const string& path)
 
 static int one_package(const string& package)
 {
-	// read matching filter
-	// exec matching explain + all uppercase explains
-	cout << "TODO:" << package << "\n";
+	vector<string> packages;
+	packages.push_back(package);
+	vector<owner> cruft;
+	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, cruft);
+	read_explain("/etc/cruft/explain/", packages, cruft);
+	for (const auto& cr: cruft) {
+		if (cr.package == package) cout << cr.path << '\n';
+	}
 	return 0;
 }
 
