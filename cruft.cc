@@ -393,7 +393,7 @@ int main(int argc, char *argv[])
 	}
 
 
-	if(do_one_package) exit(one_package(package));
+	if (do_one_package) exit(one_package(package));
 
 	if (optind < argc) {
 		if (optind + 1 == argc) {

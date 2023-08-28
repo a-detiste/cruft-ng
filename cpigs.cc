@@ -195,8 +195,8 @@ int main(int argc, char *argv[])
 	};
 
 	vector<owner> globs;
-	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages,globs);
-	read_explain("/etc/cruft/explain/", packages,globs);
+	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, globs);
+	read_explain("/etc/cruft/explain/", packages, globs);
 	elapsed("read filters");
 
 	std::map<std::string, size_t> usage{{"UNKNOWN", 0}};
