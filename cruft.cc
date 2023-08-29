@@ -142,6 +142,8 @@ static int one_package(const string& package)
 	packages.push_back(package);
 	vector<owner> cruft;
 	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, cruft);
+	packages.push_back("binfmt-support");
+	packages.push_back("ucf");
 	read_explain("/etc/cruft/explain/", packages, cruft);
 	for (const auto& cr: cruft) {
 		if (cr.package == package) cout << cr.path << '\n';
