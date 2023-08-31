@@ -33,8 +33,10 @@ concat rules > ruleset
 if dpkg-vendor --derives-from Ubuntu
 then
     concat ubuntu/devel >> ruleset
+    releases="xenial bionic focal jammy"
 else
     concat archive/sid >> ruleset
+    releases="buster bullseye bookworm trixie forky"
 fi
 
 concat non-free >> ruleset
