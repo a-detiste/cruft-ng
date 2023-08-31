@@ -3,15 +3,12 @@ set -e
 rm -f ruleset
 
 function concat() {
-(cd $1
-ls | sort | while read file
+(
+release="$1"
+find "$release" -type f -printf "%f\n" | sort | while read -r file
 do
 	echo "$file"
-	# this is a temporary comptability layer
-	# so rules can already be rewriten in new format
-	# expected by dh-cruft
-	# --- o<  --- o< ---
-	while read rule
+	while read -r rule
 	do
 		case "$rule" in
 			"")
@@ -26,10 +23,8 @@ do
 				echo "$rule"
 			;;
 		esac
-	done < "$file"
-	# --- o<  --- o< ---
-
-done | grep -v ^# | grep .
+	done < "$release/$file"
+done
 )
 }
 
@@ -71,14 +66,11 @@ echo "release:$release"
 
 if [ -d "archive/$release" ]
 then
-    concat archive/$release >> ruleset
+    concat "archive/$release" >> ruleset
 elif [ -d "ubuntu/$release" ]
 then
-    concat ubuntu/$release >> ruleset
+    concat "ubuntu/$release" >> ruleset
 fi
-
-# do not fail on "grep ." if dir is empty
-set +e
 
 if ! [ "$(readlink archive/stable)" == "$release" ]
 then
