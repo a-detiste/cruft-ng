@@ -30,16 +30,19 @@ done
 
 concat rules > ruleset
 
+concat non-free >> ruleset
+
+# releases are in reverse order
 if dpkg-vendor --derives-from Ubuntu
 then
     concat ubuntu/devel >> ruleset
-    releases="xenial bionic focal jammy"
+    archive="ubuntu"
+    releases="jammy focal bionic xenial"
 else
     concat archive/sid >> ruleset
-    releases="buster bullseye bookworm trixie forky"
+    archive="archive" # 'debian/' has a special meaning
+    releases="forky trixie bookworm bullseye buster"
 fi
-
-concat non-free >> ruleset
 
 # backport
 release="$1"
@@ -53,28 +56,21 @@ case "$release" in
     unstable)
         exit 0
         ;;
-    explain)
-        echo "Backport of explain scripts is not supported ATM"
-        exit 1
-        ;;
-    focal)
-        release="bullseye"
-        ;;
     *-backports)
         release="${release%\-backports}"
         ;;
 esac
 echo "release:$release"
 
-if [ -d "archive/$release" ]
-then
-    concat "archive/$release" >> ruleset
-elif [ -d "ubuntu/$release" ]
-then
-    concat "ubuntu/$release" >> ruleset
-fi
-
-if ! [ "$(readlink archive/stable)" == "$release" ]
-then
-    concat archive/stable >> ruleset
-fi
+for r in $releases
+do
+    if [ -d "$archive/$r" ]
+    then
+        concat "archive/$r" >> ruleset
+    fi
+    if [ "$r" = "$release" ]
+    then
+        # we are done
+        exit 0
+    fi
+done
