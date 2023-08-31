@@ -5,6 +5,7 @@ packages like where the binary package name change all the time.
 list:
   firebird#.#-server
   libapache2-mod-php#."
+  libmono-corlib#.#-cil
   llvm-15-runtime
   ruby#.#
   tcl#.#
