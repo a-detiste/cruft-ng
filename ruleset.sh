@@ -1,4 +1,6 @@
 #!/bin/bash
+LC_ALL=C.UTF-8
+
 set -e
 rm -f ruleset
 
@@ -13,7 +15,7 @@ do
 		case "$rule" in
 			"")
 			;;
-			"#*")
+			'#'*)
 			;;
 			*/)
 				echo "${rule:0: -1}"
