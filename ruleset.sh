@@ -62,12 +62,13 @@ case "$release" in
         release="${release%\-backports}"
         ;;
 esac
-echo "release:$release"
+echo "target release: $release"
 
 for r in $releases
 do
     if [ -d "$archive/$r" ]
     then
+        echo "adding: $r"
         concat "archive/$r" >> ruleset
     fi
     if [ "$r" = "$release" ]
