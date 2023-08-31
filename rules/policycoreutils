@@ -1,6 +1,4 @@
 /.autorelabel
 /etc/selinux/config
-# UsrMerge symlink
-/usr/sbin/load_policy
 /var/lib/selinux/final
 /var/lib/selinux/tmp

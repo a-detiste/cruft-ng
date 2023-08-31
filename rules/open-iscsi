@@ -1,6 +1,1 @@
 /etc/iscsi/initiatorname.iscsi
-# UsrMerge
-/usr/sbin/iscsi-iname
-/usr/sbin/iscsi_discovery
-/usr/sbin/iscsid
-/usr/sbin/iscsistart
