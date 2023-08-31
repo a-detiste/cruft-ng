@@ -12,7 +12,7 @@ then
     find /boot/firmware -maxdepth 1 -type f -name 'bcm*.dtb'
 fi
 
-packages="$(dpkg-query -W -f='${binary:Package}\n' 'linux-image-*-*' 2> /dev/null)"
+packages="$(dpkg-query -W -f='${binary:Package}\n' 'linux-image-*-*' 2> /dev/null || true)"
 
 for package in $packages
 do
