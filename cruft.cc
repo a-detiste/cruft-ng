@@ -190,7 +190,8 @@ static void print_help_message()
 static void cruft(const string& ignore_file,
                   const string& filter_dir,
                   const string& ruleset_file,
-                  const string& explain_dir)
+                  const string& explain_dir,
+                  const string& bugs_file)
 {
 	bool debug = getenv("DEBUG") != nullptr;
 
@@ -221,7 +222,7 @@ static void cruft(const string& ignore_file,
 	elapsed("plocate + dpkg");
 
 	map<string, bug> bugs;
-	read_bugs(bugs, "bugs");
+	read_bugs(bugs, bugs_file);
 
 	// match two main data sources
 	vector<string> cruft;
@@ -423,5 +424,5 @@ int main(int argc, char *argv[])
 	}
 
 	// else: standard cruft report
-	cruft(ignore_file, filter_dir, ruleset_file, explain_dir);
+	cruft(ignore_file, filter_dir, ruleset_file, explain_dir, bugs_file);
 }
