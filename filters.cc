@@ -18,6 +18,7 @@ static void read_one_filter(const string& glob_filename, const string& package, 
 	for (string glob_line; getline(glob_file, glob_line);)
 	{
 		if (glob_line.empty()) continue;
+		if (glob_line.front() == '#') continue;
 		if (glob_line.front() == '/') {
 			if (debug) cerr << package << " " << glob_line << endl;
 			globs.emplace_back(package, usr_merge(glob_line));
@@ -69,6 +70,8 @@ int read_filters(const string& dir, const string& ruleset_file, const vector<str
 	for (string glob_line; getline(glob_file, glob_line);)
 	{
 		if (glob_line.empty())
+			continue;
+		if (glob_line.front() == '#')
 			continue;
 		if (glob_line.front() == '/') {
 			if (keep) {
