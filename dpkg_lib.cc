@@ -33,8 +33,7 @@ static void csv(const char *dpkg_name,
 		return;
 
 	char type;
-	if (S_ISLNK(st.st_mode)) type = 'l';
-	else type = 'f';
+	type = S_ISLNK(st.st_mode) ? 'l' : 'f';
 
 	replace(realname.begin(), realname.end(), ';', '_');
 
