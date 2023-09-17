@@ -1,0 +1,22 @@
+#!/bin/sh
+
+test -d /usr/lib/systemd/system || exit 0  # Devuan
+
+grep -e ^CacheDirectory= -e ^StateDirectory= /usr/lib/systemd/system/*.service | while IFS=':=' read -r service kind path
+do
+    service="${service##/usr/lib/systemd/system/}"
+    package="${service%.service}"
+    package="${package%@}"
+    test "$package" = "$last_package" || echo "$package"
+
+    case "$kind" in
+        CacheDirectory)
+            fullpath="/var/cache/$path"
+            ;;
+        StateDirectory)
+            fullpath="/var/lib/$path"
+            ;;
+    esac
+    test -d "$fullpath" && find "$fullpath" 2>/dev/null
+    last_package="$package"
+done
