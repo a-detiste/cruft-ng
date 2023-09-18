@@ -14,16 +14,20 @@ void dpkg_end() {}
 
 int query(const char *path)
 {
+	// not implemented: diversions
 	FILE* fp;
 	setenv("LANG", "C", 1);
-	char buf[200];
+	char buf[4000];
 	char *pos;
 
 	sprintf(buf, "dpkg-query --search '%s' 2>/dev/null", path);
 	if ((fp = popen(buf, "r")) == NULL) return 0;
 	if (!fgets(buf, sizeof(buf), fp)) return 0;
 	pos = strchr(buf, ':');
-	printf("%s", pos+2);
+	pos[0] = '\0';
+	pos = strchr(buf, ',');
+	if(pos) pos[0] = '\0';
+	puts(buf);
 	return 1;
 }
 
