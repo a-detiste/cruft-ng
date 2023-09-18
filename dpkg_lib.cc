@@ -51,10 +51,29 @@ int query(const char *path)
 	return 0;
 }
 
-static void csv(const char *dpkg_name,
-         string realname,
-         const char *package) {
 
+int read_dpkg_header(vector<string>& packages)
+{
+	struct pkg_array array;
+	pkg_array_init_from_hash(&array);
+	pkg_array_sort(&array, pkg_sorter_by_nonambig_name_arch);
+
+	int i;
+	for (i = 0; i < array.n_pkgs; i++) {
+		struct pkginfo *pkg;
+
+		pkg = array.pkgs[i];
+		if (pkg->status == PKG_STAT_INSTALLED || pkg->status == PKG_STAT_CONFIGFILES)
+			packages.emplace_back(pkg->set->name);
+	}
+
+	pkg_array_destroy(&array);
+	return 0;
+}
+
+
+static void csv(const char *dpkg_name, string realname, const char *package)
+{
 	struct stat st;
 	if (stat(dpkg_name, &st) != 0)
 		return;

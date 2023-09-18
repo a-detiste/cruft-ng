@@ -116,7 +116,7 @@ static void one_file(const string& path)
 
 	vector<string> packages;
 	vector<string> dpkg;
-	read_dpkg(packages, dpkg, false);
+	read_dpkg_header(packages);
 	dpkg_end();
 
 	// is it a dynamic file ?
