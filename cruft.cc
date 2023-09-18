@@ -98,11 +98,17 @@ static bool updatedb()
 
 static void one_file(const string& path)
 {
+	struct stat buffer;
+	if (stat(path.c_str(), &buffer)) {
+		cerr << "file not found\n";
+		exit(1);
+	}
+
 	// is it a static file ?
 	dpkg_start();
 	if (query(path.c_str())) {
 		dpkg_end();
-		return;
+		exit(0);
 	}
 
 	string infile = path;
@@ -124,7 +130,7 @@ static void one_file(const string& path)
 	for (const auto& gl: globs) {
 		if (myglob(file, gl.path)) {
 			cout << gl.package << '\n';
-			return;
+			exit(0);
 		};
 	}
 
@@ -134,11 +140,12 @@ static void one_file(const string& path)
 	for (const auto& ex: explain) {
 		if (infile == ex.path) {
 			cout << ex.package << '\n';
-			return;
+			exit(0);
                 }
         }
 
 	cerr << "no matching package found\n";
+	exit(1);
 }
 
 static int one_package(const string& package)
@@ -411,16 +418,8 @@ int main(int argc, char *argv[])
 	if (do_one_package) exit(one_package(package));
 
 	if (optind < argc) {
-		if (optind + 1 == argc) {
-			struct stat buffer;
-			if (stat(argv[1], &buffer) == 0) {
-				one_file(argv[1]);
-				exit(0);
-			} else {
-				cerr << "file not found\n";
-				exit(1);
-			}
-		}
+		if (optind + 1 == argc)
+			one_file(argv[1]);
 
 		cerr << "Invalid non-option arguments:";
 		while (optind < argc)
