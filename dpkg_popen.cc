@@ -12,7 +12,22 @@
 void dpkg_start() {}
 void dpkg_end() {}
 
-static int read_dpkg_header(vector<string>& packages)
+int query(const char *path)
+{
+	FILE* fp;
+	setenv("LANG", "C", 1);
+	char buf[200];
+	char *pos;
+
+	sprintf(buf, "dpkg-query --search '%s' 2>/dev/null", path);
+	if ((fp = popen(buf, "r")) == NULL) return 0;
+	if (!fgets(buf, sizeof(buf), fp)) return 0;
+	pos = strchr(buf, ':');
+	printf("%s", pos+2);
+	return 1;
+}
+
+int read_dpkg_header(vector<string>& packages)
 {
 	bool debug=getenv("DEBUG") != NULL;
 
