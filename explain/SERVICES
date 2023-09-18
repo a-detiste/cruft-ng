@@ -1,8 +1,8 @@
 #!/bin/sh
 
-test -d /usr/lib/systemd/system || exit 0  # Devuan
+test -d /lib/systemd/system || exit 0  # Devuan
 
-grep -e ^CacheDirectory= -e ^StateDirectory= /usr/lib/systemd/system/*.service | while IFS=':=' read -r service kind path
+grep -e ^CacheDirectory= -e ^StateDirectory= /lib/systemd/system/*.service | while IFS=':=' read -r service kind path
 do
     service="${service##/usr/lib/systemd/system/}"
     package="${service%.service}"
