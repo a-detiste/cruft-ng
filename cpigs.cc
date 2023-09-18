@@ -167,7 +167,9 @@ int main(int argc, char *argv[])
 
 	vector<string> packages;
 	vector<string> dpkg;
+	dpkg_start();
 	read_dpkg(packages, dpkg, static_);
+	dpkg_end();
 	elapsed("dpkg");
 
 	vector<string> cruft_db;

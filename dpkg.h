@@ -2,6 +2,10 @@
 #include <string>
 using namespace std;
 
+void dpkg_start();
+void dpkg_end();
+int query(const char *path);
+
 int read_dpkg(vector<string>& packages, vector<string>& db, bool print_csv);
 
 struct Diversion{

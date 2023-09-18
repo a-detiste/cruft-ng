@@ -98,6 +98,13 @@ static bool updatedb()
 
 static void one_file(const string& path)
 {
+	// is it a static file ?
+	dpkg_start();
+	if (query(path.c_str())) {
+		dpkg_end();
+		return;
+	}
+
 	string infile = path;
 	if ((path.rfind("/bin/", 0) == 0)
          or (path.rfind("/lib/", 0) == 0)
@@ -110,8 +117,7 @@ static void one_file(const string& path)
 	vector<string> packages;
 	vector<string> dpkg;
 	read_dpkg(packages, dpkg, false);
-	// is it a static file ?
-	// TODO
+	dpkg_end();
 
 	// is it a dynamic file ?
 	vector<owner> globs;
@@ -216,9 +222,11 @@ static void cruft(const string& ignore_file,
 
 	vector<string> packages;
 	vector<string> dpkg;
+	dpkg_start();
 	thread thr_dpkg(read_dpkg, ref(packages), ref(dpkg), false);
 	thr_plocate.join();
 	thr_dpkg.join();
+	dpkg_end();
 	elapsed("plocate + dpkg");
 
 	map<string, bug> bugs;

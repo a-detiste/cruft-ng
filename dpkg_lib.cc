@@ -12,6 +12,7 @@ extern "C" {
 #include <dpkg/dpkg-db.h>
 #include <dpkg/db-fsys.h>
 #include <dpkg/pkg-array.h>
+#include <dpkg/pkg-list.h>
 #include <dpkg/pkg-show.h>
 }
 
@@ -21,6 +22,34 @@ extern "C" {
 /*
 https://www.dpkg.org/doc/libdpkg/structpkginfo.html
 */
+
+void dpkg_start() {
+	dpkg_program_init("cruft");
+	modstatdb_open(msdbrw_readonly);
+}
+
+void dpkg_end() {
+	modstatdb_shutdown();
+	dpkg_program_done();
+}
+
+int query(const char *path)
+{
+	ensure_allinstfiles_available_quiet();
+	ensure_diversions();
+
+	struct fsys_namenode *namenode;
+	namenode = fsys_hash_find_node(path, FHFF_NOCOPY);
+
+	if (namenode->divert) {
+	        cout << namenode->divert->pkgset->name << '\n';
+		return 1;
+	} else if(namenode->packages) {
+		cout << namenode->packages->pkg->set->name << '\n';
+		return 1;
+	}
+	return 0;
+}
 
 static void csv(const char *dpkg_name,
          string realname,
@@ -89,8 +118,6 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 	};
 #endif
 
-	dpkg_program_init("cruft");
-	modstatdb_open(msdbrw_readonly);
 	pkg_array_init_from_hash(&array);
 	pkg_array_sort(&array, pkg_sorter_by_nonambig_name_arch);
 	ensure_diversions();
@@ -152,8 +179,6 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 		}
 	}
 	pkg_array_destroy(&array);
-	modstatdb_shutdown();
-	dpkg_program_done();
 	sort(output.begin(), output.end());
 	output.erase( unique( output.begin(), output.end() ), output.end() );
 	return 0;

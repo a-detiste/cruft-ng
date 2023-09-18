@@ -9,6 +9,9 @@
 #include "dpkg.h"
 #include "usr_merge.h"
 
+void dpkg_start() {}
+void dpkg_end() {}
+
 static int read_dpkg_header(vector<string>& packages)
 {
 	bool debug=getenv("DEBUG") != NULL;
