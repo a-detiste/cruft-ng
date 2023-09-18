@@ -115,7 +115,6 @@ static void one_file(const string& path)
 	char* file = realpath(infile.c_str(), nullptr);
 
 	vector<string> packages;
-	vector<string> dpkg;
 	read_dpkg_header(packages);
 	dpkg_end();
 
