@@ -1,3 +1,4 @@
+/etc/.updated
 /etc/machine-id
 /etc/rc.local
 /etc/systemd/logind.conf.d
