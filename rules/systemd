@@ -3,6 +3,7 @@
 /etc/systemd/logind.conf.d
 /etc/systemd/network/*.network
 /etc/vconsole.conf
+/var/.updated
 /var/cache/private
 /var/lib/container
 /var/lib/machines
@@ -22,12 +23,9 @@
 /var/log/private
 /var/tmp/systemd-private-*
 /var/tmp/systemd-private-*/tmp
-#systemd-timesyncd: old location
-/var/lib/systemd/clock
-#systemd-timesyncd: new location
 /var/lib/systemd/timesync
 /var/lib/systemd/timesync/clock
-#systemd-timesyncd: yet another location
+#systemd-timesyncd: another possible location
 /var/lib/private
 /var/lib/private/systemd
 /var/lib/private/systemd/timesync
