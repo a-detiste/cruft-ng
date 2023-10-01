@@ -1,0 +1,11 @@
+/var/lib/onak/__db.001
+/var/lib/onak/__db.002
+/var/lib/onak/__db.003
+/var/lib/onak/id32db
+/var/lib/onak/id64db
+/var/lib/onak/keydb.*.db
+/var/lib/onak/log.*
+/var/lib/onak/num_keydb
+/var/lib/onak/skshashdb
+/var/lib/onak/subkeydb
+/var/lib/onak/worddb
