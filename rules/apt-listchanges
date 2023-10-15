@@ -7,3 +7,4 @@
 /var/lib/apt/listchanges
 /var/lib/apt/listchanges-new
 /var/lib/apt/listchanges-old
+/var/lib/apt/listchanges-snapshots/
