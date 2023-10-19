@@ -19,20 +19,18 @@ static bool check_link(const string& path, const bool mandatory)
 string usr_merge(const string& path)
 {
 	static bool setup = false;
-	static bool MERGED_BIN, MERGED_LIB, MERGED_LIB32, MERGED_SBIN;
+	static bool MERGED;
 	if (!setup)
 	{
-		MERGED_BIN=check_link("/bin", true);
-		MERGED_LIB=check_link("/lib", true);
-		MERGED_LIB32=check_link("/lib32", false);
-		MERGED_SBIN=check_link("/sbin", true);
+		MERGED=check_link("/bin", true);
 		setup=true;
 	}
 
-	if ((MERGED_BIN and path.rfind("/bin/", 0) == 0)
-	 or (MERGED_LIB and path.rfind("/lib/", 0) == 0)
-	 or (MERGED_LIB32 and path.rfind("/lib32/", 0) == 0)
-	 or (MERGED_SBIN and path.rfind("/sbin/", 0) == 0))
+	if (MERGED and (path.rfind("/bin/", 0) == 0
+			or path.rfind("/lib/", 0) == 0
+			or path.rfind("/lib32/", 0) == 0
+			or path.rfind("/lib62/", 0) == 0
+			or path.rfind("/sbin/", 0) == 0))
 		return "/usr" + path;
 	else
 		return path;
