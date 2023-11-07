@@ -29,7 +29,7 @@ string usr_merge(const string& path)
 	if (MERGED and (path.rfind("/bin/", 0) == 0
 			or path.rfind("/lib/", 0) == 0
 			or path.rfind("/lib32/", 0) == 0
-			or path.rfind("/lib62/", 0) == 0
+			or path.rfind("/lib64/", 0) == 0
 			or path.rfind("/sbin/", 0) == 0))
 		return "/usr" + path;
 	else
