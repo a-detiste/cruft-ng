@@ -20,6 +20,10 @@
 /var/lib/lightdm/.dbus
 /var/lib/lightdm/.dbus/session-bus
 /var/lib/lightdm/.dbus/session-bus/*
+/var/lib/lightdm/.local
+/var/lib/lightdm/.local/state
+/var/lib/lightdm/.local/state/wireplumber
+/var/lib/lightdm/.local/state/wireplumber/restore-stream
 /var/lib/lightdm/data
 /var/lib/lightdm/data/lightdm
 /var/log/lightdm
