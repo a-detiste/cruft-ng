@@ -28,7 +28,7 @@ dpkg_popen.o: dpkg_popen.cc dpkg.h
 cruftold: $(SHARED_OBJS) $(CRUFT_OBJS) mlocate.o dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) mlocate.o dpkg_popen.o -lstdc++fs -pthread -o cruftold
 cruft: $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o $(LIBDPKG_LIBS) -pthread -o cruft
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o $(LIBDPKG_LIBS) -pthread -ltbb -o cruft
 
 cpigsold: $(SHARED_OBJS) cpigs.o mlocate.o dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) cpigs.o mlocate.o dpkg_popen.o -lstdc++fs -o cpigsold
