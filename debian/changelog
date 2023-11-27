@@ -2,13 +2,13 @@ cruft-ng (0.9.59) unstable; urgency=low
 
   * make "cruft FILE" faster
   * add rules for:
-      libjs-jquery-flot, geki2,
-      onak, autoradio
+      libjs-jquery-flot, geki2, bacula, icinga2,
+      onak, autoradio, uptimed, samhain
   * update rules for:
-      aide, systemd, apt-listchanges
+      aide, systemd, apt-listchanges, unbound
   * also UsrMerge /lib64
 
- -- Alexandre Detiste <tchet@debian.org>  Mon, 27 Nov 2023 19:24:05 +0100
+ -- Alexandre Detiste <tchet@debian.org>  Mon, 27 Nov 2023 23:15:06 +0100
 
 cruft-ng (0.9.58) unstable; urgency=low
 
