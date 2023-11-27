@@ -1,0 +1,6 @@
+/etc/icinga2/features-enabled/
+/var/lib/icinga2/
+/var/log/icinga2/
+/var/cache/icinga2/
+/var/spool/icinga2/
+/var/lib/nagios/
