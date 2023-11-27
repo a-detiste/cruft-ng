@@ -17,15 +17,15 @@ CRUFT = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 BASE = os.path.dirname(CRUFT)
 
 info = distro_info.UbuntuDistroInfo()
-stable = info.stable()
-lts = info.lts()
-old_lts = info.supported()[-3]
+stable = str(info.stable())
+lts = str(info.lts())
+old_lts = str(info.supported()[-3])
 
 releases = sorted(set([old_lts, lts, stable]))
 if len(sys.argv) > 1:
     release = sys.argv[1]
     assert release in releases or release == 'xenial'
-    releases = set([release])
+    releases = [release]
 
 print('RELEASES:', releases)
 

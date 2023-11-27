@@ -9,7 +9,7 @@ import subprocess
 import apt
 import distro_info
 
-STABLE = distro_info.DebianDistroInfo().stable()
+STABLE = str(distro_info.DebianDistroInfo().stable())
 
 testing = set()
 c = apt.Cache()
@@ -72,8 +72,8 @@ if old_stable != STABLE or not os.path.isfile('tools/Packages_amd64'):
     os.unlink('tools/Sources')
 
 stable = set()
-with open('tools/Packages_amd64', 'r', encoding='utf8') as p:
-    for line in p:
+with open('tools/Packages_amd64', 'r', encoding='utf8') as fd:
+    for line in fd:
         if line.startswith('Package:'):
             stable.add(line.split(':', 1)[1].strip())
 
@@ -81,7 +81,13 @@ with open('tools/Packages_amd64', 'r', encoding='utf8') as p:
 filters = set([os.path.basename(f) for f in glob.glob('rules/*') if f == f.lower()])
 explain = set([os.path.basename(f) for f in glob.glob('explain/*') if f == f.lower()])
 
-def process(category, packages, testing, stable, archive):
+def process(
+    category: str,
+    packages: set[str],
+    testing: set[str],
+    stable: set[str],
+    archive: str
+) -> None:
     unknown = packages - testing
     deprecated = unknown & stable
     unknown = unknown - stable

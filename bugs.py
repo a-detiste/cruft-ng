@@ -29,8 +29,8 @@ else:
 
 cruft = dict()
 
-todo = set(bugs)
-done = set()
+todo: set[int] = set(bugs)
+done: set[int] = set()
 
 while todo:
     todo -= done
@@ -58,6 +58,6 @@ while todo:
                     cruft[match] = (bug.bug_num, bug.source, line)
 
 for path,data in sorted(cruft.items()):
-    bug, package, raw = data
+    bug_nr, package, raw = data
     #print(raw)
-    print('%s %s %s' % (path, bug, package))
+    print('%s %s %s' % (path, bug_nr, package))
