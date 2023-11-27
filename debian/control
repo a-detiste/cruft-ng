@@ -1,7 +1,7 @@
 Source: cruft-ng
 Section: admin
 Priority: optional
-Maintainer: Alexandre Detiste <alexandre.detiste@gmail.com>
+Maintainer: Alexandre Detiste <tchet@debian.org>
 Build-Depends:
     debhelper-compat (= 13),
 Build-Depends-Arch:
