@@ -1,1 +1,5 @@
+/etc/unbound/unbound_control.key
+/etc/unbound/unbound_control.pem
+/etc/unbound/unbound_server.key
+/etc/unbound/unbound_server.pem
 /var/lib/unbound/root.key
