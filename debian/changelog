@@ -1,4 +1,4 @@
-cruft-ng (0.9.59) UNRELEASED; urgency=low
+cruft-ng (0.9.59) unstable; urgency=low
 
   * make "cruft FILE" faster
   * add rules for:
@@ -8,7 +8,7 @@ cruft-ng (0.9.59) UNRELEASED; urgency=low
       aide, systemd, apt-listchanges
   * also UsrMerge /lib64
 
- -- Alexandre Detiste <alexandre.detiste@gmail.com>  Tue, 07 Nov 2023 20:41:41 +0100
+ -- Alexandre Detiste <alexandre.detiste@gmail.com>  Mon, 27 Nov 2023 08:10:58 +0100
 
 cruft-ng (0.9.58) unstable; urgency=low
 
