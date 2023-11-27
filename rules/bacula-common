@@ -1,0 +1,3 @@
+/etc/bacula/common_default_passwords
+/var/lib/bacula/
+/var/log/bacula/
