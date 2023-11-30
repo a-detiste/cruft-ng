@@ -16,6 +16,7 @@
 /etc/xdg/picom.conf
 /etc/xdg/plasmarc
 /etc/xdg/qt5ct/qt5ct.conf
+/etc/xdg/qt6ct/qt6ct.conf
 /etc/xdg/qterminal.org/qterminal.ini
 /etc/xdg/terminator/config
 /etc/xdg/Thunar/accels.scm
