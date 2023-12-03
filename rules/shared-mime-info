@@ -20,6 +20,8 @@
 /usr/share/mime/application/*.xml
 /usr/share/mime/audio
 /usr/share/mime/audio/*.xml
+/usr/share/mime/chemical
+/usr/share/mime/chemical/*.xml
 /usr/share/mime/font
 /usr/share/mime/font/collection.xml
 /usr/share/mime/font/otf.xml
