@@ -1,5 +1,6 @@
 /var/lib/smartmontools/*
 /var/lib/smartmontools/drivedb/drivedb.h
+/var/lib/smartmontools/drivedb/drivedb.h.lastcheck
 /var/lib/smartmontools/drivedb/drivedb.h.raw
 /var/lib/smartmontools/drivedb/drivedb.h.old
 /var/lib/smartmontools/drivedb/drivedb.h.old.raw
