@@ -1,0 +1,8 @@
+/usr/share/games/rocksndiamonds/downloads
+/usr/share/games/rocksndiamonds/downloads/*.7z
+/usr/share/games/rocksndiamonds/downloads/*.tar.gz
+/usr/share/games/rocksndiamonds/downloads/*.zip
+/usr/share/games/rocksndiamonds/graphics/
+/usr/share/games/rocksndiamonds/levels/
+/usr/share/games/rocksndiamonds/music/
+/usr/share/games/rocksndiamonds/sounds/
