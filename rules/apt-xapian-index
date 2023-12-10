@@ -2,9 +2,11 @@
 /var/cache/apt-xapian-index/index.*
 /var/cache/apt-xapian-index/index.*/flintlock
 /var/cache/apt-xapian-index/index.*/iamchert
+/var/cache/apt-xapian-index/index.*/iamglass
 /var/cache/apt-xapian-index/index.*/*.DB
 /var/cache/apt-xapian-index/index.*/*.baseA
 /var/cache/apt-xapian-index/index.*/*.baseB
+/var/cache/apt-xapian-index/index.1/*.glass
 /var/lib/apt-xapian-index
 /var/lib/apt-xapian-index/README
 /var/lib/apt-xapian-index/cataloged_times.p
