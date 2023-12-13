@@ -1,0 +1,6 @@
+/var/lib/knot
+/var/lib/knot/catalog
+/var/lib/knot/confdb
+/var/lib/knot/journal
+/var/lib/knot/keys
+/var/lib/knot/timers
