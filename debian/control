@@ -7,7 +7,7 @@ Build-Depends:
 Build-Depends-Arch:
     pkgconf,
     libdpkg-dev,
-Standards-Version: 4.6.1.0
+Standards-Version: 4.6.2
 Homepage: https://github.com/a-detiste/cruft-ng/
 Vcs-Git: https://github.com/a-detiste/cruft-ng.git
 Vcs-Browser: https://github.com/a-detiste/cruft-ng
