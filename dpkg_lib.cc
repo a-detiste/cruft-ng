@@ -19,6 +19,10 @@ extern "C" {
 #include "dpkg.h"
 #include "usr_merge.h"
 
+#ifndef LIBDPKG_HAS_NEW_FHFF
+#define FHFF_NO_COPY	FHFF_NOCOPY
+#endif
+
 /*
 https://www.dpkg.org/doc/libdpkg/structpkginfo.html
 */
@@ -39,7 +43,7 @@ int query(const char *path)
 	ensure_diversions();
 
 	struct fsys_namenode *namenode;
-	namenode = fsys_hash_find_node(path, FHFF_NOCOPY);
+	namenode = fsys_hash_find_node(path, FHFF_NO_COPY);
 
 	if (namenode->divert) {
 	        cout << namenode->divert->pkgset->name << '\n';

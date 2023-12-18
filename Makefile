@@ -1,6 +1,7 @@
 PKG_CONFIG ?= pkg-config
 LIBDPKG_LIBS = $(shell $(PKG_CONFIG) --static --libs libdpkg)
 LIBDPKG_CFLAGS = $(shell $(PKG_CONFIG) --static --cflags libdpkg)
+LIBDPKG_CFLAGS += $(if $(shell $(PKG_CONFIG) --atleast-version 1.22.2 libdpkg && echo yes),-DLIBDPKG_HAS_NEW_FHFF)
 
 CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z,relro -D_FORTIFY_SOURCE=2
 CXXFLAGS += -Wall -Wextra
