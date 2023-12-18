@@ -1,3 +1,20 @@
+cruft-ng (0.9.60) unstable; urgency=medium
+
+  * add new rules for ulogd2, oss-compat,
+    local-apt-repository, knot, sn
+  * update smartmontools, exim4,
+    shared-mime-info
+  * and many games: astromenace, geki3, hanna,
+    lbreakout2, lbreakouthd, assaultcube,
+    rocksndiammords, filler, pyracerz
+  * derivatives: update kali-themes for Qt6
+  * backports: fix libgdk-pixbuf2.0-0
+
+  [ Guillem Jover ]
+  * Adapt to libdpkg 1.22.2
+
+ -- Alexandre Detiste <tchet@debian.org>  Tue, 19 Dec 2023 00:49:41 +0100
+
 cruft-ng (0.9.59) unstable; urgency=low
 
   * make "cruft FILE" faster
