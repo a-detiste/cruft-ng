@@ -25,11 +25,11 @@ override_dh_auto_build-indep:
 override_dh_auto_build-arch:
 	./ruleset.sh $(DEB_DISTRIBUTION)
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
-	make cruftold cpigsold
+	dh_auto_build -- cruftold cpigsold
 	mv cruftold cruft
 	mv cpigsold cpigs
 else
-	make cruft cpigs
+	dh_auto_build -- cruft cpigs
 endif
 
 
