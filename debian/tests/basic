@@ -5,3 +5,6 @@ cruft
 
 echo 'should print: "base-passwd"'
 cruft /etc/passwd
+
+echo 'this prints the environment:'
+env
