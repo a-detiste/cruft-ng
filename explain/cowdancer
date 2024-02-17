@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# extraneous files seen inside the chroot
+# when doing "cowdancer login"
+
+if [ -e "$COWDANCER_ILISTFILE" ]
+then
+  echo /.ilist
+  echo /build
+  echo /etc/apt/apt.conf.d/02proxy
+  echo /etc/apt/apt.conf.d/15pbuilder
+  echo /etc/hosts
+  echo /etc/init.d
+  echo /run/adduser
+  echo /run/lock
+  echo /run/mount
+  echo /run/shm
+  echo /usr/sbin/policy-rc.d
+  echo /var/log/bootstrap.log
+fi
