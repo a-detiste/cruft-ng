@@ -1,0 +1,32 @@
+#!/bin/sh
+
+#ADT_ARTIFACTS=/tmp/autopkgtest-lxc.gid7jdjn/downtmp/basic-artifacts
+#ADT_NORMAL_USER=debci
+#ADTTMP=/tmp/autopkgtest-lxc.gid7jdjn/downtmp/autopkgtest_tmp
+#AUTOPKGTEST_ARTIFACTS=/tmp/autopkgtest-lxc.gid7jdjn/downtmp/basic-artifacts
+#AUTOPKGTEST_NORMAL_USER=debci
+#AUTOPKGTEST_TMP=/tmp/autopkgtest-lxc.gid7jdjn/downtmp/autopkgtest_tmp
+
+if [ -e "$AUTOPKGTEST_TMP" ]
+then
+  echo autopkgtest
+
+  # /usr/share/autopkgtest/setup-commands/setup-testbed
+  echo /etc/apt/apt.conf.d/01autopkgtest-setup-proxy
+  echo /etc/apt/apt.conf.d/01proxy
+  echo /etc/apt/apt.conf.d/02periodic
+  echo /etc/apt/apt.conf.d/90always-include-phased-updates
+  echo /etc/apt/apt.conf.d/90errmode
+  echo /etc/apt/apt.conf.d/90nolanguages
+  echo /etc/apt/apt.conf.d/90retry
+  echo /etc/dpkg/dpkg.cfg.d/autopkgtest
+
+  # /usr/share/autopkgtest/lib/adt_binaries.py
+  echo /etc/apt/preferences.d/90autopkgtest
+  echo /etc/apt/sources.list.d/autopkgtest.list
+
+  echo /etc/apt/apt.conf.d/75retry
+  echo /usr/sbin/autopkgtest-reboot
+  echo /var/log/bootstrap.log
+  echo /var/tmp/debci.pkg
+fi
