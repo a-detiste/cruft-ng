@@ -1,1 +1,5 @@
+/var/agentx
+/var/agentx/master
+/var/lib/snmp/.snmp-exec-cache
+/var/lib/snmp/cert_indexes
 /var/lib/snmp/snmpd.conf
