@@ -1,0 +1,3 @@
+/var/lib/syslog-ng/syslog-ng.ctl
+/var/lib/syslog-ng/syslog-ng.persist
+/var/lib/syslog-ng/syslog-ng.pid
