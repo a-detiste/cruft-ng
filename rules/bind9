@@ -1,5 +1,4 @@
-/etc/named.boot
-/etc/named.conf
-/var/named/boot.options
-/var/named/boot.zones
-/var/named/named.boot
+/etc/bind/rndc.key
+/var/cache/bind/managed-keys.bind
+/var/cache/bind/managed-keys.bind.jnl
+/var/lib/bind
