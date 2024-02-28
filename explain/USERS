@@ -2,6 +2,16 @@
 set -e
 set -u
 
+if test -e "/var/mail/root"
+then
+	echo "/var/mail/root"
+fi
+
+if test -e "/var/spool/cron/crontabs/root"
+then
+	echo "/var/spool/cron/crontabs/root"
+fi
+
 awk -F: '{ if ( 1000 <= $3 && $3 < 30000 ) print $1 " " $6}' /etc/passwd | while read -r user home
 do
 	if test -d "$home"
