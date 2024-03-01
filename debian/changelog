@@ -1,10 +1,20 @@
-cruft-ng (0.9.61) UNRELEASED; urgency=medium
+cruft-ng (0.9.61) unstable; urgency=medium
+
+  * add new rules: extrepo, syslog-ng-core, w3c-sgml-lib
+  * update existing rules: apt-xapian-index, bind9, ghc, snmpd,
+    VisualStudio code
+  * add explain scripts to analyse common chroots:
+    * autopkgtest
+    * cowdancer/cowbuild
+
+  [ cgzones ]
+  * USERS: ignore mail and crontab files for root
 
   [ Helmut Grohne ]
   * Fix FTCBFS: Let dh_auto_build pass cross tools to make.
     (Closes: #1059719)
 
- -- Alexandre Detiste <tchet@debian.org>  Mon, 01 Jan 2024 19:52:54 +0100
+ -- Alexandre Detiste <tchet@debian.org>  Fri, 01 Mar 2024 16:13:00 +0100
 
 cruft-ng (0.9.60) unstable; urgency=medium
 
