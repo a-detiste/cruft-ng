@@ -1,0 +1,8 @@
+/etc/libvirt/secrets/
+/var/lib/libvirt/qemu/channel/
+/var/lib/libvirt/qemu/checkpoint/
+/var/lib/libvirt/qemu/dump/
+/var/lib/libvirt/qemu/nvram/
+/var/lib/libvirt/qemu/ram/
+/var/lib/libvirt/qemu/save/
+/var/lib/libvirt/qemu/snapshot/
