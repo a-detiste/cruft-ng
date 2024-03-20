@@ -1,0 +1,2 @@
+# only in postinst, not in postrm
+/var/lib/clickpkg/
