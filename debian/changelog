@@ -1,3 +1,12 @@
+cruft-ng (0.9.62) UNRELEASED; urgency=medium
+
+  * add new rule: click, clonezilla, libvirt-daemon-system, monsterz,
+  * 64-bit time transition:
+    * libglib2.0      -> libglib2.0-t64
+    * libgtk2.0-0     -> libgtk2.0-0t64
+
+ -- Alexandre Detiste <tchet@debian.org>  Wed, 20 Mar 2024 21:17:19 +0100
+
 cruft-ng (0.9.61) unstable; urgency=medium
 
   * add new rules: extrepo, syslog-ng-core, w3c-sgml-lib
