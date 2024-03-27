@@ -8,9 +8,13 @@ for ver in $versions
 do
     echo "/lib/modules/${ver}/updates"
     echo "/lib/modules/${ver}/updates/dkms"
-    echo "/lib/modules/${ver}/updates/dkms/zfs.ko"
-    echo "/lib/modules/${ver}/updates/dkms/zcommon.ko"
-    echo "/lib/modules/${ver}/updates/dkms/znvpair.ko"
-    echo "/lib/modules/${ver}/updates/dkms/zpios.ko"
-    echo "/lib/modules/${ver}/updates/dkms/zunicode.ko"
+
+    for mod in zfs zcommon znvpair zpios zunicode
+    do
+        for ext in ko ko.xz
+        do
+            path="/lib/modules/${ver}/updates/dkms/${mod}.${ext}"
+            test -f "$path" && echo "$path"
+        done
+    done
 done
