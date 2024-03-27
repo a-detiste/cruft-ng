@@ -8,10 +8,14 @@ do
     ver=$(echo "$ver" | tr -d ' ,')
     echo "/lib/modules/${ver}/updates"
     echo "/lib/modules/${ver}/updates/dkms"
-    echo "/lib/modules/${ver}/updates/dkms/vboxdrv.ko"
-    echo "/lib/modules/${ver}/updates/dkms/vboxnetadp.ko"
-    echo "/lib/modules/${ver}/updates/dkms/vboxnetflt.ko"
-    echo "/lib/modules/${ver}/updates/dkms/vboxpci.ko"
+    for mod in vboxdrv vboxnetadp vboxnetflt vboxpci
+    do
+        for ext in ko ko.xz
+        do
+            path="/lib/modules/${ver}/updates/dkms/${mod}.${ext}"
+            test -f "$path" && echo "$path"
+        done
+    done
 
     arch=$(echo "$arch" | tr -d ' :')
     echo "/var/lib/dkms/virtualbox/kernel-${ver}-${arch}"
