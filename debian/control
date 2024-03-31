@@ -9,8 +9,8 @@ Build-Depends-Arch:
     libdpkg-dev,
 Standards-Version: 4.6.2
 Homepage: https://github.com/a-detiste/cruft-ng/
-Vcs-Git: https://github.com/a-detiste/cruft-ng.git
-Vcs-Browser: https://github.com/a-detiste/cruft-ng
+Vcs-Git: https://salsa.debian.org/detiste-guest/cruft-ng.git
+Vcs-Browser: https://salsa.debian.org/detiste-guest/cruft-ng
 Rules-Requires-Root: no
 
 Package: cruft-ng
