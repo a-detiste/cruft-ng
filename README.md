@@ -77,7 +77,7 @@ TODO:
 
  * move to Salsa, enable C.I.
 
- * read the AppArmor globbing paterns (with libapparmor1)
+ * read the AppArmor globbing patterns (with libapparmor1)
 
  * https://www.codeproject.com/Articles/5163931/Fast-String-Matching-with-Wildcards-Globs-and-Giti
 

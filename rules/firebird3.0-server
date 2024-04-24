@@ -1,7 +1,7 @@
 # dh-cruft has a templating feature
 # that will replace #VERSION# by the version
 #
-# well the verson is "3.0.11.33637.ds4-2"
+# well the version is "3.0.11.33637.ds4-2"
 # so it won't work in this case
 # with today's heuristic
 # but this can evolve

@@ -28,6 +28,6 @@ do
 		find /usr/share/icons/ -iwholename /usr/share/icons/Humanity-Dark/icon-theme.cache
 	fi
 
-	# case insesitive
+	# case insensitive
 	find /usr/share/icons/ -iwholename "/usr/share/icons/$package/icon-theme.cache"
 done

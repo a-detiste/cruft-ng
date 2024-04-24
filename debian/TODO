@@ -1,5 +1,5 @@
 
-propose dh-cruft patches for versionned/templated
+propose dh-cruft patches for versioned/templated
 packages like where the binary package name change all the time.
 
 list:

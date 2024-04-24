@@ -281,7 +281,7 @@ cruft-ng (0.9.45) unstable; urgency=medium
     extraneous files without '.' in their name.
     Thank you Piotr Engelking (Closes: #1021297)
 
-  * Add missing "closedir()" that leaded to
+  * Add missing "closedir()" that led to
     file descriptor exhaustion.
   * Remove extraneous *.pyc filters, now built
     into the main engine

@@ -1,7 +1,7 @@
 This is an archive of old rules to make backporting
-easier and more usefull.
+easier and more useful.
 
-The package not found in "unstable" are to be added wholy,
+The package not found in "unstable" are to be added wholly,
 the ones already existing have to be merged together.
 
 

@@ -30,7 +30,7 @@ int read_filters(const string& dir, const string& ruleset_file, const vector<str
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
-	if (debug) cerr << "READING UPERCASE GLOBS IN " << dir << endl;
+	if (debug) cerr << "READING UPPERCASE GLOBS IN " << dir << endl;
 	DIR *dp;
 	struct dirent *dirp;
 	if((dp = opendir(dir.c_str())) == nullptr) {
