@@ -3,4 +3,5 @@
 /var/cache/pbuilder/ccache
 /var/chroot
 /var/schroot
+/var/www
 /var/www/html
