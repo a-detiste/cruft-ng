@@ -30,6 +30,7 @@ void init_python()
 			versions.emplace_back(pyc_ver);
 		}
 	}
+	closedir(dp);
 	sort(versions.begin(), versions.end());
 }
 
