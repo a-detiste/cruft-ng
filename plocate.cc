@@ -10,11 +10,6 @@
 #include "locate.h"
 #include "python.h"
 
-// build fail on hurd-i386
-#ifndef PATH_MAX
-#define PATH_MAX 4096
-#endif
-
 static void read_ignores(vector<string>& ignores, const string& ignore_path)
 {
 	ifstream ignore_file(ignore_path);
@@ -49,15 +44,17 @@ int read_locate(vector<string>& fs, const string& ignore_path)
 	fs.emplace_back("/root");
 	fs.emplace_back("/tmp");
 
-	char buf[PATH_MAX];
+	char *buf = NULL;
+	size_t len = 0;
 	FILE* fp;
-	if ((fp = popen("plocate /", "r")) == nullptr) return 1;
-	while (fgets(buf, sizeof(buf),fp))
+	if ((fp = popen("plocate --null /", "r")) == nullptr) return 1;
+	while (getdelim(&buf, &len, 0, fp) != -1)
 	{
 		auto len = strlen(buf);
 		if (len == 0)
 			continue;
-		string_view filename { buf, len - 1 };  // trim trailing newline
+		string_view filename { buf, len };
+
 		auto toplevel { filename.substr(0, filename.find('/', 1)) };
 		if (   toplevel == "/dev"
 		    or (toplevel == "/home" /* and dirname != "/home" */)
@@ -87,6 +84,7 @@ int read_locate(vector<string>& fs, const string& ignore_path)
 		if (!pyc_has_py(string{filename}, debug))
 			fs.emplace_back(filename);
 	}
+	free(buf);
 	pclose(fp);
 
 	// default PRUNEPATH in /etc/updatedb.conf
