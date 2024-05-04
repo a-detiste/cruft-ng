@@ -1,11 +1,16 @@
-cruft-ng (0.9.62) UNRELEASED; urgency=medium
+cruft-ng (0.9.62) unstable; urgency=medium
 
-  * add new rule: click, clonezilla, libvirt-daemon-system, monsterz,
+  * run plocate with "--null" option to avoid being confused
+    by paths containing the newline character (Closes: #1070216)
+  * add new rules: click, clonezilla, drbl,
+    libvirt-daemon-config-nwfilter, libvirt-daemon-system,
+    monsterz, plasma-browser-integration
+  * update rules: anacron, virtualbox-dkms, zfs-dkms
   * 64-bit time transition:
     * libglib2.0      -> libglib2.0-t64
     * libgtk2.0-0     -> libgtk2.0-0t64
 
- -- Alexandre Detiste <tchet@debian.org>  Wed, 20 Mar 2024 21:17:19 +0100
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 04 May 2024 22:07:25 +0200
 
 cruft-ng (0.9.61) unstable; urgency=medium
 
