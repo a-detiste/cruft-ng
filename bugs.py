@@ -44,6 +44,9 @@ while todo:
             cruft[match] = (bug.bug_num, bug.source, bug.subject)
         for mail in bts.get_bug_log(bug.bug_num):
             for line in mail['body'].splitlines():
+                if '---- missing: dpkg ----' in line:
+                    # bug report contains cruft report, ignore from here
+                    break
                 for match in re.findall(re_cruft, line):
                     if match in FALSE_POSITIVES:
                         continue
