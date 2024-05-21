@@ -51,6 +51,7 @@
 /var/lib/sddm/.local/state/wireplumber
 /var/lib/sddm/.local/state/wireplumber/default-profile
 /var/lib/sddm/.local/state/wireplumber/restore-stream
+/var/lib/sddm/.local/state/wireplumber/stream-properties
 /var/lib/sddm/.xsession-errors
 /var/lib/sddm/state.conf
 /var/log/sddm.log
