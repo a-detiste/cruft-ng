@@ -233,6 +233,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path)
 		    or buf.f_type == PROC_SUPER_MAGIC
 		    or filename == "/dev"
 		    or (filename == "/home" /* and dirname != "/home" */)
+		    or filename == "/media"
 		    or filename == "/mnt"
 		    or filename == "/root"
 		    or filename == "/tmp")
