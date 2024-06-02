@@ -1,6 +1,7 @@
 Tests: basic
 Restrictions: needs-root
+Depends: @, plocate
 
 Tests: ncdu
 Restrictions: needs-root
-Depends: @, jq
+Depends: @, plocate, jq
