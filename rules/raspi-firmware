@@ -4,3 +4,4 @@
 /boot/firmware/config.txt
 /boot/firmware/kernel.img
 /boot/firmware/kernel7.img
+/etc/default/raspi-firmware-custom
