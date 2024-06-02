@@ -1,3 +1,5 @@
+Tests: non-root
+
 Tests: basic
 Restrictions: needs-root
 Depends: @, plocate
