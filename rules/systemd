@@ -3,6 +3,7 @@
 /etc/rc.local
 /etc/systemd/logind.conf.d
 /etc/systemd/network/*.network
+/etc/tmpfiles.d/tmp.conf
 /etc/vconsole.conf
 /var/.updated
 /var/cache/private
