@@ -29,7 +29,7 @@ https://www.dpkg.org/doc/libdpkg/structpkginfo.html
 */
 
 void dpkg_start(const string& root_dir) {
-	dpkg_fsys_set_dir(root_dir.c_str());
+	dpkg_fsys_set_dir(root_dir == "/" ? "" : root_dir.c_str());
 	dpkg_program_init("cruft");
 	modstatdb_open(msdbrw_readonly);
 }
