@@ -29,4 +29,7 @@ then
   echo /usr/sbin/autopkgtest-reboot
   echo /var/log/bootstrap.log
   echo /var/tmp/debci.pkg
+else
+  echo debian-installer
+  echo /etc/apt/apt.conf.d/10periodic
 fi
