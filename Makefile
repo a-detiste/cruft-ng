@@ -7,7 +7,7 @@ CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z
 CXXFLAGS += -Wall -Wextra
 override CXXFLAGS += $(LIBDPKG_CFLAGS)
 #CXXFLAGS += -std=c++17 #  clang++
-SHARED_OBJS = explain.o filters.o shellexp.o usr_merge.o python.o owner.o
+SHARED_OBJS = explain.o filters.o shellexp.o usr_merge.o python.o owner.o read_ignores.o
 CRUFT_OBJS = cruft.o dpkg_exclude.o bugs.o
 
 sid: cruft ruleset cpigs
@@ -19,10 +19,11 @@ cpigs.o: cpigs.cc owner.h
 owner.o: owner.cc owner.h
 explain.o: explain.cc owner.h
 filters.o: filters.cc owner.h
-plocate.o: plocate.cc locate.h
+plocate.o: plocate.cc locate.h read_ignores.h
 mlocate.o: mlocate.cc locate.h
+read_ignores.o: read_ignores.cc read_ignores.h
 
-cruft.o: cruft.cc explain.h filters.h dpkg.h python.h
+cruft.o: cruft.cc explain.h filters.h dpkg.h python.h read_ignores.h
 dpkg_lib.o: dpkg_lib.cc dpkg.h /usr/include/dpkg/dpkg.h
 dpkg_popen.o: dpkg_popen.cc dpkg.h
 

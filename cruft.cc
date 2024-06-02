@@ -6,12 +6,15 @@
 #include <algorithm>
 #include <ctime>
 #include <thread>
+#include <filesystem>
 
 #include <sys/stat.h>
 #include <getopt.h>
 #include <cstring>
 #include <unistd.h>
 #include <dirent.h>
+#include <sys/vfs.h>
+#include <linux/magic.h>
 
 #include "explain.h"
 #include "filters.h"
@@ -20,6 +23,8 @@
 #include "dpkg_exclude.h"
 #include "shellexp.h"
 #include "bugs.h"
+#include "python.h"
+#include "read_ignores.h"
 
 using namespace std;
 
@@ -188,6 +193,7 @@ static void print_help_message()
 
 	cout << "OPTIONS\n";
 	cout << "    -p --package     list volatile files only for this one package\n";
+	cout << "    -n --nolocate    do not use locate\n";
 	cout << "    -E --explain     directory for explain scripts (default: " << default_explain_dir << ")\n";
 	cout << "    -F --filter      directory for filters (default: " << default_filter_dir << ")\n";
 	cout << "    -I --ignore      path for ignore file (default: " << default_ignore_file << ")\n";
@@ -199,11 +205,73 @@ static void print_help_message()
 	cout << "    -h --help        this help message\n";
 }
 
+int read_nolocate(vector<string>& fs, const string& ignore_path)
+{
+	bool debug=getenv("DEBUG") != nullptr;
+
+	if (debug) cerr << "FILESYSTEM DATA\n";
+
+	init_python();
+
+	vector<string> ignores;
+	read_ignores(ignores, ignore_path);
+
+	struct statfs buf;
+
+        for (auto entry =
+                 filesystem::recursive_directory_iterator{
+                     "/",
+                     filesystem::directory_options::skip_permission_denied};
+             entry != filesystem::recursive_directory_iterator(); entry++)
+	{
+		std::string filename{entry->path()};
+
+		statfs(filename.c_str(), &buf);
+
+		if (buf.f_type == TMPFS_MAGIC
+		    or buf.f_type == SYSFS_MAGIC
+		    or buf.f_type == PROC_SUPER_MAGIC
+		    or filename == "/dev"
+		    or (filename == "/home" /* and dirname != "/home" */)
+		    or filename == "/mnt"
+		    or filename == "/root"
+		    or filename == "/tmp")
+			entry.disable_recursion_pending();
+
+		bool ignored = false;
+		for (const auto& it : ignores) {
+			if (filename.size() > it.size() && filename.compare(0, it.size(), it) == 0) {
+				ignored = true;
+				break;
+			}
+
+			// ignore directory '/foo' for ignore entry '/foo/'
+			error_code ec;
+			if (filename.size() + 1 == it.size()
+			&& it.compare(0, filename.size(), filename) == 0
+			&& filesystem::is_directory(filename, ec)) {
+				ignored = true;
+				break;
+			}
+		}
+		if (ignored) continue;
+
+		if (!pyc_has_py(string{filename}, debug))
+			fs.emplace_back(filename);
+	}
+
+	sort(fs.begin(), fs.end());
+	fs.erase( unique( fs.begin(), fs.end() ), fs.end() );
+	if (debug) cerr << fs.size() << " relevant files in filesystem"  << endl << endl;
+	return 0;
+}
+
 static void cruft(const string& ignore_file,
                   const string& filter_dir,
                   const string& ruleset_file,
                   const string& explain_dir,
-                  const string& bugs_file)
+                  const string& bugs_file,
+                  bool locate)
 {
 	bool debug = getenv("DEBUG") != nullptr;
 
@@ -217,14 +285,16 @@ static void cruft(const string& ignore_file,
 	strftime(buf, sizeof(buf), "%c", timeinfo);
 	cout << "cruft report: " << buf << '\n';
 
-	bool updated = updatedb();
-	if (!updated) {
-		cerr << "warning: plocate database is outdated" << endl << flush;
+	if (locate) {
+		bool updated = updatedb();
+		if (!updated) {
+			cerr << "warning: plocate database is outdated" << endl << flush;
+		}
+		elapsed("updatedb");
 	}
-	elapsed("updatedb");
 
 	vector<string> fs;
-	thread thr_plocate(read_locate, ref(fs), ignore_file);
+	thread thr_plocate(locate ? read_locate : read_nolocate, ref(fs), ignore_file);
 
 	vector<string> packages;
 	vector<string> dpkg;
@@ -347,6 +417,7 @@ static void cruft(const string& ignore_file,
 int main(int argc, char *argv[])
 {
 	bool do_one_package = false;
+	bool locate = true;
 	string package = "";
 	string explain_dir = default_explain_dir;
 	string filter_dir = default_filter_dir;
@@ -357,6 +428,7 @@ int main(int argc, char *argv[])
 	const struct option long_options[] =
 	{
 		{"help", no_argument, nullptr, 'h'},
+		{"no-locate", no_argument, nullptr, 'n'},
 		{"package", required_argument, nullptr, 'p'},
 		{"explain", required_argument, nullptr, 'E'},
 		{"filter", required_argument, nullptr, 'F'},
@@ -367,7 +439,7 @@ int main(int argc, char *argv[])
 	};
 
 	int opt, opti = 0;
-	while ((opt = getopt_long(argc, argv, "p:E:F:hI:R:B:", long_options, &opti)) != 0) {
+	while ((opt = getopt_long(argc, argv, "p:E:F:hI:nR:B:", long_options, &opti)) != 0) {
 		if (opt == EOF)
 			break;
 
@@ -394,6 +466,10 @@ int main(int argc, char *argv[])
 
 		case 'I':
 			ignore_file = optarg;
+			break;
+
+		case 'n':
+			locate = false;
 			break;
 
 		case 'R':
@@ -430,5 +506,5 @@ int main(int argc, char *argv[])
 	}
 
 	// else: standard cruft report
-	cruft(ignore_file, filter_dir, ruleset_file, explain_dir, bugs_file);
+	cruft(ignore_file, filter_dir, ruleset_file, explain_dir, bugs_file, locate);
 }
