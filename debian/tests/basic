@@ -1,7 +1,11 @@
 #! /bin/sh
 set -e
 
+echo 'standard run'
 cruft
+
+echo '--no-locate'
+cruft --no-locate
 
 echo 'should print: "base-passwd"'
 cruft /etc/passwd
