@@ -1,25 +1,23 @@
 #!/bin/sh
 set -e
 
-test -z "$CRUFT_ROOT" || exit 0
+[ -d "$CRUFT_ROOT/etc/ssl/certs" ] || exit 0
 
-[ -d /etc/ssl/certs ] || exit 0
-
-find /etc/ssl/certs -type l -name \*.pem |
+find "$CRUFT_ROOT/etc/ssl/certs" -type l -name \*.pem |
  while read -r name
  do
-   [ -e "$name" ] && echo "$name"
+   [ -e "$name" ] && echo "${name#"$CRUFT_ROOT"}"
  done
 
-find /etc/ssl/certs -type l -name '????????.?' |
+find "$CRUFT_ROOT/etc/ssl/certs" -type l -name '????????.?' |
  while read -r name
  do
-   [ -e "$name" ] && echo "$name"
+   [ -e "$name" ] && echo "${name#"$CRUFT_ROOT"}"
  done
 
-find /etc/ssl/certs -type l -name '????????' |
+find "$CRUFT_ROOT/etc/ssl/certs" -type l -name '????????' |
  while read -r name
  do
 	link=$(readlink "$name")
-   [ "$link" = "ssl-cert-snakeoil.pem" ] && echo "$name"
+   [ "$link" = "ssl-cert-snakeoil.pem" ] && echo "${name#"$CRUFT_ROOT"}"
  done
