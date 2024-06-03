@@ -1,0 +1,27 @@
+Over the last 10 years cruft(-ng) had many different purpose for me:
+
+- learn how to maitain a Debian package
+
+- learn some C++ (this is the first/only thing I wrote)
+
+- peak into the innards/maintainer scripts of random packages
+
+- file bug for runtime bugs not detected by piuparts.
+
+  Piuparts never actually _run_ the package.
+  Maybe some weird mixture of piuparts & autopkgtests could help.
+
+- later I had to cram a Debian system in small embedded system,
+  then the .csv output of "cpigs" becomes invaluable and
+  can played with Jupyter or whatever.
+
+  -> when doing thins, "cruft" becomes merely a tool
+     usefull to train "cpigs" with new rules.
+
+  The "python3-pip" is one such rule: it's "at risk" files,
+  all the things that will become useless when Debian
+  switch to the next major Python version,
+  and they should be accounted somewhere/somehow.
+
+  So I'm undecided to simply delete this "python3-pip"
+  rule because I know I will needed it again.
