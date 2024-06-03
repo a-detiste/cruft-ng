@@ -1,3 +1,4 @@
+/etc/X11/default-display-manager
 /var/lib/xdm
 /var/lib/xdm/authdir
 /var/lib/xdm/authdir/authfiles

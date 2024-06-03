@@ -1,4 +1,5 @@
 /etc/sddm.conf
+/etc/X11/default-display-manager
 /usr/share/sddm/faces/*.face.icon
 /usr/share/sddm/themes/*/theme.conf.user
 /var/lib/sddm
