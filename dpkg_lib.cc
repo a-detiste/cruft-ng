@@ -11,6 +11,7 @@ extern "C" {
 #include <dpkg/dpkg.h>
 #include <dpkg/dpkg-db.h>
 #include <dpkg/db-fsys.h>
+#include <dpkg/fsys.h>
 #include <dpkg/pkg-array.h>
 #include <dpkg/pkg-list.h>
 #include <dpkg/pkg-show.h>
@@ -27,7 +28,8 @@ extern "C" {
 https://www.dpkg.org/doc/libdpkg/structpkginfo.html
 */
 
-void dpkg_start() {
+void dpkg_start(const string& root_dir) {
+	dpkg_fsys_set_dir(root_dir.c_str());
 	dpkg_program_init("cruft");
 	modstatdb_open(msdbrw_readonly);
 }
@@ -109,7 +111,7 @@ static void callback(const char *filename, const char *filetype)
 }
 #endif
 
-int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
+int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv, const string& root_dir)
 {
 	struct pkg_array array;
 	struct pkginfo *pkg;
@@ -146,6 +148,8 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 	ensure_diversions();
 	ensure_allinstfiles_available_quiet();
 
+	auto root_dir_length = root_dir.length()-1;
+
 	for (int i = 0; i < array.n_pkgs; i++) {
 		pkg = array.pkgs[i];
 		if (pkg->status == PKG_STAT_INSTALLED || pkg->status == PKG_STAT_CONFIGFILES) {
@@ -173,7 +177,7 @@ int read_dpkg(vector<string>& packages, vector<string>& output, bool print_csv)
 			for (const auto& suffix: suffixes) {
 				string control = control_ + suffix;
 				if (stat(control.c_str(), &buffer) == 0) {
-					output.emplace_back(control);
+					output.emplace_back(control.substr(root_dir_length));
 				}
 			}
 #endif

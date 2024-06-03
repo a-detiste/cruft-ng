@@ -8,5 +8,5 @@
 #define NOLOCATE_H
 using namespace std;
 
-int read_nolocate(vector<string>& fs, const string& ignore_path);
+int read_nolocate(vector<string>& fs, const string& ignore_path, const string& root_dir);
 #endif

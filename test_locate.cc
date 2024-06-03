@@ -4,7 +4,7 @@
 int main()
 {
 	vector<string> fs;
-	read_locate(fs, "/etc/cruft/ignore");
+	read_locate(fs, "/etc/cruft/ignore", "/");
 
 	cout << '/' << endl;
 	for (unsigned int i=0;i<fs.size();i++) {

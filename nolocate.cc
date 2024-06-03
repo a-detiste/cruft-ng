@@ -16,7 +16,7 @@
 
 using namespace std;
 
-int read_nolocate(vector<string>& fs, const string& ignore_path)
+int read_nolocate(vector<string>& fs, const string& ignore_path, const string& root_dir)
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
@@ -28,10 +28,11 @@ int read_nolocate(vector<string>& fs, const string& ignore_path)
 	read_ignores(ignores, ignore_path);
 
 	struct statfs buf;
+	auto root_dir_length = root_dir.length()-1;
 
         for (auto entry =
                  filesystem::recursive_directory_iterator{
-                     "/",
+                     root_dir,
                      filesystem::directory_options::skip_permission_denied};
              entry != filesystem::recursive_directory_iterator(); entry++)
 	{
@@ -69,7 +70,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path)
 		if (ignored) continue;
 
 		if (!pyc_has_py(string{filename}, debug))
-			fs.emplace_back(filename);
+			fs.emplace_back(filename.substr(root_dir_length));
 	}
 
 	sort(fs.begin(), fs.end());

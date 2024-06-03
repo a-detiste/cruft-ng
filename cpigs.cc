@@ -160,15 +160,15 @@ int main(int argc, char *argv[])
 	}
 
 	vector<string> fs;
-	read_locate(fs, "/usr/share/cruft/ignore");
+	read_locate(fs, "/usr/share/cruft/ignore", "/");
 	elapsed("plocate");
 
 	if (csv) cout << "path;package;type;cruft;size" << endl;
 
 	vector<string> packages;
 	vector<string> dpkg;
-	dpkg_start();
-	read_dpkg(packages, dpkg, static_);
+	dpkg_start("/");
+	read_dpkg(packages, dpkg, static_, "/");
 	dpkg_end();
 	elapsed("dpkg");
 

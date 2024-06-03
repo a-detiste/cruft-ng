@@ -106,7 +106,7 @@ static void one_file(const string& path)
 	}
 
 	// is it a static file ?
-	dpkg_start();
+	dpkg_start("/");
 	if (query(path.c_str())) {
 		dpkg_end();
 		exit(0);
@@ -180,6 +180,7 @@ static const char* const default_filter_dir = "/etc/cruft/filters/";
 static const char* const default_ignore_file = "/etc/cruft/ignore";
 static const char* const default_ruleset_file = "/usr/share/cruft/ruleset";
 static const char* const default_bugs_file = "/usr/share/cruft/bugs";
+static const char* const default_root_dir = "/";
 
 static void print_help_message()
 {
@@ -195,6 +196,7 @@ static void print_help_message()
 	cout << "    -I --ignore      path for ignore file (default: " << default_ignore_file << ")\n";
 	cout << "    -R --ruleset     path for ruleset file (default: " << default_ruleset_file << ")\n";
 	cout << "    -B --bugs        path for known bugs file (default: " << default_bugs_file << ")\n";
+	cout << "    -r --root        root directory (default: " << default_root_dir << ")\n";
 
 	cout << '\n';
 
@@ -206,7 +208,8 @@ static void cruft(const string& ignore_file,
                   const string& ruleset_file,
                   const string& explain_dir,
                   const string& bugs_file,
-                  bool locate)
+                  bool locate,
+                  const string& root_dir)
 {
 	bool debug = getenv("DEBUG") != nullptr;
 
@@ -229,12 +232,12 @@ static void cruft(const string& ignore_file,
 	}
 
 	vector<string> fs;
-	thread thr_plocate(locate ? read_locate : read_nolocate, ref(fs), ignore_file);
+	thread thr_plocate(locate ? read_locate : read_nolocate, ref(fs), ignore_file, root_dir);
 
 	vector<string> packages;
 	vector<string> dpkg;
-	dpkg_start();
-	thread thr_dpkg(read_dpkg, ref(packages), ref(dpkg), false);
+	dpkg_start(root_dir);
+	thread thr_dpkg(read_dpkg, ref(packages), ref(dpkg), false, root_dir);
 	thr_plocate.join();
 	thr_dpkg.join();
 	dpkg_end();
@@ -359,6 +362,7 @@ int main(int argc, char *argv[])
 	string ignore_file = default_ignore_file;
 	string ruleset_file = default_ruleset_file;
 	string bugs_file = default_bugs_file;
+	string root_dir = default_root_dir;
 
 	const struct option long_options[] =
 	{
@@ -370,11 +374,12 @@ int main(int argc, char *argv[])
 		{"ignore", required_argument, nullptr, 'I'},
 		{"ruleset", required_argument, nullptr, 'R'},
 		{"bugs", required_argument, nullptr, 'B'},
+		{"root", required_argument, nullptr, 'r'},
 		{0, 0, 0, 0}
 	};
 
 	int opt, opti = 0;
-	while ((opt = getopt_long(argc, argv, "p:E:F:hI:nR:B:", long_options, &opti)) != 0) {
+	while ((opt = getopt_long(argc, argv, "p:E:F:hI:nR:B:r:", long_options, &opti)) != 0) {
 		if (opt == EOF)
 			break;
 
@@ -419,6 +424,12 @@ int main(int argc, char *argv[])
 			print_help_message();
 			exit(1);
 
+		case 'r':
+			root_dir = optarg;
+			if (!root_dir.empty() && root_dir.back() != '/')
+				root_dir += '/';
+			break;
+
 	        default:
 	            cerr << "Invalid getopt return value: " << opt << "\n";
 				break;
@@ -441,5 +452,5 @@ int main(int argc, char *argv[])
 	}
 
 	// else: standard cruft report
-	cruft(ignore_file, filter_dir, ruleset_file, explain_dir, bugs_file, locate);
+	cruft(ignore_file, filter_dir, ruleset_file, explain_dir, bugs_file, locate, root_dir);
 }

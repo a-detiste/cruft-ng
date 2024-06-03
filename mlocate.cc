@@ -15,7 +15,7 @@
 using namespace std::experimental;
 namespace fs = std::experimental::filesystem;
 
-int read_locate(vector<string>& fs, const string& ignore_path) // vector<string>& prunefs
+int read_locate(vector<string>& fs, const string& ignore_path, const string& root_dir) // vector<string>& prunefs
 {
 	bool debug=getenv("DEBUG") != NULL;
 
