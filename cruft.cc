@@ -6,25 +6,21 @@
 #include <algorithm>
 #include <ctime>
 #include <thread>
-#include <filesystem>
 
 #include <sys/stat.h>
 #include <getopt.h>
 #include <cstring>
 #include <unistd.h>
 #include <dirent.h>
-#include <sys/vfs.h>
-#include <linux/magic.h>
 
 #include "explain.h"
 #include "filters.h"
 #include "locate.h"
+#include "nolocate.h"
 #include "dpkg.h"
 #include "dpkg_exclude.h"
 #include "shellexp.h"
 #include "bugs.h"
-#include "python.h"
-#include "read_ignores.h"
 
 using namespace std;
 
@@ -203,68 +199,6 @@ static void print_help_message()
 	cout << '\n';
 
 	cout << "    -h --help        this help message\n";
-}
-
-int read_nolocate(vector<string>& fs, const string& ignore_path)
-{
-	bool debug=getenv("DEBUG") != nullptr;
-
-	if (debug) cerr << "FILESYSTEM DATA\n";
-
-	init_python();
-
-	vector<string> ignores;
-	read_ignores(ignores, ignore_path);
-
-	struct statfs buf;
-
-        for (auto entry =
-                 filesystem::recursive_directory_iterator{
-                     "/",
-                     filesystem::directory_options::skip_permission_denied};
-             entry != filesystem::recursive_directory_iterator(); entry++)
-	{
-		std::string filename{entry->path()};
-
-		statfs(filename.c_str(), &buf);
-
-		if (buf.f_type == TMPFS_MAGIC
-		    or buf.f_type == SYSFS_MAGIC
-		    or buf.f_type == PROC_SUPER_MAGIC
-		    or filename == "/dev"
-		    or (filename == "/home" /* and dirname != "/home" */)
-		    or filename == "/media"
-		    or filename == "/mnt"
-		    or filename == "/root"
-		    or filename == "/tmp")
-			entry.disable_recursion_pending();
-
-		bool ignored = false;
-		for (const auto& it : ignores) {
-			if (filename.size() > it.size() && filename.compare(0, it.size(), it) == 0) {
-				ignored = true;
-				break;
-			}
-
-			// ignore directory '/foo' for ignore entry '/foo/'
-			error_code ec;
-			if (filename.size() + 1 == it.size()
-			&& it.compare(0, filename.size(), filename) == 0
-			&& filesystem::is_directory(filename, ec)) {
-				ignored = true;
-				break;
-			}
-		}
-		if (ignored) continue;
-
-		if (!pyc_has_py(string{filename}, debug))
-			fs.emplace_back(filename);
-	}
-
-	sort(fs.begin(), fs.end());
-	fs.erase( unique( fs.begin(), fs.end() ), fs.end() );
-	if (debug) cerr << fs.size() << " relevant files in filesystem"  << endl << endl;
-	return 0;
 }
 
 static void cruft(const string& ignore_file,

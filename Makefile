@@ -23,14 +23,14 @@ plocate.o: plocate.cc locate.h read_ignores.h
 mlocate.o: mlocate.cc locate.h
 read_ignores.o: read_ignores.cc read_ignores.h
 
-cruft.o: cruft.cc explain.h filters.h dpkg.h python.h read_ignores.h
+cruft.o: cruft.cc explain.h filters.h dpkg.h python.h read_ignores.h nolocate.h
 dpkg_lib.o: dpkg_lib.cc dpkg.h /usr/include/dpkg/dpkg.h
 dpkg_popen.o: dpkg_popen.cc dpkg.h
 
 cruftold: $(SHARED_OBJS) $(CRUFT_OBJS) mlocate.o dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) mlocate.o dpkg_popen.o -lstdc++fs -pthread -o cruftold
-cruft: $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o $(LIBDPKG_LIBS) -pthread -o cruft
+cruft: $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o nolocate.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o nolocate.o $(LIBDPKG_LIBS) -pthread -o cruft
 
 cpigsold: $(SHARED_OBJS) cpigs.o mlocate.o dpkg_popen.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) cpigs.o mlocate.o dpkg_popen.o -lstdc++fs -o cpigsold
