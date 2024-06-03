@@ -1,5 +1,7 @@
 #!/bin/sh
 
+test -z "$CRUFT_ROOT" || exit 0
+
 test -d /lib/systemd/system || exit 0  # Devuan
 
 grep -e ^CacheDirectory= -e ^StateDirectory= /lib/systemd/system/*.service | while IFS=':=' read -r service kind path

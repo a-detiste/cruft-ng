@@ -1,4 +1,6 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 find /etc/rc?.d/ -type l -name '[SK][0-9][0-9]*' ! -xtype l -lname '../init.d/*'

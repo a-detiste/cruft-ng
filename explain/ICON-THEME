@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 # shellcheck disable=SC1001
 # SC1001 (info): This \- will be a regular '-' in this context.
 packages="$(dpkg-query -W -f='${db:Status-Abbrev}-${binary:Package}\n' '*-icon-theme' 2> /dev/null | grep ^i | cut -f 2 -d \- )"

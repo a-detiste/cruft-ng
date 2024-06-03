@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 test -d /usr/share/munin/plugins || exit 0
 
 find /usr/share/munin/plugins -maxdepth 1 -type f -printf "%f\n" | while read -r file

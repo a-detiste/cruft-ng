@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 if [ -d /var/lib/doc-base/info ]
 then
     find /var/lib/doc-base/info -mindepth 1 -maxdepth 1 -name '*.list' -print0 | xargs -r0 cat

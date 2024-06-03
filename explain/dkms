@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 test -x /usr/sbin/dkms || exit 0
 
 for package in $(/usr/sbin/dkms status | cut -f1 -d\, | sort -u)

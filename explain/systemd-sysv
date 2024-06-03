@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 test -d /var/lib/systemd/timers/ || exit 0
 
 find /var/lib/systemd/timers/ -type f -printf "%f\n" | cut -d '-' -f 2-999 | cut -d '.' -f 1-2 | sort | while read -r unit

@@ -1,4 +1,6 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 dpkg-query -L grub-efi-amd64-bin 2>/dev/null | grep ^/usr/lib/grub/x86_64-efi | grep -e '\.mod$' -e '\.lst$' | sed 's#usr/lib#boot#'

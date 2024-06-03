@@ -1,5 +1,7 @@
 #!/bin/bash
 
+test -z "$CRUFT_ROOT" || exit 0
+
 # /etc/logrotate.d/dpkg always exists
 
 for definition in /etc/logrotate.d/*
