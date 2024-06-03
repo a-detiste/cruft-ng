@@ -1,4 +1,7 @@
 /etc/asound.conf
+/etc/modprobe.d/sound
+/etc/modprobe.d/sound.conf
+/etc/modutils/sound
 /var/lib/alsa/asound.state
 /var/lib/alsa/asound.state.lock
 /var/lock/asound.state.lock
