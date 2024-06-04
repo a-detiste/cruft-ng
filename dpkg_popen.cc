@@ -9,7 +9,7 @@
 #include "dpkg.h"
 #include "usr_merge.h"
 
-void dpkg_start() {}
+void dpkg_start(const string& root_dir) {}
 void dpkg_end() {}
 
 int query(const char *path)
@@ -166,7 +166,7 @@ static int read_dpkg_items(vector<string>& dpkg)
 	return 0;
 }
 
-int read_dpkg(vector<string>& packages, vector<string>& files, bool csv) {
+int read_dpkg(vector<string>& packages, vector<string>& files, bool csv, const string& root_dir) {
 	read_dpkg_header(packages);
 	read_dpkg_items(files);
 

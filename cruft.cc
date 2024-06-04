@@ -16,7 +16,6 @@
 #include "explain.h"
 #include "filters.h"
 #include "locate.h"
-#include "nolocate.h"
 #include "dpkg.h"
 #include "dpkg_exclude.h"
 #include "shellexp.h"
@@ -28,6 +27,7 @@ using namespace std;
 #define LOCATE_DB "/var/lib/mlocate/mlocate.db"
 #define UPDATEDB "updatedb.mlocate"
 #else
+#include "nolocate.h"
 #define LOCATE_DB "/var/lib/plocate/plocate.db"
 #define UPDATEDB "updatedb.plocate"
 #endif
@@ -190,13 +190,15 @@ static void print_help_message()
 
 	cout << "OPTIONS\n";
 	cout << "    -p --package     list volatile files only for this one package\n";
-	cout << "    -n --nolocate    do not use locate\n";
 	cout << "    -E --explain     directory for explain scripts (default: " << default_explain_dir << ")\n";
 	cout << "    -F --filter      directory for filters (default: " << default_filter_dir << ")\n";
 	cout << "    -I --ignore      path for ignore file (default: " << default_ignore_file << ")\n";
 	cout << "    -R --ruleset     path for ruleset file (default: " << default_ruleset_file << ")\n";
 	cout << "    -B --bugs        path for known bugs file (default: " << default_bugs_file << ")\n";
+#ifndef BUSTER
+	cout << "    -n --nolocate    do not use locate\n";
 	cout << "    -r --root        root directory (default: " << default_root_dir << ")\n";
+#endif
 
 	cout << '\n';
 
@@ -232,7 +234,11 @@ static void cruft(const string& ignore_file,
 	}
 
 	vector<string> fs;
+#ifndef BUSTER
 	thread thr_plocate(locate ? read_locate : read_nolocate, ref(fs), ignore_file, root_dir);
+#else
+	thread thr_plocate(read_locate, ref(fs), ignore_file, root_dir);
+#endif
 
 	vector<string> packages;
 	vector<string> dpkg;

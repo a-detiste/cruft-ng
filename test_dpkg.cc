@@ -5,8 +5,8 @@ int main()
 {
 	vector<string> packages;
 	vector<string> db;
-	dpkg_start();
-	read_dpkg(packages, db, false);
+	dpkg_start("/");
+	read_dpkg(packages, db, false, "/");
 	dpkg_end();
 
 	for (unsigned int i=0;i<packages.size();i++) {

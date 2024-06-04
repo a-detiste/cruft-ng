@@ -7,7 +7,7 @@ int main()
 {
 	vector<string> packages;
 	vector<owner> globs;
-	dpkg_start();
+	dpkg_start("/");
 	read_dpkg_header(packages);
 	dpkg_end();
 	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, globs);
