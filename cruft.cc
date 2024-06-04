@@ -313,6 +313,8 @@ static void cruft(const string& ignore_file,
 	elapsed("extra vs globs");
 	if (debug) cerr << cruft3.size() << " files in cruft3 database\n\n";
 
+	// set CRUFT_ROOT for explain scripts
+	setenv("CRUFT_ROOT", root_dir == "/" ? "" : root_dir.c_str(), 0);
 	// match the dynamic "explain" filters
 	vector<owner> explain;
 	read_explain(explain_dir, packages, explain);

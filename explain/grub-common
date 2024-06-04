@@ -1,4 +1,6 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 dpkg-query -L grub-common 2>/dev/null | grep 'grub\.mo' | sed 's#usr/share#boot/grub#' | sed 's#/LC_MESSAGES/grub##'

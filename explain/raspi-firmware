@@ -1,5 +1,7 @@
 #!/bin/sh
 
+test -z "$CRUFT_ROOT" || exit 0
+
 set -eu
 
 if test -d /usr/lib/raspi-firmware

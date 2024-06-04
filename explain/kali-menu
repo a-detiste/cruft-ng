@@ -2,6 +2,8 @@
 
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 test -d /usr/share/kali-menu/applications/ || exit 0
 
 find /usr/share/kali-menu/applications/ -maxdepth 1 -type f -printf "%f\n" | while read -r m

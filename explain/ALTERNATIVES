@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 ALTDIR="/etc/alternatives"
 
 update-alternatives --get-selections | while read -r alternative _y _z

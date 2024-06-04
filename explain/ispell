@@ -1,4 +1,7 @@
 #!/bin/bash
+
+test -z "$CRUFT_ROOT" || exit 0
+
 set -eu
 
 dpkg-query --showformat '${db:Status-Abbrev} ${Package} ${binary:Synopsis}\n' --show 'i*' | while read -r status package desc

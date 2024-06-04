@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 for user in root $(awk -F: '{ if ( 1000 <= $3 && $3 < 30000 ) print $1 }' /etc/passwd)
 do
 	if [ -d "/var/lib/lightdm/data/$user" ]

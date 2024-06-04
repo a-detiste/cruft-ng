@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 if [ -d /boot/grub ]
 then
     d=/boot/grub

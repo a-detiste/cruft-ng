@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+test -z "$CRUFT_ROOT" || exit 0
+
 # this is useful even when systemd is not the init system
 # because these declarative configs are shipped anyway
 
