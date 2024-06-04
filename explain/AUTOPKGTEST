@@ -1,7 +1,5 @@
 #!/bin/sh
 
-test -z "$CRUFT_ROOT" || exit 0
-
 #ADT_ARTIFACTS=/tmp/autopkgtest-lxc.gid7jdjn/downtmp/basic-artifacts
 #ADT_NORMAL_USER=debci
 #ADTTMP=/tmp/autopkgtest-lxc.gid7jdjn/downtmp/autopkgtest_tmp
@@ -31,7 +29,4 @@ then
   echo /usr/sbin/autopkgtest-reboot
   echo /var/log/bootstrap.log
   echo /var/tmp/debci.pkg
-else
-  echo debian-installer
-  echo /etc/apt/apt.conf.d/10periodic
 fi
