@@ -1,2 +1,2 @@
-/var/lib/alsa/card0.conf.d
-/var/lib/alsa/card*.conf.d/dmics-nhlt.json
+/var/lib/alsa/card?.conf.d
+/var/lib/alsa/card?.conf.d/dmics-nhlt.json
