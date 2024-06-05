@@ -2,3 +2,13 @@
 /usr/share/drbl/conf/drbl.conf
 /var/lib/clonezilla
 /var/lib/clonezilla/ocs-vars
+# it looks like nothing clean these logs
+/var/log/clonezilla.log
+/var/log/clonezilla.log.*
+/var/log/ocs-mount.log
+/var/log/ocs-mount.log.*
+/var/log/partclone*.log
+/var/log/partclone*.log.*
+/var/log/partimage/partimage-debug.log
+/var/log/partimage/partimage-debug.log_latest
+/var/log/*-img-chk.log
