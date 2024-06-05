@@ -1,5 +1,7 @@
 /var/lib/ofono/*
+/var/lib/ofono/*/gprs
 /var/lib/ofono/*/lte
+/var/lib/ofono/*/netreg
 /var/lib/ofono/*/radiosetting
 /var/lib/ofono/*/sms
 /var/lib/ofono/*/version
