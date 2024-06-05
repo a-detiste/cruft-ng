@@ -3,4 +3,7 @@ set -e
 
 test -z "$CRUFT_ROOT" || exit 0
 
+# non UsrMerged path to remain compatible with Buster
+test -x /bin/mount || exit 0
+
 mount | grep -E ".* on .* type ext[234]" | awk '{ print $3"/lost+found" }' | sed 's://*:/:g'

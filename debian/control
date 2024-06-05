@@ -18,7 +18,6 @@ Architecture: any
 Depends:
   ${shlibs:Depends},
   ${misc:Depends},
-  mount,
 Recommends:
   ${dist:Depends},
 Suggests:
