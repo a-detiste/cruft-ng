@@ -197,7 +197,7 @@ static void print_help_message()
 	cout << "    -B --bugs        path for known bugs file (default: " << default_bugs_file << ")\n";
 #ifndef BUSTER
 	cout << "    -n --nolocate    do not use locate\n";
-	cout << "    -r --root        root directory (default: " << default_root_dir << ")\n";
+	cout << "    -r --root        root directory (default: " << default_root_dir << ", only works with --no-locate)\n";
 #endif
 
 	cout << '\n';

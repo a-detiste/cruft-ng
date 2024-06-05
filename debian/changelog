@@ -7,6 +7,9 @@ cruft-ng (0.9.63) UNRELEASED; urgency=medium
   [ Jochen Sprickerhof ]
   * new "--no-locate" option to make cruft-ng work without locate
     (Closes: #1072389)
+  * new "--root" option to inspect root file systems from outside. Explain
+    scripts need to check $CRUFT_ROOT to check inside or skip. Only
+    implemented for "--no-locate".
 
  -- Alexandre Detiste <tchet@debian.org>  Sun, 02 Jun 2024 15:57:22 +0200
 
