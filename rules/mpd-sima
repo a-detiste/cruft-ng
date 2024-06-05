@@ -1,0 +1,4 @@
+/var/lib/mpd-sima/http
+/var/lib/mpd-sima/http/LastFM
+/var/lib/mpd-sima/http/LastFM/*
+/var/lib/mpd-sima/sima.db
