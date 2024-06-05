@@ -10,6 +10,7 @@ cruft-ng (0.9.63) UNRELEASED; urgency=medium
   * new "--root" option to inspect root file systems from outside. Explain
     scripts need to check $CRUFT_ROOT to check inside or skip. Only
     implemented for "--no-locate".
+  * add new rules: mpd-sima, fonts-urw-base35, lmodern, alsa-ucm-conf
 
  -- Alexandre Detiste <tchet@debian.org>  Sun, 02 Jun 2024 15:57:22 +0200
 
