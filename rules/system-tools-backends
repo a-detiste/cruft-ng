@@ -1,6 +1,10 @@
 /var/cache/system-tools-backends
 /var/cache/system-tools-backends/backup
 /var/cache/system-tools-backends/backup/*
+/var/cache/system-tools-backends/backup/*/etc
+/var/cache/system-tools-backends/backup/*/etc/group
+/var/cache/system-tools-backends/backup/*/etc/passwd
+/var/cache/system-tools-backends/backup/*/etc/shadow
 /var/cache/system-tools-backends/backup/*/var
 /var/cache/system-tools-backends/backup/*/var/cache
 /var/cache/system-tools-backends/backup/*/var/cache/system-tools-backends
