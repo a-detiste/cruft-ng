@@ -15,6 +15,8 @@
 /var/lib/lightdm/.cache/mesa_shader_cache
 /var/lib/lightdm/.cache/mesa_shader_cache/index
 /var/lib/lightdm/.config
+/var/lib/lightdm/.config/ibus
+/var/lib/lightdm/.config/ibus/bus
 /var/lib/lightdm/.config/pulse
 /var/lib/lightdm/.config/pulse/*
 /var/lib/lightdm/.dbus
@@ -24,6 +26,7 @@
 /var/lib/lightdm/.local/state
 /var/lib/lightdm/.local/state/wireplumber
 /var/lib/lightdm/.local/state/wireplumber/restore-stream
+/var/lib/lightdm/.local/state/wireplumber/stream-properties
 /var/lib/lightdm/data
 /var/lib/lightdm/data/lightdm
 /var/log/lightdm
