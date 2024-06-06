@@ -35,7 +35,11 @@ concat rules > ruleset
 concat non-free >> ruleset
 
 # releases are in reverse order
-if dpkg-vendor --derives-from Ubuntu
+if dpkg-vendor --is kali
+then
+    concat kali >> ruleset
+    exit 0
+elif dpkg-vendor --derives-from Ubuntu
 then
     concat ubuntu/devel >> ruleset
     archive="ubuntu"

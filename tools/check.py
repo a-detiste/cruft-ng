@@ -40,12 +40,6 @@ testing.add('hurd')
 testing.add('libc0.3')
 
 # Add Kali Linux
-testing.add('kali-archive-keyring')
-testing.add('kali-defaults')
-testing.add('kali-menu')
-testing.add('kali-themes')
-testing.add('kali-themes-common')
-testing.add('kali-undercover')
 testing.add('king-phisher')
 testing.add('powershell-empire')
 testing.add('webshells')
