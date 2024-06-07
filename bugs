@@ -88,7 +88,9 @@
 /usr/share/fonts/woff/font-awesome/.uuid 909541 fontconfig
 /usr/share/fonts/woff/jetbrains-mono 897040 fontconfig
 /usr/share/fonts/woff2/jetbrains-mono 897040 fontconfig
-/usr/share/texmf/fonts 1022566 fontconfig
+/usr/share/gnome 558350 gnome-session
+/usr/share/gnome/applications 558350 gnome-session
+/usr/share/gnome/applications/mimeinfo.cache 558350 gnome-session
 /var/cache/fontconfig 1022566 fontconfig
 /var/cache/pbuilder/build/cow.30225 852549 glib2.0
 /var/cache/pbuilder/build/cow.30225/.ilist 852549 glib2.0
