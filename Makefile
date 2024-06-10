@@ -10,7 +10,7 @@ override CXXFLAGS += $(LIBDPKG_CFLAGS)
 SHARED_OBJS = explain.o filters.o shellexp.o usr_merge.o python.o owner.o read_ignores.o
 CRUFT_OBJS = cruft.o dpkg_exclude.o bugs.o
 
-sid: cruft ruleset cpigs
+sid: cruft ruleset ruleset-minimal cpigs
 buster: cruftold cpigsold
 
 tests: test_plocate test_explain test_filters test_excludes test_dpkg test_python
@@ -55,14 +55,17 @@ test_explain: test_explain.cc explain.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG
 test_filters: test_filters.cc filters.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
 
 clean:
-	rm -f cpigs cruft cruftold ruleset test_?locate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python test_bugs
+	rm -f cpigs cruft cruftold ruleset ruleset-minimal test_?locate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python test_bugs
 	rm -f *.o
 
 ruleset: rules/*
 	echo Checking for trailing whitespaces
 	grep -E -R -H " +$$" rules/ || true
 	! grep -E -R -q " +$$" rules/
-	./ruleset.sh
+	./ruleset.sh ruleset
+
+ruleset-minimal: ruleset
+	./ruleset.sh ruleset-minimal
 
 flow.png: flow.ditaa
 	ditaa flow.ditaa flow.png

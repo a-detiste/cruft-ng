@@ -23,7 +23,8 @@ endif
 override_dh_auto_build-indep:
 
 override_dh_auto_build-arch:
-	./ruleset.sh $(DEB_DISTRIBUTION)
+	./ruleset.sh ruleset $(DEB_DISTRIBUTION)
+	./ruleset.sh ruleset-minimal $(DEB_DISTRIBUTION)
 ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
 	dh_auto_build -- cruftold cpigsold
 	mv cruftold cruft
