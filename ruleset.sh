@@ -2,7 +2,10 @@
 LC_ALL=C.UTF-8
 
 set -e
-rm -f ruleset
+
+RULESET="$1"
+shift
+rm -f "$RULESET"
 
 function concat() {
 (
@@ -14,6 +17,11 @@ do
 	do
 		case "$rule" in
 			"")
+			;;
+			'# Minimal')
+			    if [ "$RULESET" = "ruleset-minimal" ]; then
+				break
+			    fi
 			;;
 			'#'*)
 			;;
@@ -30,22 +38,22 @@ done
 )
 }
 
-concat rules > ruleset
+concat rules > "$RULESET"
 
-concat non-free >> ruleset
+concat non-free >> "$RULESET"
 
 # releases are in reverse order
 if dpkg-vendor --is kali
 then
-    concat kali >> ruleset
+    concat kali >> "$RULESET"
     exit 0
 elif dpkg-vendor --derives-from Ubuntu
 then
-    concat ubuntu/devel >> ruleset
+    concat ubuntu/devel >> "$RULESET"
     archive="ubuntu"
     releases="jammy focal bionic xenial"
 else
-    concat archive/sid >> ruleset
+    concat archive/sid >> "$RULESET"
     archive="archive" # 'debian/' has a special meaning
     releases="forky trixie bookworm bullseye buster"
 fi
@@ -73,7 +81,7 @@ do
     if [ -d "$archive/$r" ]
     then
         echo "adding: $r"
-        concat "archive/$r" >> ruleset
+        concat "archive/$r" >> "$RULESET"
     fi
     if [ "$r" = "$release" ]
     then

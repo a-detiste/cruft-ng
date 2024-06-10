@@ -1,14 +1,8 @@
 /etc/.updated
 /etc/machine-id
-/etc/rc.local
-/etc/systemd/logind.conf.d
-/etc/systemd/network/*.network
-/etc/tmpfiles.d/tmp.conf
 /etc/vconsole.conf
 /var/.updated
 /var/cache/private
-/var/lib/container
-/var/lib/machines
 /var/lib/systemd/backlight
 /var/lib/systemd/backlight/*
 /var/lib/systemd/catalog
@@ -33,3 +27,10 @@
 /var/lib/private/systemd/timesync
 /var/lib/private/systemd/timesync/clock
 /var/log/README
+# Minimal
+/etc/rc.local
+/etc/systemd/logind.conf.d
+/etc/systemd/network/*.network
+/etc/tmpfiles.d/tmp.conf
+/var/lib/container
+/var/lib/machines
