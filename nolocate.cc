@@ -36,7 +36,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
                      filesystem::directory_options::skip_permission_denied};
              entry != filesystem::recursive_directory_iterator(); entry++)
 	{
-		std::string filename{entry->path()};
+		std::string filename{entry->path(), root_dir_length};
 
 		statfs(filename.c_str(), &buf);
 
@@ -70,7 +70,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
 		if (ignored) continue;
 
 		if (!pyc_has_py(string{filename}, debug))
-			fs.emplace_back(filename.substr(root_dir_length));
+			fs.emplace_back(filename);
 	}
 
 	sort(fs.begin(), fs.end());
