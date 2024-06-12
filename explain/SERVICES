@@ -1,12 +1,10 @@
 #!/bin/sh
 
-test -z "$CRUFT_ROOT" || exit 0
+test -d "$CRUFT_ROOT/lib/systemd/system" || exit 0  # Devuan
 
-test -d /lib/systemd/system || exit 0  # Devuan
-
-grep -e ^CacheDirectory= -e ^StateDirectory= /lib/systemd/system/*.service | while IFS=':=' read -r service kind path
+grep -e ^CacheDirectory= -e ^StateDirectory= "$CRUFT_ROOT"/lib/systemd/system/*.service | while IFS=':=' read -r service kind path
 do
-    service="${service##/usr/lib/systemd/system/}"
+    service="${service##"$CRUFT_ROOT/usr/lib/systemd/system/"}"
     package="${service%.service}"
     package="${package%@}"
     test "$package" = "$last_package" || echo "$package"
@@ -19,6 +17,6 @@ do
             fullpath="/var/lib/$path"
             ;;
     esac
-    test -d "$fullpath" && find "$fullpath" 2>/dev/null
+    test -d "$CRUFT_ROOT$fullpath" && find "$CRUFT_ROOT$fullpath" 2>/dev/null | sed "s#^$CRUFT_ROOT##"
     last_package="$package"
 done

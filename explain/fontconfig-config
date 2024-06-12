@@ -1,22 +1,19 @@
 #!/bin/sh
 set -e
-
-test -z "$CRUFT_ROOT" || exit 0
-
 set -u
 
-test -d /usr/share/fontconfig/conf.avail || exit 0
+test -d "$CRUFT_ROOT/usr/share/fontconfig/conf.avail" || exit 0
 
-find /usr/share/fontconfig/conf.avail/ -maxdepth 1 -type f -printf "%f\n" | while read -r file
+find "$CRUFT_ROOT/usr/share/fontconfig/conf.avail/" -maxdepth 1 -type f -printf "%f\n" | while read -r file
 do
-    if test -e "/etc/fonts/conf.d/$file"
+    if test -e "$CRUFT_ROOT/etc/fonts/conf.d/$file"
     then
         echo "/etc/fonts/conf.d/$file"
     fi
 done
 
-find /usr/share/fonts -name .uuid
+find "$CRUFT_ROOT/usr/share/fonts" -name .uuid | sed "s#^$CRUFT_ROOT##"
 
-test -d /usr/local/share/fonts/ && find /usr/local/share/fonts -name .uuid
+test -d "$CRUFT_ROOT/usr/local/share/fonts/" && find "$CRUFT_ROOT/usr/local/share/fonts" -name .uuid | sed "s#^$CRUFT_ROOT##"
 
 exit 0

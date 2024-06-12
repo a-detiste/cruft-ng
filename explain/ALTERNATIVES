@@ -1,14 +1,12 @@
 #!/bin/bash
 set -e
 
-test -z "$CRUFT_ROOT" || exit 0
-
 ALTDIR="/etc/alternatives"
 
-update-alternatives --get-selections | while read -r alternative _y _z
+update-alternatives --root "$CRUFT_ROOT" --get-selections | while read -r alternative _y _z
 do
     echo "$ALTDIR/$alternative"
-    update-alternatives --query "$alternative" 2>/dev/null | while read -r line
+    update-alternatives --root "$CRUFT_ROOT" --query "$alternative" 2>/dev/null | while read -r line
     do
         case "$line" in
             Name:*)
