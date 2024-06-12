@@ -1,17 +1,12 @@
 /cdrom
 /cdrom/cdrom0
 /cdrom0
-/dev
 /floppy
 /initrd
 /media
 /mnt
 /opt
-/proc
-/run
 /srv
-/sys
-/tmp
 /etc/adjtime
 /etc/default/motd-news.wasremoved
 /etc/environment
