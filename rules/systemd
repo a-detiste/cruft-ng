@@ -27,7 +27,7 @@
 /var/lib/private/systemd/timesync
 /var/lib/private/systemd/timesync/clock
 /var/log/README
-# Minimal
+# END ruleset-minimal
 /etc/rc.local
 /etc/systemd/logind.conf.d
 /etc/systemd/network/*.network

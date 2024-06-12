@@ -18,10 +18,8 @@ do
 		case "$rule" in
 			"")
 			;;
-			'# Minimal')
-			    if [ "$RULESET" = "ruleset-minimal" ]; then
-				break
-			    fi
+			"# END "*"$RULESET"*)
+			    break
 			;;
 			'#'*)
 			;;
