@@ -1,10 +1,11 @@
 /etc/ld.so.cache
+# lckpwdf()
+/etc/.pwd.lock
+/var/cache/ldconfig
+/var/cache/ldconfig/aux-cache
+# END ruleset-minimal
 /etc/ld.so.conf
 /etc/ld.so.hwcappkgs
 /etc/ld.so.preload
 /lib/ld-linux.so.3
 /usr/lib/gconv/gconv-modules.cache
-/var/cache/ldconfig
-/var/cache/ldconfig/aux-cache
-# lckpwdf()
-/etc/.pwd.lock

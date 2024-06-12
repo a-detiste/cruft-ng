@@ -1,19 +1,6 @@
 /etc/dpkg/origins/default
-/var/backups/alternatives.tar.0
-/var/backups/alternatives.tar.*.gz
-/var/backups/dpkg.arch.0
-/var/backups/dpkg.arch.*.gz
-/var/backups/dpkg.status.0
-/var/backups/dpkg.status.*.gz
-/var/backups/dpkg.diversions.0
-/var/backups/dpkg.diversions.*.gz
-/var/backups/dpkg.statoverride.0
-/var/backups/dpkg.statoverride.*.gz
 /var/lib/dpkg/alternatives/*
 /var/lib/dpkg/arch
-/var/lib/dpkg/available
-/var/lib/dpkg/available-old
-/var/lib/dpkg/cmethopt
 /var/lib/dpkg/diversions
 /var/lib/dpkg/diversions-old
 /var/lib/dpkg/info/format
@@ -30,3 +17,17 @@
 /var/lib/dpkg/status-new
 /var/lib/dpkg/updates/0*
 /var/lib/dpkg/updates/tmp.i
+/var/backups/alternatives.tar.0
+/var/backups/alternatives.tar.*.gz
+/var/backups/dpkg.arch.0
+/var/backups/dpkg.arch.*.gz
+/var/backups/dpkg.status.0
+/var/backups/dpkg.status.*.gz
+/var/backups/dpkg.diversions.0
+/var/backups/dpkg.diversions.*.gz
+/var/backups/dpkg.statoverride.0
+/var/backups/dpkg.statoverride.*.gz
+# END ruleset-minimal
+/var/lib/dpkg/available
+/var/lib/dpkg/available-old
+/var/lib/dpkg/cmethopt

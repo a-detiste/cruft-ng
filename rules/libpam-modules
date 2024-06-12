@@ -1,3 +1,5 @@
+/etc/environment
+/etc/security/opasswd
+# END ruleset-minimal
 /etc/ftpusers
 /etc/loginusers
-/etc/security/opasswd

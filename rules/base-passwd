@@ -13,6 +13,7 @@
 /etc/subgid-
 /etc/subuid
 /etc/subuid-
+# END ruleset-minimal
 /var/backups/group.bak
 /var/backups/gshadow.bak
 /var/backups/passwd.bak
