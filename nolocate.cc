@@ -69,7 +69,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
 		}
 		if (ignored) continue;
 
-		if (!pyc_has_py(string{filename}, debug))
+		if (!pyc_has_py(string{entry->path()}, debug))
 			fs.emplace_back(filename);
 	}
 
