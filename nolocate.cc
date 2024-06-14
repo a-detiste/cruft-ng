@@ -40,8 +40,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
 
 		statfs(filename.c_str(), &buf);
 
-		if (buf.f_type == TMPFS_MAGIC
-		    or buf.f_type == SYSFS_MAGIC
+		if (buf.f_type == SYSFS_MAGIC
 		    or buf.f_type == PROC_SUPER_MAGIC
 		    or filename == "/dev"
 		    or (filename == "/home" /* and dirname != "/home" */)
