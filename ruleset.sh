@@ -18,7 +18,7 @@ do
 		case "$rule" in
 			"")
 			;;
-			"# END "*"$RULESET"*)
+			"# END "*"$RULESET")
 			    break
 			;;
 			'#'*)
