@@ -15,15 +15,15 @@ do
 	echo "$file"
 	while read -r rule
 	do
-		case "$rule" in
-			"")
+		case "$rule " in
+			" ")
 			;;
-			"# END "*"$RULESET")
+			"# END"*" $RULESET "*)
 			    break
 			;;
 			'#'*)
 			;;
-			*/)
+			*"/ ")
 				echo "${rule:0: -1}"
 				echo "${rule}**"
 			;;
