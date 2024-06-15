@@ -2,6 +2,7 @@ Source: cruft-ng
 Section: admin
 Priority: optional
 Maintainer: Alexandre Detiste <tchet@debian.org>
+Uploaders: Jochen Sprickerhof <jspricke@debian.org>,
 Build-Depends:
     debhelper-compat (= 13),
 Build-Depends-Arch:
