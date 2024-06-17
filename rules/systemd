@@ -31,6 +31,7 @@
 /etc/rc.local
 /etc/systemd/logind.conf.d
 /etc/systemd/network/*.network
+/etc/systemd/system/tmp.mount
 /etc/tmpfiles.d/tmp.conf
 /var/lib/container
 /var/lib/machines
