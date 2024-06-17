@@ -1,8 +1,10 @@
 cruft-ng (0.9.63) UNRELEASED; urgency=medium
 
   * add new rules: gunicorn, gravitywars, ketm, spacearyarya,
+    live-boot, live-config, swtpm-tools, apparmor, udhcpc
   * update existing rules: base-files, python3, raspi-firmware,
-    sddm, systemd,
+    sddm, systemd, ofono, libvirt-daemon-config-network,
+    clonezilla, lightdm, system-tools-backends, gnome-session
 
   [ Jochen Sprickerhof ]
   * new "--no-locate" option to make cruft-ng work without locate
