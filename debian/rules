@@ -58,4 +58,5 @@ override_dh_install-arch:
 	dh_install
 	mkdir -p debian/cruft-ng/usr/lib/cruft/
 	cp -a dpkg_csv.py debian/cruft-ng/usr/lib/cruft/
+	cp -av archive/explain/* debian/cruft-ng/usr/libexec/cruft/
 endif

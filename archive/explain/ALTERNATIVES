@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+
+ALTDIR="/etc/alternatives"
+
+update-alternatives --get-selections | while read -r alternative _y _z
+do
+    echo "$ALTDIR/$alternative"
+    update-alternatives --query "$alternative" 2>/dev/null | while read -r line
+    do
+        case "$line" in
+            Name:*)
+                ;;
+            Link:*)
+                arr=($line)
+                echo "${arr[1]}"
+                ;;
+            Slaves:*)
+                ;;
+            Status:*)
+                break
+                ;;
+            *)
+                arr=($line)
+
+                alt="$ALTDIR/${arr[0]}"
+                test -f "$alt" && echo "$alt"
+
+                link="${arr[1]}"
+                test -f "$link" && echo "$link"
+                ;;
+        esac
+    done
+done
+
+exit 0

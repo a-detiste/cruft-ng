@@ -1,0 +1,33 @@
+#!/bin/sh
+set -e
+
+# shellcheck disable=SC1001
+# SC1001 (info): This \- will be a regular '-' in this context.
+packages="$(dpkg-query -W -f='${db:Status-Abbrev}-${binary:Package}\n' '*-icon-theme' 2> /dev/null | grep ^i | cut -f 2 -d \- )"
+
+# headless setups won't have any icons
+[ -z "$packages" ] && exit 0
+
+for package in $packages
+do
+	echo "${package}-icon-theme"
+
+	# lxde-icon-theme
+	if [ "$package" = "lxde" ]
+	then
+		package=nuoveXT2
+	fi
+
+	if [ "$package" = "numix" ]
+	then
+		find "$CRUFT_ROOT/usr/share/icons/" -iwholename "$CRUFT_ROOT/usr/share/icons/Numix-Light/icon-theme.cache" | sed "s#^$CRUFT_ROOT##"
+	fi
+
+	if [ "$package" = "humanity" ]
+	then
+		find "$CRUFT_ROOT/usr/share/icons/" -iwholename "$CRUFT_ROOT/usr/share/icons/Humanity-Dark/icon-theme.cache" | sed "s#^$CRUFT_ROOT##"
+	fi
+
+	# case insensitive
+	find "$CRUFT_ROOT/usr/share/icons/" -iwholename "$CRUFT_ROOT/usr/share/icons/$package/icon-theme.cache" | sed "s#^$CRUFT_ROOT##"
+done
