@@ -1,5 +1,6 @@
-cruft-ng (0.9.63) UNRELEASED; urgency=medium
+cruft-ng (0.9.63) unstable; urgency=medium
 
+  * welcome Jochen Sprickerhof as co-maintainer
   * add new rules: gunicorn, gravitywars, ketm, spacearyarya,
     live-boot, live-config, swtpm-tools, apparmor, udhcpc
   * update existing rules: base-files, python3, raspi-firmware,
@@ -14,7 +15,7 @@ cruft-ng (0.9.63) UNRELEASED; urgency=medium
     implemented for "--no-locate".
   * add new rules: mpd-sima, fonts-urw-base35, lmodern, alsa-ucm-conf
 
- -- Alexandre Detiste <tchet@debian.org>  Sun, 02 Jun 2024 15:57:22 +0200
+ -- Alexandre Detiste <tchet@debian.org>  Mon, 17 Jun 2024 16:09:49 +0200
 
 cruft-ng (0.9.62) unstable; urgency=medium
 
