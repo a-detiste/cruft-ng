@@ -20,5 +20,7 @@ test -d "$CRUFT_ROOT/etc/apparmor.d/local/abstractions" && echo /etc/apparmor.d/
 find "$CRUFT_ROOT/etc/apparmor.d/abstractions" -maxdepth 1 -type f -printf "%f\n" |
 while read -r file
 do
-        [ -e "$CRUFT_ROOT/etc/apparmor.d/local/abstractions/$file" ] && echo "/etc/apparmor.d/local/abstractions/$file"
+        [ -e "$CRUFT_ROOT/etc/apparmor.d/local/abstractions/$file" ] && echo "/etc/apparmor.d/local/abstractions/$file" || true
 done
+
+exit 0

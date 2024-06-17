@@ -2,6 +2,7 @@
 
 set -e
 set -u
+export CRUFT_ROOT=
 
 # all scripts should run without failure or printing to stderr,
 # even if the matching package is not installed
