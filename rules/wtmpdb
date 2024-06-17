@@ -1,0 +1,5 @@
+/var/lib/wtmpdb/wtmp.db
+#util-linux (2.40.1-2) unstable; urgency=medium
+#
+#  * last(1) has been split off to the wtmpdb package.
+#    If you find last(1) useful, please install wtmpdb and accept the default
