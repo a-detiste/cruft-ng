@@ -32,6 +32,7 @@ do
 	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.softdep"     ] && echo "/lib/modules/${ver}/modules.softdep"
 	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.symbols"     ] && echo "/lib/modules/${ver}/modules.symbols"
 	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.symbols.bin" ] && echo "/lib/modules/${ver}/modules.symbols.bin"
+	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.weakdep"     ] && echo "/lib/modules/${ver}/modules.weakdep"
 	[ -e "$CRUFT_ROOT/var/lib/initramfs-tools/${ver}"         ] && echo "/var/lib/initramfs-tools/${ver}"
 done
 exit 0
