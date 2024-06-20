@@ -27,6 +27,8 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
 	vector<string> ignores;
 	read_ignores(ignores, ignore_path);
 
+	fs.emplace_back("/.");
+
 	struct statfs buf;
 	auto root_dir_length = root_dir.length()-1;
 
@@ -46,6 +48,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
 		    or (filename == "/home" /* and dirname != "/home" */)
 		    or filename == "/media"
 		    or filename == "/mnt"
+		    or filename == "/run"
 		    or filename == "/root"
 		    or filename == "/tmp")
 			entry.disable_recursion_pending();
