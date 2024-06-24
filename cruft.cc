@@ -308,14 +308,22 @@ static void cruft(const string& ignore_file,
 	read_filters(filter_dir, ruleset_file, packages, globs);
 	elapsed("read filters");
 	vector<string> cruft3;
+	vector<bool> used_globs(globs.size(), false);
 	for (const auto& cr: cruft) {
 		bool match=false;
-		for (const auto& gl: globs) {
-			match=myglob(cr, gl.path);
-			if (match) break;
+		for (size_t i = 0; i < globs.size(); i++) {
+			match=myglob(cr, globs[i].path);
+			if (match) {
+				used_globs[i] = true;
+				break;
+			}
 		}
 		if (!match) cruft3.push_back(cr);
 	}
+	if (debug)
+		for (size_t i = 0; i < globs.size(); i++)
+			if (!used_globs[i])
+				cout << "unused ruleset: " << globs[i].package << " " << globs[i].path << endl;
 	elapsed("extra vs globs");
 	if (debug) cerr << cruft3.size() << " files in cruft3 database\n\n";
 
