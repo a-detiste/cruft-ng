@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+test -z "$CRUFT_ROOT" || exit 1
+
 test -x /usr/sbin/dkms || exit 0
 
 versions=$(/usr/sbin/dkms status -m spl | cut -d\, -f 3 | tr -d ' ')

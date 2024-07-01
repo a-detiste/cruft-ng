@@ -1,16 +1,18 @@
 #!/bin/sh
 set -e
 
-[ -e "$CRUFT_ROOT/initrd.img" ] && echo /initrd.img
-[ -e "$CRUFT_ROOT/initrd.img.old" ] && echo /initrd.img.old
-[ -e "$CRUFT_ROOT/vmlinuz" ] && echo /vmlinuz
-[ -e "$CRUFT_ROOT/vmlinuz.old" ] && echo /vmlinuz.old
-[ -e "$CRUFT_ROOT/boot/initrd.img" ] && echo /boot/initrd.img
-[ -e "$CRUFT_ROOT/boot/initrd.img.old" ] && echo /boot/initrd.img.old
-[ -e "$CRUFT_ROOT/boot/vmlinuz" ] && echo /boot/vmlinuz
-[ -e "$CRUFT_ROOT/boot/vmlinuz.old" ] && echo /boot/vmlinuz.old
+test -z "$CRUFT_ROOT" || exit 1
 
-[ -e "$CRUFT_ROOT/etc/apt/apt.conf.d/01autoremove-kernels" ] && echo /etc/apt/apt.conf.d/01autoremove-kernels
+[ -e /initrd.img ] && echo /initrd.img
+[ -e /initrd.img.old ] && echo /initrd.img.old
+[ -e /vmlinuz ] && echo /vmlinuz
+[ -e /vmlinuz.old ] && echo /vmlinuz.old
+[ -e /boot/initrd.img ] && echo /boot/initrd.img
+[ -e /boot/initrd.img.old ] && echo /boot/initrd.img.old
+[ -e /boot/vmlinuz ] && echo /boot/vmlinuz
+[ -e /boot/vmlinuz.old ] && echo /boot/vmlinuz.old
+
+[ -e /etc/apt/apt.conf.d/01autoremove-kernels ] && echo /etc/apt/apt.conf.d/01autoremove-kernels
 
 packages="$(dpkg-query -W -f='${binary:Package}\n' 'linux-image-*-*' 2> /dev/null || true)"
 # RaspberryPi uses a custom kernel, so there is no linux-image-*
@@ -20,18 +22,18 @@ for package in $packages
 do
 	echo "$package"
 	ver=$(echo "$package" | awk '{ print substr($1,13,40); }' )
-	[ -e "$CRUFT_ROOT/boot/initrd.img-${ver}"                 ] && echo "/boot/initrd.img-${ver}"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}"                     ] && echo "/lib/modules/${ver}"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.alias"       ] && echo "/lib/modules/${ver}/modules.alias"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.alias.bin"   ] && echo "/lib/modules/${ver}/modules.alias.bin"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.builtin.bin" ] && echo "/lib/modules/${ver}/modules.builtin.alias.bin"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.builtin.bin" ] && echo "/lib/modules/${ver}/modules.builtin.bin"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.dep"         ] && echo "/lib/modules/${ver}/modules.dep"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.dep.bin"     ] && echo "/lib/modules/${ver}/modules.dep.bin"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.devname"     ] && echo "/lib/modules/${ver}/modules.devname"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.softdep"     ] && echo "/lib/modules/${ver}/modules.softdep"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.symbols"     ] && echo "/lib/modules/${ver}/modules.symbols"
-	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.symbols.bin" ] && echo "/lib/modules/${ver}/modules.symbols.bin"
-	[ -e "$CRUFT_ROOT/var/lib/initramfs-tools/${ver}"         ] && echo "/var/lib/initramfs-tools/${ver}"
+	[ -e "/boot/initrd.img-${ver}"                 ] && echo "/boot/initrd.img-${ver}"
+	[ -e "/lib/modules/${ver}"                     ] && echo "/lib/modules/${ver}"
+	[ -e "/lib/modules/${ver}/modules.alias"       ] && echo "/lib/modules/${ver}/modules.alias"
+	[ -e "/lib/modules/${ver}/modules.alias.bin"   ] && echo "/lib/modules/${ver}/modules.alias.bin"
+	[ -e "/lib/modules/${ver}/modules.builtin.bin" ] && echo "/lib/modules/${ver}/modules.builtin.alias.bin"
+	[ -e "/lib/modules/${ver}/modules.builtin.bin" ] && echo "/lib/modules/${ver}/modules.builtin.bin"
+	[ -e "/lib/modules/${ver}/modules.dep"         ] && echo "/lib/modules/${ver}/modules.dep"
+	[ -e "/lib/modules/${ver}/modules.dep.bin"     ] && echo "/lib/modules/${ver}/modules.dep.bin"
+	[ -e "/lib/modules/${ver}/modules.devname"     ] && echo "/lib/modules/${ver}/modules.devname"
+	[ -e "/lib/modules/${ver}/modules.softdep"     ] && echo "/lib/modules/${ver}/modules.softdep"
+	[ -e "/lib/modules/${ver}/modules.symbols"     ] && echo "/lib/modules/${ver}/modules.symbols"
+	[ -e "/lib/modules/${ver}/modules.symbols.bin" ] && echo "/lib/modules/${ver}/modules.symbols.bin"
+	[ -e "/var/lib/initramfs-tools/${ver}"         ] && echo "/var/lib/initramfs-tools/${ver}"
 done
 exit 0
