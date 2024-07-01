@@ -1,0 +1,11 @@
+# postrm doesn't clean those
+/usr/local/lib/yorick
+/usr/local/lib/yorick/contrib
+/usr/local/lib/yorick/data
+/usr/local/lib/yorick/glade
+/usr/local/lib/yorick/i
+/usr/local/lib/yorick/i-start
+/usr/local/lib/yorick/i0
+/usr/local/lib/yorick/lib
+/usr/local/lib/yorick/packages
+/usr/local/lib/yorick/python
