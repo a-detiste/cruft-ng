@@ -84,7 +84,7 @@ for release in sorted(releases):
                            build_type],
                           cwd = CRUFT)
 
-    subprocess.check_call(['debuild', '-S', '-i'], cwd = CRUFT)
+    subprocess.check_call(['debuild', '--no-lintian', '-S', '-i'], cwd = CRUFT)
     subprocess.check_call(['dput', 'my-ppa',
                            'cruft-ng_%s_source.changes' % snapshot],
                            cwd = BASE)
