@@ -1,0 +1,4 @@
+/etc/kxd
+/etc/kxd/cert.pem
+/etc/kxd/data
+/etc/kxd/key.pem
