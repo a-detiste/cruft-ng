@@ -1,4 +1,4 @@
 /usr/include/caml
 /usr/local/lib/ocaml
-/usr/local/lib/ocaml/4.*
-/usr/local/lib/ocaml/4.*/stublibs
+/usr/local/lib/ocaml/5.*
+/usr/local/lib/ocaml/5.*/stublibs
