@@ -1,0 +1,3 @@
+/boot/extlinux
+/boot/extlinux/extlinux.conf
+# END ruleset-minimal
