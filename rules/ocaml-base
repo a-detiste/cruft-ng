@@ -1,4 +1,4 @@
-/usr/include/caml
 /usr/local/lib/ocaml
 /usr/local/lib/ocaml/5.*
 /usr/local/lib/ocaml/5.*/stublibs
+# END ruleset-minimal
