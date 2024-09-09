@@ -2,6 +2,8 @@
 set -e
 set -u
 
+CRUFT_ROOT="${CRUFT_ROOT:-""}"
+
 test -d "$CRUFT_ROOT/usr/share/fontconfig/conf.avail" || exit 0
 
 find "$CRUFT_ROOT/usr/share/fontconfig/conf.avail/" -maxdepth 1 -type f -printf "%f\n" | while read -r file
