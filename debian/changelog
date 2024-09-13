@@ -1,17 +1,21 @@
-cruft-ng (0.9.64) UNRELEASED; urgency=medium
+cruft-ng (0.9.64) unstable; urgency=medium
 
+  * Fix bug found by Ubuntu CI (Closes: #1081002) (LP: #2079840)
   * new rules: tango-common, yorick, docbook-xsl-ns, docbook5-xml,
     python3.13, kxd, libopenmpi-dev, mecab-ipadic, mecab-ipadic-utf8,
-    memcached
-  * updated rules: LINUX-IMAGE, ocaml
+    memcached, glx-alternative-nvidia, nvidia-kernel-dkms, octave
+  * updated rules: LINUX-IMAGE, ocaml, sddm, wtpmdb
   * archive rule for python3.11
   * update Standards-Version to 4.7.0
 
   [ Jochen Sprickerhof ]
   * nolocate: don't inspect /run
   * debug: list unused ruleset entries
+  * Move /var/log/lastlog to base-files
+  * Update ocaml-base
+  * Add rules for u-boot-menu and journal-brief
 
- -- Alexandre Detiste <tchet@debian.org>  Sat, 24 Aug 2024 14:44:28 +0200
+ -- Alexandre Detiste <tchet@debian.org>  Fri, 13 Sep 2024 18:55:45 +0200
 
 cruft-ng (0.9.63) unstable; urgency=medium
 
