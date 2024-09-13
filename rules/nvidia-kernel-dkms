@@ -1,0 +1,4 @@
+/var/lib/dkms/nvidia-current
+/var/lib/dkms/nvidia-current/*
+/var/lib/dkms/nvidia-current/*/build
+/var/lib/dkms/nvidia-current/*/source
