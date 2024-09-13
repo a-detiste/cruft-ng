@@ -15,6 +15,10 @@
 /var/lib/sddm/.cache/mesa_shader_cache
 /var/lib/sddm/.cache/mesa_shader_cache/*
 /var/lib/sddm/.cache/mesa_shader_cache/*/*
+/var/lib/sddm/.cache/mesa_shader_cache_db
+/var/lib/sddm/.cache/mesa_shader_cache_db/*
+/var/lib/sddm/.cache/mesa_shader_cache_db/*/mesa_cache.db
+/var/lib/sddm/.cache/mesa_shader_cache_db/*/mesa_cache.idx
 /var/lib/sddm/.cache/plasma*
 /var/lib/sddm/.cache/qt_compose_cache_*
 /var/lib/sddm/.cache/qtshadercache
