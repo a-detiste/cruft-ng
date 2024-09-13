@@ -1,4 +1,5 @@
 /var/lib/wtmpdb/wtmp.db
+/var/lib/wtmpdb/wtmp_????????.db
 #util-linux (2.40.1-2) unstable; urgency=medium
 #
 #  * last(1) has been split off to the wtmpdb package.
