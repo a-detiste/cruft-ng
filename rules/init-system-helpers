@@ -12,12 +12,14 @@
 /var/lib/systemd/deb-systemd-helper-masked/*.socket
 /var/lib/systemd/deb-systemd-helper-masked/*.timer
 /var/lib/systemd/deb-systemd-user-helper-enabled
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.path.dsh-also
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.service
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.service.dsh-also
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.service.wants
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.service.wants/*.service
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.socket.dsh-also
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants
+/var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants/*.path
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants/*.service
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants/*.socket
 /var/lib/systemd/deb-systemd-user-helper-enabled/*.target.wants/*.timer
@@ -47,6 +49,7 @@
 /etc/systemd/user/*.socket
 /etc/systemd/user/*.timer
 /etc/systemd/user/*.target.wants
+/etc/systemd/user/*.target.wants/*.path
 /etc/systemd/user/*.target.wants/*.service
 /etc/systemd/user/*.target.wants/*.timer
 /etc/systemd/user/sockets.target.wants/*.socket
