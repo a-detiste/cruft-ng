@@ -28,7 +28,9 @@ License: GPL-2+
 Files: explain/* rules/*
 Copyright: 1998-2000 Anthony Towns <ajt@debian.org>
            2005-2011 Marcin Owsiany <porridge@debian.org>
-           2014-2023 Alexandre Detiste <alexandre.detiste@gmail.com>
+           2014-2024 Alexandre Detiste <alexandre.detiste@gmail.com>
+           2023 Christian Göttsche <cgzones@googlemail.com>
+           2024 Jochen Sprickerhof <jochen@sprickerhof.de>
 License: GPL-2+
 
 License: GPL-2+
