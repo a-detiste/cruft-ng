@@ -1,0 +1,15 @@
+/var/lib/pcp/config/pmda/*
+/var/lib/pcp/config/pmlogger/config.default
+/var/lib/pcp/pmcd/root.socket
+/var/lib/pcp/pmns/root
+/var/lib/pcp/pmns/root.prev
+/var/lib/pcp/pmns/stdpmid
+/var/lib/pcp/tmp/pmlogger/*
+/var/log/pcp/NOTICES
+/var/log/pcp/pmcd/kvm.log
+/var/log/pcp/pmcd/linux.log
+/var/log/pcp/pmcd/pmcd.log
+/var/log/pcp/pmcd/proc.log
+/var/log/pcp/pmcd/root.log
+/var/log/pcp/pmcd/xfs.log
+/var/log/pcp/pmlogger/**
