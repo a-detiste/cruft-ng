@@ -1,3 +1,13 @@
+cruft-ng (0.9.65) unstable; urgency=medium
+
+  * Package is now team maintained by Debian Security Tools team.
+    It can be used as a forensic tool to investigate systems
+    messed-up by previous owner/admins.
+  * Add new rules: pcp, greed, gtkballs
+  * Update rules: init-system-helpers, ltris, grafana, installation-report
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 10 Nov 2024 15:18:50 +0100
+
 cruft-ng (0.9.64) unstable; urgency=medium
 
   * Fix bug found by Ubuntu CI (Closes: #1081002) (LP: #2079840)
