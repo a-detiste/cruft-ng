@@ -28,6 +28,11 @@
 /var/lib/sddm/.cache/sddm-greeter
 /var/lib/sddm/.cache/sddm-greeter/qmlcache
 /var/lib/sddm/.cache/sddm-greeter/qmlcache/*.qmlc
+/var/lib/sddm/.cache/sddm-greeter-qt6
+/var/lib/sddm/.cache/sddm-greeter-qt6/qmlcache
+/var/lib/sddm/.cache/sddm-greeter-qt6/qmlcache/*.qmlc
+/var/lib/sddm/.cache/sddm-greeter-qt6/qtpipelinecache-*
+/var/lib/sddm/.cache/sddm-greeter-qt6/qtpipelinecache-*/*
 /var/lib/sddm/.cache/tracker
 /var/lib/sddm/.cache/tracker/*
 /var/lib/sddm/.cache/tracker3/
