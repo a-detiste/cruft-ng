@@ -9,6 +9,7 @@
 /var/lib/sddm/.cache/gstreamer-1.0
 /var/lib/sddm/.cache/gstreamer-1.0/*
 /var/lib/sddm/.cache/icon-cache.kcache
+/var/lib/sddm/.cache/ksvg-elements
 /var/lib/sddm/.cache/mesa
 /var/lib/sddm/.cache/mesa/*
 /var/lib/sddm/.cache/mesa/*/*
@@ -33,6 +34,8 @@
 /var/lib/sddm/.cache/sddm-greeter-qt6/qmlcache/*.qmlc
 /var/lib/sddm/.cache/sddm-greeter-qt6/qtpipelinecache-*
 /var/lib/sddm/.cache/sddm-greeter-qt6/qtpipelinecache-*/*
+/var/lib/sddm/.cache/sddm-greeter-qt6/_qt_*
+/var/lib/sddm/.cache/sddm-greeter-qt6/_qt_*/*.qsb
 /var/lib/sddm/.cache/tracker
 /var/lib/sddm/.cache/tracker/*
 /var/lib/sddm/.cache/tracker3/
@@ -41,6 +44,7 @@
 /var/lib/sddm/.config/pipewire-media-session/*
 /var/lib/sddm/.config/pulse
 /var/lib/sddm/.config/pulse/*
+/var/lib/sddm/.config/qtvirtualkeyboard
 /var/lib/sddm/.dbus
 /var/lib/sddm/.dbus/session-bus
 /var/lib/sddm/.dbus/session-bus/*
