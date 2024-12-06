@@ -1,0 +1,11 @@
+/var/lib/varnish
+/var/lib/varnish/varnishd
+/var/lib/varnish/varnishd/_.pid
+/var/lib/varnish/varnishd/_.vsm_child
+/var/lib/varnish/varnishd/_.vsm_child/*
+/var/lib/varnish/varnishd/_.vsm_mgt
+/var/lib/varnish/varnishd/_.vsm_mgt/*
+/var/lib/varnish/varnishd/vcl_*
+/var/lib/varnish/varnishd/vcl_*/vgc.so
+/var/lib/varnish/varnishd/vmod_cache
+/var/lib/varnish/varnishd/worker_tmpdir
