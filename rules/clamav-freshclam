@@ -1,4 +1,8 @@
 /etc/clamav/freshclam.conf
+/etc/logrotate.d/clamav-freshclam
+/var/lib/clamav/bytecode.cvd
+/var/lib/clamav/daily.cld
 /var/lib/clamav/daily.cvd
+/var/lib/clamav/freshclam.dat
 /var/lib/clamav/main.cvd
 /var/log/clamav/freshclam.log*
