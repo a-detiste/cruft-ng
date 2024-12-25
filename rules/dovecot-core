@@ -1,1 +1,3 @@
+/etc/dovecot/private/dovecot.key
+/etc/dovecot/private/dovecot.pem
 /var/lib/dovecot/instances
