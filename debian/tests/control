@@ -1,9 +1,19 @@
-Tests: non-root
+Tests:
+ non-root,
 
-Tests: basic
-Restrictions: needs-root
-Depends: @, plocate
+Tests:
+ basic,
+Restrictions:
+ needs-root,
+Depends:
+ plocate,
+ @,
 
-Tests: ncdu
-Restrictions: needs-root
-Depends: @, plocate, jq
+Tests:
+ ncdu,
+Restrictions:
+ needs-root,
+Depends:
+ jq,
+ plocate,
+ @,

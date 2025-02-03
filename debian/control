@@ -2,30 +2,36 @@ Source: cruft-ng
 Section: admin
 Priority: optional
 Maintainer: Debian Security Tools <team+pkg-security@tracker.debian.org>
-Uploaders: Alexandre Detiste <tchet@debian.org>,
-           Jochen Sprickerhof <jspricke@debian.org>,
+Uploaders:
+ Alexandre Detiste <tchet@debian.org>,
+ Jochen Sprickerhof <jspricke@debian.org>,
 Build-Depends:
-    debhelper-compat (= 13),
+ debhelper-compat (= 13),
 Build-Depends-Arch:
-    pkgconf,
-    libdpkg-dev,
+ libdpkg-dev,
+ pkgconf,
 Standards-Version: 4.7.0
 Homepage: https://github.com/a-detiste/cruft-ng/
 Vcs-Git: https://salsa.debian.org/pkg-security-team/cruft-ng.git
 Vcs-Browser: https://salsa.debian.org/pkg-security-team/cruft-ng
 Rules-Requires-Root: no
+X-Style: black
 
 Package: cruft-ng
 Architecture: any
 Depends:
-  ${shlibs:Depends},
-  ${misc:Depends},
+ ${misc:Depends},
+ ${shlibs:Depends},
 Recommends:
-  ${dist:Depends},
+ ${dist:Depends},
 Suggests:
-  ncdu,
-Breaks: cruft (<< 0.9.44~), cruft-common
-Replaces: cruft (<< 0.9.44~), cruft-common
+ ncdu,
+Breaks:
+ cruft (<< 0.9.44~),
+ cruft-common,
+Replaces:
+ cruft (<< 0.9.44~),
+ cruft-common,
 Description: programs that helps analyse volatile "cruft" files on your system
  cruft-ng is a program to look over your system for anything that shouldn't
  be there, but is - the so called "cruft";  or for anything
@@ -47,10 +53,13 @@ Description: programs that helps analyse volatile "cruft" files on your system
  using dh-cruft.
 
 Package: dh-cruft
-Depends: ${perl:Depends}, ${misc:Depends}
+Depends:
+ ${misc:Depends},
+ ${perl:Depends},
 Architecture: all
 Multi-Arch: foreign
-Provides: dh-sequence-cruft
+Provides:
+ dh-sequence-cruft,
 Description: plugin for DebHelper to register .cruft and .purge files
  While the files listed in debian/<package>.cruft will simply be
  accounted for; the one in debian/<package>.purge will actually
@@ -60,7 +69,9 @@ Description: plugin for DebHelper to register .cruft and .purge files
  https://github.com/a-detiste/dh-cruft-test
 
 Package: cruft
-Depends: cruft-ng, ${misc:Depends}
+Depends:
+ cruft-ng,
+ ${misc:Depends},
 Architecture: all
 Section: oldlibs
 Description: transitional package
