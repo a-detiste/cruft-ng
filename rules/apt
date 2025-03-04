@@ -27,3 +27,5 @@
 /var/lib/apt/periodic/update-success-stamp
 /var/lib/apt/periodic/upgrade-stamp
 /var/lib/systemd/timers/stamp-apt-daily.timer
+# Modernized from /etc/apt/sources.list
+/etc/apt/sources.list.d/debian.sources
