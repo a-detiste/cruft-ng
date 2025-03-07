@@ -1,3 +1,16 @@
+cruft-ng (0.9.66) unstable; urgency=medium
+
+  * Add new rules: animals, breeze-cursor-theme, dbeaver-ce,
+    gnustep-base-common, freesweep, kf6-breeze-icon-theme,
+    libapache2-mod-php8.4, libpaper2, odoo-18, varnish, vmm,
+    webmin, wing, xbomb, xletters.
+  * Update rules: apt, clamav-freshclam, dovecote-core, sddm.
+  * Archive old rules: breeze-icon-theme, libpaper1, llvm-15-runtime,
+    jupyter-nbextension-jupyter-js-widgets, qemu-user-static
+  * Reformat d/control with debputy
+
+ -- Alexandre Detiste <tchet@debian.org>  Fri, 07 Mar 2025 12:05:31 +0100
+
 cruft-ng (0.9.65) unstable; urgency=medium
 
   * Package is now team maintained by Debian Security Tools team.
