@@ -1,6 +1,7 @@
 /etc/dpkg/origins/default
 /var/lib/dpkg/alternatives/*
 /var/lib/dpkg/arch
+/var/lib/dpkg/arch-native
 /var/lib/dpkg/diversions
 /var/lib/dpkg/diversions-old
 /var/lib/dpkg/info/format
