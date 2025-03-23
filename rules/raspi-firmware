@@ -4,4 +4,8 @@
 /boot/firmware/config.txt
 /boot/firmware/kernel.img
 /boot/firmware/kernel7.img
+/boot/firmware/overlays
+/boot/firmware/overlays/hifiberry-dac.dtbo
+/boot/firmware/overlays/pi4-spidev.dtbo
+/boot/firmware/overlays/README.md
 /etc/default/raspi-firmware-custom
