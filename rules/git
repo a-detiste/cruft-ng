@@ -1,1 +1,6 @@
 /etc/gitconfig
+# END ruleset-minimal
+# optional config
+/etc/git
+/etc/git/hooks
+/etc/git/hooks/pre-commit
