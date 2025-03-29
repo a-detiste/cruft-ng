@@ -1,3 +1,14 @@
+cruft-ng (0.9.67) unstable; urgency=medium
+
+  * Add rules for mallard-rng, elpa-notmuch
+  * Update rules for git, plasma-browser-integration
+
+  [ Jochen Sprickerhof ]
+  * Add /var/lib/dpkg/arch-native for dpkg/1.22.16
+  * Update raspi-firmware
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 29 Mar 2025 20:10:13 +0100
+
 cruft-ng (0.9.66) unstable; urgency=medium
 
   * Add new rules: animals, breeze-cursor-theme, dbeaver-ce,
