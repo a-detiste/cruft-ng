@@ -2,6 +2,7 @@ cruft-ng (0.9.67) unstable; urgency=medium
 
   * Add rules for mallard-rng, elpa-notmuch
   * Update rules for git, plasma-browser-integration
+  * Update Standards-Version to 4.7.0
 
   [ Jochen Sprickerhof ]
   * Add /var/lib/dpkg/arch-native for dpkg/1.22.16
