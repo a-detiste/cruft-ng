@@ -1,3 +1,6 @@
 /etc/opt/chrome
 /etc/opt/chrome/native-messaging-hosts
 /etc/opt/chrome/native-messaging-hosts/org.kde.plasma.browser_integration.json
+/etc/opt/edge
+/etc/opt/edge/native-messaging-hosts
+/etc/opt/edge/native-messaging-hosts/org.kde.plasma.browser_integration.json
