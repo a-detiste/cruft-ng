@@ -1,3 +1,5 @@
 # END ruleset-minimal
 # libuuid1 1.40.8-2
 /var/lib/libuuid
+/var/lib/libuuid/clock-cont.txt
+/var/lib/libuuid/clock.txt
