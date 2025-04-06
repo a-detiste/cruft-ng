@@ -5,6 +5,8 @@
 /etc/letsencrypt/accounts/acme-v01.api.letsencrypt.org/directory/*/meta.json
 /etc/letsencrypt/accounts/acme-v01.api.letsencrypt.org/directory/*/private_key.json
 /etc/letsencrypt/accounts/acme-v01.api.letsencrypt.org/directory/*/regr.json
+/etc/letsencrypt/accounts/acme-v02.api.letsencrypt.org
+/etc/letsencrypt/accounts/acme-v02.api.letsencrypt.org/directory
 /etc/letsencrypt/archive
 /etc/letsencrypt/archive/*
 /etc/letsencrypt/archive/*/cert*.pem
@@ -22,6 +24,7 @@
 /etc/letsencrypt/live/*/chain.pem
 /etc/letsencrypt/live/*/fullchain.pem
 /etc/letsencrypt/live/*/privkey.pem
+/etc/letsencrypt/options-ssl-apache.conf
 /etc/letsencrypt/renewal
 /etc/letsencrypt/renewal/*.conf
 /etc/letsencrypt/renewal-hooks
@@ -29,6 +32,9 @@
 /etc/letsencrypt/renewal-hooks/deploy
 /etc/letsencrypt/renewal-hooks/pre
 /var/lib/letsencrypt
+/var/lib/letsencrypt/backups
+/var/lib/letsencrypt/backups/**
+/var/lib/letsencrypt/http_challenges
 /var/lib/systemd/timers/stamp-certbot.timer
 /var/log/letsencrypt
 /var/log/letsencrypt/letsencrypt.log
