@@ -24,6 +24,7 @@
 /var/spool/postfix/flush
 /var/spool/postfix/hold
 /var/spool/postfix/maildrop
+/var/spool/postfix/restart
 /var/spool/postfix/saved
 /var/spool/postfix/trace
 /var/spool/postfix/pid/
