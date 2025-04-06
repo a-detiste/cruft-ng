@@ -1,6 +1,6 @@
 Over the last 10 years cruft(-ng) had many different purpose for me:
 
-- learn how to maitain a Debian package
+- learn how to maintain a Debian package
 
 - learn some C++ (this is the first/only thing I wrote)
 
@@ -16,7 +16,7 @@ Over the last 10 years cruft(-ng) had many different purpose for me:
   can played with Jupyter or whatever.
 
   -> when doing thins, "cruft" becomes merely a tool
-     usefull to train "cpigs" with new rules.
+     useful to train "cpigs" with new rules.
 
   The "python3-pip" is one such rule: it's "at risk" files,
   all the things that will become useless when Debian

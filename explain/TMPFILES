@@ -36,7 +36,7 @@ do
     done | sort -u | while read -r path
     do
         [ "$package" != "$last_package" ] && echo "$package"
-        # we purposefuly want the shell to glob these paths
+        # we purposefully want the shell to glob these paths
         #
         # false positives like "/var/log/journal/*/system.journal"
         # are not a problem, they will never match a real file
