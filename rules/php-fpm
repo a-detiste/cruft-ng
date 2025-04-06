@@ -1,6 +1,7 @@
-/etc/php/8.2/fpm/conf.d/*.ini
-/var/lib/php/modules/8.2
-/var/lib/php/modules/8.2/fpm
-/var/lib/php/modules/8.2/fpm/enabled_by_maint
-/var/lib/php/modules/8.2/fpm/enabled_by_maint/*
-/var/lib/php/modules/8.2/fpm/disabled_by_maint
+/etc/php/*/fpm/php.ini
+/etc/php/*/fpm/conf.d/*.ini
+/var/lib/php/modules/*/fpm
+/var/lib/php/modules/*/fpm/enabled_by_maint
+/var/lib/php/modules/*/fpm/enabled_by_maint/*
+/var/lib/php/modules/*/fpm/disabled_by_maint
+/var/lib/php/modules/*/fpm/disabled_by_maint/*
