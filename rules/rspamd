@@ -1,1 +1,5 @@
+/usr/share/rspamd/www/css/bootstrap.min.css
+/usr/share/rspamd/www/js/lib/bootstrap.bundle.min.js
+/usr/share/rspamd/www/js/lib/jquery.min.js
+/usr/share/rspamd/www/js/lib/require.min.js
 /var/lib/rspamd/
