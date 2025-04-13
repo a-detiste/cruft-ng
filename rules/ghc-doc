@@ -1,0 +1,4 @@
+/usr/share/doc/ghc-doc/html/libraries/*.css
+/usr/share/doc/ghc-doc/html/libraries/*.html
+/usr/share/doc/ghc-doc/html/libraries/*.js
+/usr/share/doc/ghc-doc/html/libraries/*.png
