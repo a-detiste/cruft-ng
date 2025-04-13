@@ -4,7 +4,7 @@ cruft-ng (0.9.68) unstable; urgency=medium
   * Update rules for libuuid1
 
   [ Christian Göttsche ]
-  * Add rules for podman and valkey (from redis ones)
+  * Add rules for podman and valkey (from redis ones) (Closes: #1102166)
   * Update rules for postfix, php-fpm, certbot, rspamd
   * Fix typos
 
