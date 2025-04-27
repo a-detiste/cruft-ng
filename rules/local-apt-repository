@@ -1,2 +1,3 @@
 /etc/apt/sources.list.d/local-apt-repository.list
+/etc/apt/sources.list.d/local-apt-repository.sources
 /var/lib/local-apt-repository/
