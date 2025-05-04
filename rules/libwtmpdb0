@@ -1,3 +1,4 @@
+/var/lib/wtmpdb
 /var/lib/wtmpdb/wtmp.db
 /var/lib/wtmpdb/wtmp_????????.db
 #util-linux (2.40.1-2) unstable; urgency=medium
