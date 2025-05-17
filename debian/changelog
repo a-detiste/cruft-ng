@@ -1,3 +1,17 @@
+cruft-ng (0.9.69) unstable; urgency=medium
+
+  * Add rules for rtpengine-daemon, dodgindiamond2,
+    python3.14 (from experimental)
+  * Update nfs-common
+  * Remove rule for Python 3.12, never was in a stable release
+  * wtmpdb: the library will create the DB by itsell, rename to libwtmpdb0
+
+  [ NoisyCoil ]
+  * add local-apt-repository.sources to local-apt-repository
+    (Closes: #1104253)
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 17 May 2025 16:35:08 +0200
+
 cruft-ng (0.9.68) unstable; urgency=medium
 
   * Add rules for ghc-doc, gnubg, glhack, casacore-data*, fp-compiler-3.2.2
