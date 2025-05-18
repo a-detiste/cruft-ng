@@ -8,4 +8,5 @@
 /var/log/installer/partman
 /var/log/installer/status
 /var/log/installer/syslog
+/var/log/installer/Xorg.0.log
 /var/log/debian-installer
