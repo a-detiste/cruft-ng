@@ -16,6 +16,7 @@
 /var/lib/gdm3/.local/state/wireplumber
 /var/lib/gdm3/.local/state/wireplumber/default-routes
 /var/lib/gdm3/.local/state/wireplumber/restore-stream
+/var/lib/gdm3/.local/state/wireplumber/stream-properties
 /var/lib/gdm3/greeter-dconf-defaults
 /var/lib/gdm3/snap
 /var/lib/gdm3/snap/snapd-desktop-integration
