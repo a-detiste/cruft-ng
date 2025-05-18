@@ -1,3 +1,4 @@
 /etc/php/*/mods-available/*.ini
+/var/lib/php/modules/*
 /var/lib/php/modules/*/registry
 /var/lib/php/modules/*/registry/*
