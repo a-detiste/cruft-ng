@@ -1,3 +1,16 @@
+cruft-ng (0.9.70) unstable; urgency=medium
+
+  * Test Trixie RC1 with default Gnome desktop
+  * Add rule for: gnome-browser-connector
+  * Update rule for installation-report, init-system-helpers,
+    packagekit, update gdm3
+
+  [ Christian Göttsche ]
+  * rspamd: include fonts copied into www document root
+  * php-common: add module root directory
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 18 May 2025 18:54:05 +0200
+
 cruft-ng (0.9.69) unstable; urgency=medium
 
   * Add rules for rtpengine-daemon, dodgindiamond2,
