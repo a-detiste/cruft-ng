@@ -52,4 +52,6 @@
 /etc/systemd/user/*.target.wants/*.path
 /etc/systemd/user/*.target.wants/*.service
 /etc/systemd/user/*.target.wants/*.timer
+/etc/systemd/user/sockets.target.upholds
+/etc/systemd/user/sockets.target.upholds/*.socket
 /etc/systemd/user/sockets.target.wants/*.socket
