@@ -1,5 +1,6 @@
 /etc/php/*/fpm/php.ini
 /etc/php/*/fpm/conf.d/*.ini
+/var/lib/php/modules/*
 /var/lib/php/modules/*/fpm
 /var/lib/php/modules/*/fpm/enabled_by_maint
 /var/lib/php/modules/*/fpm/enabled_by_maint/*
