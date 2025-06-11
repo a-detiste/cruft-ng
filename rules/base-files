@@ -8,9 +8,6 @@
 /var/mail
 /var/opt
 /var/spool/mail
-/var/log/wtmp
-/var/log/btmp
-/var/log/lastlog
 /usr/local
 /usr/local/bin
 /usr/local/etc
