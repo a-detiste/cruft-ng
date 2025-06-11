@@ -1,4 +1,5 @@
 /var/lib/emacsen-common/installed-flavors
+/var/lib/emacsen-common/state/flavor/pending
 /var/lib/emacsen-common/state/package/installed/cmake-data
 /var/lib/emacsen-common/state/package/installed/dictionaries-common
 /var/lib/emacsen-common/state/package/installed/emacsen-common
