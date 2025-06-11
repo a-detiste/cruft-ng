@@ -1,0 +1,3 @@
+/var/log/wtmp
+/var/log/btmp
+/var/log/lastlog
