@@ -1,3 +1,17 @@
+cruft-ng (0.9.71) unstable; urgency=medium
+
+  * Add rules for libc6-x32, libc6-i386.
+  * Update rules for emacsen-common, petsc, sddm, grub-efi-amd64-bin.
+  * Remove or archive old rules: intel-microcode, debtags,
+    apt-xapian-index, wine-development, libapache2-mod-php8.3.
+
+  [ Jochen Sprickerhof ]
+  * Use apt for purge "~c" example in the man page
+  * Drop /var/log/{lastlog,btmp,wtmp} from base-files and logrotate
+  * Add rules for firebird4.0-common and lcl-utils-4.0
+
+ -- Alexandre Detiste <tchet@debian.org>  Fri, 13 Jun 2025 23:04:18 +0200
+
 cruft-ng (0.9.70) unstable; urgency=medium
 
   * Test Trixie RC1 with default Gnome desktop
