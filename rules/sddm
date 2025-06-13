@@ -53,6 +53,8 @@
 /var/lib/sddm/.gnupg/pubring.kbx
 /var/lib/sddm/.local
 /var/lib/sddm/.local/share
+/var/lib/sddm/.local/share/flatpak
+/var/lib/sddm/.local/share/flatpak/db
 /var/lib/sddm/.local/share/gvfs-metadata
 /var/lib/sddm/.local/share/gvfs-metadata/root
 /var/lib/sddm/.local/share/gvfs-metadata/root*
