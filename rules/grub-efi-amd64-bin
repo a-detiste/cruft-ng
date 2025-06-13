@@ -9,6 +9,7 @@
 /boot/efi/EFI/debian/fw
 /boot/efi/EFI/debian/fw/*
 /boot/efi/EFI/debian/fbx64.efi
+/boot/efi/EFI/debian/fwupdx64.efi
 /boot/efi/EFI/debian/grub.cfg
 /boot/efi/EFI/debian/grubx64.efi
 /boot/efi/EFI/debian/mmx64.efi
