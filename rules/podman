@@ -1,5 +1,7 @@
 /etc/containers/containers.conf
 /etc/containers/networks
+/var/cache/containers
+/var/cache/containers/short-name-aliases.conf.lock
 /var/lib/containers
 /var/lib/containers/cache
 /var/lib/containers/cache/blob-info-cache-v1.sqlite
