@@ -1,3 +1,4 @@
+/etc/colord
 /var/lib/colord
 /var/lib/colord/icc
 /var/lib/colord/mapping.db
