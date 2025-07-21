@@ -5,6 +5,9 @@ set -e
 # SC1001 (info): This \- will be a regular '-' in this context.
 packages="$(dpkg-query --root="$CRUFT_ROOT" -W -f='${db:Status-Abbrev}-${binary:Package}\n' '*-icon-theme' 2> /dev/null | grep ^i | cut -f 2 -d \- )"
 
+# BUG: the "cut" does not cut the gnome-$SOMETHING-icon-theme packages properly.
+#      what we really want here is to strip the "-icon-theme" text from the end of the package name.
+
 # headless setups won't have any icons
 [ -z "$packages" ] && exit 0
 
