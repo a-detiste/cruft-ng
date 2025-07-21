@@ -1,3 +1,19 @@
+cruft-ng (0.9.72) unstable; urgency=medium
+
+  * Integration the results of https://openqa.debian.net/ testing.
+  * Add rules for gnome-brave-icon-theme, gnome-colors-common,
+    gnome-dust-icon-theme, gnome-human-icon-theme,
+    gnome-illustrious-icon-theme, gnome-noble-icon-theme,
+    gnome-wine-icon-theme, gnome-wise-icon-theme, slick-greeter,
+    mate-icon-theme
+  * Update rules for: colord, gnome-accessibility-themes, lightdm
+  * Refresh GPL-2 license text
+
+  [ Christian Göttsche ]
+  * update podman
+
+ -- Alexandre Detiste <tchet@debian.org>  Mon, 21 Jul 2025 16:29:31 +0200
+
 cruft-ng (0.9.71) unstable; urgency=medium
 
   * Add rules for libc6-x32, libc6-i386.

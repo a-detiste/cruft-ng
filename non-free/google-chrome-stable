@@ -1,4 +1,5 @@
 /etc/apt/sources.list.d/google-chrome.list
+/etc/apt/sources.list.d/google-chrome.sources
 /etc/apt/trusted.gpg.d/google-chrome.gpg
 /etc/default/google-chrome
 /usr/share/applications/defaults.list
