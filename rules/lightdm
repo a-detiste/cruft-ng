@@ -1,3 +1,4 @@
+/etc/X11/default-display-manager
 /var/cache/lightdm
 /var/cache/lightdm/dmrc
 /var/cache/lightdm/dmrc/*.dmrc
