@@ -1,9 +1,15 @@
+# there is no way to tell cruft to make a case-insesitive matching
 /boot/efi
 /boot/efi/EFI
 /boot/efi/EFI/Boot
 /boot/efi/EFI/Boot/bootx64.efi
 /boot/efi/EFI/Boot/fbx64.efi
 /boot/efi/EFI/Boot/mmx64.efi
+/boot/efi/EFI/BOOT
+/boot/efi/EFI/BOOT/BOOTX64.EFI
+/boot/efi/EFI/BOOT/bootx64.efi
+/boot/efi/EFI/BOOT/fbx64.efi
+/boot/efi/EFI/BOOT/mmx64.efi
 /boot/efi/EFI/debian
 /boot/efi/EFI/debian/BOOTX64.CSV
 /boot/efi/EFI/debian/fw
