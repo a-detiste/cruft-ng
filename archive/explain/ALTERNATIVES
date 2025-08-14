@@ -7,14 +7,16 @@ ALTDIR="/etc/alternatives"
 
 update-alternatives --get-selections | while read -r alternative _y _z
 do
-    echo "$ALTDIR/$alternative"
     update-alternatives --query "$alternative" 2>/dev/null | while read -r line
     do
         case "$line" in
-            Name:*|Slaves:*|Status:*|Best:*|Value:*)
+            Name:*|Slaves:*|Status:*|Best:*)
                 ;;
             Link:*)
-                echo "${line#* }"
+                link="${line#* }"
+                ;;
+            Value:*)
+                test -e "${line#* }" && printf "%s\n%s\n" "$ALTDIR/$alternative" "$link" || true
                 ;;
             '')
                 break
