@@ -1,5 +1,4 @@
 #!/bin/sh
-
 set -e
 
 test -z "$CRUFT_ROOT" || exit 1
@@ -12,14 +11,12 @@ do
     update-alternatives --query "$alternative" 2>/dev/null | while read -r line
     do
         case "$line" in
-            Name:*)
+            Name:*|Slaves:*|Status:*|Best:*|Value:*)
                 ;;
             Link:*)
                 echo "${line#* }"
                 ;;
-            Slaves:*)
-                ;;
-            Status:*)
+            '')
                 break
                 ;;
             *)
