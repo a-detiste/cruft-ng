@@ -19,10 +19,10 @@ do
                 ;;
             *)
                 alt="$ALTDIR/${line% *}"
-                test -e "$alt" && echo "$alt"
+                test -e "$alt" && echo "$alt" || true
 
-                link="${line#* }"
-                test -e "$link" && echo "$link"
+                target="${line#* }"
+                test -e "$target" && echo "$target" || true
                 ;;
         esac
     done
