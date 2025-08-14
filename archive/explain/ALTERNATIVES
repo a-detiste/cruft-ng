@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
@@ -15,8 +15,7 @@ do
             Name:*)
                 ;;
             Link:*)
-                arr=($line)
-                echo "${arr[1]}"
+                echo "${line#* }"
                 ;;
             Slaves:*)
                 ;;
@@ -24,13 +23,11 @@ do
                 break
                 ;;
             *)
-                arr=($line)
+                alt="$ALTDIR/${line% *}"
+                test -e "$alt" && echo "$alt"
 
-                alt="$ALTDIR/${arr[0]}"
-                test -f "$alt" && echo "$alt"
-
-                link="${arr[1]}"
-                test -f "$link" && echo "$link"
+                link="${line#* }"
+                test -e "$link" && echo "$link"
                 ;;
         esac
     done

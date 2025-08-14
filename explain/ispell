@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 test -z "$CRUFT_ROOT" || exit 0
 
@@ -10,7 +10,7 @@ do
     [ "$package" = "ispell" ] && continue
     case $desc in
         *spell*)
-             lang=${package:1}
+             lang=${package#?}
              test -f "/usr/lib/ispell/$lang.hash" && echo "/usr/lib/ispell/$lang.hash"
              test -f "/var/lib/ispell/$lang.compat" && echo "/var/lib/ispell/$lang.compat"
              test -f "/var/lib/ispell/$lang.hash" && echo "/var/lib/ispell/$lang.hash"

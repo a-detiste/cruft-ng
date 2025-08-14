@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 LC_ALL=C.UTF-8
 
 set -e
@@ -7,7 +7,7 @@ RULESET="$1"
 shift
 rm -f "$RULESET"
 
-function concat() {
+concat() {
 (
 release="$1"
 find "$release" -type f -printf "%f\n" | sort | while read -r file
@@ -24,7 +24,7 @@ do
 			'#'*)
 			;;
 			*"/ ")
-				echo "${rule:0: -1}"
+				echo "${rule%?}"
 				echo "${rule}**"
 			;;
 			*)
