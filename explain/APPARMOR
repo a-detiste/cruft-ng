@@ -7,9 +7,9 @@ test -d "$CRUFT_ROOT/etc/apparmor.d/local" && echo /etc/apparmor.d/local
 
 find "$CRUFT_ROOT/etc/apparmor.d/" -maxdepth 1 -type f -printf "%f\n" | while read -r file
 do
-	[ -e "$CRUFT_ROOT/etc/apparmor.d/cache/$file" ] && echo "/etc/apparmor.d/cache/$file" || true
-	[ -e "$CRUFT_ROOT/etc/apparmor.d/disable/$file" ] && echo "/etc/apparmor.d/disable/$file" || true
-	[ -e "$CRUFT_ROOT/etc/apparmor.d/local/$file" ] && echo "/etc/apparmor.d/local/$file" || true
+	if [ -e "$CRUFT_ROOT/etc/apparmor.d/cache/$file" ]; then echo "/etc/apparmor.d/cache/$file"; fi
+	if [ -e "$CRUFT_ROOT/etc/apparmor.d/disable/$file" ]; then echo "/etc/apparmor.d/disable/$file"; fi
+	if [ -e "$CRUFT_ROOT/etc/apparmor.d/local/$file" ]; then echo "/etc/apparmor.d/local/$file"; fi
 done
 
 
@@ -20,7 +20,7 @@ test -d "$CRUFT_ROOT/etc/apparmor.d/local/abstractions" && echo /etc/apparmor.d/
 find "$CRUFT_ROOT/etc/apparmor.d/abstractions" -maxdepth 1 -type f -printf "%f\n" |
 while read -r file
 do
-        [ -e "$CRUFT_ROOT/etc/apparmor.d/local/abstractions/$file" ] && echo "/etc/apparmor.d/local/abstractions/$file" || true
+	if [ -e "$CRUFT_ROOT/etc/apparmor.d/local/abstractions/$file" ]; then echo "/etc/apparmor.d/local/abstractions/$file"; fi
 done
 
 exit 0
