@@ -33,7 +33,11 @@
 /usr/lib/x86_64-linux-gnu 852549 glib2.0
 /usr/lib/x86_64-linux-gnu/gio/modules 852549 glib2.0
 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr-gfortra 1070985 openmpi
+/usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr-gfortran.so.40.30.0 1070985 openmpi
 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr-gfortranso.40 1070985 openmpi
+/usr/lib/x86_64-linux-gnu/pkgconfig/hdf5-mpi.pc 968559 hdf5
+/usr/lib/x86_64-linux-gnu/pkgconfig/hdf5-mpich.pc 968559 hdf5
+/usr/lib/x86_64-linux-gnu/pkgconfig/hdf5.pc 968559 hdf5
 /usr/local/share/fonts 897040 fontconfig
 /usr/local/share/fonts/.uuid 897040 fontconfig
 /usr/share/autopkgtest/lib/__pycache__ 1043543 autopkgtest
@@ -64,7 +68,6 @@
 /usr/share/fonts/svg/.uuid 909541 fontconfig
 /usr/share/fonts/svg/font-awesome 909541 fontconfig
 /usr/share/fonts/svg/font-awesome/.uuid 909541 fontconfig
-/usr/share/fonts/truetyp 898522 fontconfig
 /usr/share/fonts/truetype 897040 fontconfig
 /usr/share/fonts/truetype/.uuid 897040 fontconfig
 /usr/share/fonts/truetype/dejavu 897040 fontconfig
@@ -88,7 +91,6 @@
 /usr/share/fonts/woff/font-awesome/.uuid 909541 fontconfig
 /usr/share/fonts/woff/jetbrains-mono 897040 fontconfig
 /usr/share/fonts/woff2/jetbrains-mono 897040 fontconfig
-/usr/share/gnome 558350 gnome-session
 /usr/share/gnome/applications 558350 gnome-session
 /usr/share/gnome/applications/mimeinfo.cache 558350 gnome-session
 /var/cache/fontconfig 1022566 fontconfig
