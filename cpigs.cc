@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
 	}
 
 	vector<string> fs;
-	read_locate(fs, "/usr/share/cruft/ignore", "/");
+	read_locate(fs, "/etc/cruft/ignore", "/");
 	elapsed("plocate");
 
 	if (csv) cout << "path;package;type;cruft;size" << endl;

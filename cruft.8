@@ -18,9 +18,8 @@ A user can tune execution by providing extra configuration files:
 .TP
 .B /etc/cruft/ignore
 Do not process paths listed in this file, this can speed-up matching.
+Format is one line per path.
 Example values: /var/schroot/, /var/www/ ...
-This will override the default
-.B /usr/share/cruft/ignore
 .TP
 .B  /etc/cruft/filters/*
 Rules (glob-patterns) similar that are similar to those built-in into
