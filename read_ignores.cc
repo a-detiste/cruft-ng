@@ -9,7 +9,7 @@ void read_ignores(vector<string>& ignores, const string& ignore_path)
 {
 	ifstream ignore_file(ignore_path);
 	if (!ignore_file.is_open())
-		ignore_file.open("/usr/share/cruft/ignore");
+		return;
 
 	for (string ignore_line; getline(ignore_file,ignore_line);)
 	{
