@@ -133,7 +133,7 @@ void output_ncdu(vector<string>& cruft_db)
 		}
 	}
 
-	for(auto& part : last_dir) { cout << ']'; }
+	for(auto& part __attribute__((unused)): last_dir) { cout << ']'; }
 	cout << "]" << endl;
 }
 
