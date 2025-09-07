@@ -67,12 +67,3 @@ Description: plugin for DebHelper to register .cruft and .purge files
  .
  Some demo package can be found at:
  https://github.com/a-detiste/dh-cruft-test
-
-Package: cruft
-Depends:
- cruft-ng,
- ${misc:Depends},
-Architecture: all
-Section: oldlibs
-Description: transitional package
- This is a transitional package. It can safely be removed.
