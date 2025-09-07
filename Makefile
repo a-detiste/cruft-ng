@@ -4,7 +4,7 @@ LIBDPKG_CFLAGS = $(shell $(PKG_CONFIG) --static --cflags libdpkg)
 LIBDPKG_CFLAGS += $(if $(shell $(PKG_CONFIG) --atleast-version 1.22.2 libdpkg && echo yes),-DLIBDPKG_HAS_NEW_FHFF)
 
 CXXFLAGS ?= -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wl,-z,relro -D_FORTIFY_SOURCE=2
-CXXFLAGS += -Wall -Wextra
+CXXFLAGS += -Wall -Wextra -Werror
 override CXXFLAGS += $(LIBDPKG_CFLAGS)
 #CXXFLAGS += -std=c++17 #  clang++
 SHARED_OBJS = explain.o filters.o shellexp.o usr_merge.o python.o owner.o read_ignores.o
