@@ -11,7 +11,7 @@
 #include "python.h"
 #include "read_ignores.h"
 
-int read_locate(vector<string>& fs, const string& ignore_path, const string& root_dir)
+int read_locate(vector<string>& fs, const string& ignore_path, const string& root_dir __attribute__((unused)))
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
