@@ -1,5 +1,5 @@
 #!/bin/sh
-set -ex
+set -e
 
 test -z "$CRUFT_ROOT" || exit 0
 
