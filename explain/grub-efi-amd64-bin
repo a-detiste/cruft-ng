@@ -5,7 +5,7 @@ test -z "$CRUFT_ROOT" || exit 0
 
 dpkg-query -L grub-efi-amd64-bin 2>/dev/null | grep ^/usr/lib/grub/x86_64-efi | grep -e '\.mod$' -e '\.lst$' | sed 's#usr/lib#boot#'
 
-test -d /boot/efi || exit 0
+test -x /boot/efi || exit 0
 
 find /boot/efi \
      -iwholename '/boot/efi/efi/*/bootx64.csv' \
