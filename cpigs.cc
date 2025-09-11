@@ -42,6 +42,7 @@ int usage()
 	cerr << "usage: " << endl;
 	cerr << "  cpigs [-n] [NUMBER]  : default format" << endl;
 	cerr << "  cpigs -e             : export in ncdu format" << endl;
+	cerr << "                       : sample use: 'sudo cpigs -e | ncdu -f - --color dark'" << endl;
 	cerr << "  cpigs -c             : export in .csv format" << endl;
 	cerr << "  cpigs -C             : export in .csv format, also static files" << endl;
 	return 1;
