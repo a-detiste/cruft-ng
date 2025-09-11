@@ -7,6 +7,8 @@ export CRUFT_ROOT=
 # all scripts should run without failure or printing to stderr,
 # even if the matching package is not installed
 
+# this script should be run in both root & non-root mode
+
 OK="\033[1;32mOK\033[0m"
 KO="\033[1;31mKO\033[0m"
 
