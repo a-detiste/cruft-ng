@@ -1,3 +1,24 @@
+cruft-ng (0.9.73) unstable; urgency=medium
+
+  * Drop the old transitional "cruft" package & /usr/bin/cruft-ng symlink
+  * Make (U)EFI matching case-insensitive (Closes: #1111832)
+  * Add rules for: grace, musescore3-common, pdl, typespeed
+  * Update rules for: apparmor, cfengine3
+  * Archive rules for: grub-legacy, xletters
+  * Build with -Werror
+
+  [ Jochen Sprickerhof ]
+  * Don't provide a default /usr/share/cruft/ignore file
+  * Make shell scripts POSIX compatible
+  * Drop superfluous || true in shell
+  * Refresh bug list for neovim and hdf5
+  * Alternatives:
+    * Read complete output of update-alternatives
+    * List broken alternatives
+    * Don't fail on broken slave
+
+ -- Alexandre Detiste <tchet@debian.org>  Thu, 11 Sep 2025 08:41:29 +0200
+
 cruft-ng (0.9.72) unstable; urgency=medium
 
   * Integration the results of https://openqa.debian.net/ testing.
