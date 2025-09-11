@@ -1,3 +1,9 @@
+cruft-ng (0.9.74) unstable; urgency=medium
+
+  * Fix glitches in UEFI scripts
+
+ -- Alexandre Detiste <tchet@debian.org>  Thu, 11 Sep 2025 09:40:24 +0200
+
 cruft-ng (0.9.73) unstable; urgency=medium
 
   * Drop the old transitional "cruft" package & /usr/bin/cruft-ng symlink
