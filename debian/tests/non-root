@@ -2,3 +2,8 @@
 set -e
 
 cruft --no-locate
+
+for script in /usr/libexec/cruft/*
+do
+    $script > /dev/null
+done

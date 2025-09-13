@@ -1,6 +1,12 @@
 #! /bin/sh
 set -e
 
+echo 'this run all explain scripts'
+for script in /usr/libexec/cruft/*
+do
+    $script > /dev/null
+done
+
 echo 'standard run'
 cruft
 
@@ -8,7 +14,7 @@ echo '--no-locate'
 cruft --no-locate
 
 echo 'should print: "base-passwd"'
-cruft /etc/passwd
+cruft /etc/passwd | grep base-passwd
 
 echo 'this prints the environment:'
 env | sort

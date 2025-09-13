@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -eu
+set -e
 
 test -d "$CRUFT_ROOT/usr/lib/ccache" || exit 0
 
