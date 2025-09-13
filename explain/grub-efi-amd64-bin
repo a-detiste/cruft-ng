@@ -8,7 +8,9 @@ dpkg-query -L grub-efi-amd64-bin 2>/dev/null | grep ^/usr/lib/grub/x86_64-efi | 
 test -x /boot/efi || exit 0
 
 find /boot/efi \
-     -iwholename '/boot/efi/efi/*/bootx64.csv' \
+     -iwholename '/boot/efi/efi' \
+  -o -iwholename '/boot/efi/efi/*' \
+  -o -iwholename '/boot/efi/efi/*/bootx64.csv' \
   -o -iwholename '/boot/efi/efi/*/bootx64.efi' \
   -o -iwholename '/boot/efi/efi/*/fbx64.efi' \
   -o -iwholename '/boot/efi/efi/*/fw' \

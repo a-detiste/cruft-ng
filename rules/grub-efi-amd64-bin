@@ -1,3 +1,4 @@
+/boot/efi
 /boot/efi/EFI/Dell/
 /boot/efi/EFI/Microsoft/
 /boot/grub/.background_cache.png
