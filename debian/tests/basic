@@ -4,6 +4,7 @@ set -e
 echo 'this run all explain scripts'
 for script in /usr/libexec/cruft/*
 do
+    echo $script
     $script > /dev/null
 done
 
