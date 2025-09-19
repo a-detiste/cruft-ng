@@ -1,3 +1,17 @@
+cruft-ng (0.9.75) unstable; urgency=medium
+
+  * Add new rules: debian-edu-config, debian-edu-install, jackd2
+  * Update rules: cfengine3, grub-efi-amd64-bin
+  * Improve autopkgtest coverage
+
+  [ Jochen Sprickerhof ]
+  * Drop old Breaks/Replaces
+  * Switch to no-locate by default
+  * Add new rule: radicale
+  * Update rule: fetchmail
+
+ -- Alexandre Detiste <tchet@debian.org>  Fri, 19 Sep 2025 12:06:33 +0200
+
 cruft-ng (0.9.74) unstable; urgency=medium
 
   * Fix glitches in UEFI scripts
