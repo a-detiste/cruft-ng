@@ -196,8 +196,8 @@ static void print_help_message()
 	cout << "    -R --ruleset     path for ruleset file (default: " << default_ruleset_file << ")\n";
 	cout << "    -B --bugs        path for known bugs file (default: " << default_bugs_file << ")\n";
 #ifndef BUSTER
-	cout << "    -n --no-locate   do not use locate\n";
-	cout << "    -r --root        root directory (default: " << default_root_dir << ", only works with --no-locate)\n";
+	cout << "    -l --locate      do use locate (deprecated)\n";
+	cout << "    -r --root        root directory (default: " << default_root_dir << ", does not work with --locate)\n";
 #endif
 
 	cout << '\n';
@@ -371,7 +371,7 @@ static void cruft(const string& ignore_file,
 int main(int argc, char *argv[])
 {
 	bool do_one_package = false;
-	bool locate = true;
+	bool locate = false;
 	string package = "";
 	string explain_dir = default_explain_dir;
 	string filter_dir = default_filter_dir;
@@ -383,7 +383,8 @@ int main(int argc, char *argv[])
 	const struct option long_options[] =
 	{
 		{"help", no_argument, nullptr, 'h'},
-		{"no-locate", no_argument, nullptr, 'n'},
+		{"locate", no_argument, nullptr, 'l'},
+		{"no-locate", no_argument, nullptr, 'n'},  // no longer used
 		{"package", required_argument, nullptr, 'p'},
 		{"explain", required_argument, nullptr, 'E'},
 		{"filter", required_argument, nullptr, 'F'},
@@ -424,8 +425,8 @@ int main(int argc, char *argv[])
 			ignore_file = optarg;
 			break;
 
-		case 'n':
-			locate = false;
+		case 'l':
+			locate = true;
 			break;
 
 		case 'R':

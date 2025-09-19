@@ -33,14 +33,6 @@ else
 	dh_auto_build -- cruft cpigs
 endif
 
-
-override_dh_gencontrol-arch:
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster xenial focal))
-	dh_gencontrol -- -Vdist:Depends="mlocate"
-else
-	dh_gencontrol -- -Vdist:Depends="plocate"
-endif
-
 override_dh_auto_install-indep:
 	dh_auto_install --destdir=debian/cruft-ng
 	mkdir -p debian/tmp/
