@@ -60,16 +60,7 @@ for release in sorted(releases):
             }.get(release, current_debhelper)
     BACKPORT = supported_debhelper < current_debhelper
 
-    if supported_debhelper < 10:
-        os.unlink('debian/dh-cruft.manpages')
-        with open('debian/compat', 'w') as old:
-            old.write('%s\n' % supported_debhelper)
-        build_dep = 'debhelper (>= %d~)' %  supported_debhelper
-        subprocess.check_call(['sed', '-i',
-                               's/\ *debhelper-compat.*/ ' + build_dep + ',/',
-                               'debian/control'],
-                              cwd = CRUFT)
-    elif BACKPORT:
+    if BACKPORT:
         build_dep = 'debhelper-compat ( = %d)' %  supported_debhelper
         subprocess.check_call(['sed', '-i',
                                's/\ *debhelper-compat.*/ ' + build_dep + ',/',
@@ -95,8 +86,6 @@ for release in sorted(releases):
                                cwd = CRUFT)
         subprocess.check_call(['git', 'checkout', 'debian/dh-cruft.manpages'],
                                cwd = CRUFT)
-    if os.path.isfile('debian/compat'):
-        os.unlink('debian/compat')
 
     for file in ('.tar.xz',
                  '.dsc',
