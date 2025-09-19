@@ -1,4 +1,7 @@
+/etc/chromium/policies/managed/debian-edu-homepage-ldap.json
+/etc/firefox-esr/debian-edu-homepage-ldap.js
 /etc/debian-edu/config
 /etc/default/enable-nat
+/usr/share/lightdm/lightdm-gtk-greeter.conf.d/02debian-edu.conf
 /var/lib/dovecot
 /var/lib/dovecot/auth_success

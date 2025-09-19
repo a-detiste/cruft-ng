@@ -1,2 +1,3 @@
 /etc/debian-edu/config
 /etc/debian-edu/xdebian-edu-firstboot
+/var/log/installer/cfengine-edu-install.log
