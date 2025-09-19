@@ -24,7 +24,7 @@ old_lts = str(info.supported()[-3])
 releases = sorted(set([old_lts, lts, stable]))
 if len(sys.argv) > 1:
     release = sys.argv[1]
-    assert release in releases or release == 'xenial'
+    assert release in releases
     releases = [release]
 
 print('RELEASES:', releases)
@@ -57,7 +57,6 @@ for release in sorted(releases):
 
     supported_debhelper = {
             'focal': 12,
-            'xenial': 9,
             }.get(release, current_debhelper)
     BACKPORT = supported_debhelper < current_debhelper
 
