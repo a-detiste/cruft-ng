@@ -75,8 +75,6 @@ TODO:
    separate tool. (and this really needs 'find'
    and can't be done with {m|p}locate db).
 
- * move to Salsa, enable C.I.
-
  * read the AppArmor globbing patterns (with libapparmor1)
 
  * https://www.codeproject.com/Articles/5163931/Fast-String-Matching-with-Wildcards-Globs-and-Giti
