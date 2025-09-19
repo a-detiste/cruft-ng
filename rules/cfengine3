@@ -1,2 +1,3 @@
+/usr/bin/cfengine-selected-python
 /var/lib/cfengine3/
 /var/log/cfengine3/*
