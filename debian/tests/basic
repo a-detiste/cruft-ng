@@ -11,8 +11,8 @@ done
 echo 'standard run'
 cruft
 
-echo '--no-locate'
-cruft --no-locate
+echo '--locate'
+cruft --locate
 
 echo 'should print: "base-passwd"'
 cruft /etc/passwd | grep base-passwd

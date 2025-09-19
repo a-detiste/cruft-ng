@@ -22,8 +22,6 @@ Architecture: any
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
-Recommends:
- ${dist:Depends},
 Suggests:
  ncdu,
 Description: programs that helps analyse volatile "cruft" files on your system
