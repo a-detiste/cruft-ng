@@ -26,12 +26,6 @@ Recommends:
  ${dist:Depends},
 Suggests:
  ncdu,
-Breaks:
- cruft (<< 0.9.44~),
- cruft-common,
-Replaces:
- cruft (<< 0.9.44~),
- cruft-common,
 Description: programs that helps analyse volatile "cruft" files on your system
  cruft-ng is a program to look over your system for anything that shouldn't
  be there, but is - the so called "cruft";  or for anything
