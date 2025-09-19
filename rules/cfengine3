@@ -1,2 +1,2 @@
 /var/lib/cfengine3/
-/var/log/cfengine*
+/var/log/cfengine3/*
