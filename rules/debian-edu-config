@@ -2,6 +2,11 @@
 /etc/firefox-esr/debian-edu-homepage-ldap.js
 /etc/debian-edu/config
 /etc/default/enable-nat
+/etc/xdg/menus/applications-merged
+/etc/xdg/menus/gnome-applications.menu
+/etc/xdg/menus/lxde-applications.menu
+/etc/xdg/menus/lxqt-applications.menu
+/etc/xdg/menus/mate-applications.menu
 /usr/share/lightdm/lightdm-gtk-greeter.conf.d/02debian-edu.conf
 /var/lib/dovecot
 /var/lib/dovecot/auth_success
