@@ -14,17 +14,17 @@ do
                 link="${line#* }"
                 ;;
             Value:*)
-                test -e "${line#* }" && printf "%s\n%s\n" "$ALTDIR/$alternative" "$link"
+                test -e "${line#* }" && printf "%s\n%s\n" "$ALTDIR/$alternative" "$link" || true
                 ;;
             '')
                 break
                 ;;
             *)
                 alt="$ALTDIR/${line% *}"
-                test -e "$alt" && echo "$alt"
+                test -e "$alt" && echo "$alt" || true
 
                 target="${line#* }"
-                test -e "$target" && echo "$target"
+                test -e "$target" && echo "$target" || true
                 ;;
         esac
     done
