@@ -1,4 +1,3 @@
-# Pop!_OS 22.04 LTS
 /etc/gdm3/greeter.dconf-defaults
 /etc/X11/default-display-manager
 /var/lib/gdm3
@@ -17,7 +16,18 @@
 /var/lib/gdm3/.local/state/wireplumber/default-routes
 /var/lib/gdm3/.local/state/wireplumber/restore-stream
 /var/lib/gdm3/.local/state/wireplumber/stream-properties
+/var/lib/gdm3/.migrated-dyn-users
 /var/lib/gdm3/greeter-dconf-defaults
+/var/lib/gdm3/seat0
+/var/lib/gdm3/seat0/config
+/var/lib/gdm3/seat0/config/.gsd-keyboard.settings-ported
+/var/lib/gdm3/seat0/config/ibus
+/var/lib/gdm3/seat0/config/ibus/bus
+/var/lib/gdm3/seat0/config/pulse
+/var/lib/gdm3/seat0/config/pulse/cookie
+/var/lib/gdm3/seat0/config/user-dirs.dirs
+/var/lib/gdm3/seat0/config/user-dirs.locale
+/var/lib/gdm3/seat0/state
 /var/lib/gdm3/snap
 /var/lib/gdm3/snap/snapd-desktop-integration
 /var/lib/gdm3/snap/snapd-desktop-integration/*
