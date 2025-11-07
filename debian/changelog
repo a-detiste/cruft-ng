@@ -1,3 +1,11 @@
+cruft-ng (0.9.76) unstable; urgency=medium
+
+  * Add new rules: python3-rtslib-fb, squeak-vm, targetcli-fb,
+    grafana-enterprise, kde-style-oxygen-qt6, tuned, tuned-ppd
+  * Update ruels: gdm3, octave
+
+ -- Alexandre Detiste <tchet@debian.org>  Fri, 07 Nov 2025 18:47:42 +0100
+
 cruft-ng (0.9.75) unstable; urgency=medium
 
   * Add new rules: debian-edu-config, debian-edu-install, jackd2
