@@ -396,7 +396,7 @@ int main(int argc, char *argv[])
 	};
 
 	int opt, opti = 0;
-	while ((opt = getopt_long(argc, argv, "p:E:F:hI:nR:B:r:", long_options, &opti)) != 0) {
+	while ((opt = getopt_long(argc, argv, "p:E:F:hI:lnR:B:r:", long_options, &opti)) != 0) {
 		if (opt == EOF)
 			break;
 
@@ -427,6 +427,9 @@ int main(int argc, char *argv[])
 
 		case 'l':
 			locate = true;
+			break;
+
+		case 'n':
 			break;
 
 		case 'R':
