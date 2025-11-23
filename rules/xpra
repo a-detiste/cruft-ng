@@ -1,0 +1,3 @@
+/etc/xpra/cert.pem
+/etc/xpra/key.pem
+/etc/xpra/ssl-cert.pem
