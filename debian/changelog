@@ -5,6 +5,7 @@ cruft-ng (0.9.77) unstable; urgency=medium
   * Add rules for: libeckit0d, late, gnunet, codium, syncthing, xpra,
     greetd, joystick, libwebcam, btrfs-progs, iptraf-ng.
   * Update rule for "containerd"
+  * Drop "Rules-Requires-Root: no": it is now the default
 
   [ Mike Mestnik ]
   * Do not decent into ignored folders (Closes: #1120816)
