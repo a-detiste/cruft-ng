@@ -63,7 +63,7 @@ for release in sorted(releases):
     if BACKPORT:
         build_dep = 'debhelper-compat ( = %d)' %  supported_debhelper
         subprocess.check_call(['sed', '-i',
-                               's/\ *debhelper-compat.*/ ' + build_dep + ',/',
+                               r's/\ *debhelper-compat.*/ ' + build_dep + ',/',
                                'debian/control'],
                               cwd = CRUFT)
 
