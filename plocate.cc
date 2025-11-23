@@ -57,6 +57,7 @@ int read_locate(vector<string>& fs, const string& ignore_path, const string& roo
 			// ignore directory '/foo' for ignore entry '/foo/'
 			error_code ec;
 			if (filename.size() + 1 == it.size()
+			&& it.back() == '/'
 			&& it.compare(0, filename.size(), filename) == 0
 			&& filesystem::is_directory(filename, ec)) {
 				ignored = true;

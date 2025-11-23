@@ -64,6 +64,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
 
 			// ignore directory '/foo' for ignore entry '/foo/'
 			if (filename.size() + 1 == it.size()
+			&& it.back() == '/'
 			&& it.compare(0, filename.size(), filename) == 0
 			&& is_directory) {
 				ignored = true;
