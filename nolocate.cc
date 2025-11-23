@@ -19,6 +19,7 @@ using namespace std;
 int read_nolocate(vector<string>& fs, const string& ignore_path, const string& root_dir)
 {
 	bool debug=getenv("DEBUG") != nullptr;
+	bool is_directory;
 
 	if (debug) cerr << "FILESYSTEM DATA\n";
 
@@ -54,6 +55,7 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
 			entry.disable_recursion_pending();
 
 		bool ignored = false;
+		is_directory = entry->is_directory();
 		for (const auto& it : ignores) {
 			if (filename.size() > it.size() && filename.compare(0, it.size(), it) == 0) {
 				ignored = true;
@@ -61,15 +63,18 @@ int read_nolocate(vector<string>& fs, const string& ignore_path, const string& r
 			}
 
 			// ignore directory '/foo' for ignore entry '/foo/'
-			error_code ec;
 			if (filename.size() + 1 == it.size()
 			&& it.compare(0, filename.size(), filename) == 0
-			&& filesystem::is_directory(filename, ec)) {
+			&& is_directory) {
 				ignored = true;
 				break;
 			}
 		}
-		if (ignored) continue;
+		if (ignored) {
+			if (is_directory)
+				entry.disable_recursion_pending();
+			continue;
+		}
 
 		if (!pyc_has_py(string{entry->path()}, debug))
 			fs.emplace_back(filename);
