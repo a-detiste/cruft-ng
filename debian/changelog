@@ -1,3 +1,17 @@
+cruft-ng (0.9.77) unstable; urgency=medium
+
+  * Fix getopt short arguments
+  * Archive rule for removed "ca-certificates-mono"
+  * Add rules for: libeckit0d, late, gnunet, codium, syncthing, xpra,
+    greetd, joystick, libwebcam, btrfs-progs, iptraf-ng.
+  * Update rule for "containerd"
+
+  [ Mike Mestnik ]
+  * Do not decent into ignored folders (Closes: #1120816)
+  * Check ignore path ending with /
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 23 Nov 2025 18:09:47 +0100
+
 cruft-ng (0.9.76) unstable; urgency=medium
 
   * Add new rules: python3-rtslib-fb, squeak-vm, targetcli-fb,
