@@ -1,0 +1,2 @@
+/var/lib/btrfs
+/var/lib/btrfs/scrub.status.*
