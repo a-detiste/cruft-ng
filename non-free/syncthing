@@ -1,0 +1,3 @@
+# https://apt.syncthing.net/
+/etc/apt/keyrings/syncthing-archive-keyring.gpg
+/etc/apt/sources.list.d/syncthing.list
