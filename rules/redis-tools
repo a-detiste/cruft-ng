@@ -1,2 +1,3 @@
+/etc/redis
 /var/lib/redis
 /var/log/redis
