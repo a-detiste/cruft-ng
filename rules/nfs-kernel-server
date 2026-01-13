@@ -10,4 +10,5 @@
 /var/lib/nfs/nfsdcld/main.sqlite
 /var/lib/nfs/nfsdcltrack
 /var/lib/nfs/nfsdcltrack/main.sqlite
+/var/lib/nfs/reexpdb.sqlite3
 /var/lib/nfs/v4recovery
