@@ -1,0 +1,4 @@
+/usr/lib/python3/dist-packages/kleborate/data/*.fasta.ndb
+/usr/lib/python3/dist-packages/kleborate/data/*.fasta.nin
+/usr/lib/python3/dist-packages/kleborate/data/*.fasta.njs
+/usr/lib/python3/dist-packages/kleborate/data/*.fasta.ntf
