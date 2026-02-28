@@ -1,1 +1,6 @@
+/usr/share/emacs/site-lisp/elpa/notmuch-0.40
+/usr/share/emacs/site-lisp/elpa/notmuch-0.40/Install.log.gz
+/usr/share/emacs/site-lisp/elpa/notmuch-0.40/*.el
+/usr/share/emacs/site-lisp/elpa/notmuch-0.40/*.elc
+/usr/share/emacs/site-lisp/elpa/notmuch-0.40/notmuch-logo.svg
 /var/lib/emacsen-common/state/package/installed/elpa-notmuch
