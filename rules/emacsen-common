@@ -1,4 +1,7 @@
+/usr/share/emacs/site-lisp/debian-startup.el
+/usr/share/emacs/site-lisp/debian-startup.elc
 /var/lib/emacsen-common/installed-flavors
+/var/lib/emacsen-common/state/flavor/installed/emacs
 /var/lib/emacsen-common/state/flavor/pending
 /var/lib/emacsen-common/state/package/installed/cmake-data
 /var/lib/emacsen-common/state/package/installed/dictionaries-common
