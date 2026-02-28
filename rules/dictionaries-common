@@ -1,4 +1,9 @@
 /etc/dictionaries-common/ispell-default
 /etc/dictionaries-common/words
 /usr/share/dict/words
+/usr/share/emacs/site-lisp/dictionaries-common
+/usr/share/emacs/site-lisp/dictionaries-common/.nosearch
+/usr/share/emacs/site-lisp/dictionaries-common/debian-ispell.el
+/usr/share/emacs/site-lisp/dictionaries-common/debian-ispell.elc
+/usr/share/emacs/site-lisp/dictionaries-common/done
 /var/cache/dictionaries-common/*
