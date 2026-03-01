@@ -1,0 +1,4 @@
+/var/lib/lightdm/.local/share
+/var/lib/lightdm/.local/share/gvfs-metadata
+/var/lib/lightdm/.local/share/gvfs-metadata/root
+/var/lib/lightdm/.local/share/gvfs-metadata/root-*.log
