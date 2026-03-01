@@ -1,3 +1,18 @@
+cruft-ng (0.9.78) unstable; urgency=medium
+
+  * Add rules for: bash, dhcpcd, glycin-loaders, gvfs-common, filler,
+    kleborate, rdtool-elisp
+  * Update rules for: dictionaries-common, elpa-notmuch, emacsen-common,
+    iptraf-ng, lcl-utils-*, libsnmp-base, nfs-kernel-server, omega-rpg, redis
+  * Archive rules for: grub-common, hannah, libgvc6
+  * Bump Standards-Version to 4.7.3, drop Priority: tag
+  * Add debian/salsa-ci.yml
+
+  [ Jochen Sprickerhof ]
+  * Update graphviz rule
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 01 Mar 2026 13:33:20 +0100
+
 cruft-ng (0.9.77) unstable; urgency=medium
 
   * Fix getopt short arguments
