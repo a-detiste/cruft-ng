@@ -12,10 +12,6 @@ list:
   xemacs##
 
 
-parse /usr/share/lintian/data/fields/obsolete-packages
-in tools/check.py
-
-
 
 machine-parse Fedora ghost files
 
