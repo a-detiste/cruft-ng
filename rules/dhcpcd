@@ -1,0 +1,3 @@
+/var/lib/dhcpcd/duid
+/var/lib/dhcpcd/*.lease
+/var/lib/dhcpcd/secret
