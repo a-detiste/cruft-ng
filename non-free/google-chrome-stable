@@ -1,6 +1,7 @@
 /etc/apt/sources.list.d/google-chrome.list
 /etc/apt/sources.list.d/google-chrome.sources
 /etc/apt/trusted.gpg.d/google-chrome.gpg
+/usr/share/keyrings/google-chrome.gpg
 /etc/default/google-chrome
 /usr/share/applications/defaults.list
 /usr/share/icons/hicolor/16x16/apps/google-chrome.png
