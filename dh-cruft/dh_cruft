@@ -106,6 +106,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 		open (IN, $cruft) or error("Failed to read ${cruft}: $!");
 		foreach my $line (<IN>)
 		{
+			chomp $line;
 			$line =~ s/#VERSION#/$version/g;
 			push @lines, $line;
 		}
