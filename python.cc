@@ -80,16 +80,6 @@ bool pyc_has_py(string pyc, bool debug)
 
 	struct stat buffer;
 
-#ifdef BUSTER
-	// python2 support
-	string py;
-	py = pyc.substr(0, pyc.length()-1);
-	if (stat(py.c_str(), &buffer) == 0) {
-		if (debug) cerr << "match: " << py << endl;
-		return true;
-	}
-#endif
-
 	/* TODO: consider old .pyc from old uinstalled Python3.x as leftover garbage
 	$ py3versions -s
 	python3.11
