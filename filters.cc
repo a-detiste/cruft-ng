@@ -11,9 +11,10 @@
 #include "filters.h"
 #include "usr_merge.h"
 
-static void read_one_filter(const string& glob_filename, const string& package, vector<owner>& globs, bool debug)
+static void read_one_filter(const string& glob_filename, const string& _package, vector<owner>& globs, bool debug)
 {
 	if (debug) cerr << "READING " << glob_filename << endl;
+	string package = _package;
 	ifstream glob_file(glob_filename);
 	for (string glob_line; getline(glob_file, glob_line);)
 	{
@@ -22,6 +23,8 @@ static void read_one_filter(const string& glob_filename, const string& package, 
 		if (glob_line.front() == '/') {
 			if (debug) cerr << package << " " << glob_line << endl;
 			globs.emplace_back(package, usr_merge(glob_line));
+		} else {
+			package = glob_line;
 		}
 	}
 }
