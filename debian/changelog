@@ -1,3 +1,15 @@
+cruft-ng (0.9.79) unstable; urgency=medium
+
+  * dh-cruft:
+    * add missing "chomp $line" that led to spurious generation of empty lines
+    * the virtual owner of files can now be overriden in debian/<pkg>.cruft
+  * Drop support for ancient /usr/lib/cruft/filters-unex/ path
+  * Add rules for: debian-fastforward, latex-cjk-thai, latex-cjk-common,
+                   google-chrome-unstable
+  * Update rules for: dkms, google-chrome-stable
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 19 Apr 2026 12:49:13 +0200
+
 cruft-ng (0.9.78) unstable; urgency=medium
 
   * Add rules for: bash, dhcpcd, glycin-loaders, gvfs-common, filler,

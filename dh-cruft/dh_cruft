@@ -96,6 +96,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 					error("[${package}] unexpected characters in line: ${line}: [${badchar}]");
 				}
 			}
+			# TODO: accept virtual package name override here too
 			else {error("[${package}] bad .purge line: [${line}]")};
 		}
 		autoscript($package, "postrm", "postrm-cruft", { 'PURGE' => join("\n", @purgelines)});
