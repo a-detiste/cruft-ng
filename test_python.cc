@@ -24,8 +24,8 @@ int main()
 	cout << endl;
 
 	test("/usr/share/games/game-data-packager/game_data_packager/__pycache__", true);
-	test("/usr/share/python3/debpython/__pycache__/option.cpython-310.pyc", false);
-	test("/usr/share/python3/debpython/__pycache__/option.cpython-311.pyc", true);
-	test("/usr/share/python3/debpython/__pycache__/option.cpython-312.pyc", true);
-	test("/usr/share/python3/debpython/__pycache__/option.cpython-313.pyc", false);
+	test("/usr/share/python3/debpython/__pycache__/option.cpython-312.pyc", false);
+	test("/usr/share/python3/debpython/__pycache__/option.cpython-313.pyc", true);
+	test("/usr/share/python3/debpython/__pycache__/option.cpython-314.pyc", true);
+	test("/usr/share/python3/debpython/__pycache__/option.cpython-315.pyc", false);
 }

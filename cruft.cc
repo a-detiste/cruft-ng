@@ -23,14 +23,9 @@
 
 using namespace std;
 
-#ifdef BUSTER
-#define LOCATE_DB "/var/lib/mlocate/mlocate.db"
-#define UPDATEDB "updatedb.mlocate"
-#else
 #include "nolocate.h"
 #define LOCATE_DB "/var/lib/plocate/plocate.db"
 #define UPDATEDB "updatedb.plocate"
-#endif
 
 /*
 static int read_mounts(const vector<string>& prunefs, vector<string>& mounts)
@@ -195,10 +190,8 @@ static void print_help_message()
 	cout << "    -I --ignore      path for ignore file (default: " << default_ignore_file << ")\n";
 	cout << "    -R --ruleset     path for ruleset file (default: " << default_ruleset_file << ")\n";
 	cout << "    -B --bugs        path for known bugs file (default: " << default_bugs_file << ")\n";
-#ifndef BUSTER
 	cout << "    -l --locate      do use locate (deprecated)\n";
 	cout << "    -r --root        root directory (default: " << default_root_dir << ", does not work with --locate)\n";
-#endif
 
 	cout << '\n';
 
@@ -234,11 +227,7 @@ static void cruft(const string& ignore_file,
 	}
 
 	vector<string> fs;
-#ifndef BUSTER
 	thread thr_plocate(locate ? read_locate : read_nolocate, ref(fs), ignore_file, root_dir);
-#else
-	thread thr_plocate(read_locate, ref(fs), ignore_file, root_dir);
-#endif
 
 	vector<string> packages;
 	vector<string> dpkg;

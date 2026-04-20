@@ -10,7 +10,6 @@ SHARED_OBJS = explain.o filters.o shellexp.o usr_merge.o python.o owner.o read_i
 CRUFT_OBJS = cruft.o dpkg_exclude.o bugs.o
 
 sid: cruft ruleset ruleset-minimal cpigs
-buster: cruftold cpigsold
 
 tests: test_plocate test_explain test_filters test_excludes test_dpkg test_python
 
@@ -19,42 +18,31 @@ owner.o: owner.cc owner.h
 explain.o: explain.cc owner.h
 filters.o: filters.cc owner.h
 plocate.o: plocate.cc locate.h read_ignores.h
-mlocate.o: mlocate.cc locate.h
 read_ignores.o: read_ignores.cc read_ignores.h
 
 cruft.o: cruft.cc explain.h filters.h dpkg.h python.h read_ignores.h nolocate.h
 dpkg_lib.o: dpkg_lib.cc dpkg.h /usr/include/dpkg/dpkg.h
-dpkg_popen.o: dpkg_popen.cc dpkg.h
 
-cruftold: $(SHARED_OBJS) $(CRUFT_OBJS) mlocate.o dpkg_popen.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) mlocate.o dpkg_popen.o -lstdc++fs -pthread -o cruftold
 cruft: $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o nolocate.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) $(CRUFT_OBJS) plocate.o dpkg_lib.o nolocate.o $(LIBDPKG_LIBS) -pthread -o cruft
 
-cpigsold: $(SHARED_OBJS) cpigs.o mlocate.o dpkg_popen.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) cpigs.o mlocate.o dpkg_popen.o -lstdc++fs -o cpigsold
 cpigs: $(SHARED_OBJS) cpigs.o plocate.o dpkg_lib.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) $(SHARED_OBJS) cpigs.o plocate.o dpkg_lib.o $(LIBDPKG_LIBS) -o cpigs
 
-test_%: %.o test_%.cc dpkg_lib.o usr_merge.o $(LIBDPKG_LIBS)
-test_dpkg_old: dpkg_popen.o test_dpkg.cc usr_merge.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_dpkg.cc usr_merge.o dpkg_popen.o -o test_dpkg_old
+test_%: %.o test_%.cc
 test_dpkg: dpkg_lib.o test_dpkg.cc usr_merge.o $(LIBDPKG_LIBS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_dpkg.cc usr_merge.o dpkg_lib.o $(LIBDPKG_LIBS) -Wl,--no-demangle -o test_dpkg
 
-test_mlocate: test_locate.cc mlocate.o python.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_locate.cc mlocate.o python.o -lstdc++fs -o test_mlocate
-test_plocate: test_locate.cc plocate.o python.o
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_locate.cc plocate.o python.o -o test_plocate
+test_plocate: test_locate.cc plocate.o python.o read_ignores.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CPPFLAGS) test_locate.cc plocate.o python.o read_ignores.o -o test_plocate
 
 test_python: python.o test_python.cc
 test_excludes: dpkg_exclude.o test_excludes.cc
-test_diversions: test_diversions.cc dpkg_popen.o usr_merge.o
 test_explain: test_explain.cc explain.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
 test_filters: test_filters.cc filters.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
 
 clean:
-	rm -f cpigs cruft cruftold ruleset ruleset-minimal test_?locate test_explain test_filters test_excludes test_dpkg test_dpkg_old test_diversions test_python test_bugs
+	rm -f cpigs cruft ruleset ruleset-minimal test_plocate test_explain test_filters test_excludes test_dpkg test_python test_bugs
 	rm -f *.o
 
 ruleset: rules/* non-free/*

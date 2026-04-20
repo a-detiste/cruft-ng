@@ -9,11 +9,6 @@
 
 #include "python.h"
 
-#ifdef BUSTER
-#include <experimental/string_view>
-using namespace std::experimental;
-#endif
-
 using namespace std;
 
 vector<string> versions;

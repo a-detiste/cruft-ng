@@ -17,14 +17,8 @@
 
 using namespace std;
 
-#ifndef BUSTER
 #include <filesystem>
 namespace fs = std::filesystem;
-#else
-#include <experimental/filesystem>
-using namespace std::experimental;
-namespace fs = std::experimental::filesystem;
-#endif
 
 clock_t beg = clock();
 

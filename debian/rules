@@ -8,10 +8,6 @@ ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye))
 export DEB_CPPFLAGS_MAINT_APPEND = -std=gnu++17
 endif
 
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
-export DEB_CPPFLAGS_MAINT_APPEND = -DBUSTER
-endif
-
 %:
 	dh $@
 
@@ -21,13 +17,7 @@ override_dh_auto_build-indep:
 override_dh_auto_build-arch:
 	./ruleset.sh ruleset $(DEB_DISTRIBUTION)
 	./ruleset.sh ruleset-minimal $(DEB_DISTRIBUTION)
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
-	dh_auto_build -- cruftold cpigsold
-	mv cruftold cruft
-	mv cpigsold cpigs
-else
 	dh_auto_build -- cruft cpigs
-endif
 
 override_dh_auto_install-indep:
 	dh_auto_install --destdir=debian/cruft-ng
@@ -37,11 +27,3 @@ override_dh_auto_install-indep:
 override_dh_install-indep:
 	dh_install
 	sed -i 's/DH_CRUFT_VERSION/"$(DEB_VERSION)"/' debian/dh-cruft/usr/bin/dh_cruft
-
-ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),buster focal))
-override_dh_install-arch:
-	dh_install
-	mkdir -p debian/cruft-ng/usr/lib/cruft/
-	cp -a dpkg_csv.py debian/cruft-ng/usr/lib/cruft/
-	cp -av archive/explain/* debian/cruft-ng/usr/libexec/cruft/
-endif

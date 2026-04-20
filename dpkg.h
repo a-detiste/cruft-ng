@@ -20,5 +20,3 @@ struct Diversion{
                 this->package=package;
         }
 };
-
-int read_diversions(vector<Diversion>& diversions);

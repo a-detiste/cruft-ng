@@ -9,15 +9,6 @@ Copyright: 2014-2024 Alexandre Detiste <alexandre.detiste@gmail.com>
            2024 Jochen Sprickerhof <jochen@sprickerhof.de>
 License: GPL-2+
 
-Files: mlocate_db.h
-Copyright: 2005 Redhat <mitr@redhat.com>
-License: mlocate_db_license
- You can use this file without restriction.
- .
- This file is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty
- of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
 Files: shellexp.cc
 Copyright: 1998-2000 Anthony Towns <ajt@debian.org>
            2005-2011 Marcin Owsiany <porridge@debian.org>
