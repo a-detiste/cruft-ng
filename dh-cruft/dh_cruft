@@ -89,7 +89,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 						chop $line;
 						chop $line;
 					}
-					push @purgelines, "    rm -rf ${line}";
+					push @purgelines, "    rm -rf \${DPKG_ROOT:-}${line}";
 				} else {
 					my $badchar = $line;
 					$badchar =~ tr/[a-zA-Z0-9_:~\-\/\.\?\*]//d;
