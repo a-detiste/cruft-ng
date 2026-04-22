@@ -1,0 +1,4 @@
+/etc/apt/apt.conf.d/20listchanges.disabled
+/var/lib/apt/listchanges.db
+/var/lib/apt/listchanges-old.db
+/var/lib/apt/listchanges-new.db
