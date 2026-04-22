@@ -7,7 +7,7 @@ cruft.log.old
 *.o
 ruleset
 ruleset-minimal
-test_locate
+test_plocate
 test_filters
 test_diversions
 test_explain
