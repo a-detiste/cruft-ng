@@ -27,9 +27,25 @@ def graph(package: str, rules: str) -> tuple[list[datetime.datetime],list[int]]:
 st_old, c_old = graph('cruft', 'filters-unex')
 st_new, c_new = graph('cruft-ng', 'rules')
 
+# split cruft <-> cruft-common
+CUTOFF = datetime.datetime(2015, 6, 29)
+st_cruft = list()
+c_cruft = list()
+st_common = list()
+c_common = list()
+for st, c in zip(st_old, c_old):
+    if st < CUTOFF:
+       st_cruft.append(st)
+       c_cruft.append(c)
+    else:
+       st_common.append(st)
+       c_common.append(c)
+
+
 fig, ax = plt.subplots()
 ax.grid(True)
-ax.plot(st_old, c_old, label='cruft')
+ax.plot(st_cruft, c_cruft, label='cruft')
+ax.plot(st_common, c_common, label='cruft-common')
 ax.plot(st_new, c_new, label='cruft-ng')
 
 ax.set_ylim(0, 615)
