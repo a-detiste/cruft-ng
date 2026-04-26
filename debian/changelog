@@ -1,3 +1,23 @@
+cruft-ng (0.9.80) unstable; urgency=medium
+
+  * dh-cruft: add ${DPKG_ROOT:-} prefix to generated "rm ..."
+  * Drop backportability to Buster
+  * Bump year in d/copyright
+  * fixup: rename rule libwebcam -> libwebcam0
+  * Rename rule odoo-18 -> odoo-19
+  * Archive rules:
+    * for packages last seen in bookworm: deborphan & sks
+    * for packages that have been converted to dh-cruft:
+      equivs, libxml-sax-perl, libxml-sax-expat-perl, debsums, pdl
+      cfingerd, geki2, geki3, gnubg, joe, lbreakouthd, shellinabox,
+      kleborate, suck, wvdial, xbomb, xjump, monsterz, rwhod, xbill,
+      dpkg-cross, ltris, tango-common, vmm, vnstat
+
+  [ Jochen Sprickerhof ]
+  * update raspi-firmware
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 26 Apr 2026 22:53:35 +0200
+
 cruft-ng (0.9.79) unstable; urgency=medium
 
   * dh-cruft:
