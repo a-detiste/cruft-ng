@@ -49,7 +49,7 @@ elif dpkg-vendor --derives-from Ubuntu
 then
     concat ubuntu/devel >> "$RULESET"
     archive="ubuntu"
-    releases="jammy focal bionic xenial"
+    releases="raccoon jammy"
 else
     concat archive/sid >> "$RULESET"
     archive="archive" # 'debian/' has a special meaning
