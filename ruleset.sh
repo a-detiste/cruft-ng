@@ -53,7 +53,7 @@ then
 else
     concat archive/sid >> "$RULESET"
     archive="archive" # 'debian/' has a special meaning
-    releases="forky trixie bookworm bullseye buster"
+    releases="duke forky trixie bookworm bullseye"
 fi
 
 # backport
