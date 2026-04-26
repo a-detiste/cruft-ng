@@ -27,11 +27,33 @@ def graph(package: str, rules: str) -> tuple[list[datetime],list[int]]:
 st_old, c_old = graph('cruft', 'filters-unex')
 st_new, c_new = graph('cruft-ng', 'rules')
 
-# split cruft <-> cruft-common
+# add data from https://snapshot.debian.org/binary/cruft/
+#
+# for d in *.deb
+# do
+#   echo -n $(echo $d | cut -d_ -f 2) " "
+#   dpkg --fsys-tarfile $d | tar -tl --wildcards '*usr/lib/cruft/filters*' | grep -v 'usr/lib/cruft/filters/$'| wc -l
+# done
 SEED: dict[datetime, int] = {
     datetime(1998, 4, 10): 81, # https://lists.debian.org/debian-policy/1998/04/msg00089.html
+    datetime(1998, 11, 9): 112, # 0.9.5
+    datetime(1999, 12, 19): 112, # 0.9.6-0.1
+    datetime(2002, 11, 22): 112, # 0.9.6-0.4
+    datetime(2005, 7, 16): 129, # 0.9.6-0.5
+    datetime(2005, 7, 20): 129, # 0.9.6-0.6
+    datetime(2005, 7, 25): 129, # 0.9.6-0.7
+    datetime(2005, 8, 29): 172, # 0.9.6-0.8
+    datetime(2005, 10, 25): 156, # 0.9.6-0.9
+    datetime(2005, 10, 28): 175, # 0.9.6-0.10
+    datetime(2005, 11, 2): 185, # 0.9.6-0.11
+    datetime(2006, 2, 6): 208, # 0.9.6-0.13
+    datetime(2006, 6, 8): 208, # 0.9.6-0.14
+    datetime(2006, 6, 15): 208, # 0.9.6-0.15
+    datetime(2007, 1, 18): 210, # 0.9.6-0.16
+    datetime(2007, 3, 3): 210, # 0.9.6-0.17
 }
 
+# split cruft <-> cruft-common
 CUTOFF = datetime(2015, 6, 29)
 st_cruft = list()
 c_cruft = list()
