@@ -42,7 +42,7 @@ do
         # are not a problem, they will never match a real file
         #
         # shellcheck disable=SC2086
-        echo $path
+        echo $path | tr ' ' '\n'
         last_package="$package"
     done
 done
