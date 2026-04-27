@@ -4,7 +4,7 @@ test -d "$CRUFT_ROOT/lib/systemd/system" || exit 0  # Devuan
 
 grep -e ^CacheDirectory= -e ^StateDirectory= "$CRUFT_ROOT"/lib/systemd/system/*.service | while IFS=':=' read -r service kind path
 do
-    service="${service##"$CRUFT_ROOT/usr/lib/systemd/system/"}"
+    service="${service##"${CRUFT_ROOT}/lib/systemd/system/"}"
     package="${service%.service}"
     package="${package%@}"
     test "$package" = "$last_package" || echo "$package"
