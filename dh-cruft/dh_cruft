@@ -72,6 +72,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 		open (IN, $purge) or error("Failed to read ${purge}: $!");
 		@lines = <IN>;
 		close IN;
+		my $var_games = 0;
 		my @purgelines = ();
 		foreach my $line (@lines)
 		{
@@ -90,6 +91,7 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 						chop $line;
 					}
 					push @purgelines, "    rm -rf \${DPKG_ROOT:-}${line}";
+					if ($line =~ /^\/var\/games/ ) { $var_games = 1; }
 				} else {
 					my $badchar = $line;
 					$badchar =~ tr/[a-zA-Z0-9_:~\-\/\.\?\*]//d;
@@ -98,6 +100,13 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 			}
 			# TODO: accept virtual package name override here too
 			else {error("[${package}] bad .purge line: [${line}]")};
+		}
+		if ($var_games) {
+			push @purgelines, "    if test -d \${DPKG_ROOT:-}/var/games/";
+			push @purgelines, "    then";
+			push @purgelines, "        rmdir --ignore-fail-on-non-empty \${DPKG_ROOT:-}/var/games/";
+			push @purgelines, "    fi";
+
 		}
 		autoscript($package, "postrm", "postrm-cruft", { 'PURGE' => join("\n", @purgelines)});
 	}
