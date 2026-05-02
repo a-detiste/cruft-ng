@@ -18,6 +18,9 @@ do
         journal-nocow|legacy|var)
            continue
            ;;
+        polkit-tmpfiles)
+           package="polkitd"
+           ;;
         systemd-nologin|systemd-pstore|systemd-tmp|provision|tmp|20-systemd*)
            package="systemd"
            ;;
