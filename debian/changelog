@@ -1,3 +1,15 @@
+cruft-ng (0.9.81) unstable; urgency=medium
+
+  * dh-cruft: add "rmdir --ignore-fail-on-non-empty /var/games/"
+              when some contents of /var/games/ are involveld in .purge
+  * Archive rules of packages migrated to dh-cruft: bastet, gnunet, heroes,
+    late, tint, asylum cron-daemon-common greed spacearyarya, omega-rpg,
+    squeak-vm, freesweep, gravitywars, gtkballs, ketm, tecnoballz
+  * Review explain/TMPFILES & explain/SERVICES fallback scripts
+  * Bump Standards-Version to 4.7.4, no change needed
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 02 May 2026 22:39:49 +0200
+
 cruft-ng (0.9.80) unstable; urgency=medium
 
   * dh-cruft: add ${DPKG_ROOT:-} prefix to generated "rm ..."
