@@ -1,0 +1,3 @@
+# no single package should own this directory
+# it should only be handled in .postinst/.postrm
+/var/games
