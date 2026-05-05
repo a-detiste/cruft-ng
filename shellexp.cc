@@ -55,7 +55,7 @@ bool myglob(const string& file, const string& glob )
 
 /* 0 on no match, non-zero on match */
 int shellexp(const char* string_, const char* pattern ) {
-    /*  printf( "...matching( \"%s\", \"%s\" )\n", string, pattern ); */
+    /*  printf( "...matching( \"%s\", \"%s\" )\n", string_, pattern ); */
 
     switch( pattern[0] ) {
     case '\0':
