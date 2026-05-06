@@ -52,6 +52,11 @@ then
     releases="raccoon jammy"
 else
     concat archive/sid >> "$RULESET"
+    if test -e /hurd/
+    then
+        echo "Hurd detected"
+        concat archive/hurd >> "$RULESET"
+    fi
     archive="archive" # 'debian/' has a special meaning
     releases="duke forky trixie bookworm bullseye"
 fi

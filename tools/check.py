@@ -83,10 +83,6 @@ testing.add('doc-beaglebone-getting-started')
 testing.add('librobotcontrol')
 testing.add('ti-pru-cgt-installer')
 
-# Add Hurd
-testing.add('hurd')
-testing.add('libc0.3')
-
 # Add Kali Linux
 testing.add('king-phisher')
 testing.add('powershell-empire')
