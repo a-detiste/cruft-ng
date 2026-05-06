@@ -114,6 +114,7 @@ static void one_file(const string& path)
 		infile = "/usr" + infile;
 	}
 
+	// BUG: should not follow symlink /var/lib/wtmpdb/wtmp.db -> ../../log/wtmp.db
 	char* file = realpath(infile.c_str(), nullptr);
 
 	vector<string> packages;
@@ -124,7 +125,7 @@ static void one_file(const string& path)
 	vector<owner> globs;
 	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, globs);
 	for (const auto& gl: globs) {
-		if (myglob(file, gl.path)) {
+		if (shellexp(file, gl.path.c_str())) {
 			cout << gl.package << '\n';
 			exit(0);
 		};
