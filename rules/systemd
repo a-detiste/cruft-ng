@@ -21,11 +21,6 @@
 /var/tmp/systemd-private-*/tmp
 /var/lib/systemd/timesync
 /var/lib/systemd/timesync/clock
-#systemd-timesyncd: another possible location
-/var/lib/private
-/var/lib/private/systemd
-/var/lib/private/systemd/timesync
-/var/lib/private/systemd/timesync/clock
 /var/log/README
 # END ruleset-minimal
 /etc/rc.local
