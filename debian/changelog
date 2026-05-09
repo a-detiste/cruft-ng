@@ -1,3 +1,26 @@
+cruft-ng (0.9.82) unstable; urgency=medium
+
+  * explain/SCRIPTS: implement indirect '@' package lookup protocol,
+                     this particularly helps when a package is shipping
+                     a machine-parsable tmpfiles definition
+
+  * make dh-cruft the one fictious owner of /var/games;
+    not a single .deb should ship any static file under /var/games/
+  * Add rules for: openuniverse, rockdodger
+
+  * Archive rules of packages migrated to dh-cruft:  dodgindiamond2,
+    nethack-common, oss-compat, typespeed, wing, angband, assaultcube,
+    glhack, petris, bzflag-server, fail2ban, mpd-sima, painintheapt,
+    pyracerz, rkhunter, samhain, acct, gunicorn, inetsim, mgetty
+  * Archive/Cleanse more old rules:
+    * kinfocenter: obosolete
+    * libeckit0d: obsolete
+    * systemd: archive old timesync/clock location
+  * Trim more Buster compatibility
+  * Move Hurd files out of the main ruleset, Hurd is untested
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 09 May 2026 12:51:25 +0200
+
 cruft-ng (0.9.81) unstable; urgency=medium
 
   * dh-cruft: add "rmdir --ignore-fail-on-non-empty /var/games/"
