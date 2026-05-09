@@ -1,4 +1,13 @@
+/etc/X11/xorg.conf
 /etc/X11/Xwrapper.config
 /etc/X11/Xwrapper.config.md5sum
 /etc/X11/Xwrapper.config.roster
 /var/lib/x11
+/var/log/Xorg.0.log
+/var/log/Xorg.0.log.old
+/var/log/Xorg.1.log
+/var/log/Xorg.1.log.old
+/var/log/Xorg.2.log
+/var/log/Xorg.2.log.old
+/var/log/Xorg.3.log
+/var/log/Xorg.3.log.old

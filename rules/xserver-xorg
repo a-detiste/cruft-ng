@@ -1,2 +1,10 @@
 /etc/X11/X
 /etc/X11/xorg.conf
+/var/log/Xorg.0.log
+/var/log/Xorg.0.log.old
+/var/log/Xorg.1.log
+/var/log/Xorg.1.log.old
+/var/log/Xorg.2.log
+/var/log/Xorg.2.log.old
+/var/log/Xorg.3.log
+/var/log/Xorg.3.log.old
