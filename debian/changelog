@@ -1,3 +1,9 @@
+cruft-ng (0.9.83) unstable; urgency=medium
+
+  * Fixup: move calls to dpkg_end() _after_ usage of read_explain()
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 09 May 2026 13:33:45 +0200
+
 cruft-ng (0.9.82) unstable; urgency=medium
 
   * explain/SCRIPTS: implement indirect '@' package lookup protocol,
