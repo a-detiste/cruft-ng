@@ -12,11 +12,8 @@ do
 		alternatives)
 			echo ALTERNATIVES
 			;;
-		btmp|wtmp)
-			echo logrotate
-			;;
 		*)
-			echo "$package"
+			echo "@$definition"
 			;;
 	esac
 

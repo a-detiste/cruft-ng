@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
+#include "dpkg.h"
 #include "explain.h"
 #include "usr_merge.h"
 #include "owner.h"
@@ -42,6 +43,12 @@ static void read_one_explain(const string& script, const string& package, vector
 		filter=filter.substr(0,filter.size() - 1); // remove '/n'
 		if (filter.front() == '/') {
 			explain.emplace_back(real_package, usr_merge(filter));
+		} else if (filter.front() == '@') {
+			// https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1135572
+			char real_package_c[100];
+			if (query(filter.c_str()+1, real_package_c)) {
+				real_package = real_package_c;
+			}
 		} else {
 			real_package = filter;
 		}

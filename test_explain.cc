@@ -9,9 +9,9 @@ int main()
 	vector<owner> explain;
 	dpkg_start("/");
 	read_dpkg_header(packages);
-	dpkg_end();
 	read_explain("/etc/cruft/explain/", packages, explain);
 	for (unsigned int i=0;i<explain.size();i++) {
 		cout << explain[i].package << ' ' << explain[i].path << endl;
 	}
+	dpkg_end();
 }

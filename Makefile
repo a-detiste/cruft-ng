@@ -15,7 +15,7 @@ tests: test_plocate test_explain test_filters test_excludes test_dpkg test_pytho
 
 cpigs.o: cpigs.cc owner.h
 owner.o: owner.cc owner.h
-explain.o: explain.cc owner.h
+explain.o: explain.cc owner.h dpkg.h
 filters.o: filters.cc owner.h
 plocate.o: plocate.cc locate.h read_ignores.h
 read_ignores.o: read_ignores.cc read_ignores.h
