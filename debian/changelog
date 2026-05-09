@@ -3,6 +3,7 @@ cruft-ng (0.9.82) unstable; urgency=medium
   * explain/SCRIPTS: implement indirect '@' package lookup protocol,
                      this particularly helps when a package is shipping
                      a machine-parsable tmpfiles definition
+                     (Closes: #1135572)
 
   * make dh-cruft the one fictious owner of /var/games;
     not a single .deb should ship any static file under /var/games/
