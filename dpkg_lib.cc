@@ -32,6 +32,8 @@ void dpkg_start(const string& root_dir) {
 	dpkg_fsys_set_dir(root_dir == "/" ? "" : root_dir.c_str());
 	dpkg_program_init("cruft");
 	modstatdb_open(msdbrw_readonly);
+	ensure_allinstfiles_available_quiet();
+	ensure_diversions();
 }
 
 void dpkg_end() {
@@ -39,19 +41,16 @@ void dpkg_end() {
 	dpkg_program_done();
 }
 
-int query(const char *path)
+int query(const char *path, char* package)
 {
-	ensure_allinstfiles_available_quiet();
-	ensure_diversions();
-
 	struct fsys_namenode *namenode;
 	namenode = fsys_hash_find_node(path, FHFF_NO_COPY);
 
 	if (namenode->divert) {
-	        cout << namenode->divert->pkgset->name << '\n';
+	        strncpy(package, namenode->divert->pkgset->name, 99);
 		return 1;
 	} else if(namenode->packages) {
-		cout << namenode->packages->pkg->set->name << '\n';
+		strncpy(package, namenode->packages->pkg->set->name, 99);
 		return 1;
 	}
 	return 0;

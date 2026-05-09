@@ -102,8 +102,10 @@ static void one_file(const string& path)
 
 	// is it a static file ?
 	dpkg_start("/");
-	if (query(path.c_str())) {
+	char package[100];
+	if (query(path.c_str(), package)) {
 		dpkg_end();
+		cout << package << '\n';
 		exit(0);
 	}
 
