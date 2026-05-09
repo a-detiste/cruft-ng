@@ -164,7 +164,6 @@ int main(int argc, char *argv[])
 	vector<string> dpkg;
 	dpkg_start("/");
 	read_dpkg(packages, dpkg, static_, "/");
-	dpkg_end();
 	elapsed("dpkg");
 
 	vector<string> cruft_db;
@@ -195,6 +194,7 @@ int main(int argc, char *argv[])
 	read_filters("/etc/cruft/filters/", "/usr/share/cruft/ruleset", packages, globs);
 	setenv("CRUFT_ROOT", "", 0);
 	read_explain("/etc/cruft/explain/", packages, globs);
+	dpkg_end();
 	elapsed("read filters");
 
 	std::map<std::string, size_t> usage{{"UNKNOWN", 0}};
