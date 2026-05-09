@@ -238,7 +238,6 @@ static void cruft(const string& ignore_file,
 	thread thr_dpkg(read_dpkg, ref(packages), ref(dpkg), false, root_dir);
 	thr_plocate.join();
 	thr_dpkg.join();
-	dpkg_end();
 	elapsed("plocate + dpkg");
 
 	map<string, bug> bugs;
@@ -324,6 +323,7 @@ static void cruft(const string& ignore_file,
 	// match the dynamic "explain" filters
 	vector<owner> explain;
 	read_explain(explain_dir, packages, explain);
+	dpkg_end();
 	elapsed("read explain");
 	vector<string> cruft4;
 	for (const auto& cr: cruft3) {
