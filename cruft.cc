@@ -121,7 +121,6 @@ static void one_file(const string& path)
 
 	vector<string> packages;
 	read_dpkg_header(packages);
-	dpkg_end();
 
 	// is it a dynamic file ?
 	vector<owner> globs;
@@ -129,6 +128,7 @@ static void one_file(const string& path)
 	for (const auto& gl: globs) {
 		if (shellexp(file, gl.path.c_str())) {
 			cout << gl.package << '\n';
+			dpkg_end();
 			exit(0);
 		};
 	}
@@ -139,11 +139,13 @@ static void one_file(const string& path)
 	for (const auto& ex: explain) {
 		if (infile == ex.path) {
 			cout << ex.package << '\n';
+			dpkg_end();
 			exit(0);
                 }
         }
 
 	cerr << "no matching package found\n";
+	dpkg_end();
 	exit(1);
 }
 
