@@ -1,3 +1,13 @@
+cruft-ng (0.9.84) unstable; urgency=medium
+
+  * Make rules/{DH_CRUFT,DEBOOSTRAP} actually work;
+    this ensures /var/games has a fictious DH_CRUFT user
+  * Add rules for games not yet using dh-cruft: sopwith, tuxtype, phalanx
+    gbatnav, crossfire-server, maelstrom, nbsdgames, moria, circuslinux,
+  * Drop/trim obsolete rules: apparmor, dia-common, doc-base, gimp, x11-common
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 10 May 2026 18:33:01 +0200
+
 cruft-ng (0.9.83) unstable; urgency=medium
 
   * Fixup: move calls to dpkg_end() _after_ usage of read_explain()
