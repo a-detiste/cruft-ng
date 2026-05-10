@@ -1,1 +1,3 @@
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1135021
+/var/lib/games/pachi/data/scores.dat
 /var/games/pachi/data/scores.dat
