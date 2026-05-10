@@ -80,10 +80,15 @@ int read_filters(const string& dir, const string& ruleset_file, const vector<str
 		} else {
 			// new package entry
 			package = glob_line;
-			string etc_filename = dir + package;
-			struct stat stat_buffer;
-			keep = find(packages.begin(), packages.end(), package) != packages.end() && stat(etc_filename.c_str(), &stat_buffer)!=0;
-			//cerr << package << " " << keep << endl;
+			if (!any_of(package.begin(), package.end(), [](unsigned char c){ return islower(c); })) {
+				keep = true;
+				//cerr << package << " " << keep << endl;
+			} else {
+				string etc_filename = dir + package;
+				struct stat stat_buffer;
+				keep = find(packages.begin(), packages.end(), package) != packages.end() && stat(etc_filename.c_str(), &stat_buffer)!=0;
+				//cerr << package << " " << keep << endl;
+			}
 		}
 	}
 	glob_file.close();
