@@ -1,0 +1,3 @@
+/etc/pure-ftpd/
+/etc/default/pure-ftpd-common
+/var/log/pure-ftpd/
