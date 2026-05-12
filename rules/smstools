@@ -1,0 +1,5 @@
+/etc/smsd.conf
+/var/log/smstools/
+/var/log/smsd.log
+/var/log/smsd_stats
+/var/spool/sms/
