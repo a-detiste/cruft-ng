@@ -1,0 +1,6 @@
+/etc/default/krb5-kdc
+/etc/krb5kdc/kdc.conf
+/etc/krb5kdc/kadm5.keytab
+/etc/krb5kdc/kadm5.acl
+/etc/krb5kdc/stash
+/var/lib/krb5kdc/
