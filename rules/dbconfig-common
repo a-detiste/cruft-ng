@@ -1,0 +1,3 @@
+/etc/dbconfig-common/
+/var/lib/dbconfig-common/
+/var/log/dbconfig-common/
