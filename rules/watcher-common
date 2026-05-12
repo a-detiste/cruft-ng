@@ -1,0 +1,4 @@
+/etc/watcher/
+/var/cache/watcher/
+/var/lib/watcher/
+/var/log/watcher/
