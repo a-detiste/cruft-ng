@@ -1,0 +1,5 @@
+/etc/dbconfig-common/trove-common.conf
+/etc/trove/
+/var/cache/trove/
+/var/lib/trove/
+/var/log/trove/
