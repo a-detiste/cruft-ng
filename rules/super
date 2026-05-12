@@ -1,0 +1,6 @@
+/var/lib/super/
+/var/log/super.log
+/var/log/super.log.0
+/var/log/super.log.*.gz
+/etc/cron.weekly/super
+/etc/cron.weekly/super.dpkg-old
