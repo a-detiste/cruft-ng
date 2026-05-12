@@ -1,0 +1,5 @@
+/etc/jetty12/
+/var/cache/jetty12/
+/var/lib/jetty12/
+/var/log/jetty12/
+
