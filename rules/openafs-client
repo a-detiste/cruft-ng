@@ -1,0 +1,6 @@
+/etc/openafs/cacheinfo
+/etc/openafs/CellServDB
+/etc/openafs/ThisCell
+/etc/openafs/afs.conf.client
+/var/cache/openafs-client/openafs-client.env
+/var/cache/openafs-client/openafs-client.shutdown.env
