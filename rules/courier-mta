@@ -1,0 +1,5 @@
+/etc/courier/esmtpd.pem
+/etc/courier/esmtpd.rand
+/usr/lib/courier/esmtpd.rand
+/var/lib/courier/msgq/
+/var/lib/courier/msgs/
