@@ -1,0 +1,7 @@
+/etc/tomcat11
+/etc/tomcat11/Catalina/
+/var/log/tomcat11/
+/var/lib/tomcat11
+/var/lib/tomcat11/lib
+/var/lib/tomcat11/lib/classes
+/var/lib/tomcat11/temp/
