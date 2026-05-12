@@ -1,0 +1,9 @@
+/var/lib/openafs/db/prdb.DB0
+/var/lib/openafs/db/prdb.DBSYS1
+/var/lib/openafs/db/vldb.DB0
+/var/lib/openafs/db/vldb.DBSYS1
+/var/log/openafs/PtLog
+/var/log/openafs/PtLog.old
+/var/log/openafs/VLLog
+/var/log/openafs/VLLog.old
+
