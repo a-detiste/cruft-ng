@@ -1,0 +1,5 @@
+/etc/wmbusmeters.conf
+/etc/logrotate.d/wmbusmeters
+/etc/wmbusmeters.d/
+/var/log/wmbusmeters/
+/var/lib/wmbusmeters/
