@@ -1,0 +1,5 @@
+/etc/tt-rss/
+/etc/apache2/conf.d/50-tt-rss.conf
+/etc/avahi/services/tt-rss.service
+/etc/lighttpd/conf-enabled/50-tt-rss.conf
+/var/cache/tt-rss/
