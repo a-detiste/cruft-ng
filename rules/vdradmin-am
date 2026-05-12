@@ -1,0 +1,7 @@
+/etc/vdradmin/vdradmind.conf
+/etc/vdradmin-am/vdradmind.conf
+/var/cache/vdradmin-am/
+/var/lib/vdradmin-am/
+/var/log/vdradmin-am/
+/var/log/vdradmind.log
+
