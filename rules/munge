@@ -1,0 +1,3 @@
+/etc/munge/munge.key
+/var/lib/munge/
+/var/log/munge/
