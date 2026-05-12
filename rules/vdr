@@ -1,0 +1,10 @@
+/etc/vdr/conf.d/
+/var/cache/vdr/plugin_search_cache*
+/var/cache/vdr/commands.conf
+/var/cache/vdr/reccmds.conf
+/var/cache/vdr/epg.data
+/var/lib/vdr/channels.conf
+/var/lib/vdr/themes/
+/var/lib/vdr/remote.conf
+/var/lib/vdr/setup.conf
+/var/lib/vdr/timers.conf
