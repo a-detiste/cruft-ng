@@ -1,0 +1,3 @@
+/etc/default/pollinate/
+/var/cache/pollinate/
+/var/lib/pollinate/
