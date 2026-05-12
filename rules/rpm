@@ -1,0 +1,4 @@
+/etc/rpm/
+/usr/lib/rpm/*-rpm-linux/
+/usr/src/rpm/
+/var/lib/rpm/
