@@ -1,0 +1,4 @@
+/etc/sympa/
+/etc/mail/sympa/
+/var/lib/sympa/
+/var/spool/sympa/
