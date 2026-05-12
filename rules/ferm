@@ -1,0 +1,3 @@
+/etc/default/ferm
+/etc/default/ferm.bak
+/var/cache/ferm/
