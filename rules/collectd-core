@@ -1,1 +1,3 @@
+/etc/collectd/
+/var/lib/collectd/
 /var/log/collectd.log
