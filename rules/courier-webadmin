@@ -1,0 +1,2 @@
+# Remove the webadmin socket from /var/lib/courier, which is sometimes left behind by the service.
+/var/lib/courier/webadmin
