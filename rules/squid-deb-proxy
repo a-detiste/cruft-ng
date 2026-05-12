@@ -1,0 +1,8 @@
+/etc/avahi/services/squid-deb-proxy.service
+/etc/squid-deb-proxy/allowed-networks-src.acl.d/10-default
+/etc/squid-deb-proxy/mirror-dstdomain.acl.d/10-default
+/etc/squid-deb-proxy/allowed-networks-src.acl.d/30-debconf
+/etc/squid-deb-proxy/mirror-dstdomain.acl.d/30-debconf
+/etc/squid-deb-proxy/pkg-blocklist.d/10-default
+/var/cache/squid-deb-proxy/
+/var/log/squid-deb-proxy/
