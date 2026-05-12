@@ -1,0 +1,6 @@
+/etc/diaspora/
+/etc/nginx/sites-available/diaspora
+/etc/nginx/sites-enabled/diaspora
+/var/lib/diaspora-common/diaspora.private.conf
+/var/lib/diaspora-common/database.yml
+/var/lib/diaspora-common/nginx-site-diaspora/
