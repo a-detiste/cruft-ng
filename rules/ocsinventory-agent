@@ -1,0 +1,7 @@
+/etc/ocsinventory-client/ocsinv.conf
+/etc/ocsinventory/ocsinventory-agent.cfg
+/var/lib/ocsinventory-agent/ocsinv.adm
+/usr/share/ocsinventory-client/ocsinv.conf
+/usr/share/ocsinventory-client/ocsinv.adm
+/var/cache/ocsinventory-agent/last_state
+/var/log/ocsinventory-client/ocsinv.log
