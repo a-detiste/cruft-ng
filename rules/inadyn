@@ -1,0 +1,3 @@
+/etc/inadyn.conf
+/var/log/inadyn/
+/var/cache/inadyn/
