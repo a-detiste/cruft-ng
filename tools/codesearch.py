@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-PATH = '/var/cache'
+PATH = '/var/lib'
 
 import os
 import subprocess
