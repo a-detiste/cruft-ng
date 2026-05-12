@@ -1,0 +1,5 @@
+/etc/gosa/
+/usr/share/gosa/html/themes/default/images/img.png
+/usr/share/gosa/ihtml/themes/default/img.styles
+/var/cache/gosa/
+/var/spool/gosa/
