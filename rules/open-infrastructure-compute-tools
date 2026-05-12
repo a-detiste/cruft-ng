@@ -1,0 +1,8 @@
+/etc/compute-tools/container.conf
+/etc/compute-tools/debconf
+/etc/compute-tools/config
+/etc/compute-tools/hooks
+/etc/compute-tools/keys
+/etc/needrestart/restart.d
+/var/cache/container/
+/var/lib/machines/
