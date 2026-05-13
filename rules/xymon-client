@@ -1,0 +1,8 @@
+/etc/default/hobbit-client
+/etc/hobbit/
+/etc/xymon/
+/etc/default/xymon-client
+/var/lib/hobbit/
+/var/log/hobbit/
+/var/lib/xymon/
+/var/log/xymon/
