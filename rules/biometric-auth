@@ -1,0 +1,2 @@
+/etc/biometric-auth/biometric-drivers.conf
+/var/lib/biometric-auth/biometric.db
