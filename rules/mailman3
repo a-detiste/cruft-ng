@@ -1,0 +1,3 @@
+/etc/mailman3/
+/var/lib/mailman3/
+/var/log/mailman3/
