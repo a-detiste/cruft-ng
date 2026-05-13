@@ -1,0 +1,3 @@
+/etc/neutron/
+/var/lib/neutron/
+/var/log/neutron/
