@@ -1,0 +1,5 @@
+/var/log/amanda/
+/var/lib/amanda-gnutar-lists/
+/var/lib/amanda-index/
+/var/lib/amanda/
+/var/lib/amandates/
