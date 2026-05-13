@@ -78,7 +78,7 @@ ax.plot(st_cruft, c_cruft, label='cruft')
 ax.plot(st_common, c_common, label='cruft-common')
 ax.plot(st_new, c_new, label='cruft-ng')
 
-ax.set_ylim(0, 615)
+#ax.set_ylim(0, 615)
 
 fig.autofmt_xdate()
 
