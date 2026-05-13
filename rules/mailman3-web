@@ -1,0 +1,6 @@
+/etc/apache2/conf-available/mailman3.conf
+/etc/mailman3/mailman-web.py*
+/etc/nginx/sites-enabled/mailman3
+/var/lib/mailman3/web/
+/var/log/mailman3/web/
+/var/log/nginx/mailman3/
