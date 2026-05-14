@@ -1,0 +1,6 @@
+/var/lib/octavia/
+/var/log/octavia/
+/etc/octavia
+/etc/octavia/octavia.conf
+/etc/octavia/policy.json
+/etc/octavia/vitrage.conf
