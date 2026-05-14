@@ -1,0 +1,3 @@
+/etc/barbican/
+/var/lib/barbican/
+/var/log/barbican/
