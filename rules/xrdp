@@ -1,0 +1,5 @@
+/etc/pam.d/sesman
+/etc/xrdp/
+/var/log/sesman.log
+/var/log/xrdp.log
+/var/log/xrdp-sesman.log
