@@ -1,0 +1,3 @@
+/var/lib/prometheus/metrics/
+/var/lib/prometheus/metrics2/
+/var/log/prometheus/prometheus.log*
