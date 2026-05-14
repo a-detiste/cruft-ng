@@ -1,0 +1,4 @@
+/var/lib/certmonger/cas/*
+/var/lib/certmonger/local/*
+/var/lib/certmonger/lock
+/var/lib/certmonger/requests/*
