@@ -1,0 +1,8 @@
+/etc/cinder/api-paste.ini
+/etc/cinder/cinder.conf
+/etc/cinder/logging.conf
+/etc/cinder/policy.json
+/etc/cinder
+/etc/default/cinder-common
+/var/lib/cinder/
+/var/log/cinder/
