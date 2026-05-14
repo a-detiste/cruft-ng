@@ -1,0 +1,3 @@
+/etc/lava-dispatcher/
+/var/lib/lava/dispatcher/
+/var/log/lava-dispatcher/
