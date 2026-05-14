@@ -1,0 +1,4 @@
+/etc/masakarimonitors
+/etc/masakarimonitors/masakarimonitorsmasakari.conf
+/var/lib/masakarimonitors/
+/var/log/masakarimonitors/
