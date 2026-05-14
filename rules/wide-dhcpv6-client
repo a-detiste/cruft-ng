@@ -1,0 +1,3 @@
+/etc/default/wide-dhcpv6-client
+/etc/wide-dhcpv6/dhcp6cctlkey
+/var/lib/dhcpv6/dhcp6c_duid
