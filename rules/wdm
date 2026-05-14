@@ -1,0 +1,3 @@
+/etc/X11/wdm/
+/var/lib/wdm/
+/var/log/wdm-errors/
