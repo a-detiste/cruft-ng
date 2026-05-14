@@ -1,0 +1,5 @@
+/var/lib/prometheus/node-exporter/apt.prom
+/var/lib/prometheus/node-exporter/ipmitool_sensor.prom
+/var/lib/prometheus/node-exporter/mellanox_hca_temp.prom
+/var/lib/prometheus/node-exporter/nvme.prom
+/var/lib/prometheus/node-exporter/smartmon.prom
