@@ -1,0 +1,2 @@
+/var/lib/dhcpy6d/volatile.sqlite
+/var/log/dhcpy6d.log*
