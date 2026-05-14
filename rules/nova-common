@@ -1,0 +1,11 @@
+/etc/default/nova-common
+/etc/nova
+/etc/nova/nova.conf
+/etc/nova/api-paste.ini
+/etc/nova/logging.conf
+/etc/nova/placement-policy.json
+/etc/nova/disabled.policy.json.old
+/etc/nova/policy.json
+/var/log/nova/nova-manage.log
+/var/lib/nova/.rnd
+/var/lib/nova/CA/
