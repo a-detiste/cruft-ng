@@ -1,0 +1,3 @@
+/var/lib/slurm-llnl/slurmd/
+/var/lib/slurm/slurmd/
+/var/log/slurm/slurmd.log*
