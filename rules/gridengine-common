@@ -1,0 +1,3 @@
+/etc/default/gridengine
+/var/lib/gridengine/
+/var/spool/gridengine/
