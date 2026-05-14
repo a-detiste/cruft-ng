@@ -1,0 +1,2 @@
+/var/log/prometheus/prometheus-ipmi-exporter.log
+/var/log/prometheus/prometheus-ipmi-exporter.log.*
