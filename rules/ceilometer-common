@@ -1,0 +1,7 @@
+/etc/ceilometer
+/etc/ceilometer/ceilometer.conf
+/var/lib/ceilometer/
+/var/lib/nova
+/var/lib/nova/cache
+/var/log/ceilometer/
+/var/log/nova
