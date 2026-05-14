@@ -1,0 +1,9 @@
+/etc/openstack-dashboard
+/etc/openstack-dashboard/local_settings.py
+/etc/openstack-dashboard/local_settings.d/
+/etc/openstack-dashboard/enabled/
+/etc/openstack-dashboard/policy/
+/usr/share/openstack-dashboard/
+/usr/share/openstack-dashboard-debian-settings.d/
+/var/lib/openstack-dashboard/
+/var/lib/horizon/
