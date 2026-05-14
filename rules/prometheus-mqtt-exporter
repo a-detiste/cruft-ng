@@ -1,0 +1,2 @@
+/var/log/prometheus/prometheus-mqtt-exporter.log
+/var/log/prometheus/prometheus-mqtt-exporter.log.*
