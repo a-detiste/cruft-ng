@@ -1,0 +1,5 @@
+/var/log/heimdal-kdc.log*
+/var/lib/heimdal-kdc/
+/etc/heimdal-kdc/.configured
+/etc/heimdal-kdc/kdc.conf
+/etc/heimdal-kdc/kadmind.acl
