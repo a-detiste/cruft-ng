@@ -1,0 +1,14 @@
+/etc/ipa/default.conf
+/etc/pki/nssdb/cert8.db
+/etc/pki/nssdb/key3.db
+/etc/pki/nssdb/secmod.db
+/etc/ipa/nssdb/cert8.db
+/etc/ipa/nssdb/key3.db
+/etc/ipa/nssdb/pwdfile.txt
+/etc/ipa/nssdb/secmod.db
+/etc/ipa/nssdb/*.orig
+/etc/pki/nssdb
+/etc/ipa/nssdb
+/etc/ipa
+/var/lib/ipa-client/
+/var/log/ipaclient-upgrade.log
