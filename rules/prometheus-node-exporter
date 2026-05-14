@@ -1,0 +1,3 @@
+/var/lib/prometheus/node-exporter/
+/var/log/prometheus/prometheus-node-exporter.log
+/var/log/prometheus/prometheus-node-exporter.log.*
