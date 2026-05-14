@@ -1,0 +1,2 @@
+/var/lib/prometheus/pushgateway.data
+/var/log/prometheus/prometheus-pushgateway.log*
