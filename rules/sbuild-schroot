@@ -1,0 +1,7 @@
+/etc/sbuild/chroot/
+/var/lib/sbuild/apt.conf*
+/var/lib/sbuild/apt-keys/*
+/var/lib/sbuild/avg-build-space
+/var/lib/sbuild/avg-build-times
+/var/lib/sbuild/source-dependencies-*
+/var/lib/sbuild/srcdep-lock/
