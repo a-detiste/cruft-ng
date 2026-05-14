@@ -1,0 +1,4 @@
+/etc/sudoers.d/saunafstest
+/etc/saunafs_tests.conf
+/var/lib/saunafstest/
+/var/lib/saunafstest_?/
