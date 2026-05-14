@@ -1,0 +1,3 @@
+/etc/crowdsec/bouncers/crowdsec-firewall-bouncer.yaml
+/etc/crowdsec/bouncers/crowdsec-firewall-bouncer.yaml.local
+/var/log/crowdsec-firewall-bouncer*.log*
