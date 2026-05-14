@@ -1,0 +1,3 @@
+/etc/calamaris/cron.conf
+/etc/cron.daily/calamaris
+/var/log/calamaris/*
