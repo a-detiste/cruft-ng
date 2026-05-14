@@ -1,0 +1,5 @@
+/etc/aetos
+/etc/aetos/aetos.conf
+/etc/aetos/api-paste.ini
+/var/lib/aetos/
+/var/log/aetos/
