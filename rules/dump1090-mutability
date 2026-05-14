@@ -1,0 +1,3 @@
+/etc/default/dump1090-mutability
+/etc/lighttpd/conf-enabled/89-dump1090.conf
+/var/log/dump1090-mutability.log*
