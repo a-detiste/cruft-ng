@@ -1,0 +1,3 @@
+/etc/glance/
+/var/lib/glance/
+/var/log/glance/
