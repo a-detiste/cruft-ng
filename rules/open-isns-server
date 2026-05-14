@@ -1,0 +1,5 @@
+/etc/isns
+/etc/isns/auth_key
+/etc/isns/auth_key.pub
+/etc/isns/dsa.params
+/var/lib/isns/
