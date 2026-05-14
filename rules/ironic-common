@@ -1,0 +1,9 @@
+/etc/ironic
+/etc/ironic/ironic.conf
+/etc/ironic/policy.json
+/var/lib/ironic
+/var/lib/ironicdb
+/var/lib/ironic/cache/
+/var/lib/ironic/httpboot
+/var/lib/ironic/httpboot/boot.ipxe
+/var/log/ironic/
