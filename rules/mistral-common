@@ -1,0 +1,7 @@
+/etc/mistral
+/etc/mistral/mistral.conf
+/etc/mistral/logging.conf
+/etc/mistral/policy.json
+/etc/mistral/wf_trace_logging.conf
+/var/lib/mistral/
+/var/log/mistral/
