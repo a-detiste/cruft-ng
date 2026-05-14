@@ -1,0 +1,3 @@
+/etc/manila/
+/var/lib/manila/
+/var/log/manila/
