@@ -1,0 +1,5 @@
+/etc/openvswitch/ovnnb.db*
+/etc/openvswitch/.ovnnb.db.~lock~
+/etc/openvswitch/ovnsb.db*
+/etc/openvswitch/.ovnsb.db.~lock~
+/var/log/openvswitch/ovn-northd.log*
