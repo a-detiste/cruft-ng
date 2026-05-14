@@ -1,0 +1,4 @@
+/etc/placement
+/etc/placement/placement.conf
+/var/lib/placement/
+/var/log/placement/
