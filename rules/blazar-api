@@ -1,0 +1,3 @@
+/etc/blazar
+/var/log/blazar
+/var/log/blazar/blazar-api.*
