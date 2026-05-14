@@ -1,0 +1,6 @@
+/etc/designate
+/etc/designate/api-paste.ini
+/etc/designate/designate.conf
+/etc/designate/policy.json
+/var/lib/designate/
+/var/log/designate/
