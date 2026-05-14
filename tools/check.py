@@ -71,6 +71,9 @@ testing = get_testing()
 
 testing.add('usr-is-merged')
 
+# arm64 only
+testing.add('widevine-installer')
+
 # Add RaspBian
 testing.add('raspberrypi-bootloader')
 testing.add('libraspberrypi0')
