@@ -1,0 +1,5 @@
+/etc/vmms
+/etc/vmms/vmms.conf
+/var/lib/vmms/
+/var/lib/vmmsdb
+/var/log/vmms/
