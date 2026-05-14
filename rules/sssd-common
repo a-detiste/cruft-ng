@@ -1,0 +1,3 @@
+/etc/sssd
+/etc/sssd/sssd.conf
+/var/log/sssd/
