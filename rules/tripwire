@@ -1,0 +1,3 @@
+/etc/tripwire/
+/usr/lib/tripwire/
+/var/lib/tripwire/
