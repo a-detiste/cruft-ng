@@ -66,6 +66,11 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 	# the sum of .purge and .cruft lines
 	my @lines;
 
+	# TODO: lines about tmpfs (/run, /var/run, /var/lock)
+	#       should be forbidden in $cruft as cruft-ng will never peek inside tmpfs by design
+	#       but some packages really wants to clean those in postrm,
+	#       so they should be accepted in $purge but not leak in @lines
+
 	my $purge = pkgfile($package, "purge");
 	if ($purge ne '') {
 		my $IN;
