@@ -1,0 +1,3 @@
+/etc/gnocchi/
+/var/lib/gnocchi/
+/var/log/gnocchi/
