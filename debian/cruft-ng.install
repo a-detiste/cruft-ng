@@ -1,6 +1,6 @@
 cruft     /usr/bin/
 cpigs     /usr/bin/
-explain/* /usr/libexec/cruft/
+explain/* /usr/libexec/cruft/fallback/
 ruleset   /usr/share/cruft/
 ruleset-minimal   /usr/share/cruft/
 bugs      /usr/share/cruft/

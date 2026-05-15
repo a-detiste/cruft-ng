@@ -82,7 +82,7 @@ int read_explain(const string& dir, const vector<string>& packages, vector<owner
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
-	read_uppercase(explain, "/usr/libexec/cruft/", debug);
+	read_uppercase(explain, "/usr/libexec/cruft/fallback/", debug);
 	read_uppercase(explain, dir, debug);
 
 	if (debug) cerr << "EXECUTING OTHER FILTERS" << endl;
@@ -91,9 +91,9 @@ int read_explain(const string& dir, const vector<string>& packages, vector<owner
 		// local admin overrides
 		string etc_filename = dir + package;
 		// shipped by individual packages
-		string usr_filename = "/usr/libexec/explain/" + package;
+		string usr_filename = "/usr/libexec/cruft/" + package;
 		// fallback legacy set
-		string fbk_filename = "/usr/libexec/cruft/" + package;
+		string fbk_filename = "/usr/libexec/cruft/fallback/" + package;
 		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
 			read_one_explain(etc_filename, package, explain);
 		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )

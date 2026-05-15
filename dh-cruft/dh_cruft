@@ -51,7 +51,7 @@ will be replaced by the basic upstream version.
 This should be a POSIX shell script that dynamically
 generate a list of files owned by this package.
 
-This script is installed as usr/libexec/explain/I<package>
+This script is installed as usr/libexec/cruft/I<package>
 in the package build directory.
 
 These script should not be used for simplistic cases
@@ -77,8 +77,8 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 
 	my $explain = pkgfile($package, "explain");
 	if ($explain) {
-		install_dir("$tmp/usr/libexec/explain/");
-		install_prog($explain, "$tmp/usr/libexec/explain/".pkgfilename($package));
+		install_dir("$tmp/usr/libexec/cruft/");
+		install_prog($explain, "$tmp/usr/libexec/cruft/".pkgfilename($package));
 	}
 
 	# get package basic upstream version for templating
