@@ -21,7 +21,7 @@ More information: https://wiki.debian.org/Cruft
 cruft-ng needs a ruleset:
 -------------------------
 
-* `/usr/libexec/explain/` : this is a set of shell scripts
+* `/usr/libexec/cruft/` : this is a set of shell scripts
   plugins for handling of special cases.
 
 * `/usr/share/cruft/rules/*` : these are glob-like files,
@@ -90,4 +90,4 @@ This reuses `shellexp.c`, explain/*  and filters-unex/* from cruft.
 
 1998-2000 Anthony Towns
 2005-2011 Marcin Owsiany
-2014-2023 Alexandre Detiste
+2014-2026 Alexandre Detiste
