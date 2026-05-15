@@ -49,7 +49,7 @@ will be replaced by the basic upstream version.
 =item debian/I<package>.explain
 
 This should be a POSIX shell script that dynamically
-generate a liste of files owned by this package.
+generate a list of files owned by this package.
 
 This script is installed as usr/libexec/explain/I<package>
 in the package build directory.
