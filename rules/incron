@@ -1,0 +1,3 @@
+/etc/incron.allow
+/etc/incron.deny
+/var/spool/incron/
