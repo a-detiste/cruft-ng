@@ -10,6 +10,7 @@ find "$CRUFT_ROOT/usr/share/fontconfig/conf.avail/" -maxdepth 1 -type f -printf 
 do
     if test -e "$CRUFT_ROOT/etc/fonts/conf.d/$file"
     then
+        echo "@/usr/share/fontconfig/conf.avail/$file"
         echo "/etc/fonts/conf.d/$file"
     fi
 done
