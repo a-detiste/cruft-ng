@@ -88,12 +88,18 @@ int read_explain(const string& dir, const vector<string>& packages, vector<owner
 	if (debug) cerr << "EXECUTING OTHER FILTERS" << endl;
 	for (const auto& package: packages) {
 		struct stat stat_buffer;
+		// local admin overrides
 		string etc_filename = dir + package;
-		string usr_filename = "/usr/libexec/cruft/" + package;
+		// shipped by individual packages
+		string usr_filename = "/usr/libexec/explain/" + package;
+		// fallback legacy set
+		string fbk_filename = "/usr/libexec/cruft/" + package;
 		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
 			read_one_explain(etc_filename, package, explain);
 		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
 			read_one_explain(usr_filename, package, explain);
+		else if ( stat(fbk_filename.c_str(), &stat_buffer)==0 )
+			read_one_explain(fbk_filename, package, explain);
 	}
 	sort(explain.begin(), explain.end());
 	explain.erase( unique( explain.begin(), explain.end() ), explain.end() );

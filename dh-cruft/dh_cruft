@@ -46,6 +46,23 @@ to remove these files on I<purge> phase.
 Some basic templating is implemented: the B<#VERSION#> tag
 will be replaced by the basic upstream version.
 
+=item debian/I<package>.explain
+
+This should be a POSIX shell script that dynamically
+generate a liste of files owned by this package.
+
+This script is installed as usr/libexec/explain/I<package>
+in the package build directory.
+
+These script should not be used for simplistic cases
+that can be handler by .cruft files.
+
+The output of the scripts can contain three kind of records:
+ * /I<PATH> : the files matched (mandatory)
+ * B<@>/I<PATH>: this allow indirect ownership lookup,
+   i.e. the following files belong to the package owning this one file
+ * I<package>: all following files belongs to I<package>
+
 =back
 
 =cut
@@ -56,6 +73,13 @@ init();
 
 foreach my $package (@{$dh{DOPACKAGES}}) {
 	next if is_udeb($package);
+	my $tmp = tmpdir($package);
+
+	my $explain = pkgfile($package, "explain");
+	if ($explain) {
+		install_dir("$tmp/usr/libexec/explain/");
+		install_prog($explain, "$tmp/usr/libexec/explain/".pkgfilename($package));
+	}
 
 	# get package basic upstream version for templating
 	isnative($package);
@@ -129,7 +153,6 @@ foreach my $package (@{$dh{DOPACKAGES}}) {
 	}
 	
 	if (@lines) {
-		my $tmp = tmpdir($package);
 		my $cruft_dir = "$tmp/usr/share/cruft/rules/";
 		install_dir($cruft_dir);
 		my $OUT;
