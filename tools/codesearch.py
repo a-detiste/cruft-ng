@@ -27,7 +27,7 @@ def bin2src(binaries: list[str]) -> list[str]:
     return sources
 
 done = subprocess.check_output(['apt-file', 'search', '--package-only', '/usr/share/cruft/rules/'], text=True).splitlines()
-pending = os.listdir('rules/')
+pending = os.listdir('rules/') + os.listdir('explain/')
 pending = [p for p in sorted(pending) if p.lower() == p]  # ignore DH_CRUFT & DEBOOTSTRAP
 todo = subprocess.check_output(['codesearch', 'path:postrm /var/%s' % PATH, '--only', '--max-result', '500'], text=True).splitlines()
 
