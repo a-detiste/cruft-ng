@@ -3,7 +3,7 @@ set -e
 
 cruft
 
-for script in /usr/libexec/cruft/*
+for script in /usr/libexec/cruft/fallback/*
 do
     echo $script
     $script > /dev/null
