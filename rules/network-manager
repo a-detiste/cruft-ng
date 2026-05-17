@@ -4,4 +4,6 @@
 /var/lib/NetworkManager/internal*.lease
 /var/lib/NetworkManager/secret_key
 /var/lib/NetworkManager/seen-bssids
+/var/lib/NetworkManager/system-connections
+/var/lib/NetworkManager/system-connections/*
 /var/lib/NetworkManager/timestamps
