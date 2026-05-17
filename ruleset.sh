@@ -10,7 +10,7 @@ rm -f "$RULESET"
 concat() {
 (
 release="$1"
-find "$release" -type f -printf "%f\n" | sort | while read -r file
+find "$release" -type f ! -executable -printf "%f\n" | sort | while read -r file
 do
 	echo "$file"
 	while read -r rule
