@@ -1,1 +1,2 @@
+/etc/X11/Xsession.d/90nmap
 /etc/profile.d/nmap.sh
