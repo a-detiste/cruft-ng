@@ -1,2 +1,3 @@
+/etc/mysql/debian.cnf
 /var/lib/mariadb/
 /var/log/mariadb/
