@@ -52,6 +52,7 @@ static void read_one_explain(const string& script, const string& package, vector
 			if (real_package_present) real_package = real_package_c;
 		} else {
 			real_package = filter;
+			real_package_present = true;
 		}
 	}
 	fclose(fp);
