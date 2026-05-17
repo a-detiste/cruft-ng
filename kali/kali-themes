@@ -1,4 +1,5 @@
 /etc/apt/apt.conf.d/00aptitude
+/etc/dconf/db/local
 /etc/gtk-2.0/gtkrc
 /etc/lightdm/lightdm-gtk-greeter.conf
 /etc/plymouth/plymouthd.conf
