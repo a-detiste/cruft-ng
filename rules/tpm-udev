@@ -1,0 +1,16 @@
+/var/lib/tpm2-tss
+/var/lib/tpm2-tss/system
+
+# explain/TMPFILES is a fallback and not perfect,
+# it does not sees the two intermediate directories
+# between /var/lib/ & /var/lib/tpm2-tss/system/keystore/
+
+#$ explain/TMPFILES  | grep tpm
+#@/usr/lib/tmpfiles.d/tpm-udev.conf
+#/var/lib/tpm
+#@/usr/lib/tmpfiles.d/tpm2-tss-fapi.conf
+#/var/lib/tpm2-tss/system/keystore
+
+# cat /usr/lib/tmpfiles.d/tpm2-tss-fapi.conf
+#d       /var/lib/tpm2-tss/system/keystore   2775 tss  tss   -           -
+#a+      /var/lib/tpm2-tss/system/keystore   -    -    -     -           default:group:tss:rwx
