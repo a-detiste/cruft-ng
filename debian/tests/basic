@@ -2,7 +2,7 @@
 set -e
 
 echo 'this run all fallback explain scripts'
-for script in /usr/libexec/cruft/fallback/*
+for script in /usr/libexec/cruft/*
 do
     echo $script
     $script > /dev/null
