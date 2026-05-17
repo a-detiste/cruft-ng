@@ -1,36 +1,10 @@
 #!/bin/sh
 set -e
 
-# shellcheck disable=SC1001
-# SC1001 (info): This \- will be a regular '-' in this context.
-packages="$(dpkg-query --root="$CRUFT_ROOT" -W -f='${db:Status-Abbrev}-${binary:Package}\n' '*-icon-theme' 2> /dev/null | grep ^i | cut -f 2 -d \- )"
+test -d "$CRUFT_ROOT/usr/share/icons/" || exit 0
 
-# BUG: the "cut" does not cut the gnome-$SOMETHING-icon-theme packages properly.
-#      what we really want here is to strip the "-icon-theme" text from the end of the package name.
-
-# headless setups won't have any icons
-[ -z "$packages" ] && exit 0
-
-for package in $packages
+find "$CRUFT_ROOT/usr/share/icons/" -wholename "$CRUFT_ROOT/usr/share/icons/*/icon-theme.cache" | sed "s#^$CRUFT_ROOT##" | while read -r cache
 do
-	echo "${package}-icon-theme"
-
-	# lxde-icon-theme
-	if [ "$package" = "lxde" ]
-	then
-		package=nuoveXT2
-	fi
-
-	if [ "$package" = "numix" ]
-	then
-		find "$CRUFT_ROOT/usr/share/icons/" -iwholename "$CRUFT_ROOT/usr/share/icons/Numix-Light/icon-theme.cache" | sed "s#^$CRUFT_ROOT##"
-	fi
-
-	if [ "$package" = "humanity" ]
-	then
-		find "$CRUFT_ROOT/usr/share/icons/" -iwholename "$CRUFT_ROOT/usr/share/icons/Humanity-Dark/icon-theme.cache" | sed "s#^$CRUFT_ROOT##"
-	fi
-
-	# case insensitive
-	find "$CRUFT_ROOT/usr/share/icons/" -iwholename "$CRUFT_ROOT/usr/share/icons/$package/icon-theme.cache" | sed "s#^$CRUFT_ROOT##"
+	echo "$cache" | sed -e 's#^/#@/#' -e 's#/icon-theme.cache##'
+	echo "$cache"
 done
