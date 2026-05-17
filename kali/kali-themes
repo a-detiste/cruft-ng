@@ -3,11 +3,12 @@
 /etc/plymouth/plymouthd.conf
 /etc/sddm.conf.d/kde_settings.conf
 /etc/skel/.config/autostart
-/etc/xdg/alacritty/alacritty.yml
+/etc/xdg/alacritty/alacritty.toml
 /etc/xdg/compton.conf
 /etc/xdg/gtk-3.0/settings.ini
 /etc/xdg/kdeglobals
 /etc/xdg/kickoffrc
+/etc/xdg/kicker-extra-favoritesrc
 /etc/xdg/konsolerc
 /etc/xdg/kscreenlockerrc
 /etc/xdg/kwinrc
@@ -29,6 +30,7 @@
 /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml
 /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-power-manager.xml
+/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-screensaver.xml
 /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml
 /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml
 /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
