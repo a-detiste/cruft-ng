@@ -14,3 +14,9 @@ do
         echo "/etc/fonts/conf.d/$file"
     fi
 done
+
+find "$CRUFT_ROOT/usr/share/fonts" -name .uuid | sed "s#^$CRUFT_ROOT##"
+
+test -d "$CRUFT_ROOT/usr/local/share/fonts/" && find "$CRUFT_ROOT/usr/local/share/fonts" -name .uuid | sed "s#^$CRUFT_ROOT##"
+
+exit 0
