@@ -86,12 +86,6 @@ testing.add('doc-beaglebone-getting-started')
 testing.add('librobotcontrol')
 testing.add('ti-pru-cgt-installer')
 
-# Add Kali Linux
-testing.add('king-phisher')
-testing.add('powershell-empire')
-testing.add('webshells')
-testing.add('wordlists')
-
 def get_stable() -> set[str]:
     stable = set()
     with open('tools/Packages_amd64', 'r') as fd:
