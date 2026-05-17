@@ -13,7 +13,7 @@ sid: cruft ruleset ruleset-minimal cpigs
 
 tests: test_plocate test_explain test_filters test_excludes test_dpkg test_python
 
-cpigs.o: cpigs.cc owner.h
+cpigs.o: cpigs.cc owner.h dpkg.h
 owner.o: owner.cc owner.h
 explain.o: explain.cc owner.h dpkg.h
 filters.o: filters.cc owner.h

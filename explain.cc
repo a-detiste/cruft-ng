@@ -37,18 +37,19 @@ static void read_one_explain(const string& script, const string& package, vector
 	char buf[4096];
 	string filter;
 	string real_package = package;
+	bool real_package_present = true;
 	while (fgets(buf, sizeof(buf),fp))
 	{
 		filter=buf;
 		filter=filter.substr(0,filter.size() - 1); // remove '/n'
 		if (filter.front() == '/') {
-			explain.emplace_back(real_package, usr_merge(filter));
+			if(real_package_present) explain.emplace_back(real_package, usr_merge(filter));
 		} else if (filter.front() == '@') {
 			// https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1135572
 			char real_package_c[100];
-			if (query(filter.c_str()+1, real_package_c)) {
-				real_package = real_package_c;
-			}
+			real_package_present = query(filter.c_str()+1, real_package_c);
+			//if (!real_package_present) cout << filter << '\n';
+			if (real_package_present) real_package = real_package_c;
 		} else {
 			real_package = filter;
 		}
@@ -82,7 +83,7 @@ int read_explain(const string& dir, const vector<string>& packages, vector<owner
 {
 	bool debug=getenv("DEBUG") != nullptr;
 
-	read_uppercase(explain, "/usr/libexec/cruft/fallback/", debug);
+	read_uppercase(explain, "/usr/libexec/cruft/", debug);
 	read_uppercase(explain, dir, debug);
 
 	if (debug) cerr << "EXECUTING OTHER FILTERS" << endl;
@@ -91,9 +92,9 @@ int read_explain(const string& dir, const vector<string>& packages, vector<owner
 		// local admin overrides
 		string etc_filename = dir + package;
 		// shipped by individual packages
-		string usr_filename = "/usr/libexec/cruft/" + package;
+		string usr_filename = "/usr/libexec/cruft/pkg/" + package;
 		// fallback legacy set
-		string fbk_filename = "/usr/libexec/cruft/fallback/" + package;
+		string fbk_filename = "/usr/libexec/cruft/" + package;
 		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
 			read_one_explain(etc_filename, package, explain);
 		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )

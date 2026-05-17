@@ -41,19 +41,19 @@ void dpkg_end() {
 	dpkg_program_done();
 }
 
-int query(const char *path, char* package)
+bool query(const char *path, char* package)
 {
 	struct fsys_namenode *namenode;
 	namenode = fsys_hash_find_node(path, FHFF_NO_COPY);
 
 	if (namenode->divert) {
 	        strncpy(package, namenode->divert->pkgset->name, 99);
-		return 1;
+		return true;
 	} else if(namenode->packages) {
 		strncpy(package, namenode->packages->pkg->set->name, 99);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 
