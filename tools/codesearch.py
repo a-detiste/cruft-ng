@@ -34,4 +34,5 @@ todo = subprocess.check_output(['codesearch', 'path:debian/.*postrm /var/%s' % P
 done = bin2src(done)
 pending = bin2src(pending)
 to_check = set(todo) - set(done) - set(pending)
-print('\n'.join(sorted(to_check)))
+if to_check:
+    print('\n'.join(sorted(to_check)))
