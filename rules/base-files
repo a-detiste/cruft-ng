@@ -22,10 +22,6 @@
 /usr/local/src
 /usr/share/info/dir
 # END ruleset-minimal
-/cdrom
-/cdrom/cdrom0
-/cdrom0
-/floppy
 /initrd
 /etc/default/motd-news.wasremoved
 /etc/adjtime
