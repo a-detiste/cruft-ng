@@ -36,12 +36,20 @@ done
 
 test -d "$CRUFT_ROOT/etc/apparmor.d/abstractions" || exit 0
 
-test -d "$CRUFT_ROOT/etc/apparmor.d/local/abstractions" && echo /etc/apparmor.d/local/abstractions
+if [ -d "$CRUFT_ROOT/etc/apparmor.d/local/abstractions" ]
+then
+	echo apparmor
+	echo /etc/apparmor.d/local/abstractions
+fi
 
 find "$CRUFT_ROOT/etc/apparmor.d/abstractions" -maxdepth 1 -type f -printf "%f\n" |
 while read -r file
 do
-	if [ -e "$CRUFT_ROOT/etc/apparmor.d/local/abstractions/$file" ]; then echo "/etc/apparmor.d/local/abstractions/$file"; fi
+	if [ -e "$CRUFT_ROOT/etc/apparmor.d/local/abstractions/$file" ]
+	then
+		echo "@/etc/apparmor.d/abstractions/$file"
+		echo "/etc/apparmor.d/local/abstractions/$file"
+	fi
 done
 
 exit 0
