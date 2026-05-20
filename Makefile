@@ -40,6 +40,7 @@ test_python: python.o test_python.cc
 test_excludes: dpkg_exclude.o test_excludes.cc
 test_explain: test_explain.cc explain.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
 test_filters: test_filters.cc filters.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG_LIBS)
+test_query: test_query.c $(LIBDPKG_LIBS)
 
 clean:
 	rm -f cpigs cruft ruleset ruleset-minimal test_plocate test_explain test_filters test_excludes test_dpkg test_python test_bugs

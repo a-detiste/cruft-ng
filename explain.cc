@@ -40,14 +40,14 @@ static void read_one_explain(const string& script, const string& package, vector
 	bool real_package_present = true;
 	while (fgets(buf, sizeof(buf),fp))
 	{
+		buf[strlen(buf)-1] = '\0'; // remove '/n'
 		filter=buf;
-		filter=filter.substr(0,filter.size() - 1); // remove '/n'
 		if (filter.front() == '/') {
 			if(real_package_present) explain.emplace_back(real_package, usr_merge(filter));
 		} else if (filter.front() == '@') {
 			// https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1135572
 			char real_package_c[100];
-			real_package_present = query(filter.c_str()+1, real_package_c);
+			real_package_present = query(buf+1, real_package_c);
 			//if (!real_package_present) cout << filter << '\n';
 			if (real_package_present) real_package = real_package_c;
 		} else {
