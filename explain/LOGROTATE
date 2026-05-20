@@ -6,18 +6,8 @@ test -z "$CRUFT_ROOT" || exit 0
 
 for definition in /etc/logrotate.d/*
 do
-	#dpkg -S $definition is too slow
-	package=${definition##*/}
-	case "$package" in
-		alternatives)
-			echo ALTERNATIVES
-			;;
-		*)
-			echo "@$definition"
-			;;
-	esac
-
-	grep ^/ "$definition" | cut -d ' ' -f 1 | cut -d '.' -f 1 | while read -r file
+	echo "@$definition"
+	grep ^/var/log "$definition" | cut -d ' ' -f 1 | cut -d '.' -f 1 | while read -r file
 	do
 		find /var/log -path "${file}*" 2>/dev/null
 	done
