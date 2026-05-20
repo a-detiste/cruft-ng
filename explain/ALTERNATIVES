@@ -5,9 +5,18 @@ ALTDIR="/etc/alternatives"
 
 update-alternatives --root "$CRUFT_ROOT" --get-selections | while read -r alternative _y current
 do
-    # this namespace was not UsrMerge'd
     case "$current" in
+        /usr/bin/fpc)
+            # we are not recursive
+            fpc=$(realpath "$current")
+            echo "@$fpc"
+            ;;
+        /etc/fpc-*.cfg)
+            fpc=$(realpath /usr/bin/fpc)
+            echo "@$fpc"
+            ;;
         /bin/*|/sbin/*|/lib/*)
+            # this namespace was not fully UsrMerge'd
             echo "@/usr${current}"
             ;;
         *)
