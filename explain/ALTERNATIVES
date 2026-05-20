@@ -5,7 +5,15 @@ ALTDIR="/etc/alternatives"
 
 update-alternatives --root "$CRUFT_ROOT" --get-selections | while read -r alternative _y current
 do
-    echo "@$current"
+    # this namespace was not UsrMerge'd
+    case "$current" in
+        /bin/*|/sbin/*|/lib/*)
+            echo "@/usr${current}"
+            ;;
+        *)
+            echo "@$current"
+            ;;
+    esac
     update-alternatives --root "$CRUFT_ROOT" --query "$alternative" 2>/dev/null | while read -r line
     do
         case "$line" in
