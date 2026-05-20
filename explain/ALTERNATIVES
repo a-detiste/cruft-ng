@@ -6,12 +6,13 @@ ALTDIR="/etc/alternatives"
 update-alternatives --root "$CRUFT_ROOT" --get-selections | while read -r alternative _y current
 do
     case "$current" in
-        /usr/bin/fpc)
+        /usr/share/desktop-base/active-theme*)
             # we are not recursive
-            fpc=$(realpath "$current")
-            echo "@$fpc"
+            theme=$(realpath /usr/share/desktop-base/active-theme)
+            echo "@$theme"
             ;;
-        /etc/fpc-*.cfg)
+        /usr/bin/fpc|/etc/fpc-*.cfg)
+            # we are not recursive
             fpc=$(realpath /usr/bin/fpc)
             echo "@$fpc"
             ;;
