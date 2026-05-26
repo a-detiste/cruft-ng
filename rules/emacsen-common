@@ -10,3 +10,5 @@
 /var/lib/emacsen-common/state/package/installed/pylint
 /usr/local/share/emacs
 /usr/local/share/emacs/site-lisp
+/usr/local/share/emacs/30.*
+/usr/local/share/emacs/30.*/site-lisp
