@@ -2,3 +2,7 @@
 /var/lib/private/systemd
 /var/lib/private/systemd/timesync
 /var/lib/private/systemd/timesync/clock
+/var/lib/systemd/backlight/
+/var/lib/systemd/rfkill/
+/var/lib/systemd/timesync
+/var/lib/systemd/timesync/clock

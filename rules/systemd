@@ -3,8 +3,6 @@
 /etc/vconsole.conf
 /var/.updated
 /var/cache/private
-/var/lib/systemd/backlight
-/var/lib/systemd/backlight/*
 /var/lib/systemd/catalog
 /var/lib/systemd/catalog/database
 /var/lib/systemd/coredump
@@ -12,15 +10,11 @@
 /var/lib/systemd/linger/*
 /var/lib/systemd/pstore
 /var/lib/systemd/random-seed
-/var/lib/systemd/rfkill
-/var/lib/systemd/rfkill/*
 /var/lib/systemd/timers
 /var/log/journal/
 /var/log/private
 /var/tmp/systemd-private-*
 /var/tmp/systemd-private-*/tmp
-/var/lib/systemd/timesync
-/var/lib/systemd/timesync/clock
 /var/log/README
 # END ruleset-minimal
 /etc/rc.local
