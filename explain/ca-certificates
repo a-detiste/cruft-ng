@@ -6,13 +6,13 @@ set -e
 find "$CRUFT_ROOT/etc/ssl/certs" -type l -name \*.pem |
  while read -r name
  do
-   [ -e "$name" ] && echo "${name#"$CRUFT_ROOT"}"
+   [ -e "$CRUFT_ROOT/$(readlink "$name")" ] && echo "${name#"$CRUFT_ROOT"}"
  done
 
 find "$CRUFT_ROOT/etc/ssl/certs" -type l -name '????????.?' |
  while read -r name
  do
-   [ -e "$name" ] && echo "${name#"$CRUFT_ROOT"}"
+   [ -e "$CRUFT_ROOT/$(readlink -f "$name")" ] && echo "${name#"$CRUFT_ROOT"}"
  done
 
 find "$CRUFT_ROOT/etc/ssl/certs" -type l -name '????????' |
