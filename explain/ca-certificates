@@ -18,6 +18,6 @@ find "$CRUFT_ROOT/etc/ssl/certs" -type l -name '????????.?' |
 find "$CRUFT_ROOT/etc/ssl/certs" -type l -name '????????' |
  while read -r name
  do
-	link=$(readlink "$name")
+   link=$(readlink "$name")
    [ "$link" = "ssl-cert-snakeoil.pem" ] && echo "${name#"$CRUFT_ROOT"}"
  done
