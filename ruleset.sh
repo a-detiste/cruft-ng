@@ -40,12 +40,15 @@ concat rules > "$RULESET"
 
 concat non-free >> "$RULESET"
 
-# releases are in reverse order
+# Kali is a rolling release, no backport
 if dpkg-vendor --is kali
 then
     concat kali >> "$RULESET"
     exit 0
-elif dpkg-vendor --derives-from Ubuntu
+fi
+
+# releases are in reverse order
+if dpkg-vendor --derives-from Ubuntu
 then
     concat ubuntu/devel >> "$RULESET"
     archive="ubuntu"
