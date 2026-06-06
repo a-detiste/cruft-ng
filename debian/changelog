@@ -1,3 +1,117 @@
+cruft-ng (0.9.85) unstable; urgency=medium
+
+  [ Nobuhiro Iwamatsu ]
+  * explain/ca-certificates: Update the check for /etc/ssl/certs
+    to make it work correctly with an non-'/' CRUFT_ROOT
+
+  [ Alexandre Detiste ]
+  * Update most explain/ scripts to use new "@" protocol
+    for deferred ownership matching
+
+  * Archive rules of packages that switched to dh-cruft:
+    libpaper2, sopwith, yorick
+
+  * Update existing rules:
+    analog, base-files, collectd-core, emacsen-common, lightdm,
+    mariadb-server, network-manager, sddm
+
+  * Add a lot of new rules, semi-automatically thanks to Debian Code Search:
+    389-ds-base, acmetool, activemq, adjutant-common, aetos, ahcpd,
+    amanda-common, amavisd-new, apt-cacher, apt-mirror, apt-mirror2,
+    argus-server, arpalert, arpwatch, aspell-bg, asterisk, atheme-services,
+    atop, awstats, backuppc, balboa, barbican-common, barman, battery-stats,
+    beanstalkd, biglybtd, binkd, biometric-auth, bip, bitcoin-knots,
+    blazar-api, blazar-manager, boinc-client, btrfsd, burrow, cacti, cado,
+    calamaris, camo, ceilometer-common, ceph-common, certmonger, cgit,
+    chasquid, chkboot, cinder-common, clamsmtp, cloudkitty-common, cltl,
+    corekeeper, corosync, coturn, courier-imap, courier-mta, courier-pop,
+    courier-webadmin, crmsh, cron-apt, crowdsec, crowdsec-custom-bouncer,
+    crowdsec-firewall-bouncer, csync2, cyborg-common, cyrus-imapd,
+    datum-gateway, dbconfig-common, debarchiver, debdelta, debian-edu-fai,
+    debian-edu-router-plugin.content-filter, debspawn, debug-me-server,
+    designate-common, dhcp-probe, dhcpy6d, dhtnode, di-netboot-assistant,
+    diaspora-installer, dicod, dictd, direwolf, distcc, dizzy, dma, docbook2x,
+    dokuwiki, downtimed, dqcache, dracut-core, dump1090-mutability,
+    e2guardian, ecryptfs-utils, efingerd, ejabberd, email-reminder,
+    etcd-server, fcheck, ferm, festival, filetraq, flamethrower, flwm,
+    freeipa-client, frr, fvwm-crystal, gammu-smsd, ganglia-monitor,
+    ganglia-webfrontend, gearman-job-server, gerbera, gitaly-installer,
+    gitlab, glance-common, globus-gram-audit, glusterfs-common, gmetad,
+    gnocchi-common, goiardi, gosa, graphite-carbon, graphite-web, greylistd,
+    gridengine-common, gridsite, groonga-munin-plugins, groonga-server-common,
+    gsettings-desktop-schemas, gvmd, heartbeat, heat-common, heimdal-kdc,
+    hoogle, hopm, hoteldruid, how-can-i-help, hplip, hylafax-server, i2pd,
+    iaxmodem, icecc, icedtea-netx, icingaweb2-common, ifcico, ifetch-tools,
+    inadyn, incron, incus-base, influxdb, inn2, inspircd, ipmiutil, ippl,
+    ircd-hybrid, ircd-irc2, ironic-common, ironic-python-agent, jabber-muc,
+    jabberd2, jetty12, john, json2file-go, kannel, kdump-tools, keystone,
+    knxd, krb5-kdc, krb5-strength, laniakea-server, laniakea-spark,
+    lava-dispatcher, lava-server, ldap-account-manager, ldh-gui-suite,
+    leafnode, libapache-sessionx-perl, libapache2-mod-shib,
+    libapache2-mod-tile, libcifpp-data, libgssapi-krb5-2, libpam-abl,
+    libpam-poldi, libphp-simplepie, libreoffice-core, libreswan,
+    libzeroc-ice3.8, liquidsoap, lldpad, lomiri-system-settings,
+    lomiri-telephony-service, lsh-server, lynis, lyskom-server,
+    macchanger, magnum-common, mailfromd, mailman3, mailman3-web,
+    manila-common, masakari-common, masakari-monitors-common, matomo,
+    matrix-eno-bot, matrix-synapse, mediawiki, mimedefang, mirmon,
+    mistral-common, mlmmj, module-assistant, monitorix, mpdscribble,
+    mrtg, mtail, mumble-server, munge, nagios4-common, nagvis,
+    neutron-common, neutron-metadata-agent, notus-scanner, nova-api,
+    nova-common, nsd, nutcracker, oar-common, ocserv, ocsinventory-agent,
+    octavia-common, omniorb-nameserver, onionbalance, onionprobe,
+    open-infrastructure-compute-tools, open-infrastructure-system-config,
+    open-isns-discoveryd, open-isns-server, openafs-client, openafs-dbserver,
+    openafs-fileserver, openntpd, opensmtpd, openssh-known-hosts,
+    openstack-cluster-installer, openstack-cluster-installer-poc,
+    openstack-dashboard, openstack-dashboard-apache, openstructure,
+    openvswitch-switch, oss-preserve, ovn-central, ovn-host, pacemaker-common,
+    pcs, pdns-backend-bind, pdns-ixfrdist, perlindex, pgcluu, pglistener,
+    php-dompdf, php-giggsey-libphonenumber, pk4, placement-common,
+    planetfilter, pollen, pollinate, postfix-mta-sts-resolver, postgrey,
+    prelude-lml, prelude-manager, printer-driver-cups-pdf, privoxy, prometheus
+    prometheus-alertmanager, prometheus-apache-exporter,
+    prometheus-bind-exporter, prometheus-blackbox-exporter,
+    prometheus-elasticsearch-exporter, prometheus-exporter-exporter,
+    prometheus-haproxy-exporter, prometheus-homeplug-exporter,
+    prometheus-ipmi-exporter, prometheus-libvirt-exporter,
+    prometheus-mongodb-exporter, prometheus-mqtt-exporter,
+    prometheus-mysqld-exporter, prometheus-nginx-exporter,
+    prometheus-node-exporter, prometheus-node-exporter-collectors,
+    prometheus-phpfpm-exporter, prometheus-postfix-exporter,
+    prometheus-postgres-exporter, prometheus-process-exporter,
+    prometheus-pushgateway, prometheus-redis-exporter,
+    prometheus-snmp-exporter, prometheus-squid-exporter,
+    prometheus-varnish-exporter, psad, puppet-agent, pure-ftpd-common,
+    put-dns, railcontrol, rally, rasdaemon, redmine, remoterx,
+    request-tracker4, request-tracker5, rlinetd, roundcube-core, routino,
+    rpki-client, rpm, rrdcached, rsnapshot, ruptimed, rush, sa-exim, sarg,
+    sauce, saunafs-common, saunafs-tests, sbuild-debian-developer-setup,
+    sbuild-schroot, sbws, schleuder, setserial, shaarli, shairport-sync,
+    shibboleth-sp-utils, shorewall, shorewall-lite, shorewall6,
+    shorewall6-lite, sia, sidedoor, simplesamlphp, siridb-server, sitesummary,
+    slapd, slbackup, slbackup-php, slm, slurmctld, slurmd, slurmdbd,
+    smokeping, smstools, snac2, snapclient, snapserver, sndiod, snmptrapd,
+    snmptt, softhsm2-common, sogo, soju, solarpowerlog, spamass-milter,
+    spamassassin, spampd, speech-dispatcher, spip, sqlgrey, squid-deb-proxy,
+    squidguard, sqwebmail, sssd-common, stenographer-common, stunnel,
+    sugarplum, super, svxlink-server, sympa, syncthing-discosrv,
+    syncthing-relaysrv, sysrepo, systraq, tcsh, tiger, tirex, tntnet,
+    tomcat11, tpm-udev, transmission-daemon, tripwire, trove-common,
+    tryton-server, tt-rss, tua, tuptime, twms, uim, usemod-wiki,
+    usermetricsservice, uucp, vdr, vdr-plugin-dvd, vdr-plugin-epgsearch,
+    vdr-plugin-live, vdr-plugin-mp3, vdr-plugin-xineliboutput, vdradmin-am,
+    victoria-metrics, virtuoso-opensource-7, vmms-common, vzlogger, w1retap,
+    waagent, watcher-common, wdm, weakforced-common, wide-dhcpv6-client,
+    wide-dhcpv6-relay, wide-dhcpv6-server, widevine-installer, wims, wims-lti,
+    wmbusmeters, x2gobroker-agent, x2gobroker-authservice, x2gobroker-daemon,
+    x2gobroker-loadchecker, x2gobroker-ssh, x2gobroker-wsgi,
+    x2gothinclient-common, xapian-omega, xen-utils-common, xine-ui, xrdp,
+    xtel, xymon, xymon-client, yadifa, yaws, zabbix-agent2, zaqar-common,
+    zeroc-icegrid, znc, zoneminder, zookeeper, zoph, zurl
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 06 Jun 2026 10:50:52 +0200
+
 cruft-ng (0.9.84) unstable; urgency=medium
 
   * Make rules/{DH_CRUFT,DEBOOSTRAP} actually work;
