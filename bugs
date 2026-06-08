@@ -6,6 +6,7 @@
 /etc/alternatives/hdf5.pc 968559 hdf5
 /etc/alternatives/rview 1111074 neovim
 /etc/alternatives/rvim 1111074 neovim
+/etc/apparmor.d/disable 1136786 apparmor
 /etc/fwupd/redfish.conf 1026243 fwupd
 /usr/lib 1070985 openmpi
 /usr/lib/python3.10 1031909 python3-stdlib-extensions

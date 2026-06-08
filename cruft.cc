@@ -344,7 +344,12 @@ static void cruft(const string& ignore_file,
         //      like checking the R/X bits of parent dir
 	cout << "---- missing: dpkg ----\n";
 	if (geteuid() == 0 ) for (const auto& miss: missing2) {
-		cout << "        " << miss << '\n';
+		cout << "        " << miss;
+		auto bug = bugs.find(miss);
+		if (bug != bugs.end()) {
+			cout << "       (Bug: #" << bug->second.bugno << ")";
+		}
+		cout << '\n';
 	}
 
 	//TODO: split by filesystem
