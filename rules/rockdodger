@@ -1,3 +1,1 @@
-# this game is built without even using long debhelper
-# integration of dh_cruft would be difficult
 /var/games/rockdodger.scores
