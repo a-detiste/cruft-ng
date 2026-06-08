@@ -40,6 +40,7 @@
 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr-gfortra 1070985 openmpi
 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr-gfortran.so.40.30.0 1070985 openmpi
 /usr/lib/x86_64-linux-gnu/libmpi_usempi_ignore_tkr-gfortranso.40 1070985 openmpi
+/usr/lib/x86_64-linux-gnu/libpicohttpparser.so.1 1136785 libpicohttpparser1
 /usr/lib/x86_64-linux-gnu/pkgconfig/hdf5-mpi.pc 968559 hdf5
 /usr/lib/x86_64-linux-gnu/pkgconfig/hdf5-mpich.pc 968559 hdf5
 /usr/lib/x86_64-linux-gnu/pkgconfig/hdf5.pc 968559 hdf5
