@@ -1,0 +1,3 @@
+/var/lib/pgbackrest/
+/var/log/pgbackrest/
+/var/spool/pgbackrest/
