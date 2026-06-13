@@ -1,0 +1,3 @@
+/var/cache/lemonldap-ng/
+/var/lib/lemonldap-ng/psessions/lock/
+/var/lib/lemonldap-ng/sessions/lock/
