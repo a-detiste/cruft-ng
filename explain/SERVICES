@@ -2,7 +2,7 @@
 
 test -d "$CRUFT_ROOT/lib/systemd/system" || exit 0  # Devuan
 
-grep -e ^CacheDirectory= -e ^StateDirectory= "$CRUFT_ROOT"/usr/lib/systemd/system/*.service | while IFS=':=' read -r service kind path
+grep -e ^CacheDirectory= -e ^StateDirectory= -e ^LogsDirectory "$CRUFT_ROOT"/usr/lib/systemd/system/*.service | while IFS=':=' read -r service kind path
 do
     service="${service##"${CRUFT_ROOT}"}"
 
@@ -12,6 +12,9 @@ do
             ;;
         StateDirectory)
             fullpath="/var/lib/$path"
+            ;;
+        LogsDirectory)
+            fullpath="/var/log/$path"
             ;;
     esac
     if test -d "$CRUFT_ROOT$fullpath"
