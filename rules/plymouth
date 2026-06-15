@@ -1,5 +1,3 @@
-/bin/plymouth
-/sbin/plymouthd
 /var/lib/plymouth/boot-duration
 /var/log/boot.log
 /var/log/boot.log.*
