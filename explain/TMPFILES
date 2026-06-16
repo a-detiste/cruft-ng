@@ -11,6 +11,8 @@ do
              /etc/*)
                   echo "$path"
                   ;;
+             /usr/games/*)
+                  ;;
              /usr/*)
                   echo "$path"
                   ;;
