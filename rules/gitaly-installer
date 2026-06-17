@@ -1,4 +1,0 @@
-/etc/systemd/system/gitaly.service.d/
-/usr/lib/tmpfiles.d/gitlab-common.conf
-/var/lib/gitaly/
-/var/cache/gitaly-installer/
