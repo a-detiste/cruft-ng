@@ -1,3 +1,31 @@
+cruft-ng (0.9.86) unstable; urgency=medium
+
+  * explain/SERVICES: add support for LogsDirectory=
+
+  * Add new rules: 0install-core, aprx, automysqlbackup, biboumi, buildbot,
+    buildbot-worker, carbon-c-relay, ceilometer-instance-poller, certspotter,
+    cubemap, cumin, custodia, davfs2, debusine-server, dehydrated,
+    designate-tlds, dnf, dnsproxy, freeipa-healthcheck, freeipmi-tools,
+    ftpmirror, fwanalog, ganeti-instance-debootstrap, gfsd, grokmirror,
+    haci, ibutils, ikiwiki-hosting-web, kanboard, knot-resolver6,
+    krb5-keytab-backend, kup-server, libapache2-mod-auth-openidc,
+    libapache2-mod-mapcache, libapache2-mod-security2, libjs-protoaculous,
+    liblemonldap-ng-common-perl, libphp-jpgraph, libshisa0, libzypp-config,
+    loggerhead, lomiri-location-service, miniupnpd, minizinc, mon, mwc,
+    nfdump, nfs-ganesha, nordugrid-arc-arex, nut-server, nzbget, osmo-hlr,
+    pgbackrest, php-tcpdf, postfixadmin, puppetdb, puppetserver, quickml,
+    rancid, rancid-cgi, razor, rbldnsd, rear, reaver, scanbd, slack, snapraid,
+    spectrum2, sphinxsearch, sql-ledger, suricata, swish-e, trafficserver,
+    usb-modeswitch, uwsgi-emperor, vdr-plugin-osdteletext, yaku-ns, zsnapd
+
+  * Archive rules of packages converted to dh-cruft: libapache-sessionx-perl,
+    nbsdgames, onionbalance, pachi, phalanx, rockdodger, simplesamlphp
+
+  * Delete old rules: fonty-rg, gitaly-installer, gitlab, llvm-14-runtime,
+    request-tracker4, tcl8.*
+
+ -- Alexandre Detiste <tchet@debian.org>  Wed, 17 Jun 2026 19:14:13 +0200
+
 cruft-ng (0.9.85) unstable; urgency=medium
 
   [ Nobuhiro Iwamatsu ]
