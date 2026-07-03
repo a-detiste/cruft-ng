@@ -29,41 +29,9 @@ static void read_one_filter(const string& glob_filename, const string& _package,
 	}
 }
 
-int read_filters(const string& dir, const string& ruleset_file, const vector<string>& packages, vector<owner>& globs)
+static void read_one_ruleset(const bool debug, const string& dir, const string& ruleset_file, const vector<string>& packages, vector<owner>& globs)
 {
-	bool debug=getenv("DEBUG") != nullptr;
-
-	if (debug) cerr << "READING UPPERCASE GLOBS IN " << dir << endl;
-	DIR *dp;
-	struct dirent *dirp;
-	if((dp = opendir(dir.c_str())) == nullptr) {
-	      cerr << "Failed to open filters directory " << dir << ": " << strerror(errno) << endl;
-	      exit(1);
-	}
-	while ((dirp = readdir(dp)) != nullptr) {
-		string package = dirp->d_name;
-		if (package == "." or package == "..") continue;
-
-		if (!any_of(package.begin(), package.end(), [](unsigned char c){ return islower(c); }))
-			read_one_filter(dir + package, package, globs, debug);
-	}
-	closedir(dp);
-	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
-
-	if (debug) cerr << "READING OTHER GLOBS " << endl;
-
-	for (const auto& package : packages) {
-		struct stat stat_buffer;
-		string etc_filename = dir + package;
-		string usr_filename = "/usr/share/cruft/rules/" + package;
-		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
-			read_one_filter(etc_filename, package, globs, debug);
-		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
-			read_one_filter(usr_filename, package, globs, debug);
-	}
-	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
-
-	if (debug) cerr << "READING MAIN RULE ARCHIVE " << endl;
+	if (debug) cerr << "READING MAIN RULE ARCHIVE " << ruleset_file << endl;
 	ifstream glob_file(ruleset_file);
 	bool keep = false;
 	string package;
@@ -92,6 +60,50 @@ int read_filters(const string& dir, const string& ruleset_file, const vector<str
 		}
 	}
 	glob_file.close();
+}
+
+
+int read_filters(const string& dir, const string& ruleset_file, const vector<string>& packages, vector<owner>& globs)
+{
+	bool debug=getenv("DEBUG") != nullptr;
+
+	if (debug) cerr << "READING UPPERCASE GLOBS IN " << dir << endl;
+	struct stat stat_buffer;
+	DIR *dp;
+	struct dirent *dirp;
+	if((dp = opendir(dir.c_str())) == nullptr) {
+	      cerr << "Failed to open filters directory " << dir << ": " << strerror(errno) << endl;
+	      exit(1);
+	}
+	while ((dirp = readdir(dp)) != nullptr) {
+		string package = dirp->d_name;
+		if (package == "." or package == "..") continue;
+
+		if (!any_of(package.begin(), package.end(), [](unsigned char c){ return islower(c); }))
+			read_one_filter(dir + package, package, globs, debug);
+	}
+	closedir(dp);
+	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
+
+	if (debug) cerr << "READING OTHER GLOBS " << endl;
+
+	for (const auto& package : packages) {
+		string etc_filename = dir + package;
+		string usr_filename = "/usr/share/cruft/rules/" + package;
+		if ( stat(etc_filename.c_str(), &stat_buffer)==0 )
+			read_one_filter(etc_filename, package, globs, debug);
+		else if ( stat(usr_filename.c_str(), &stat_buffer)==0 )
+			read_one_filter(usr_filename, package, globs, debug);
+	}
+	if (debug) cerr << globs.size() << " globs in database" << endl << endl;
+
+
+	read_one_ruleset(debug, dir, ruleset_file, packages, globs);
+
+	/* Kali linux import the Debian .deb as-is,
+	   we have to check for it at run-time */
+	if ( stat("/etc/dpkg/origins/kali", &stat_buffer)==0)
+		read_one_ruleset(debug, dir, "/usr/share/cruft/ruleset-kali", packages, globs);
 
 	sort(globs.begin(), globs.end());
 	globs.erase( unique( globs.begin(), globs.end() ), globs.end() );
