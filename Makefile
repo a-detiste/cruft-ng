@@ -43,7 +43,7 @@ test_filters: test_filters.cc filters.o dpkg_lib.o usr_merge.o owner.o $(LIBDPKG
 test_query: test_query.c $(LIBDPKG_LIBS)
 
 clean:
-	rm -f cpigs cruft ruleset ruleset-minimal test_plocate test_explain test_filters test_excludes test_dpkg test_python test_bugs test_query
+	rm -f cpigs cruft ruleset ruleset-kali ruleset-minimal test_plocate test_explain test_filters test_excludes test_dpkg test_python test_bugs test_query
 	rm -f *.o
 
 ruleset: rules/* non-free/*

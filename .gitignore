@@ -6,6 +6,7 @@ cruft.log
 cruft.log.old
 *.o
 ruleset
+ruleset-kali
 ruleset-minimal
 test_plocate
 test_filters
