@@ -8,5 +8,5 @@ test -d /usr/share/kali-menu/applications/ || exit 0
 
 find /usr/share/kali-menu/applications/ -maxdepth 1 -type f -printf "%f\n" | while read -r m
 do
-    test -f "/usr/share/applications/$m" && echo "/usr/share/applications/$m"
+    if test -f "/usr/share/applications/$m"; then echo "/usr/share/applications/$m"; fi
 done

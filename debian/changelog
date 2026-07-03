@@ -1,3 +1,15 @@
+cruft-ng (0.9.87) unstable; urgency=medium
+
+  * Kali linux support:
+    * Kali import the Debian .deb as-is, we have to check for it at run-time
+    * drop kali/inetsim: package is in Debian & uses dh-cruft
+    * add kali/metasploit-framework
+  * Add new rules: apt-listdifferences, byobu, sanlock
+  * Archive rules of packages converted to dh-cruft: arpwatch, fwupd, gvmd
+    grokmirror, libphp-jpgraph, libzypp-config, notus-scanner, postfixadmin
+
+ -- Alexandre Detiste <tchet@debian.org>  Fri, 03 Jul 2026 20:07:53 +0200
+
 cruft-ng (0.9.86) unstable; urgency=medium
 
   * explain/SERVICES: add support for LogsDirectory=
