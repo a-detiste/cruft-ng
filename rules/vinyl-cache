@@ -1,0 +1,3 @@
+/etc/vinyl-cache/secret
+/var/lib/vinyl-cache/
+/var/log/vinyl-cache/
