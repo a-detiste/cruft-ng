@@ -1,6 +1,6 @@
 /etc/python3
 /etc/python3/debian_config
-/usr/lib/python3.13/dist-packages
+/usr/lib/python3.14/dist-packages
 /usr/local/lib/python3.14
 /usr/local/lib/python3.14/dist-packages
 /var/lib/python
