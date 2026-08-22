@@ -1,3 +1,15 @@
+cruft-ng (0.9.88) unstable; urgency=medium
+
+  * Archive rules of packages converted to dh-cruft: monit, moria, rpm,
+    libapache2-mod-auth-openidc, speech-dispatcher
+  * Archive rules for removed packages: sia, isc-dhcp-server
+  * Add rule for python3.15
+  * Replace varnish with vinyl-cache
+  * Updates rules for: fakeroot, python3.14
+  * Kali linux support: fix typo in metasploit-framework
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 22 Aug 2026 17:30:15 +0200
+
 cruft-ng (0.9.87) unstable; urgency=medium
 
   * Kali linux support:
