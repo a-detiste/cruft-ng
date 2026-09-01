@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+if ! test -d /usr/lib/tmpfiles.d/
+then
+    exit 0
+fi
+
 find "$CRUFT_ROOT/usr/lib/tmpfiles.d/" -maxdepth 1 -type f -printf "%f\n"  | while read -r definition
 do
     echo "@/usr/lib/tmpfiles.d/${definition}"
