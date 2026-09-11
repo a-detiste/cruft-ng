@@ -1,0 +1,4 @@
+/etc/puppet/
+/var/cache/puppet/
+/var/lib/puppet/
+/var/log/puppet/
