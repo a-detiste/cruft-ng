@@ -18,6 +18,11 @@ override_dh_auto_build-arch:
 	./ruleset.sh ruleset-minimal $(DEB_DISTRIBUTION)
 	dh_auto_build -- cruft cpigs
 
+ifeq ($(DEB_DISTRIBUTION),$(filter $(DEB_DISTRIBUTION),bullseye bookworm trixie))
+execute_after_dh_install-arch:
+	cp -v archive/explain/fontconfig-config debian/cruft-ng/usr/libexec/cruft/
+endif
+
 execute_after_dh_install-indep:
 	mkdir -p debian/tmp/
 	pod2man --utf8 dh-cruft/dh_cruft debian/tmp/dh_cruft.1
