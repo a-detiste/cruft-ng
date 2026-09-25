@@ -2,6 +2,7 @@
 /var/lib/systemd/deb-systemd-helper-enabled/*.dsh-also
 /var/lib/systemd/deb-systemd-helper-enabled/*.service
 /var/lib/systemd/deb-systemd-helper-enabled/*.wants
+/var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.mount
 /var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.path
 /var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.service
 /var/lib/systemd/deb-systemd-helper-enabled/*.wants/*.socket
