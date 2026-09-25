@@ -1,0 +1,6 @@
+/var/cache/nscd/group
+/var/cache/nscd/hosts
+/var/cache/nscd/netgroup
+/var/cache/nscd/passwd
+/var/cache/nscd/services
+
