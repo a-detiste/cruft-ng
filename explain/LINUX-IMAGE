@@ -20,7 +20,9 @@ for package in $packages
 do
 	echo "$package"
 	ver=$(echo "$package" | awk '{ print substr($1,13,40); }' )
+	[ -e "$CRUFT_ROOT/boot/config-${ver}"                     ] && echo "/boot/config-${ver}"
 	[ -e "$CRUFT_ROOT/boot/initrd.img-${ver}"                 ] && echo "/boot/initrd.img-${ver}"
+	[ -e "$CRUFT_ROOT/boot/vmlinuz-${ver}"                    ] && echo "/boot/vmlinuz-${ver}"
 	[ -e "$CRUFT_ROOT/lib/modules/${ver}"                     ] && echo "/lib/modules/${ver}"
 	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.alias"       ] && echo "/lib/modules/${ver}/modules.alias"
 	[ -e "$CRUFT_ROOT/lib/modules/${ver}/modules.alias.bin"   ] && echo "/lib/modules/${ver}/modules.alias.bin"
