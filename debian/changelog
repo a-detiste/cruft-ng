@@ -1,3 +1,14 @@
+cruft-ng (0.9.89) unstable; urgency=medium
+
+  * Archive rule of a package converted to dh-cruft: rpki-client
+  * Archive rules for removed packages: custodia, isc-dhcp-client,
+    open-infrastructure-system-config, prelude-lml, prelude-manager,
+    puppet-agent, python3.13
+  * Add rules for: gavodachs2-server, guix, nscd, openvox-agent, vsftpd
+  * Updates rules for: init-system-helpers, linux-image-*
+
+ -- Alexandre Detiste <tchet@debian.org>  Sat, 03 Oct 2026 15:16:05 +0200
+
 cruft-ng (0.9.88) unstable; urgency=medium
 
   * Archive rules of packages converted to dh-cruft: monit, moria, rpm,
