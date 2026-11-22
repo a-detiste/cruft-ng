@@ -1,3 +1,11 @@
+cruft-ng (0.9.90) unstable; urgency=medium
+
+  * Archive rules packages converted to dh-cruft: slm, sysrepo
+  * Add rules for: libopenmpi40, fpc-3.2.2, naist-jdic, naist-jdic-utf8, pyp3
+  * Update rules for: openssh-server
+
+ -- Alexandre Detiste <tchet@debian.org>  Sun, 22 Nov 2026 20:13:38 +0100
+
 cruft-ng (0.9.89) unstable; urgency=medium
 
   * Archive rule of a package converted to dh-cruft: rpki-client
