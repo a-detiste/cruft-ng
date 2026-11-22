@@ -1,0 +1,19 @@
+#!/bin/sh
+test -x /usr/bin/pypy3 || exit 0
+
+version=$(readlink /usr/bin/pypy3)
+suffix="$(echo "$version" | tr -d '.').pyc"
+
+if test -d "/usr/local/lib/$version"
+then
+    echo "/usr/local/lib/$version"
+fi
+
+if test -d "/usr/local/lib/$version/dist-packages"
+then
+    echo "/usr/local/lib/$version/dist-packages"
+fi
+
+find /usr/lib/python3/dist-packages -name "*${suffix}"
+
+find "/usr/lib/$version" -name "*${suffix}"
