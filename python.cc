@@ -113,6 +113,7 @@ bool pyc_has_py(string pyc, bool debug)
 	if (!installed) return false;
 
 	pyc.replace(pos, offset, ".py");
+	pyc[pos+offset+3] = '\0';
 
 	bool matched;
 	matched = (stat(pyc.c_str(), &buffer) == 0);
