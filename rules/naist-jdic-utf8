@@ -1,2 +1,7 @@
 /usr/share/chasen/dic/naist-jdic-utf8/
 /var/lib/chasen/dic/naist-jdic-utf8/
+/etc/alternatives/chasen-dictionary
+/etc/alternatives/chasenrc
+/etc/chasenrc
+/usr/share/chasen/chasenrc-utf8
+/var/lib/chasen/dic/debian
